@@ -1,0 +1,7 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.leplus</groupId>
+  <artifactId>ristretto</artifactId>
+  <version>0.0.1</version>
+  <name>ristretto</name>
+</project>
