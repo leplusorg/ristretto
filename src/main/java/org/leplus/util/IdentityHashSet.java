@@ -94,7 +94,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Serial
             newSet.map = (IdentityHashMap<E, Object>) map.clone();
             return newSet;
         } catch (CloneNotSupportedException e) {
-            throw new InternalError();
+            throw new AssertionError("Unexpected cloning error", e);
         }
     }
     
