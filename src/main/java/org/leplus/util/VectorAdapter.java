@@ -259,14 +259,16 @@ public class VectorAdapter<E> extends Vector<E> {
 	@Override
 	public Object clone() {
 		VectorAdapter<E> clone = (VectorAdapter<E>) super.clone();
-		try {
-			clone.underlying = underlying.getClass().newInstance();
-		} catch (InstantiationException e) {
-			clone.underlying = new ArrayList<E>();
-		} catch (IllegalAccessException e) {
-			clone.underlying = new ArrayList<E>();
-		}
-		clone.underlying.addAll(underlying);
+	    try {
+	    	if (underlying instanceof Cloneable) {
+	    		clone.underlying = (List<E>) underlying.getClass().getMethod("clone").invoke(underlying);
+	    	} else {
+	    		clone.underlying = underlying.getClass().newInstance();
+	    	}
+	    } catch (Exception e) {
+	    	clone.underlying = new ArrayList<E>();
+	    }
+	    clone.underlying.addAll(underlying);
 		return clone;
 	}
 
