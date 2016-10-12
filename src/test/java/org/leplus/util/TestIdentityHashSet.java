@@ -5,7 +5,6 @@ import java.util.Set;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -50,7 +49,7 @@ public class TestIdentityHashSet {
 		set1.add(new Dumb());
 		Set<Dumb> set2 = new IdentityHashSet<Dumb>();
 		set2.add(new Dumb());
-		assertNotEquals(set1, set2);
+		assertFalse(set1.equals(set2));
 	}
 	
 	@Test
@@ -67,6 +66,7 @@ public class TestIdentityHashSet {
 	public void testClone() {
 		IdentityHashSet<Dumb> set1 = new IdentityHashSet<Dumb>();
 		set1.add(new Dumb());
+		@SuppressWarnings("unchecked")
 		IdentityHashSet<Dumb> set2 = (IdentityHashSet<Dumb>) set1.clone();
 		assertEquals(set1, set2);
 		assertTrue(set1.iterator().next() == set2.iterator().next());
