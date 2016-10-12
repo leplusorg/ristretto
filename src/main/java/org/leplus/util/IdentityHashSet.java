@@ -1,12 +1,8 @@
 package org.leplus.util;
 
-import java.io.IOException;
 import java.util.AbstractSet;
-import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable {
