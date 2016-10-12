@@ -89,7 +89,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
             newSet.map = (IdentityHashMap<E, Object>) map.clone();
             return newSet;
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError("Unexpected cloning error", e);
+            throw new AssertionError("Unexpected cloning error");
         }
     }
     
