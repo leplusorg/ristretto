@@ -1,9 +1,6 @@
 package org.leplus.util;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.AbstractSet;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
@@ -12,9 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Serializable, Cloneable {
-
-	private static final long serialVersionUID = -7320241519141025110L;
+public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable {
 
 	private static final Object DUMMY = new Object();
 
