@@ -26,14 +26,23 @@ public class VectorAdapter<E> extends Vector<E> {
 
 	@Override
 	public void trimToSize() {
+		if (underlying instanceof ArrayList) {
+			((ArrayList<E>) underlying).trimToSize();
+		}
 	}
 
 	@Override
 	public void ensureCapacity(int minCapacity) {
+		if (underlying instanceof ArrayList) {
+			((ArrayList<E>) underlying).ensureCapacity(minCapacity);
+		}
 	}
 
 	@Override
 	public void setSize(int newSize) {
+		while (underlying.size() < newSize) {
+			add(null);
+		}
 	}
 
 	@Override
