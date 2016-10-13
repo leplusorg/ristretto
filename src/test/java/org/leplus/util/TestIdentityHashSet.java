@@ -24,7 +24,7 @@ public class TestIdentityHashSet {
 	}
 
 	@Test
-	public void testEmpty() {
+	public void testIsEmpty() {
 		final Set<Dumb> set = new IdentityHashSet<Dumb>();
 		assertTrue(set.isEmpty());
 	}
@@ -64,6 +64,12 @@ public class TestIdentityHashSet {
 		set.add(d);
 		assertFalse(set.isEmpty());
 		assertEquals(1, set.size());
+		assertTrue(set.contains(d));
+		assertFalse(set.contains(new Dumb()));
+		set.remove(d);
+		assertFalse(set.contains(d));
+		assertTrue(set.isEmpty());
+		assertEquals(0, set.size());
 	}
 
 	@Test
@@ -73,6 +79,19 @@ public class TestIdentityHashSet {
 		set.add(new Dumb());
 		assertFalse(set.isEmpty());
 		assertEquals(2, set.size());
+		assertFalse(set.contains(new Dumb()));
+	}
+	
+    @Test
+    public void testClear() {
+		final Set<Dumb> set = new IdentityHashSet<Dumb>();
+		final Dumb d = new Dumb();
+		set.add(d);
+		assertFalse(set.isEmpty());
+		assertEquals(1, set.size());
+		set.clear();
+		assertTrue(set.isEmpty());
+		assertEquals(0, set.size());
 	}
 
 }
