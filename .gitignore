@@ -5,6 +5,7 @@ target/
 .project
 .classpath
 .settings/
+build/
 
 # Java Classes #
 *.class
