@@ -11,6 +11,18 @@ import org.junit.Test;
 public class TestIdentityHashSet {
 
 	@Test
+	public void testClear() {
+		final Set<Dumb> set = new IdentityHashSet<Dumb>();
+		final Dumb d = new Dumb();
+		set.add(d);
+		assertFalse(set.isEmpty());
+		assertEquals(1, set.size());
+		set.clear();
+		assertTrue(set.isEmpty());
+		assertEquals(0, set.size());
+	}
+
+	@Test
 	public void testClone() {
 		final IdentityHashSet<Dumb> set1 = new IdentityHashSet<Dumb>();
 		set1.add(new Dumb());
@@ -21,12 +33,6 @@ public class TestIdentityHashSet {
 		set1.clear();
 		assertEquals(0, set1.size());
 		assertEquals(1, set2.size());
-	}
-
-	@Test
-	public void testIsEmpty() {
-		final Set<Dumb> set = new IdentityHashSet<Dumb>();
-		assertTrue(set.isEmpty());
 	}
 
 	@Test
@@ -46,6 +52,12 @@ public class TestIdentityHashSet {
 		final Set<Dumb> set2 = new IdentityHashSet<Dumb>();
 		set2.add(new Dumb());
 		assertFalse(set1.equals(set2));
+	}
+
+	@Test
+	public void testIsEmpty() {
+		final Set<Dumb> set = new IdentityHashSet<Dumb>();
+		assertTrue(set.isEmpty());
 	}
 
 	@Test
@@ -80,18 +92,6 @@ public class TestIdentityHashSet {
 		assertFalse(set.isEmpty());
 		assertEquals(2, set.size());
 		assertFalse(set.contains(new Dumb()));
-	}
-	
-    @Test
-    public void testClear() {
-		final Set<Dumb> set = new IdentityHashSet<Dumb>();
-		final Dumb d = new Dumb();
-		set.add(d);
-		assertFalse(set.isEmpty());
-		assertEquals(1, set.size());
-		set.clear();
-		assertTrue(set.isEmpty());
-		assertEquals(0, set.size());
 	}
 
 }
