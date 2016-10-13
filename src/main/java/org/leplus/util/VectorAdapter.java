@@ -47,6 +47,9 @@ public class VectorAdapter<E> extends Vector<E> {
 
 	@Override
 	public int capacity() {
+		// Sadly even if underlying is an ArrayList,
+		// we don't have access to it's capacity. So
+		// the size is the closest thing we have.
 		return underlying.size();
 	}
 
