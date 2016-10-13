@@ -1,12 +1,12 @@
 package org.leplus.util;
 
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.hasItems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,8 @@ public class TestVectorAdapter {
 
 	@Test
 	public void test() {
-		Vector<String> actual = new VectorAdapter<String>(Arrays.asList("a", "b", "c"));
-		Vector<String> expected = new VectorAdapter<String>(Arrays.asList("a", "b", "c"));
+		final Vector<String> actual = new VectorAdapter<String>(Arrays.asList("a", "b", "c"));
+		final Vector<String> expected = new VectorAdapter<String>(Arrays.asList("a", "b", "c"));
 		assertThat(actual, is(expected));
 		assertThat(actual, hasItems("b"));
 		assertThat(actual, hasSize(3));
@@ -30,7 +30,7 @@ public class TestVectorAdapter {
 		assertThat(actual, not(IsEmptyCollection.empty()));
 		assertThat(new VectorAdapter<String>(new ArrayList<String>()), IsEmptyCollection.empty());
 		@SuppressWarnings("unchecked")
-		Vector<String> clone = (Vector<String>) actual.clone();
+		final Vector<String> clone = (Vector<String>) actual.clone();
 		assertThat(clone, is(expected));
 		assertThat(clone, hasItems("b"));
 		assertThat(clone, hasSize(3));
