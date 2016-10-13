@@ -14,6 +14,10 @@ public class VectorAdapter<E> extends Vector<E> {
 	
 	private List<E> underlying;
 	
+	public VectorAdapter() {
+		this(new ArrayList<E>());
+	}
+	
 	public VectorAdapter(List<E> underlying) {
 		super();
 		this.underlying = underlying;
