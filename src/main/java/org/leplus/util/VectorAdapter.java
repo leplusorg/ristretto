@@ -19,7 +19,7 @@ public class VectorAdapter<E> extends Vector<E> {
 	}
 	
 	public VectorAdapter(List<E> underlying) {
-		super();
+		super(0);
 		this.underlying = underlying;
 	}
 
