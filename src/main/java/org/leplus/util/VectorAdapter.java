@@ -1,5 +1,6 @@
 package org.leplus.util;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -8,45 +9,37 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Vector;
 
-public class VectorAdapter<E> extends Vector<E> {
+public abstract class VectorAdapter<E> extends Vector<E> {
 
 	private static final long serialVersionUID = -5465186583387834552L;
-	
-	private List<E> underlying;
-	
-	public VectorAdapter() {
-		this(new ArrayList<E>());
-	}
-	
-	public VectorAdapter(List<E> underlying) {
+
+	protected VectorAdapter() {
 		super(0);
-		this.underlying = underlying;
 	}
 
 	@Override
-	public void copyInto(Object[] anArray) {
-		underlying.toArray(anArray);
+	public boolean add(final E o) {
+		return delegate().add(o);
 	}
 
 	@Override
-	public void trimToSize() {
-		if (underlying instanceof ArrayList) {
-			((ArrayList<E>) underlying).trimToSize();
-		}
+	public void add(final int index, final E element) {
+		delegate().add(index, element);
 	}
 
 	@Override
-	public void ensureCapacity(int minCapacity) {
-		if (underlying instanceof ArrayList) {
-			((ArrayList<E>) underlying).ensureCapacity(minCapacity);
-		}
+	public boolean addAll(final Collection<? extends E> c) {
+		return delegate().addAll(c);
 	}
 
 	@Override
-	public void setSize(int newSize) {
-		while (underlying.size() < newSize) {
-			add(null);
-		}
+	public boolean addAll(final int index, final Collection<? extends E> c) {
+		return delegate().addAll(index, c);
+	}
+
+	@Override
+	public void addElement(final E obj) {
+		delegate().add(obj);
 	}
 
 	@Override
@@ -54,238 +47,266 @@ public class VectorAdapter<E> extends Vector<E> {
 		// Sadly even if underlying is an ArrayList,
 		// we don't have access to it's capacity. So
 		// the size is the closest thing we have.
-		return underlying.size();
-	}
-
-	@Override
-	public int size() {
-		return underlying.size();
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return underlying.isEmpty();
-	}
-
-	@Override
-	public Enumeration<E> elements() {
-		return new Vector<E>(underlying).elements();
-	}
-
-	@Override
-	public boolean contains(Object elem) {
-		return underlying.contains(elem);
-	}
-
-	@Override
-	public int indexOf(Object elem) {
-		return underlying.indexOf(elem);
-	}
-
-	@Override
-	public int indexOf(Object elem, int index) {
-		int r = underlying.subList(index, underlying.size()).indexOf(elem);
-		return r < 0 ? r : index + r; 
-	}
-
-	@Override
-	public int lastIndexOf(Object elem) {
-		return underlying.lastIndexOf(elem);
-	}
-
-	@Override
-	public int lastIndexOf(Object elem, int index) {
-		return underlying.subList(0, index).lastIndexOf(elem);
-	}
-
-	@Override
-	public E elementAt(int index) {
-		return underlying.get(index);
-	}
-
-	@Override
-	public E firstElement() {
-		return underlying.get(0);
-	}
-
-	@Override
-	public E lastElement() {
-		return underlying.get(underlying.size() - 1);
-	}
-
-	@Override
-	public void setElementAt(E obj, int index) {
-		underlying.set(index, obj);
-	}
-
-	@Override
-	public void removeElementAt(int index) {
-		underlying.remove(index);
-	}
-
-	@Override
-	public void insertElementAt(E obj, int index) {
-		underlying.add(index, obj);
-	}
-
-	@Override
-	public void addElement(E obj) {
-		underlying.add(obj);
-	}
-
-	@Override
-	public boolean removeElement(Object obj) {
-		return underlying.remove(obj);
-	}
-
-	@Override
-	public void removeAllElements() {
-		underlying.clear();
-	}
-
-	@Override
-	public Object[] toArray() {
-		return underlying.toArray();
-	}
-
-	@Override
-	public <T> T[] toArray(T[] a) {
-		return underlying.toArray(a);
-	}
-
-	@Override
-	public E get(int index) {
-		return underlying.get(index);
-	}
-
-	@Override
-	public E set(int index, E element) {
-		return underlying.set(index, element);
-	}
-
-	@Override
-	public boolean add(E o) {
-		return underlying.add(o);
-	}
-
-	@Override
-	public boolean remove(Object o) {
-		return underlying.remove(o);
-	}
-
-	@Override
-	public void add(int index, E element) {
-		underlying.add(index, element);
-	}
-
-	@Override
-	public E remove(int index) {
-		return underlying.remove(index);
+		return delegate().size();
 	}
 
 	@Override
 	public void clear() {
-		underlying.clear();
+		delegate().clear();
 	}
 
 	@Override
-	public boolean containsAll(Collection<?> c) {
-		return underlying.containsAll(c);
+	public abstract Object clone();
+
+	@Override
+	public boolean contains(final Object elem) {
+		return delegate().contains(elem);
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends E> c) {
-		return underlying.addAll(c);
+	public boolean containsAll(final Collection<?> c) {
+		return delegate().containsAll(c);
 	}
 
 	@Override
-	public boolean removeAll(Collection<?> c) {
-		return underlying.removeAll(c);
+	public void copyInto(final Object[] anArray) {
+		delegate().toArray(anArray);
+	}
+
+	protected abstract List<E> delegate();
+
+	@Override
+	public E elementAt(final int index) {
+		return delegate().get(index);
 	}
 
 	@Override
-	public boolean retainAll(Collection<?> c) {
-		return underlying.retainAll(c);
+	public Enumeration<E> elements() {
+		return new Vector<E>(delegate()).elements();
 	}
 
 	@Override
-	public boolean addAll(int index, Collection<? extends E> c) {
-		return underlying.addAll(index, c);
+	public void ensureCapacity(final int minCapacity) {
+		final List<E> delegate = delegate();
+		if (delegate instanceof ArrayList) {
+			((ArrayList<E>) delegate).ensureCapacity(minCapacity);
+		} else if (delegate instanceof Vector) {
+			((Vector<E>) delegate).ensureCapacity(minCapacity);
+		} else {
+			try {
+				final Method method = delegate.getClass().getMethod("ensureCapacity", int.class);
+				if (method != null) {
+					method.invoke(delegate, minCapacity);
+				}
+			} catch (final Exception e) {
+				handleException(e);
+			}
+		}
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(final Object obj) {
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		@SuppressWarnings("unchecked")
-		VectorAdapter<E> other = (VectorAdapter<E>) obj;
-		if (underlying == null) {
-			if (other.underlying != null)
+		final VectorAdapter<E> other = (VectorAdapter<E>) obj;
+		final List<E> delegate = delegate();
+		final List<E> otherDelegate = other.delegate();
+		if (delegate == null) {
+			if (otherDelegate != null) {
 				return false;
-		} else if (!underlying.equals(other.underlying))
+			}
+		} else if (!delegate.equals(otherDelegate)) {
 			return false;
+		}
 		return true;
+	}
+
+	@Override
+	public E firstElement() {
+		return delegate().get(0);
+	}
+
+	@Override
+	public E get(final int index) {
+		return delegate().get(index);
+	}
+
+	protected void handleException(final Exception e) {
+		e.printStackTrace();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((underlying == null) ? 0 : underlying.hashCode());
+		final List<E> delegate = delegate();
+		result = prime * result + (delegate == null ? 0 : delegate.hashCode());
 		return result;
 	}
 
 	@Override
-	public String toString() {
-		return underlying.toString();
+	public int indexOf(final Object elem) {
+		return delegate().indexOf(elem);
 	}
 
 	@Override
-	public List<E> subList(int fromIndex, int toIndex) {
-		return underlying.subList(fromIndex, toIndex);
+	public int indexOf(final Object elem, final int index) {
+		final List<E> delegate = delegate();
+		final int r = delegate.subList(index, delegate.size()).indexOf(elem);
+		return r < 0 ? r : index + r;
 	}
 
 	@Override
-	protected void removeRange(int fromIndex, int toIndex) {
-		for (int i = fromIndex; i < toIndex; i++) {
-			underlying.remove(fromIndex);
-		}
+	public void insertElementAt(final E obj, final int index) {
+		delegate().add(index, obj);
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return delegate().isEmpty();
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		return underlying.iterator();
+		return delegate().iterator();
+	}
+
+	@Override
+	public E lastElement() {
+		final List<E> delegate = delegate();
+		return delegate.get(delegate.size() - 1);
+	}
+
+	@Override
+	public int lastIndexOf(final Object elem) {
+		return delegate().lastIndexOf(elem);
+	}
+
+	@Override
+	public int lastIndexOf(final Object elem, final int index) {
+		return delegate().subList(0, index).lastIndexOf(elem);
 	}
 
 	@Override
 	public ListIterator<E> listIterator() {
-		return underlying.listIterator();
+		return delegate().listIterator();
 	}
 
 	@Override
-	public ListIterator<E> listIterator(int index) {
-		return underlying.listIterator(index);
+	public ListIterator<E> listIterator(final int index) {
+		return delegate().listIterator(index);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Object clone() {
-		VectorAdapter<E> clone = (VectorAdapter<E>) super.clone();
-	    try {
-	    	if (underlying instanceof Cloneable) {
-	    		clone.underlying = (List<E>) underlying.getClass().getMethod("clone").invoke(underlying);
-	    	} else {
-	    		clone.underlying = underlying.getClass().newInstance();
-	    	}
-	    } catch (Exception e) {
-	    	clone.underlying = new ArrayList<E>();
-	    }
-	    clone.underlying.addAll(underlying);
-		return clone;
+	public E remove(final int index) {
+		return delegate().remove(index);
+	}
+
+	@Override
+	public boolean remove(final Object o) {
+		return delegate().remove(o);
+	}
+
+	@Override
+	public boolean removeAll(final Collection<?> c) {
+		return delegate().removeAll(c);
+	}
+
+	@Override
+	public void removeAllElements() {
+		delegate().clear();
+	}
+
+	@Override
+	public boolean removeElement(final Object obj) {
+		return delegate().remove(obj);
+	}
+
+	@Override
+	public void removeElementAt(final int index) {
+		delegate().remove(index);
+	}
+
+	@Override
+	protected void removeRange(final int fromIndex, final int toIndex) {
+		final List<E> delegate = delegate();
+		for (int i = fromIndex; i < toIndex; i++) {
+			delegate.remove(fromIndex);
+		}
+	}
+
+	@Override
+	public boolean retainAll(final Collection<?> c) {
+		return delegate().retainAll(c);
+	}
+
+	@Override
+	public E set(final int index, final E element) {
+		return delegate().set(index, element);
+	}
+
+	@Override
+	public void setElementAt(final E obj, final int index) {
+		delegate().set(index, obj);
+	}
+
+	@Override
+	public void setSize(final int newSize) {
+		while (delegate().size() < newSize) {
+			add(null);
+		}
+	}
+
+	@Override
+	public int size() {
+		return delegate().size();
+	}
+
+	@Override
+	public List<E> subList(final int fromIndex, final int toIndex) {
+		return delegate().subList(fromIndex, toIndex);
+	}
+
+	@Override
+	public Object[] toArray() {
+		return delegate().toArray();
+	}
+
+	@Override
+	public <T> T[] toArray(final T[] a) {
+		return delegate().toArray(a);
+	}
+
+	@Override
+	public String toString() {
+		return delegate().toString();
+	}
+
+	@Override
+	public void trimToSize() {
+		final List<E> delegate = delegate();
+		if (delegate instanceof ArrayList) {
+			((ArrayList<E>) delegate).trimToSize();
+		} else if (delegate instanceof Vector) {
+			((Vector<E>) delegate).trimToSize();
+		} else {
+			try {
+				final Method method = delegate.getClass().getMethod("trimToSize");
+				if (method != null) {
+					method.invoke(delegate);
+				}
+			} catch (final Exception e) {
+				handleException(e);
+			}
+		}
 	}
 
 }
