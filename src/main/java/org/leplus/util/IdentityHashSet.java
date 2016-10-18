@@ -32,8 +32,47 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
+	public Object clone() {
+		try {
+			final IdentityHashSet<E> newSet = (IdentityHashSet<E>) super.clone();
+			newSet.map = (IdentityHashMap<E, Object>) map.clone();
+			return newSet;
+		} catch (final CloneNotSupportedException e) {
+			throw new AssertionError("Unexpected cloning error");
+		}
+	}
+
+	@Override
 	public boolean contains(final Object o) {
 		return map.containsKey(o);
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final IdentityHashSet<?> other = (IdentityHashSet<?>) obj;
+		if (map == null) {
+			if (other.map != null) {
+				return false;
+			}
+		} else if (!map.equals(other.map)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return map.hashCode();
 	}
 
 	@Override
@@ -56,37 +95,4 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.size();
 	}
 
-	@Override
-	public int hashCode() {
-		return map.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		IdentityHashSet<?> other = (IdentityHashSet<?>) obj;
-		if (map == null) {
-			if (other.map != null)
-				return false;
-		} else if (!map.equals(other.map))
-			return false;
-		return true;
-	}
-
-    @SuppressWarnings("unchecked")
-	public Object clone() {
-        try {
-        	IdentityHashSet<E> newSet = (IdentityHashSet<E>) super.clone();
-            newSet.map = (IdentityHashMap<E, Object>) map.clone();
-            return newSet;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError("Unexpected cloning error");
-        }
-    }
-    
 }

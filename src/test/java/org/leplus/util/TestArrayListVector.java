@@ -25,15 +25,15 @@ import org.junit.runners.Suite;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestVectorAdapter.GuavaTests.class, TestVectorAdapter.AdditionalTests.class, })
-public class TestVectorAdapter {
+@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.AdditionalTests.class, })
+public class TestArrayListVector {
 
 	public static class AdditionalTests {
 
 		@Test
 		public void test() {
-			final Vector<String> actual = new VectorAdapter<String>(Arrays.asList("a", "b", "c"));
-			final Vector<String> expected = new VectorAdapter<String>(Arrays.asList("a", "b", "c"));
+			final Vector<String> actual = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
+			final Vector<String> expected = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
 			assertThat(actual, is(expected));
 			assertThat(actual, hasItems("b"));
 			assertThat(actual, hasSize(3));
@@ -89,7 +89,7 @@ public class TestVectorAdapter {
 				
 				@Override
 				protected List<String> create(String[] elements) {
-					return new VectorAdapter<String>(Arrays.asList(elements));
+					return new ArrayListVector<String>(Arrays.asList(elements));
 				}
 				
 			}).named("VectorAdapter tests")
