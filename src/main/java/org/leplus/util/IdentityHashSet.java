@@ -1,6 +1,7 @@
 package org.leplus.util;
 
 import java.util.AbstractSet;
+import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -21,6 +22,13 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		map = new IdentityHashMap<E, Object>(expectedMaxSize);
 	}
 
+	public IdentityHashSet(final Collection<? extends E> c) {
+		this();
+		for (E e : c) {
+			add(e);
+		}
+	}
+
 	@Override
 	public boolean add(final E e) {
 		return map.put(e, DUMMY) == null;
@@ -32,15 +40,10 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object clone() {
-		try {
-			final IdentityHashSet<E> newSet = (IdentityHashSet<E>) super.clone();
-			newSet.map = (IdentityHashMap<E, Object>) map.clone();
-			return newSet;
-		} catch (final CloneNotSupportedException e) {
-			throw new AssertionError("Unexpected cloning error");
-		}
+		final IdentityHashSet<E> newSet = new IdentityHashSet<E>();
+		newSet.map.putAll(map);
+		return newSet;
 	}
 
 	@Override
@@ -53,26 +56,15 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		if (this == obj) {
 			return true;
 		}
-		if (!super.equals(obj)) {
+		if (!(obj instanceof Set)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final IdentityHashSet<?> other = (IdentityHashSet<?>) obj;
-		if (map == null) {
-			if (other.map != null) {
-				return false;
-			}
-		} else if (!map.equals(other.map)) {
-			return false;
-		}
-		return true;
+		return map.keySet().equals(obj);
 	}
 
 	@Override
 	public int hashCode() {
-		return map.hashCode();
+		return map.keySet().hashCode();
 	}
 
 	@Override
