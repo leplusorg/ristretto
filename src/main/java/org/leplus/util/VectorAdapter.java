@@ -41,7 +41,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	public void addElement(final E obj) {
 		delegate().add(obj);
 	}
-
+	
 	@Override
 	public int capacity() {
 		// Sadly even if underlying is an ArrayList,
@@ -109,24 +109,14 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		if (this == obj) {
 			return true;
 		}
-		if (!super.equals(obj)) {
+		if (!(obj instanceof List)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		@SuppressWarnings("unchecked")
-		final VectorAdapter<E> other = (VectorAdapter<E>) obj;
 		final List<E> delegate = delegate();
-		final List<E> otherDelegate = other.delegate();
 		if (delegate == null) {
-			if (otherDelegate != null) {
-				return false;
-			}
-		} else if (!delegate.equals(otherDelegate)) {
 			return false;
 		}
-		return true;
+		return delegate.equals(obj);
 	}
 
 	@Override
@@ -145,11 +135,8 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
 		final List<E> delegate = delegate();
-		result = prime * result + (delegate == null ? 0 : delegate.hashCode());
-		return result;
+		return delegate == null ? 0 : delegate.hashCode();
 	}
 
 	@Override

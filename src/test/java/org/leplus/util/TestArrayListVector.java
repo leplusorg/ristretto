@@ -8,21 +8,22 @@ import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInA
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
 import java.util.List;
+import java.util.Vector;
 
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Test;
-import com.google.common.collect.testing.*;
-import com.google.common.collect.testing.features.CollectionFeature;
-import com.google.common.collect.testing.features.CollectionSize;
-import com.google.common.collect.testing.features.ListFeature;
-import junit.framework.TestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import com.google.common.collect.testing.ListTestSuiteBuilder;
+import com.google.common.collect.testing.TestStringListGenerator;
+import com.google.common.collect.testing.features.CollectionFeature;
+import com.google.common.collect.testing.features.CollectionSize;
+import com.google.common.collect.testing.features.ListFeature;
+
+import junit.framework.TestSuite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.AdditionalTests.class, })
@@ -41,7 +42,7 @@ public class TestArrayListVector {
 			assertThat(actual, contains("a", "b", "c"));
 			assertThat(actual, containsInAnyOrder("c", "b", "a"));
 			assertThat(actual, not(IsEmptyCollection.empty()));
-			assertThat(new VectorAdapter<String>(new ArrayList<String>()), IsEmptyCollection.empty());
+			assertThat(new ArrayListVector<String>(), IsEmptyCollection.empty());
 			@SuppressWarnings("unchecked")
 			final Vector<String> clone = (Vector<String>) actual.clone();
 			assertThat(clone, is(expected));
@@ -86,24 +87,38 @@ public class TestArrayListVector {
 
 		public static TestSuite suite() {
 			return ListTestSuiteBuilder.using(new TestStringListGenerator() {
-				
+
 				@Override
 				protected List<String> create(String[] elements) {
 					return new ArrayListVector<String>(Arrays.asList(elements));
 				}
-				
-			}).named("VectorAdapter tests")
+
+			}).named("ArrayListVector tests")
 					.withFeatures(
 							ListFeature.GENERAL_PURPOSE,
+							ListFeature.REMOVE_OPERATIONS,
 							ListFeature.SUPPORTS_ADD_WITH_INDEX,
 							ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
 							ListFeature.SUPPORTS_SET,
-							CollectionFeature.SUPPORTS_ADD,
-							CollectionFeature.SUPPORTS_REMOVE,
-							CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+							CollectionFeature.ALLOWS_NULL_QUERIES,
 							CollectionFeature.ALLOWS_NULL_VALUES,
+							CollectionFeature.DESCENDING_VIEW,
+							CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
 							CollectionFeature.GENERAL_PURPOSE,
-							CollectionSize.ANY)
+							CollectionFeature.KNOWN_ORDER,
+							CollectionFeature.REJECTS_DUPLICATES_AT_CREATION,
+							CollectionFeature.REMOVE_OPERATIONS,
+							CollectionFeature.RESTRICTS_ELEMENTS,
+							CollectionFeature.SERIALIZABLE,
+							CollectionFeature.SUBSET_VIEW,
+							CollectionFeature.SUPPORTS_ADD,
+							CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+							CollectionFeature.SUPPORTS_REMOVE,
+							CollectionSize.ANY,
+							CollectionSize.ONE,
+							CollectionSize.SEVERAL,
+							CollectionSize.ZERO
+							)
 					.createTestSuite();
 		}
 
