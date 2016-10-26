@@ -140,7 +140,6 @@ public class TestIdentityHashSet {
 							CollectionFeature.DESCENDING_VIEW,
 							CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
 							CollectionFeature.GENERAL_PURPOSE,
-							CollectionFeature.KNOWN_ORDER,
 							CollectionFeature.REMOVE_OPERATIONS,
 							CollectionFeature.RESTRICTS_ELEMENTS,
 							CollectionFeature.SUBSET_VIEW,
