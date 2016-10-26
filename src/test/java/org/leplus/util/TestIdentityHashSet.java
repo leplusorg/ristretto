@@ -16,6 +16,7 @@ import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.SetFeature;
+import com.google.common.collect.testing.testers.SetHashCodeTester;
 
 import junit.framework.TestSuite;
 
@@ -109,6 +110,16 @@ public class TestIdentityHashSet {
 			assertFalse(set.contains(new Dumb()));
 		}
 		
+		@Test
+		public void testHashCode() {
+			final Dumb a = new Dumb();
+			final Dumb b = new Dumb();
+			final Dumb c = new Dumb();
+			final Set<Dumb> set1 = new IdentityHashSet<Dumb>(Arrays.asList(a, b, c));
+			final Set<Dumb> set2 = new IdentityHashSet<Dumb>(Arrays.asList(b, c, a));
+			assertEquals(set1.hashCode(), set2.hashCode());
+		}
+		
 	}
 
 	public static class GuavaTests {
@@ -141,6 +152,7 @@ public class TestIdentityHashSet {
 							CollectionSize.SEVERAL,
 							CollectionSize.ZERO
 							)
+					.suppressing(SetHashCodeTester.getHashCodeMethods())
 					.createTestSuite();
 		}
 
