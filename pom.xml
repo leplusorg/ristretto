@@ -4,6 +4,29 @@
   <artifactId>ristretto</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>ristretto</name>
+  <packaging>jar</packaging>
+  <description>A small library of useful java classes.</description>
+  <url>https://github.com/thomasleplus/ristretto</url>
+  <licenses>
+    <license>
+      <name>GNU General Public License (GPL)</name>
+      <url>https://www.gnu.org/licenses/gpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/thomasleplus/ristretto</url>
+    <connection>scm:git:git://github.com/thomasleplus/ristretto.git</connection>
+    <developerConnection>scm:git:git@github.com:thomasleplus/ristretto.git</developerConnection>
+  </scm>
+  <developers>
+    <developer>
+      <email>thomas.leplus@gmail.com</email>
+      <name>Thomas Leplus</name>
+      <url>https://github.com/thomasleplus</url>
+      <id>thomasleplus</id>
+    </developer>
+  </developers>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
