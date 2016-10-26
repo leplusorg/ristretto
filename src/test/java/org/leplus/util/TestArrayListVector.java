@@ -36,6 +36,7 @@ public class TestArrayListVector {
 			final Vector<String> actual = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
 			final Vector<String> expected = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
 			assertThat(actual, is(expected));
+			assertThat(actual.hashCode(), is(expected.hashCode()));
 			assertThat(actual, hasItems("b"));
 			assertThat(actual, hasSize(3));
 			assertThat(actual.size(), is(3));
@@ -46,6 +47,7 @@ public class TestArrayListVector {
 			@SuppressWarnings("unchecked")
 			final Vector<String> clone = (Vector<String>) actual.clone();
 			assertThat(clone, is(expected));
+			assertThat(clone.hashCode(), is(expected.hashCode()));
 			assertThat(clone, hasItems("b"));
 			assertThat(clone, hasSize(3));
 			assertThat(clone.size(), is(3));
