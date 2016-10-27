@@ -71,5 +71,5 @@ public class TestIdentityObject {
 	public void testHashCode() {
 		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.hashCode());
 	}
-	
+
 }

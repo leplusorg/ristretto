@@ -41,7 +41,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	public void addElement(final E obj) {
 		delegate().add(obj);
 	}
-	
+
 	@Override
 	public int capacity() {
 		// Sadly even if underlying is an ArrayList,
@@ -56,7 +56,14 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	}
 
 	@Override
-	public abstract Object clone();
+	public VectorAdapter<E> clone() {
+		@SuppressWarnings("unchecked")
+		final VectorAdapter<E> clone = (VectorAdapter<E>) super.clone();
+		final List<E> delegate = clone.delegate();
+		delegate.clear();
+		delegate.addAll(delegate());
+		return clone;
+	}
 
 	@Override
 	public boolean contains(final Object elem) {

@@ -60,5 +60,5 @@ public class TestIdentityEnum {
 	public void testHashCode() {
 		assertTrue(IdentityEnum.IT.hashCode() == IdentityEnum.IT.hashCode());
 	}
-	
+
 }
