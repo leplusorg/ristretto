@@ -8,7 +8,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 
 	private static final long serialVersionUID = -7584729063793597958L;
 
-	private final List<E> delegate;
+	private List<E> delegate;
 
 	public ArrayListVector() {
 		this(new ArrayList<E>());
@@ -25,6 +25,13 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	private ArrayListVector(final List<E> delegate) {
 		super();
 		this.delegate = delegate;
+	}
+
+	@Override
+	public ArrayListVector<E> clone() {
+		final ArrayListVector<E> clone = (ArrayListVector<E>) super.clone();
+		clone.delegate = new ArrayList<E>(delegate);
+		return clone;
 	}
 
 	@Override

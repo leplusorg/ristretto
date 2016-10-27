@@ -55,14 +55,10 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().clear();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public VectorAdapter<E> clone() {
-		@SuppressWarnings("unchecked")
-		final VectorAdapter<E> clone = (VectorAdapter<E>) super.clone();
-		final List<E> delegate = clone.delegate();
-		delegate.clear();
-		delegate.addAll(delegate());
-		return clone;
+		return (VectorAdapter<E>) super.clone();
 	}
 
 	@Override

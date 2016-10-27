@@ -44,8 +44,7 @@ public class IdentityHashSet<E> extends AbstractSet<E>implements Set<E>, Cloneab
 		try {
 			@SuppressWarnings("unchecked")
 			final IdentityHashSet<E> clone = (IdentityHashSet<E>) super.clone();
-			clone.map.clear();
-			clone.map.putAll(map);
+			clone.map = new IdentityHashMap<E, Object>(map);
 			return clone;
 		} catch (final CloneNotSupportedException e) {
 			throw new Error(e);

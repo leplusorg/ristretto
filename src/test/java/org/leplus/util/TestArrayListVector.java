@@ -26,7 +26,7 @@ import com.google.common.collect.testing.features.ListFeature;
 import junit.framework.TestSuite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.AdditionalTests.class, })
+@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.AdditionalTests.class })
 public class TestArrayListVector {
 
 	public static class AdditionalTests {
