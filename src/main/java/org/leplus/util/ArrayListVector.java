@@ -28,11 +28,6 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	}
 
 	@Override
-	public Object clone() {
-		return new ArrayListVector<E>(new ArrayList<E>(delegate()));
-	}
-
-	@Override
 	protected List<E> delegate() {
 		return delegate;
 	}

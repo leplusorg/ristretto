@@ -6,7 +6,7 @@ import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable {
+public class IdentityHashSet<E> extends AbstractSet<E>implements Set<E>, Cloneable {
 
 	private static final Object DUMMY = new Object();
 
@@ -17,16 +17,16 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		map = new IdentityHashMap<E, Object>();
 	}
 
+	public IdentityHashSet(final Collection<? extends E> c) {
+		this();
+		for (final E e : c) {
+			add(e);
+		}
+	}
+
 	public IdentityHashSet(final int expectedMaxSize) {
 		super();
 		map = new IdentityHashMap<E, Object>(expectedMaxSize);
-	}
-
-	public IdentityHashSet(final Collection<? extends E> c) {
-		this();
-		for (E e : c) {
-			add(e);
-		}
 	}
 
 	@Override
@@ -41,9 +41,15 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	@Override
 	public Object clone() {
-		final IdentityHashSet<E> newSet = new IdentityHashSet<E>();
-		newSet.map.putAll(map);
-		return newSet;
+		try {
+			@SuppressWarnings("unchecked")
+			final IdentityHashSet<E> clone = (IdentityHashSet<E>) super.clone();
+			clone.map.clear();
+			clone.map.putAll(map);
+			return clone;
+		} catch (final CloneNotSupportedException e) {
+			throw new InternalError(e);
+		}
 	}
 
 	@Override
