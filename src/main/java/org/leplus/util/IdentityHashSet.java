@@ -48,7 +48,7 @@ public class IdentityHashSet<E> extends AbstractSet<E>implements Set<E>, Cloneab
 			clone.map.putAll(map);
 			return clone;
 		} catch (final CloneNotSupportedException e) {
-			throw new InternalError(e);
+			throw new Error(e);
 		}
 	}
 
