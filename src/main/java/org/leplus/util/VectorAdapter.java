@@ -1,7 +1,5 @@
 package org.leplus.util;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -89,23 +87,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	}
 
 	@Override
-	public void ensureCapacity(final int minCapacity) {
-		final List<E> delegate = delegate();
-		if (delegate instanceof ArrayList) {
-			((ArrayList<E>) delegate).ensureCapacity(minCapacity);
-		} else if (delegate instanceof Vector) {
-			((Vector<E>) delegate).ensureCapacity(minCapacity);
-		} else {
-			try {
-				final Method method = delegate.getClass().getMethod("ensureCapacity", int.class);
-				if (method != null) {
-					method.invoke(delegate, minCapacity);
-				}
-			} catch (final Exception e) {
-				handleException(e);
-			}
-		}
-	}
+	public abstract void ensureCapacity(final int minCapacity);
 
 	@Override
 	public boolean equals(final Object obj) {
@@ -130,10 +112,6 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	@Override
 	public E get(final int index) {
 		return delegate().get(index);
-	}
-
-	protected void handleException(final Exception e) {
-		e.printStackTrace();
 	}
 
 	@Override
@@ -279,24 +257,8 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	public String toString() {
 		return delegate().toString();
 	}
-
+	
 	@Override
-	public void trimToSize() {
-		final List<E> delegate = delegate();
-		if (delegate instanceof ArrayList) {
-			((ArrayList<E>) delegate).trimToSize();
-		} else if (delegate instanceof Vector) {
-			((Vector<E>) delegate).trimToSize();
-		} else {
-			try {
-				final Method method = delegate.getClass().getMethod("trimToSize");
-				if (method != null) {
-					method.invoke(delegate);
-				}
-			} catch (final Exception e) {
-				handleException(e);
-			}
-		}
-	}
+	public abstract void trimToSize();
 
 }

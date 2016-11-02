@@ -8,7 +8,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 
 	private static final long serialVersionUID = -7584729063793597958L;
 
-	private List<E> delegate;
+	private ArrayList<E> delegate;
 
 	public ArrayListVector() {
 		this(new ArrayList<E>());
@@ -22,7 +22,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 		this(new ArrayList<E>(initialCapacity));
 	}
 
-	private ArrayListVector(final List<E> delegate) {
+	private ArrayListVector(final ArrayList<E> delegate) {
 		super();
 		this.delegate = delegate;
 	}
@@ -37,6 +37,16 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	@Override
 	protected List<E> delegate() {
 		return delegate;
+	}
+
+	@Override
+	public void ensureCapacity(int minCapacity) {
+		delegate.ensureCapacity(minCapacity);
+	}
+
+	@Override
+	public void trimToSize() {
+		delegate.trimToSize();
 	}
 
 }
