@@ -34,15 +34,6 @@
     <sonar.junit.reportsPath>reports/java/surefire-reports</sonar.junit.reportsPath>
     <sonar.jacoco.reportPath>reports/java/jacoco.exec</sonar.jacoco.reportPath>
   </properties>
-  <pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.sonarsource.scanner.maven</groupId>
-        <artifactId>sonar-maven–plugin</artifactId>
-        <version>3.0.1</version>
-      </plugin>
-    </plugins>
-  </pluginManagement>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -64,6 +55,15 @@
     </dependency>
   </dependencies>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven–plugin</artifactId>
+          <version>3.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
