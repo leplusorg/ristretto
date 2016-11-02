@@ -6,7 +6,7 @@ import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class IdentityHashSet<E> extends AbstractSet<E>implements Set<E>, Cloneable {
+public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable {
 
 	private static final Object DUMMY = new Object();
 
@@ -19,9 +19,7 @@ public class IdentityHashSet<E> extends AbstractSet<E>implements Set<E>, Cloneab
 
 	public IdentityHashSet(final Collection<? extends E> c) {
 		this();
-		for (final E e : c) {
-			add(e);
-		}
+		addAll(c);
 	}
 
 	public IdentityHashSet(final int expectedMaxSize) {
@@ -60,9 +58,6 @@ public class IdentityHashSet<E> extends AbstractSet<E>implements Set<E>, Cloneab
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
-		}
-		if (!(obj instanceof Set)) {
-			return false;
 		}
 		return map.keySet().equals(obj);
 	}
