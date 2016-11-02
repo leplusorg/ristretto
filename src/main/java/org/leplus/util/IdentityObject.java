@@ -13,7 +13,7 @@ public final class IdentityObject implements Cloneable, Serializable {
 	}
 
 	@Override
-	public IdentityObject clone() {
+	public IdentityObject clone() { //NOSONAR
 		return IT;
 	}
 

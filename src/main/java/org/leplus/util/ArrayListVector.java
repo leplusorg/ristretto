@@ -28,7 +28,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	}
 
 	@Override
-	public ArrayListVector<E> clone() {
+	public ArrayListVector<E> clone() { //NOSONAR
 		final ArrayListVector<E> clone = (ArrayListVector<E>) super.clone();
 		clone.delegate = new ArrayList<E>(delegate);
 		return clone;
