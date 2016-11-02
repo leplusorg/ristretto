@@ -3,15 +3,20 @@ sudo: false
 install: true
 
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
 script:
-  - ./runSonarQubeAnalysis.sh
+- "./runSonarQubeAnalysis.sh"
 
 cache:
   directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
+  - "${HOME}/.m2/repository"
+  - "${HOME}/.sonar/cache"
 
 notifications:
   email: true
+
+env:
+  global:
+  - secure: R5bE/8fp8i+Wg4XRxYXoe3GYYJ9Rpq0Ve2fCa+BdpQsGzl2Df+cv1HAXzFwzATL36JNsTHupz6sgM1O0Q7Qhifq62lQnzksNOpVRX64MyfyD5jeTzMPogk4+MnDdhHs3X6lgAYKfOVod38DYyk1Q20L3xmKqpWetiQj0RnNPiF5N+nsA7fv1yLQU/u6BVHbfYQdcXpgJC6sRQWD1O3fYacrjBjxRV5GkSsWMmOjgoeRmWMZFuGpRZlXof8B8frnzZPfEKfPX4QIta0+SR6u9WG8gaJsSQ08VjQC3mX17gkQuckmv1eqpL+OBCrg36tFtfAWtTevxi7CYfueydEDpQkfhLLjSSPs1yaYo0KcO2a9w7/WJlSUy/HQNm4LMRe502M7EvFX6mwFD3/mHp1T63XNY3aHgPVPReMX0NmbGE18jryMzc3BhIAmbgWVD8qMjMtJxt3jWW4qG8Bhif+Dr8kFUEols17QEzbtlQbI/DtMK5DgdYX8y2uPhe5Ivvk5mYa58lPSN2yda10G7qzzPNBIfqj2g2nFf0CgRGuiWzlCyifWRzrwzJnPt0FMzHrZdKr71pjiRYRyrJc7+EawJ8diMpFhoWpOagIDUtmfmIP0AWX0Rn4xa9NcAd0qGekvs3DE37sHTXenZv5RGqrOSdPlI9wbtW3ss8d1wr3CWQ6w=
+  - SONAR_HOST_URL=https://sonarqube.com
