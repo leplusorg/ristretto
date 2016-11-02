@@ -34,6 +34,15 @@
     <sonar.junit.reportsPath>reports/java/surefire-reports</sonar.junit.reportsPath>
     <sonar.jacoco.reportPath>reports/java/jacoco.exec</sonar.jacoco.reportPath>
   </properties>
+  <pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven–plugin</artifactId>
+        <version>3.0.1</version>
+      </plugin>
+    </plugins>
+  </pluginManagement>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -57,39 +66,39 @@
   <build>
     <plugins>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-compiler-plugin</artifactId>
-	<version>3.5.1</version>
-	<configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
           <source>1.6</source>
           <target>1.6</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
-	</configuration>
+        </configuration>
       </plugin>
     </plugins>
   </build>
   <reporting>
     <plugins>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-project-info-reports-plugin</artifactId>
-	<version>2.9</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.9</version>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-jxr-plugin</artifactId>
-	<version>2.5</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.5</version>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-pmd-plugin</artifactId>
-	<version>3.6</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.6</version>
       </plugin>
       <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>findbugs-maven-plugin</artifactId>
-	<version>3.0.4</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>3.0.4</version>
       </plugin>
     </plugins>
   </reporting>
