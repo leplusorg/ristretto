@@ -38,7 +38,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	}
 
 	@Override
-	public Object clone() {
+	public Object clone() { //NOSONAR
 		try {
 			@SuppressWarnings("unchecked")
 			final IdentityHashSet<E> clone = (IdentityHashSet<E>) super.clone();
