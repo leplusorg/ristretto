@@ -22,6 +22,8 @@ import com.google.common.collect.testing.TestStringListGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.ListFeature;
+import com.google.common.testing.EqualsTester;
+import com.google.common.testing.SerializableTester;
 
 import junit.framework.TestSuite;
 
@@ -83,6 +85,20 @@ public class TestArrayListVector {
 			assertThat(actual, not(IsEmptyCollection.empty()));
 		}
 
+		@Test
+		public void testEquals() {
+			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(), new ArrayListVector<String>()).testEquals();
+			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("")), new ArrayListVector<String>(Arrays.asList(""))).testEquals();
+			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("x", "y", "z")), new ArrayListVector<String>(Arrays.asList("x", "y", "z"))).testEquals();
+		}
+
+		@Test
+		public void testSerialize() {
+			SerializableTester.reserializeAndAssert(new ArrayListVector<String>());
+			SerializableTester.reserializeAndAssert(new ArrayListVector<String>(Arrays.asList("")));
+			SerializableTester.reserializeAndAssert(new ArrayListVector<String>(Arrays.asList("x", "y", "z")));
+		}
+		
 	}
 
 	public static class GuavaTests {

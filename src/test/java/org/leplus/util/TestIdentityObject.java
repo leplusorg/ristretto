@@ -11,6 +11,9 @@ import java.io.Serializable;
 
 import org.junit.Test;
 
+import com.google.common.testing.EqualsTester;
+import com.google.common.testing.SerializableTester;
+
 public class TestIdentityObject {
 
 	@SuppressWarnings("unchecked")
@@ -56,6 +59,11 @@ public class TestIdentityObject {
 	}
 
 	@Test
+	public void testEqualsGuava() {
+		new EqualsTester().addEqualityGroup(IdentityObject.IT, IdentityObject.IT).testEquals();
+	}
+	
+	@Test
 	public void testEqualsClone() {
 		assertTrue(IdentityObject.IT.equals(IdentityObject.IT.clone()));
 		assertTrue(IdentityObject.IT.clone().equals(IdentityObject.IT));
@@ -71,5 +79,10 @@ public class TestIdentityObject {
 	public void testHashCode() {
 		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.hashCode());
 	}
-
+	
+	@Test
+	public void testSerializeGuava() {
+		SerializableTester.reserializeAndAssert(IdentityObject.IT);
+	}
+	
 }

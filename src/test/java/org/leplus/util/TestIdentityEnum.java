@@ -11,6 +11,9 @@ import java.io.Serializable;
 
 import org.junit.Test;
 
+import com.google.common.testing.EqualsTester;
+import com.google.common.testing.SerializableTester;
+
 public class TestIdentityEnum {
 
 	@SuppressWarnings("unchecked")
@@ -55,10 +58,20 @@ public class TestIdentityEnum {
 		assertTrue(IdentityEnum.IT.equals(deepClone(IdentityEnum.IT)));
 		assertTrue(deepClone(IdentityEnum.IT).equals(IdentityEnum.IT));
 	}
+	
+	@Test
+	public void testEqualsGuava() {
+		new EqualsTester().addEqualityGroup(IdentityEnum.IT, IdentityEnum.IT).testEquals();
+	}
 
 	@Test
 	public void testHashCode() {
 		assertTrue(IdentityEnum.IT.hashCode() == IdentityEnum.IT.hashCode());
+	}
+	
+	@Test
+	public void testSerializeGuava() {
+		SerializableTester.reserializeAndAssert(IdentityEnum.IT);
 	}
 
 }
