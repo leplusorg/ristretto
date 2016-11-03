@@ -14,8 +14,18 @@ import org.junit.Test;
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.SerializableTester;
 
+/**
+ * @author Thomas Leplus
+ * @since 1.0.0
+ */
 public class TestIdentityEnum {
 
+	/**
+	 * @param object
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Serializable> T deepClone(final T object) throws IOException, ClassNotFoundException {
 		ObjectInputStream ois = null;
@@ -38,37 +48,60 @@ public class TestIdentityEnum {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testEqual() {
 		assertTrue(IdentityEnum.IT == IdentityEnum.IT);
 	}
 
+	/**
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	@Test
 	public void testEqualDeepClone() throws ClassNotFoundException, IOException {
 		assertTrue(IdentityEnum.IT == deepClone(IdentityEnum.IT));
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testEquals() {
 		assertTrue(IdentityEnum.IT.equals(IdentityEnum.IT));
 	}
 
+	/**
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	@Test
 	public void testEqualsDeepClone() throws ClassNotFoundException, IOException {
 		assertTrue(IdentityEnum.IT.equals(deepClone(IdentityEnum.IT)));
 		assertTrue(deepClone(IdentityEnum.IT).equals(IdentityEnum.IT));
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testEqualsGuava() {
 		new EqualsTester().addEqualityGroup(IdentityEnum.IT, IdentityEnum.IT).testEquals();
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testHashCode() {
 		assertTrue(IdentityEnum.IT.hashCode() == IdentityEnum.IT.hashCode());
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testSerializeGuava() {
 		SerializableTester.reserializeAndAssert(IdentityEnum.IT);

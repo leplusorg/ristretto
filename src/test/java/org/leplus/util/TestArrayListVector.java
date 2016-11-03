@@ -28,12 +28,23 @@ import com.google.common.testing.SerializableTester;
 
 import junit.framework.TestSuite;
 
+/**
+ * @author Thomas Leplus
+ * @since 1.0.0
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.AdditionalTests.class })
 public class TestArrayListVector {
 
+	/**
+	 * @author Thomas Leplus
+	 * @since 1.0.0
+	 */
 	public static class AdditionalTests {
 
+		/**
+		 * 
+		 */
 		@Test
 		public void test() {
 			final Vector<String> actual = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
@@ -123,12 +134,21 @@ public class TestArrayListVector {
 			assertThat(actual, not(IsEmptyCollection.empty()));
 		}
 		
+		/**
+		 * 
+		 */
 		@Test
 		public void testRemoveRange() {
 			ArrayListVector<String> v = new ArrayListVector<String>(Arrays.asList("a", "b", "c", "d")) {
 
+				/**
+				 * 
+				 */
 				private static final long serialVersionUID = 1L;
 				
+				/* (non-Javadoc)
+				 * @see org.leplus.util.VectorAdapter#removeRange(int, int)
+				 */
 				@Override
 				public void removeRange(final int fromIndex, final int toIndex) {
 					super.removeRange(fromIndex, toIndex);
@@ -140,6 +160,9 @@ public class TestArrayListVector {
 			assertThat(v, contains("a", "d"));
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testEquals() {
 			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(0), new ArrayListVector<String>()).testEquals();
@@ -147,6 +170,9 @@ public class TestArrayListVector {
 			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("x", "y", "z")), new ArrayListVector<String>(Arrays.asList("x", "y", "z"))).testEquals();
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testSerialize() {
 			SerializableTester.reserializeAndAssert(new ArrayListVector<String>());
@@ -156,11 +182,21 @@ public class TestArrayListVector {
 		
 	}
 
+	/**
+	 * @author Thomas Leplus
+	 * @since 1.0.0
+	 */
 	public static class GuavaTests {
 
+		/**
+		 * @return
+		 */
 		public static TestSuite suite() {
 			return ListTestSuiteBuilder.using(new TestStringListGenerator() {
 
+				/* (non-Javadoc)
+				 * @see com.google.common.collect.testing.TestStringListGenerator#create(java.lang.String[])
+				 */
 				@Override
 				protected List<String> create(String[] elements) {
 					return new ArrayListVector<String>(Arrays.asList(elements));

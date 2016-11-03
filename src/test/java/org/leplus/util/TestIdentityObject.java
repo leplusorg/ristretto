@@ -14,8 +14,18 @@ import org.junit.Test;
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.SerializableTester;
 
+/**
+ * @author Thomas Leplus
+ * @since 1.0.0
+ */
 public class TestIdentityObject {
 
+	/**
+	 * @param object
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Serializable> T deepClone(final T object) throws IOException, ClassNotFoundException {
 		ObjectInputStream ois = null;
@@ -38,48 +48,77 @@ public class TestIdentityObject {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testEqual() {
 		assertTrue(IdentityObject.IT == IdentityObject.IT);
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testEqualClone() {
 		assertTrue(IdentityObject.IT == IdentityObject.IT.clone());
 	}
 
+	/**
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	@Test
 	public void testEqualDeepClone() throws ClassNotFoundException, IOException {
 		assertTrue(IdentityObject.IT == deepClone(IdentityObject.IT));
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testEquals() {
 		assertTrue(IdentityObject.IT.equals(IdentityObject.IT));
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testEqualsGuava() {
 		new EqualsTester().addEqualityGroup(IdentityObject.IT, IdentityObject.IT).testEquals();
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testEqualsClone() {
 		assertTrue(IdentityObject.IT.equals(IdentityObject.IT.clone()));
 		assertTrue(IdentityObject.IT.clone().equals(IdentityObject.IT));
 	}
 
+	/**
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	@Test
 	public void testEqualsDeepClone() throws ClassNotFoundException, IOException {
 		assertTrue(IdentityObject.IT.equals(deepClone(IdentityObject.IT)));
 		assertTrue(deepClone(IdentityObject.IT).equals(IdentityObject.IT));
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void testHashCode() {
 		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.hashCode());
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testSerializeGuava() {
 		SerializableTester.reserializeAndAssert(IdentityObject.IT);
