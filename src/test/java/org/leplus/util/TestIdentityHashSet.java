@@ -21,12 +21,23 @@ import com.google.common.testing.EqualsTester;
 
 import junit.framework.TestSuite;
 
+/**
+ * @author Thomas Leplus
+ * @since 1.0.0
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ TestIdentityHashSet.GuavaTests.class, TestIdentityHashSet.AdditionalTests.class })
 public class TestIdentityHashSet {
 
+	/**
+	 * @author Thomas Leplus
+	 * @since 1.0.0
+	 */
 	public static class AdditionalTests {
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testClear() {
 			final Set<Dumb> set = new IdentityHashSet<Dumb>();
@@ -39,6 +50,9 @@ public class TestIdentityHashSet {
 			assertEquals(0, set.size());
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testClone() {
 			final IdentityHashSet<Dumb> set1 = new IdentityHashSet<Dumb>();
@@ -52,6 +66,9 @@ public class TestIdentityHashSet {
 			assertEquals(1, set2.size());
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testEqualsOneObject() {
 			final Dumb d = new Dumb();
@@ -62,6 +79,9 @@ public class TestIdentityHashSet {
 			assertEquals(set1, set2);
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testEqualsTwoObjects() {
 			final Set<Dumb> set1 = new IdentityHashSet<Dumb>();
@@ -71,6 +91,9 @@ public class TestIdentityHashSet {
 			assertFalse(set1.equals(set2));
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testHashCode() {
 			final Dumb a = new Dumb();
@@ -81,12 +104,18 @@ public class TestIdentityHashSet {
 			assertEquals(set1.hashCode(), set2.hashCode());
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testIsEmpty() {
 			final Set<Dumb> set = new IdentityHashSet<Dumb>();
 			assertTrue(set.isEmpty());
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testNotEmpty() {
 			final Set<Dumb> set = new IdentityHashSet<Dumb>();
@@ -95,6 +124,9 @@ public class TestIdentityHashSet {
 			assertEquals(1, set.size());
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testOneObject() {
 			final Set<Dumb> set = new IdentityHashSet<Dumb>();
@@ -111,6 +143,9 @@ public class TestIdentityHashSet {
 			assertEquals(0, set.size());
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testTwoObjects() {
 			final Set<Dumb> set = new IdentityHashSet<Dumb>();
@@ -121,6 +156,9 @@ public class TestIdentityHashSet {
 			assertFalse(set.contains(new Dumb()));
 		}
 
+		/**
+		 * 
+		 */
 		@Test
 		public void testEquals() {
 			final Dumb d = new Dumb();
@@ -131,11 +169,21 @@ public class TestIdentityHashSet {
 		
 	}
 
+	/**
+	 * @author Thomas Leplus
+	 * @since 1.0.0
+	 */
 	public static class GuavaTests {
 
+		/**
+		 * @return
+		 */
 		public static TestSuite suite() {
 			return SetTestSuiteBuilder.using(new TestStringSetGenerator() {
 
+				/* (non-Javadoc)
+				 * @see com.google.common.collect.testing.TestStringSetGenerator#create(java.lang.String[])
+				 */
 				@Override
 				protected Set<String> create(String[] elements) {
 					return new IdentityHashSet<String>(Arrays.asList(elements));
