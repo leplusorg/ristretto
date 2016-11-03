@@ -48,5 +48,5 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	public void trimToSize() {
 		delegate.trimToSize();
 	}
-
+	
 }
