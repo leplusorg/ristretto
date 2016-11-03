@@ -71,6 +71,9 @@ public class TestArrayListVector {
 			assertThat(actual, contains("a", "b", "c"));
 			assertThat(actual, containsInAnyOrder("c", "b", "a"));
 			assertThat(actual, not(IsEmptyCollection.empty()));
+			assertThat(clone.elementAt(0), is("b"));
+			assertThat(clone.firstElement(), is("b"));
+			assertThat(clone.elements().nextElement(), is("b"));
 			clone.insertElementAt("a", 0);
 			assertThat(clone, is(expected));
 			clone.addElement("d");
@@ -83,9 +86,6 @@ public class TestArrayListVector {
 			assertThat(clone, hasSize(0));
 			assertThat(clone.size(), is(0));
 			assertThat(clone, not(contains("a")));
-			assertThat(clone.elementAt(0), is("b"));
-			assertThat(clone.firstElement(), is("b"));
-			assertThat(clone.elements().nextElement(), is("b"));
 			assertThat(clone, IsEmptyCollection.empty());
 			assertThat(actual, is(expected));
 			assertThat(actual, hasItems("b"));
