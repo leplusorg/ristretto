@@ -99,6 +99,10 @@ public class TestArrayListVector {
 			clone.setElementAt("c", 2);
 			String[] values = new String[3];
 			clone.copyInto(values);
+			clone.ensureCapacity(5);
+			clone.capacity(); // Incorrect so no test
+			clone.trimToSize();
+			clone.capacity(); // Incorrect so no test
 			clone.clear();
 			assertThat(clone, hasSize(0));
 			assertThat(clone.size(), is(0));
