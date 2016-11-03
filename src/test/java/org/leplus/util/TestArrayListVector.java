@@ -97,7 +97,15 @@ public class TestArrayListVector {
 			assertThat(clone.size(), is(4));
 			assertThat(clone.elementAt(3), is("d"));
 			clone.setElementAt("c", 2);
+			String[] values = new String[3];
+			clone.copyInto(values);
 			clone.clear();
+			assertThat(clone, hasSize(0));
+			assertThat(clone.size(), is(0));
+			clone.addAll(Arrays.asList(values));
+			assertThat(clone, hasSize(3));
+			assertThat(clone.size(), is(3));
+			clone.removeAllElements();
 			assertThat(clone, hasSize(0));
 			assertThat(clone.size(), is(0));
 			assertThat(clone, not(contains("a")));
