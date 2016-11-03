@@ -122,6 +122,23 @@ public class TestArrayListVector {
 			assertThat(actual, containsInAnyOrder("c", "b", "a"));
 			assertThat(actual, not(IsEmptyCollection.empty()));
 		}
+		
+		@Test
+		public void testRemoveRange() {
+			ArrayListVector<String> v = new ArrayListVector<String>(Arrays.asList("a", "b", "c", "d")) {
+
+				private static final long serialVersionUID = 1L;
+				
+				@Override
+				public void removeRange(final int fromIndex, final int toIndex) {
+					super.removeRange(fromIndex, toIndex);
+				}
+				
+			};
+			v.removeRange(1, 3);
+			assertThat(v.size(), is(2));
+			assertThat(v, contains("a", "d"));
+		}
 
 		@Test
 		public void testEquals() {
