@@ -16,14 +16,14 @@
   </licenses>
   <scm>
     <url>https://github.com/thomasleplus/ristretto</url>
-    <connection>scm:git:git://github.com/thomasleplus/ristretto.git</connection>
-    <developerConnection>scm:git:git@github.com:thomasleplus/ristretto.git</developerConnection>
+    <connection>scm:git:https://github.com/thomasleplus/ristretto.git</connection>
+    <developerConnection>scm:git:https://github.com/thomasleplus/ristretto.git</developerConnection>
   </scm>
   <developers>
     <developer>
-      <email>thomas@leplus.org</email>
+      <email>thomas.leplus@gmail.com</email>
       <name>Thomas Leplus</name>
-      <url>https://github.com/thomasleplus</url>
+      <url>http://www.leplus.org</url>
       <id>thomasleplus</id>
     </developer>
   </developers>
