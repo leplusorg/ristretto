@@ -124,7 +124,7 @@ public class TestIdentityHashSet {
 		@Test
 		public void testEquals() {
 			final Dumb d = new Dumb();
-			new EqualsTester().addEqualityGroup(new IdentityHashSet<Dumb>(), new IdentityHashSet<Dumb>()).testEquals();
+			new EqualsTester().addEqualityGroup(new IdentityHashSet<Dumb>(0), new IdentityHashSet<Dumb>()).testEquals();
 			new EqualsTester().addEqualityGroup(new IdentityHashSet<Dumb>(Arrays.asList(d)), new IdentityHashSet<Dumb>(Arrays.asList(d))).testEquals();
 			new EqualsTester().addEqualityGroup(new IdentityHashSet<Dumb>(Arrays.asList(d, d, d)), new IdentityHashSet<Dumb>(Arrays.asList(d, d, d))).testEquals();
 		}

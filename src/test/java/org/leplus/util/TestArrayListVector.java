@@ -71,10 +71,21 @@ public class TestArrayListVector {
 			assertThat(actual, contains("a", "b", "c"));
 			assertThat(actual, containsInAnyOrder("c", "b", "a"));
 			assertThat(actual, not(IsEmptyCollection.empty()));
+			clone.insertElementAt("a", 0);
+			assertThat(clone, is(expected));
+			clone.addElement("d");
+			assertThat(clone.lastElement(), is("d"));
+			assertThat(clone, hasSize(4));
+			assertThat(clone.size(), is(4));
+			clone.removeElementAt(3);
+			assertThat(clone, is(expected));
 			clone.clear();
 			assertThat(clone, hasSize(0));
 			assertThat(clone.size(), is(0));
 			assertThat(clone, not(contains("a")));
+			assertThat(clone.elementAt(0), is("b"));
+			assertThat(clone.firstElement(), is("b"));
+			assertThat(clone.elements().nextElement(), is("b"));
 			assertThat(clone, IsEmptyCollection.empty());
 			assertThat(actual, is(expected));
 			assertThat(actual, hasItems("b"));
@@ -87,7 +98,7 @@ public class TestArrayListVector {
 
 		@Test
 		public void testEquals() {
-			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(), new ArrayListVector<String>()).testEquals();
+			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(0), new ArrayListVector<String>()).testEquals();
 			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("")), new ArrayListVector<String>(Arrays.asList(""))).testEquals();
 			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("x", "y", "z")), new ArrayListVector<String>(Arrays.asList("x", "y", "z"))).testEquals();
 		}
