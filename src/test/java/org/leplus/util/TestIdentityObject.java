@@ -1,55 +1,24 @@
 package org.leplus.util;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
+import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.SerializableTester;
 
 /**
+ * Tests for the {@link org.leplus.util.IdentityObject} class.
+ * 
  * @author Thomas Leplus
  * @since 1.0.0
  */
 public class TestIdentityObject {
 
 	/**
-	 * @param object
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends Serializable> T deepClone(final T object) throws IOException, ClassNotFoundException {
-		ObjectInputStream ois = null;
-		ObjectOutputStream oos = null;
-		try {
-			final ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			oos = new ObjectOutputStream(bos);
-			oos.writeObject(object);
-			oos.flush();
-			final ByteArrayInputStream bin = new ByteArrayInputStream(bos.toByteArray());
-			ois = new ObjectInputStream(bin);
-			return (T) ois.readObject();
-		} finally {
-			if (ois != null) {
-				ois.close();
-			}
-			if (oos != null) {
-				oos.close();
-			}
-		}
-	}
-
-	/**
-	 * 
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to itself.
 	 */
 	@Test
 	public void testEqual() {
@@ -57,7 +26,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * 
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a shallow clone of itself.
 	 */
 	@Test
 	public void testEqualClone() {
@@ -65,24 +34,24 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a deep clone of itself.
 	 */
 	@Test
-	public void testEqualDeepClone() throws ClassNotFoundException, IOException {
-		assertTrue(IdentityObject.IT == deepClone(IdentityObject.IT));
+	public void testEqualDeepClone() {
+		assertTrue(IdentityObject.IT == SerializationUtils.clone(IdentityObject.IT));
 	}
 
 	/**
-	 * 
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() itself.
 	 */
 	@Test
 	public void testEquals() {
 		assertTrue(IdentityObject.IT.equals(IdentityObject.IT));
+		assertFalse(IdentityObject.IT.equals(new DuplicityObject()));
 	}
 
 	/**
-	 * 
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's equality tests.
 	 */
 	@Test
 	public void testEqualsGuava() {
@@ -90,7 +59,7 @@ public class TestIdentityObject {
 	}
 	
 	/**
-	 * 
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a shallow clone of itself.
 	 */
 	@Test
 	public void testEqualsClone() {
@@ -99,25 +68,26 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a deep clone of itself.
 	 */
 	@Test
-	public void testEqualsDeepClone() throws ClassNotFoundException, IOException {
-		assertTrue(IdentityObject.IT.equals(deepClone(IdentityObject.IT)));
-		assertTrue(deepClone(IdentityObject.IT).equals(IdentityObject.IT));
+	public void testEqualsDeepClone() {
+		assertTrue(IdentityObject.IT.equals(SerializationUtils.clone(IdentityObject.IT)));
+		assertTrue(SerializationUtils.clone(IdentityObject.IT).equals(IdentityObject.IT));
 	}
 
 	/**
-	 * 
+	 * Checks {@link org.leplus.util.IdentityObject.IT}'s hashcode remains constant.
 	 */
 	@Test
 	public void testHashCode() {
 		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.hashCode());
+		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.clone().hashCode());
+		assertTrue(IdentityObject.IT.hashCode() == SerializationUtils.clone(IdentityObject.IT).hashCode());
 	}
 	
 	/**
-	 * 
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's serialization tests.
 	 */
 	@Test
 	public void testSerializeGuava() {

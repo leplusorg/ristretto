@@ -8,20 +8,20 @@ import java.util.ListIterator;
 import java.util.Vector;
 
 /**
+ * This adapter class extends Vector to make it easier to replace Vector uses by another List implementation.
+ * 
  * @author Thomas Leplus
  * @since 1.0.0
+ * @see org.leplus.util.ArrayListVector
  *
- * @param <E>
+ * @param <E> type of the elements in the collection.
  */
 public abstract class VectorAdapter<E> extends Vector<E> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5465186583387834552L;
 
 	/**
-	 * 
+	 * Default constructor. Should be called by subclasses.
 	 */
 	protected VectorAdapter() {
 		super(0);
@@ -120,6 +120,8 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	}
 
 	/**
+	 * Accessor to the delegate provided by subclass.
+	 * 
 	 * @return
 	 */
 	protected abstract List<E> delegate();
