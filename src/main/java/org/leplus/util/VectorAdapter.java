@@ -187,8 +187,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	 */
 	@Override
 	public int hashCode() {
-		final List<E> delegate = delegate();
-		return delegate == null ? 0 : delegate.hashCode();
+		return new Vector<E>(delegate()).hashCode();
 	}
 
 	/* (non-Javadoc)

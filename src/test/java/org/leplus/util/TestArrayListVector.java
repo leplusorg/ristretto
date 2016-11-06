@@ -7,6 +7,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.util.Arrays;
@@ -35,7 +36,7 @@ import junit.framework.TestSuite;
  * @since 1.0.0
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.AdditionalTests.class })
+@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.VectorCompatibilityTests.class, TestArrayListVector.AdditionalTests.class })
 public class TestArrayListVector {
 
 	/**
@@ -238,4 +239,57 @@ public class TestArrayListVector {
 
 	}
 
+	/**
+	 * Tests for compatibility with Vector.
+	 * 
+	 * @author Thomas Leplus
+	 * @since 1.0.0
+	 */
+	public static class VectorCompatibilityTests {
+
+		/**
+		 * Test equality between a Vector and an ArrayListVector.
+		 */
+		@Test
+		public void testEquals() {
+			Vector<String> v = new Vector<String>(Arrays.asList("a", "b", "c"));
+			ArrayListVector<String> a = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
+			assertEquals(v, a);
+			assertEquals(a, v);
+		}
+
+		/**
+		 * Test equality between empty Vector and ArrayListVector.
+		 */
+		@Test
+		public void testEqualsEmpty() {
+			Vector<String> v = new Vector<String>();
+			ArrayListVector<String> a = new ArrayListVector<String>();
+			assertEquals(v, a);
+			assertEquals(a, v);
+		}
+
+		/**
+		 * Test hashcode equality between a Vector and an ArrayListVector.
+		 */
+		@Test
+		public void testHashCode() {
+			Vector<String> v = new Vector<String>(Arrays.asList("a", "b", "c"));
+			ArrayListVector<String> a = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
+			assertThat(v.hashCode(), is(a.hashCode()));
+		}
+
+		/**
+		 * Test hashcode equality between empty Vector and ArrayListVector.
+		 */
+		@Test
+		public void testHashCodeEmpty() {
+			Vector<String> v = new Vector<String>();
+			ArrayListVector<String> a = new ArrayListVector<String>();
+			assertEquals(v, a);
+			assertThat(v.hashCode(), is(a.hashCode()));
+		}
+		
+	}
+	
 }

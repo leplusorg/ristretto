@@ -9,6 +9,7 @@ import java.util.List;
  * 
  * @author Thomas Leplus
  * @since 1.0.0
+ * @see org.leplus.util.VectorAdapter
  * 
  * @param <E> type of the elements in the collection.
  */
