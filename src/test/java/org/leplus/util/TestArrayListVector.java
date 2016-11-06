@@ -29,6 +29,8 @@ import com.google.common.testing.SerializableTester;
 import junit.framework.TestSuite;
 
 /**
+ * Tests the {@link org.leplus.util.ArrayListVector} class (and therefore the {@link org.leplus.util.VectorAdapter} class too).
+ * 
  * @author Thomas Leplus
  * @since 1.0.0
  */
@@ -37,13 +39,15 @@ import junit.framework.TestSuite;
 public class TestArrayListVector {
 
 	/**
+	 * Some additional tests.
+	 * 
 	 * @author Thomas Leplus
 	 * @since 1.0.0
 	 */
 	public static class AdditionalTests {
 
 		/**
-		 * 
+		 * A bunch of tests.
 		 */
 		@Test
 		public void test() {
@@ -135,15 +139,12 @@ public class TestArrayListVector {
 		}
 		
 		/**
-		 * 
+		 * Extra test specifically for {@link org.leplus.util.ArrayListVector.removeRange(int, int)}
 		 */
 		@Test
 		public void testRemoveRange() {
 			ArrayListVector<String> v = new ArrayListVector<String>(Arrays.asList("a", "b", "c", "d")) {
 
-				/**
-				 * 
-				 */
 				private static final long serialVersionUID = 1L;
 				
 				/* (non-Javadoc)
@@ -161,7 +162,7 @@ public class TestArrayListVector {
 		}
 
 		/**
-		 * 
+		 * Extra equality tests.
 		 */
 		@Test
 		public void testEquals() {
@@ -171,7 +172,7 @@ public class TestArrayListVector {
 		}
 
 		/**
-		 * 
+		 * Extra serialization tests.
 		 */
 		@Test
 		public void testSerialize() {
@@ -183,13 +184,17 @@ public class TestArrayListVector {
 	}
 
 	/**
+	 * Guava collection testing.
+	 * 
 	 * @author Thomas Leplus
 	 * @since 1.0.0
 	 */
 	public static class GuavaTests {
 
 		/**
-		 * @return
+		 * Creates the test suite.
+		 * 
+		 * @return a test suite.
 		 */
 		public static TestSuite suite() {
 			return ListTestSuiteBuilder.using(new TestStringListGenerator() {
