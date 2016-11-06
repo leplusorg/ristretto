@@ -2,8 +2,8 @@ package org.leplus.util;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
@@ -256,6 +256,7 @@ public class TestArrayListVector {
 			ArrayListVector<String> a = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
 			assertEquals(v, a);
 			assertEquals(a, v);
+			new EqualsTester().addEqualityGroup(v, a).testEquals();
 		}
 
 		/**
@@ -267,6 +268,7 @@ public class TestArrayListVector {
 			ArrayListVector<String> a = new ArrayListVector<String>();
 			assertEquals(v, a);
 			assertEquals(a, v);
+			new EqualsTester().addEqualityGroup(v, a).testEquals();
 		}
 
 		/**
