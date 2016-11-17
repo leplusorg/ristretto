@@ -18,14 +18,6 @@ import com.google.common.testing.SerializableTester;
 public class TestIdentityEnum {
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} is equal (==) to itself.
-	 */
-	@Test
-	public void testEqual() {
-		assertTrue(IdentityEnum.IT == IdentityEnum.IT);
-	}
-
-	/**
 	 * Checks that {@link org.leplus.util.IdentityEnum.IT} is equal (==) to a deep clone of itself.
 	 */
 	@Test

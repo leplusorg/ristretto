@@ -18,14 +18,6 @@ import com.google.common.testing.SerializableTester;
 public class TestIdentityObject {
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to itself.
-	 */
-	@Test
-	public void testEqual() {
-		assertTrue(IdentityObject.IT == IdentityObject.IT);
-	}
-
-	/**
 	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a shallow clone of itself.
 	 */
 	@Test
