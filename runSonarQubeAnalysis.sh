@@ -1,6 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # Exit on failure
 set -e
+
+# Only run Sonar with Java 8
+JAVA_VERSION=$(javac -J-Xmx32m -version 2>&1 | sed -e 's/^javac \([0-9][0-9]*\.[0-9][0-9]*\).*$/\1/;')
+if [[ "$JAVA_VERSION" < "1.8" ]]; then
+    exit 0
+fi
 
 # This assumes that the 2 following variables are defined:
 # - SONAR_HOST_URL => should point to the public URL of the SQ server (e.g. for Nemo: https://nemo.sonarqube.org)
