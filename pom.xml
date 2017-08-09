@@ -3,28 +3,39 @@
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>ristretto</name>
+  <name>Ristretto</name>
   <packaging>jar</packaging>
   <description>A small library of useful java classes.</description>
   <url>https://github.com/thomasleplus/ristretto</url>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
   <scm>
     <url>https://github.com/thomasleplus/ristretto</url>
     <connection>scm:git:https://github.com/thomasleplus/ristretto.git</connection>
-    <developerConnection>scm:git:https://github.com/thomasleplus/ristretto.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:thomasleplus/ristretto.git</developerConnection>
   </scm>
+  <organization>
+    <name>Leplus.org</name>
+    <url>https://www.leplus.org</url>
+  </organization>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/thomasleplus/ristretto/issues</url>
+  </issueManagement>
   <developers>
     <developer>
-      <email>thomas.leplus@gmail.com</email>
+      <email>thomas@leplus.org</email>
       <name>Thomas Leplus</name>
       <url>https://www.leplus.org</url>
       <id>thomasleplus</id>
+      <roles>
+        <role>Project Lead</role>
+      </roles>
     </developer>
   </developers>
   <properties>
