@@ -5,8 +5,8 @@ install: true
 jdk:
   - openjdk6
   - openjdk7
-  - oraclejdk7
   - oraclejdk8
+  - oraclejdk9
 
 script:
   - "./runSonarQubeAnalysis.sh"
