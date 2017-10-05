@@ -5,6 +5,8 @@ IFS=$'\n\t'
 
 # Only run Sonar with one JDK
 if [ "$TRAVIS_JDK_VERSION" = "oraclejdk8" ]; then
+    echo "TRAVIS_JDK_VERSION=$TRAVIS_JDK_VERSION"
+else
     echo "Skipping analysis by SonarQube."
     exit 0
 fi
