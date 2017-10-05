@@ -5,6 +5,7 @@ IFS=$'\n\t'
 
 # Only run Sonar with Java 8
 JAVA_VERSION=$(javac -J-Xmx32m -version 2>&1 | sed -e 's/^javac \([0-9][0-9]*\.[0-9][0-9]*\).*$/\1/;')
+echo "JAVA_VERSION=$JAVA_VERSION"
 if [ "$JAVA_VERSION" = "1.8" ]; then
     echo "Skipping analysis by SonarQube."
     exit 0
