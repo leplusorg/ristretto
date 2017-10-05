@@ -1,6 +1,7 @@
 #!/bin/bash
 # Exit on failure
-set -e
+set -euo pipefail
+IFS=$'\n\t'
 
 # Only run Sonar with Java 8
 JAVA_VERSION=$(javac -J-Xmx32m -version 2>&1 | sed -e 's/^javac \([0-9][0-9]*\.[0-9][0-9]*\).*$/\1/;')
