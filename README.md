@@ -5,4 +5,4 @@ A small library of (hopefully) useful java classes.
 
 <a href="https://travis-ci.org/thomasleplus/ristretto"><img src="https://api.travis-ci.org/thomasleplus/ristretto.png"></a>
 
-[SonarQube](https://sonarqube.com/dashboard/index?id=org.leplus%3Aristretto)
+[SonarCloud](https://sonarcloud.io/dashboard?id=org.leplus%3Aristretto)
