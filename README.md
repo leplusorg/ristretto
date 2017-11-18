@@ -1,8 +1,4 @@
 # Ristretto
 A small library of (hopefully) useful java classes.
 
-[Travis CI](https://travis-ci.org/thomasleplus/ristretto)
-
-<a href="https://travis-ci.org/thomasleplus/ristretto"><img src="https://api.travis-ci.org/thomasleplus/ristretto.png"></a>
-
-[SonarCloud](https://sonarcloud.io/dashboard?id=org.leplus%3Aristretto)
+[![Build status](https://travis-ci.org/thomasleplus/ristretto.svg?branch=master)](https://travis-ci.org/thomasleplus/ristretto) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=org.leplus:ristretto)](https://sonarcloud.io/dashboard/index/org.leplus:ristretto)
