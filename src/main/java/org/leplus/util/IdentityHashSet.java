@@ -7,28 +7,31 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * This {@link java.util.Set} relies on identity (==) to compare the objects it contains.
- * It does not matter if what the objects equals() methods say.
- * 
+ * This {@link java.util.Set} relies on identity (==) to compare the objects it
+ * contains. It does not matter if what the objects equals() methods say.
+ *
  * @author Thomas Leplus
  * @since 1.0.0
- * 
+ *
  * @param <E> the type of the elements of the set.
  */
 public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable {
 
 	/**
-	 * A dummy singleton acting as a placeholder for the values in the underlying {@link java.util.IdentityHashMap}.
+	 * A dummy singleton acting as a placeholder for the values in the underlying
+	 * {@link java.util.IdentityHashMap}.
 	 */
 	private static final Object DUMMY = new Object();
 
 	/**
-	 * The underlying {@link java.util.IdentityHashMap} which keySet is backing the implementation of this class.
+	 * The underlying {@link java.util.IdentityHashMap} which keySet is backing the
+	 * implementation of this class.
 	 */
 	private IdentityHashMap<E, Object> map;
 
 	/**
-	 * Constructs a new, empty identity hash set with a default expected maximum size (21).
+	 * Constructs a new, empty identity hash set with a default expected maximum
+	 * size (21).
 	 */
 	public IdentityHashSet() {
 		super();
@@ -36,8 +39,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	}
 
 	/**
-	 * Constructs a new identity hash set containing the objects of the provided collection.
-	 * 
+	 * Constructs a new identity hash set containing the objects of the provided
+	 * collection.
+	 *
 	 * @param c a collection of objects to put in this identity hash set.
 	 */
 	public IdentityHashSet(final Collection<? extends E> c) {
@@ -46,10 +50,10 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	}
 
 	/**
-	 * Constructs a new, empty set with the specified expected maximum size.
-	 * Putting more than the expected number of objects into the set
-	 * may cause the internal data structure to grow, which may be somewhat time-consuming.
-	 * 
+	 * Constructs a new, empty set with the specified expected maximum size. Putting
+	 * more than the expected number of objects into the set may cause the internal
+	 * data structure to grow, which may be somewhat time-consuming.
+	 *
 	 * @param expectedMaxSize the expected maximum size of the set.
 	 * @throws IllegalArgumentException if expectedMaxSize is negative.
 	 */
@@ -58,7 +62,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		map = new IdentityHashMap<E, Object>(expectedMaxSize);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#add(java.lang.Object)
 	 */
 	@Override
@@ -66,7 +72,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.put(e, DUMMY) == null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#clear()
 	 */
 	@Override
@@ -74,11 +82,13 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		map.clear();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
-	public Object clone() { //NOSONAR
+	public Object clone() { // NOSONAR
 		try {
 			@SuppressWarnings("unchecked")
 			final IdentityHashSet<E> clone = (IdentityHashSet<E>) super.clone();
@@ -89,7 +99,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#contains(java.lang.Object)
 	 */
 	@Override
@@ -97,7 +109,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.containsKey(o);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractSet#equals(java.lang.Object)
 	 */
 	@Override
@@ -108,7 +122,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.keySet().equals(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractSet#hashCode()
 	 */
 	@Override
@@ -116,7 +132,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.keySet().hashCode();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#isEmpty()
 	 */
 	@Override
@@ -124,7 +142,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.isEmpty();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#iterator()
 	 */
 	@Override
@@ -132,7 +152,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.keySet().iterator();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 */
 	@Override
@@ -140,7 +162,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		return map.remove(o) == DUMMY;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.AbstractCollection#size()
 	 */
 	@Override

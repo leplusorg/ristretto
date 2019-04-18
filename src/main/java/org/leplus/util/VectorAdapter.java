@@ -8,8 +8,9 @@ import java.util.ListIterator;
 import java.util.Vector;
 
 /**
- * This adapter class extends Vector to make it easier to replace Vector uses by another List implementation.
- * 
+ * This adapter class extends Vector to make it easier to replace Vector uses by
+ * another List implementation.
+ *
  * @author Thomas Leplus
  * @since 1.0.0
  * @see org.leplus.util.ArrayListVector
@@ -27,7 +28,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		super(0);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#add(java.lang.Object)
 	 */
 	@Override
@@ -35,7 +38,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().add(o);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#add(int, java.lang.Object)
 	 */
 	@Override
@@ -43,7 +48,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().add(index, element);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#addAll(java.util.Collection)
 	 */
 	@Override
@@ -51,7 +58,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().addAll(c);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#addAll(int, java.util.Collection)
 	 */
 	@Override
@@ -59,7 +68,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().addAll(index, c);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#addElement(java.lang.Object)
 	 */
 	@Override
@@ -67,7 +78,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().add(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#capacity()
 	 */
 	@Override
@@ -78,7 +91,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().size();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#clear()
 	 */
 	@Override
@@ -86,16 +101,20 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().clear();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#clone()
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public VectorAdapter<E> clone() { //NOSONAR
+	public VectorAdapter<E> clone() { // NOSONAR
 		return (VectorAdapter<E>) super.clone();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#contains(java.lang.Object)
 	 */
 	@Override
@@ -103,7 +122,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().contains(elem);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#containsAll(java.util.Collection)
 	 */
 	@Override
@@ -111,7 +132,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().containsAll(c);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#copyInto(java.lang.Object[])
 	 */
 	@Override
@@ -121,12 +144,14 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 
 	/**
 	 * Accessor to the delegate provided by subclass.
-	 * 
+	 *
 	 * @return
 	 */
 	protected abstract List<E> delegate();
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#elementAt(int)
 	 */
 	@Override
@@ -134,7 +159,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().get(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#elements()
 	 */
 	@Override
@@ -142,13 +169,17 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return new Vector<E>(delegate()).elements();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#ensureCapacity(int)
 	 */
 	@Override
 	public abstract void ensureCapacity(final int minCapacity);
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#equals(java.lang.Object)
 	 */
 	@Override
@@ -166,7 +197,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate.equals(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#firstElement()
 	 */
 	@Override
@@ -174,7 +207,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().get(0);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#get(int)
 	 */
 	@Override
@@ -182,7 +217,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().get(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#hashCode()
 	 */
 	@Override
@@ -190,7 +227,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return new Vector<E>(delegate()).hashCode();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#indexOf(java.lang.Object)
 	 */
 	@Override
@@ -198,7 +237,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().indexOf(elem);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#indexOf(java.lang.Object, int)
 	 */
 	@Override
@@ -208,7 +249,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return r < 0 ? r : index + r;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#insertElementAt(java.lang.Object, int)
 	 */
 	@Override
@@ -216,7 +259,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().add(index, obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#isEmpty()
 	 */
 	@Override
@@ -224,7 +269,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().isEmpty();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#iterator()
 	 */
 	@Override
@@ -232,7 +279,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().iterator();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#lastElement()
 	 */
 	@Override
@@ -241,7 +290,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate.get(delegate.size() - 1);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#lastIndexOf(java.lang.Object)
 	 */
 	@Override
@@ -249,7 +300,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().lastIndexOf(elem);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#lastIndexOf(java.lang.Object, int)
 	 */
 	@Override
@@ -257,7 +310,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().subList(0, index).lastIndexOf(elem);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#listIterator()
 	 */
 	@Override
@@ -265,7 +320,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().listIterator();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#listIterator(int)
 	 */
 	@Override
@@ -273,7 +330,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().listIterator(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#remove(int)
 	 */
 	@Override
@@ -281,7 +340,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().remove(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#remove(java.lang.Object)
 	 */
 	@Override
@@ -289,7 +350,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().remove(o);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#removeAll(java.util.Collection)
 	 */
 	@Override
@@ -297,7 +360,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().removeAll(c);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#removeAllElements()
 	 */
 	@Override
@@ -305,7 +370,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().clear();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#removeElement(java.lang.Object)
 	 */
 	@Override
@@ -313,7 +380,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().remove(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#removeElementAt(int)
 	 */
 	@Override
@@ -321,7 +390,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().remove(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#removeRange(int, int)
 	 */
 	@Override
@@ -332,7 +403,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#retainAll(java.util.Collection)
 	 */
 	@Override
@@ -340,7 +413,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().retainAll(c);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#set(int, java.lang.Object)
 	 */
 	@Override
@@ -348,7 +423,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().set(index, element);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#setElementAt(java.lang.Object, int)
 	 */
 	@Override
@@ -356,7 +433,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		delegate().set(index, obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#setSize(int)
 	 */
 	@Override
@@ -366,7 +445,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#size()
 	 */
 	@Override
@@ -374,7 +455,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().size();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#subList(int, int)
 	 */
 	@Override
@@ -382,7 +465,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().subList(fromIndex, toIndex);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#toArray()
 	 */
 	@Override
@@ -390,7 +475,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().toArray();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#toArray(java.lang.Object[])
 	 */
 	@Override
@@ -398,15 +485,19 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 		return delegate().toArray(a);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#toString()
 	 */
 	@Override
 	public String toString() {
 		return delegate().toString();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.util.Vector#trimToSize()
 	 */
 	@Override

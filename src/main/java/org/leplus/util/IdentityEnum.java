@@ -1,8 +1,9 @@
 package org.leplus.util;
 
 /**
- * This enum is a very efficient singleton. It supports serialization but not cloning.
- * 
+ * This enum is a very efficient singleton. It supports serialization but not
+ * cloning.
+ *
  * @author Thomas Leplus
  * @since 1.0.0
  */
