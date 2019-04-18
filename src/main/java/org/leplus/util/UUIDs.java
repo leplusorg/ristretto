@@ -246,13 +246,11 @@ public class UUIDs {
 		}
 
 		private static MessageDigest createDigest() {
-			MessageDigest md;
 			try {
-				md = MessageDigest.getInstance(MD5);
+				return MessageDigest.getInstance(MD5);
 			} catch (final NoSuchAlgorithmException e) {
 				throw new InternalError(MD5 + " not supported", e);
 			}
-			return md;
 		}
 
 		public static UUID toUUID(final InputStream input) throws IOException {
