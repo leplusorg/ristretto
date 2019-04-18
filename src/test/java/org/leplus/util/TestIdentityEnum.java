@@ -11,14 +11,15 @@ import com.google.common.testing.SerializableTester;
 
 /**
  * Tests for the {@link org.leplus.util.IdentityEnum} enum.
- * 
+ *
  * @author Thomas Leplus
  * @since 1.0.0
  */
 public class TestIdentityEnum {
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} is equal (==) to a deep clone of itself.
+	 * Checks that {@link org.leplus.util.IdentityEnum.IT} is equal (==) to a deep
+	 * clone of itself.
 	 */
 	@Test
 	public void testEqualDeepClone() {
@@ -35,16 +36,18 @@ public class TestIdentityEnum {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} equals() a deep clone of itself.
+	 * Checks that {@link org.leplus.util.IdentityEnum.IT} equals() a deep clone of
+	 * itself.
 	 */
 	@Test
 	public void testEqualsDeepClone() {
 		assertTrue(IdentityEnum.IT.equals(SerializationUtils.clone(IdentityEnum.IT)));
 		assertTrue(SerializationUtils.clone(IdentityEnum.IT).equals(IdentityEnum.IT));
 	}
-	
+
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} passes guava's equality tests.
+	 * Checks that {@link org.leplus.util.IdentityEnum.IT} passes guava's equality
+	 * tests.
 	 */
 	@Test
 	public void testEqualsGuava() {
@@ -59,9 +62,10 @@ public class TestIdentityEnum {
 		assertTrue(IdentityEnum.IT.hashCode() == IdentityEnum.IT.hashCode());
 		assertTrue(IdentityEnum.IT.hashCode() == SerializationUtils.clone(IdentityEnum.IT).hashCode());
 	}
-	
+
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} passes guava's serialization tests.
+	 * Checks that {@link org.leplus.util.IdentityEnum.IT} passes guava's
+	 * serialization tests.
 	 */
 	@Test
 	public void testSerializeGuava() {

@@ -1,31 +1,36 @@
 package org.leplus.util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 public class UUIDs {
-	
+
 	public static final int UUID_BYTES = 16;
 
 	private UUIDs() {
 		super();
 	}
-	
+
 	private static final ReversibleUUIDGenerator revInstance = new ReversibleUUIDGenerator();
-	
+
 	public static ReversibleUUIDGenerator reversible() {
 		return revInstance;
 	}
-	
+
 	private static final DeterministicUUIDGenerator detInstance = new DeterministicUUIDGenerator();
-	
+
 	public static DeterministicUUIDGenerator deterministic() {
 		return detInstance;
 	}
 
 	public static class ReversibleUUIDGenerator {
-		
+
 		public static final int MAX_BYTES = UUID_BYTES / Byte.BYTES;
 		public static final int MAX_SHORTS = UUID_BYTES / Short.BYTES;
 		public static final int MAX_DOUBLES = UUID_BYTES / Double.BYTES;
@@ -42,7 +47,7 @@ public class UUIDs {
 			return ByteBuffer.allocate(UUID_BYTES);
 		}
 
-		private static ByteBuffer toByteBuffer(UUID uuid) {
+		private static ByteBuffer toByteBuffer(final UUID uuid) {
 			final ByteBuffer buffer = ByteBuffer.allocate(UUID_BYTES);
 			buffer.asLongBuffer().put(uuid.getMostSignificantBits()).put(uuid.getLeastSignificantBits());
 			return buffer;
@@ -118,7 +123,7 @@ public class UUIDs {
 			return toUUID(byteBuffer);
 		}
 
-		private static UUID toUUID(ByteBuffer bytes) {
+		private static UUID toUUID(final ByteBuffer bytes) {
 			bytes.position(0);
 			return new UUID(bytes.getLong(), bytes.getLong());
 		}
@@ -196,27 +201,68 @@ public class UUIDs {
 		}
 
 	}
-	
+
 	public static class DeterministicUUIDGenerator {
-		
+
 		private DeterministicUUIDGenerator() {
 			super();
 		}
-		
+
 		public static UUID toUUID(final String s) {
 			if (s == null) {
 				return null;
 			}
 			return toUUID(s.getBytes(StandardCharsets.UTF_8));
 		}
-		
+
 		public static UUID toUUID(final byte... b) {
 			if (b == null) {
 				return null;
 			}
 			return UUID.nameUUIDFromBytes(b);
 		}
-		
+
+		public static UUID toUUID(final ByteBuffer input) {
+			if (input == null) {
+				return null;
+			}
+			final MessageDigest md = createDigest();
+			md.update(input);
+			return digest(md);
+		}
+
+		private static UUID digest(final MessageDigest md) {
+			final byte[] md5Bytes = md.digest();
+			md5Bytes[6] &= 0x0f;
+			md5Bytes[6] |= 0x30;
+			md5Bytes[8] &= 0x3f;
+			md5Bytes[8] |= 0x80;
+			return toUUID(md5Bytes);
+		}
+
+		private static MessageDigest createDigest() throws InternalError {
+			MessageDigest md;
+			try {
+				md = MessageDigest.getInstance("MD5");
+			} catch (final NoSuchAlgorithmException nsae) {
+				throw new InternalError("MD5 not supported", nsae);
+			}
+			return md;
+		}
+
+		public static UUID toUUID(final InputStream input) throws IOException {
+			if (input == null) {
+				return null;
+			}
+			final MessageDigest md = createDigest();
+			try (final DigestInputStream dis = new DigestInputStream(input, md)) {
+				final byte[] buffer = new byte[1024];
+				while (dis.read(buffer) >= 0) {
+				}
+			}
+			return digest(md);
+		}
+
 	}
-	
+
 }

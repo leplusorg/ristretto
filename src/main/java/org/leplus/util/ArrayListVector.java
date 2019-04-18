@@ -42,7 +42,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	 * @throws NullPointerException if the specified collection is null.
 	 */
 	public ArrayListVector(final Collection<? extends E> c) {
-		this(new ArrayList<E>(c));
+		this(new ArrayList<>(c));
 	}
 
 	/**
@@ -69,19 +69,19 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.leplus.util.VectorAdapter#clone()
 	 */
 	@Override
 	public ArrayListVector<E> clone() { // NOSONAR
 		final ArrayListVector<E> clone = (ArrayListVector<E>) super.clone();
-		clone.delegate = new ArrayList<E>(delegate);
+		clone.delegate = new ArrayList<>(delegate);
 		return clone;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.leplus.util.VectorAdapter#delegate()
 	 */
 	@Override
@@ -91,7 +91,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.leplus.util.VectorAdapter#ensureCapacity(int)
 	 */
 	@Override
@@ -101,7 +101,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.leplus.util.VectorAdapter#trimToSize()
 	 */
 	@Override
