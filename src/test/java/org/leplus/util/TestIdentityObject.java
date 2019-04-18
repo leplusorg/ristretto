@@ -1,7 +1,7 @@
 package org.leplus.util;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
@@ -11,14 +11,15 @@ import com.google.common.testing.SerializableTester;
 
 /**
  * Tests for the {@link org.leplus.util.IdentityObject} class.
- * 
+ *
  * @author Thomas Leplus
  * @since 1.0.0
  */
 public class TestIdentityObject {
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a shallow clone of itself.
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a
+	 * shallow clone of itself.
 	 */
 	@Test
 	public void testEqualClone() {
@@ -26,7 +27,8 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a deep clone of itself.
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a deep
+	 * clone of itself.
 	 */
 	@Test
 	public void testEqualDeepClone() {
@@ -43,15 +45,17 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's equality tests.
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's equality
+	 * tests.
 	 */
 	@Test
 	public void testEqualsGuava() {
 		new EqualsTester().addEqualityGroup(IdentityObject.IT, IdentityObject.IT).testEquals();
 	}
-	
+
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a shallow clone of itself.
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a shallow
+	 * clone of itself.
 	 */
 	@Test
 	public void testEqualsClone() {
@@ -60,7 +64,8 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a deep clone of itself.
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a deep clone
+	 * of itself.
 	 */
 	@Test
 	public void testEqualsDeepClone() {
@@ -77,13 +82,14 @@ public class TestIdentityObject {
 		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.clone().hashCode());
 		assertTrue(IdentityObject.IT.hashCode() == SerializationUtils.clone(IdentityObject.IT).hashCode());
 	}
-	
+
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's serialization tests.
+	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's
+	 * serialization tests.
 	 */
 	@Test
 	public void testSerializeGuava() {
 		SerializableTester.reserializeAndAssert(IdentityObject.IT);
 	}
-	
+
 }

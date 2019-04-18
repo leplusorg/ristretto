@@ -30,18 +30,20 @@ import com.google.common.testing.SerializableTester;
 import junit.framework.TestSuite;
 
 /**
- * Tests the {@link org.leplus.util.ArrayListVector} class (and therefore the {@link org.leplus.util.VectorAdapter} class too).
- * 
+ * Tests the {@link org.leplus.util.ArrayListVector} class (and therefore the
+ * {@link org.leplus.util.VectorAdapter} class too).
+ *
  * @author Thomas Leplus
  * @since 1.0.0
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.VectorCompatibilityTests.class, TestArrayListVector.AdditionalTests.class })
+@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.VectorCompatibilityTests.class,
+		TestArrayListVector.AdditionalTests.class })
 public class TestArrayListVector {
 
 	/**
 	 * Some additional tests.
-	 * 
+	 *
 	 * @author Thomas Leplus
 	 * @since 1.0.0
 	 */
@@ -52,8 +54,8 @@ public class TestArrayListVector {
 		 */
 		@Test
 		public void test() {
-			final Vector<String> actual = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
-			final Vector<String> expected = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
+			final Vector<String> actual = new ArrayListVector<>(Arrays.asList("a", "b", "c"));
+			final Vector<String> expected = new ArrayListVector<>(Arrays.asList("a", "b", "c"));
 			assertThat(actual, is(expected));
 			assertThat(actual.hashCode(), is(expected.hashCode()));
 			assertThat(actual, hasItems("b"));
@@ -113,7 +115,7 @@ public class TestArrayListVector {
 			assertThat(clone.size(), is(4));
 			assertThat(clone.elementAt(3), is("d"));
 			clone.setElementAt("c", 2);
-			String[] values = new String[3];
+			final String[] values = new String[3];
 			clone.copyInto(values);
 			clone.ensureCapacity(5);
 			clone.capacity(); // Incorrect so no test
@@ -138,24 +140,27 @@ public class TestArrayListVector {
 			assertThat(actual, containsInAnyOrder("c", "b", "a"));
 			assertThat(actual, not(IsEmptyCollection.empty()));
 		}
-		
+
 		/**
-		 * Extra test specifically for {@link org.leplus.util.ArrayListVector.removeRange(int, int)}
+		 * Extra test specifically for
+		 * {@link org.leplus.util.ArrayListVector.removeRange(int, int)}
 		 */
 		@Test
 		public void testRemoveRange() {
-			ArrayListVector<String> v = new ArrayListVector<String>(Arrays.asList("a", "b", "c", "d")) {
+			final ArrayListVector<String> v = new ArrayListVector<String>(Arrays.asList("a", "b", "c", "d")) {
 
 				private static final long serialVersionUID = 1L;
-				
-				/* (non-Javadoc)
+
+				/*
+				 * (non-Javadoc)
+				 * 
 				 * @see org.leplus.util.VectorAdapter#removeRange(int, int)
 				 */
 				@Override
 				public void removeRange(final int fromIndex, final int toIndex) {
 					super.removeRange(fromIndex, toIndex);
 				}
-				
+
 			};
 			v.removeRange(1, 3);
 			assertThat(v.size(), is(2));
@@ -167,9 +172,12 @@ public class TestArrayListVector {
 		 */
 		@Test
 		public void testEquals() {
-			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(0), new ArrayListVector<String>()).testEquals();
-			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("")), new ArrayListVector<String>(Arrays.asList(""))).testEquals();
-			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(Arrays.asList("x", "y", "z")), new ArrayListVector<String>(Arrays.asList("x", "y", "z"))).testEquals();
+			new EqualsTester().addEqualityGroup(new ArrayListVector<String>(0), new ArrayListVector<String>())
+					.testEquals();
+			new EqualsTester().addEqualityGroup(new ArrayListVector<>(Arrays.asList("")),
+					new ArrayListVector<>(Arrays.asList(""))).testEquals();
+			new EqualsTester().addEqualityGroup(new ArrayListVector<>(Arrays.asList("x", "y", "z")),
+					new ArrayListVector<>(Arrays.asList("x", "y", "z"))).testEquals();
 		}
 
 		/**
@@ -178,15 +186,15 @@ public class TestArrayListVector {
 		@Test
 		public void testSerialize() {
 			SerializableTester.reserializeAndAssert(new ArrayListVector<String>());
-			SerializableTester.reserializeAndAssert(new ArrayListVector<String>(Arrays.asList("")));
-			SerializableTester.reserializeAndAssert(new ArrayListVector<String>(Arrays.asList("x", "y", "z")));
+			SerializableTester.reserializeAndAssert(new ArrayListVector<>(Arrays.asList("")));
+			SerializableTester.reserializeAndAssert(new ArrayListVector<>(Arrays.asList("x", "y", "z")));
 		}
-		
+
 	}
 
 	/**
 	 * Guava collection testing.
-	 * 
+	 *
 	 * @author Thomas Leplus
 	 * @since 1.0.0
 	 */
@@ -194,54 +202,41 @@ public class TestArrayListVector {
 
 		/**
 		 * Creates the test suite.
-		 * 
+		 *
 		 * @return a test suite.
 		 */
 		public static TestSuite suite() {
 			return ListTestSuiteBuilder.using(new TestStringListGenerator() {
 
-				/* (non-Javadoc)
-				 * @see com.google.common.collect.testing.TestStringListGenerator#create(java.lang.String[])
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see
+				 * com.google.common.collect.testing.TestStringListGenerator#create(java.lang.
+				 * String[])
 				 */
 				@Override
-				protected List<String> create(String[] elements) {
-					return new ArrayListVector<String>(Arrays.asList(elements));
+				protected List<String> create(final String[] elements) {
+					return new ArrayListVector<>(Arrays.asList(elements));
 				}
 
-			}).named("ArrayListVector tests")
-					.withFeatures(
-							ListFeature.GENERAL_PURPOSE,
-							ListFeature.REMOVE_OPERATIONS,
-							ListFeature.SUPPORTS_ADD_WITH_INDEX,
-							ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
-							ListFeature.SUPPORTS_SET,
-							CollectionFeature.ALLOWS_NULL_QUERIES,
-							CollectionFeature.ALLOWS_NULL_VALUES,
-							CollectionFeature.DESCENDING_VIEW,
-							CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
-							CollectionFeature.GENERAL_PURPOSE,
-							CollectionFeature.KNOWN_ORDER,
-							CollectionFeature.REJECTS_DUPLICATES_AT_CREATION,
-							CollectionFeature.REMOVE_OPERATIONS,
-							CollectionFeature.RESTRICTS_ELEMENTS,
-							CollectionFeature.SERIALIZABLE,
-							CollectionFeature.SUBSET_VIEW,
-							CollectionFeature.SUPPORTS_ADD,
-							CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
-							CollectionFeature.SUPPORTS_REMOVE,
-							CollectionSize.ANY,
-							CollectionSize.ONE,
-							CollectionSize.SEVERAL,
-							CollectionSize.ZERO
-							)
-					.createTestSuite();
+			}).named("ArrayListVector tests").withFeatures(ListFeature.GENERAL_PURPOSE, ListFeature.REMOVE_OPERATIONS,
+					ListFeature.SUPPORTS_ADD_WITH_INDEX, ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
+					ListFeature.SUPPORTS_SET, CollectionFeature.ALLOWS_NULL_QUERIES,
+					CollectionFeature.ALLOWS_NULL_VALUES, CollectionFeature.DESCENDING_VIEW,
+					CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION, CollectionFeature.GENERAL_PURPOSE,
+					CollectionFeature.KNOWN_ORDER, CollectionFeature.REJECTS_DUPLICATES_AT_CREATION,
+					CollectionFeature.REMOVE_OPERATIONS, CollectionFeature.RESTRICTS_ELEMENTS,
+					CollectionFeature.SERIALIZABLE, CollectionFeature.SUBSET_VIEW, CollectionFeature.SUPPORTS_ADD,
+					CollectionFeature.SUPPORTS_ITERATOR_REMOVE, CollectionFeature.SUPPORTS_REMOVE, CollectionSize.ANY,
+					CollectionSize.ONE, CollectionSize.SEVERAL, CollectionSize.ZERO).createTestSuite();
 		}
 
 	}
 
 	/**
 	 * Tests for compatibility with Vector.
-	 * 
+	 *
 	 * @author Thomas Leplus
 	 * @since 1.0.0
 	 */
@@ -252,8 +247,8 @@ public class TestArrayListVector {
 		 */
 		@Test
 		public void testEquals() {
-			Vector<String> v = new Vector<String>(Arrays.asList("a", "b", "c"));
-			ArrayListVector<String> a = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
+			final Vector<String> v = new Vector<>(Arrays.asList("a", "b", "c"));
+			final ArrayListVector<String> a = new ArrayListVector<>(Arrays.asList("a", "b", "c"));
 			assertEquals(v, a);
 			assertEquals(a, v);
 			new EqualsTester().addEqualityGroup(v, a).testEquals();
@@ -264,8 +259,8 @@ public class TestArrayListVector {
 		 */
 		@Test
 		public void testEqualsEmpty() {
-			Vector<String> v = new Vector<String>();
-			ArrayListVector<String> a = new ArrayListVector<String>();
+			final Vector<String> v = new Vector<>();
+			final ArrayListVector<String> a = new ArrayListVector<>();
 			assertEquals(v, a);
 			assertEquals(a, v);
 			new EqualsTester().addEqualityGroup(v, a).testEquals();
@@ -276,8 +271,8 @@ public class TestArrayListVector {
 		 */
 		@Test
 		public void testHashCode() {
-			Vector<String> v = new Vector<String>(Arrays.asList("a", "b", "c"));
-			ArrayListVector<String> a = new ArrayListVector<String>(Arrays.asList("a", "b", "c"));
+			final Vector<String> v = new Vector<>(Arrays.asList("a", "b", "c"));
+			final ArrayListVector<String> a = new ArrayListVector<>(Arrays.asList("a", "b", "c"));
 			assertThat(v.hashCode(), is(a.hashCode()));
 		}
 
@@ -286,12 +281,12 @@ public class TestArrayListVector {
 		 */
 		@Test
 		public void testHashCodeEmpty() {
-			Vector<String> v = new Vector<String>();
-			ArrayListVector<String> a = new ArrayListVector<String>();
+			final Vector<String> v = new Vector<>();
+			final ArrayListVector<String> a = new ArrayListVector<>();
 			assertEquals(v, a);
 			assertThat(v.hashCode(), is(a.hashCode()));
 		}
-		
+
 	}
-	
+
 }

@@ -35,7 +35,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	 */
 	public IdentityHashSet() {
 		super();
-		map = new IdentityHashMap<E, Object>();
+		map = new IdentityHashMap<>();
 	}
 
 	/**
@@ -59,12 +59,12 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	 */
 	public IdentityHashSet(final int expectedMaxSize) {
 		super();
-		map = new IdentityHashMap<E, Object>(expectedMaxSize);
+		map = new IdentityHashMap<>(expectedMaxSize);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#add(java.lang.Object)
 	 */
 	@Override
@@ -74,7 +74,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#clear()
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
@@ -92,7 +92,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 		try {
 			@SuppressWarnings("unchecked")
 			final IdentityHashSet<E> clone = (IdentityHashSet<E>) super.clone();
-			clone.map = new IdentityHashMap<E, Object>(map);
+			clone.map = new IdentityHashMap<>(map);
 			return clone;
 		} catch (final CloneNotSupportedException e) {
 			throw new AssertionError(e);
@@ -101,7 +101,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#contains(java.lang.Object)
 	 */
 	@Override
@@ -111,7 +111,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractSet#equals(java.lang.Object)
 	 */
 	@Override
@@ -124,7 +124,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractSet#hashCode()
 	 */
 	@Override
@@ -134,7 +134,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#isEmpty()
 	 */
 	@Override
@@ -144,7 +144,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#iterator()
 	 */
 	@Override
@@ -154,7 +154,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 */
 	@Override
@@ -164,7 +164,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.AbstractCollection#size()
 	 */
 	@Override
