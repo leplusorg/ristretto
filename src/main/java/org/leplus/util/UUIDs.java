@@ -204,6 +204,9 @@ public class UUIDs {
 
 	public static class DeterministicUUIDGenerator {
 
+		private static final String MD5 = "MD5";
+		private static final int BUFFER_SIZE = 8192;
+
 		private DeterministicUUIDGenerator() {
 			super();
 		}
@@ -215,19 +218,21 @@ public class UUIDs {
 			return toUUID(s.getBytes(StandardCharsets.UTF_8));
 		}
 
-		public static UUID toUUID(final byte... b) {
-			if (b == null) {
-				return null;
-			}
-			return UUID.nameUUIDFromBytes(b);
-		}
-
-		public static UUID toUUID(final ByteBuffer input) {
-			if (input == null) {
+		public static UUID toUUID(final byte... bytes) {
+			if (bytes == null) {
 				return null;
 			}
 			final MessageDigest md = createDigest();
-			md.update(input);
+			md.update(bytes);
+			return digest(md);
+		}
+
+		public static UUID toUUID(final ByteBuffer buffer) {
+			if (buffer == null) {
+				return null;
+			}
+			final MessageDigest md = createDigest();
+			md.update(buffer);
 			return digest(md);
 		}
 
@@ -240,12 +245,12 @@ public class UUIDs {
 			return toUUID(md5Bytes);
 		}
 
-		private static MessageDigest createDigest() throws InternalError {
+		private static MessageDigest createDigest() {
 			MessageDigest md;
 			try {
-				md = MessageDigest.getInstance("MD5");
-			} catch (final NoSuchAlgorithmException nsae) {
-				throw new InternalError("MD5 not supported", nsae);
+				md = MessageDigest.getInstance(MD5);
+			} catch (final NoSuchAlgorithmException e) {
+				throw new InternalError(MD5 + " not supported", e);
 			}
 			return md;
 		}
@@ -256,7 +261,7 @@ public class UUIDs {
 			}
 			final MessageDigest md = createDigest();
 			try (final DigestInputStream dis = new DigestInputStream(input, md)) {
-				final byte[] buffer = new byte[1024];
+				final byte[] buffer = new byte[BUFFER_SIZE];
 				while (dis.read(buffer) >= 0) {
 				}
 			}
