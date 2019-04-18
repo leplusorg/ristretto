@@ -3,8 +3,8 @@ package org.leplus.util;
 import java.io.Serializable;
 
 /**
- * This class is a singleton. It supports serialization and cloning.
- * In both case the unique instance of IdentityObject remains the same object.
+ * This class is a singleton. It supports serialization and cloning. In both
+ * case the unique instance of IdentityObject remains the same object.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -22,23 +22,29 @@ public final class IdentityObject implements Cloneable, Serializable {
 		super();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
-	public IdentityObject clone() { //NOSONAR
+	public IdentityObject clone() { // NOSONAR
 		return IT;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return obj instanceof IdentityObject;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -50,7 +56,9 @@ public final class IdentityObject implements Cloneable, Serializable {
 		return IT;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
