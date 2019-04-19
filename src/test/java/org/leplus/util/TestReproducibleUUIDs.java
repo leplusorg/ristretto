@@ -11,16 +11,16 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-public class TestDeterministicUUIDs {
+public class TestReproducibleUUIDs {
 
 	private static final int NUMBER_OF_BYTES = 1024;
 
 	@Test
 	public void testNulls() throws IOException {
-		assertNull(DeterministicUUIDs.fromBytes(null));
-		assertNull(DeterministicUUIDs.fromByteBuffer(null));
-		assertNull(DeterministicUUIDs.fromString(null));
-		assertNull(DeterministicUUIDs.fromInputStream(null));
+		assertNull(ReproducibleUUIDs.fromBytes(null));
+		assertNull(ReproducibleUUIDs.fromByteBuffer(null));
+		assertNull(ReproducibleUUIDs.fromString(null));
+		assertNull(ReproducibleUUIDs.fromInputStream(null));
 	}
 
 	@Test
@@ -28,10 +28,10 @@ public class TestDeterministicUUIDs {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
-		assertEquals(DeterministicUUIDs.fromBytes(bytes),
-				DeterministicUUIDs.fromBytes(bytes));
+		assertEquals(ReproducibleUUIDs.fromBytes(bytes),
+				ReproducibleUUIDs.fromBytes(bytes));
 		// Test compatibility with java.util.UUID.nameUUIDFromBytes(byte[])
-		assertEquals(DeterministicUUIDs.fromBytes(bytes),
+		assertEquals(ReproducibleUUIDs.fromBytes(bytes),
 				UUID.nameUUIDFromBytes(bytes));
 	}
 
@@ -40,8 +40,8 @@ public class TestDeterministicUUIDs {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
-		assertEquals(DeterministicUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)),
-				DeterministicUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)));
+		assertEquals(ReproducibleUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)),
+				ReproducibleUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)));
 	}
 
 	@Test
@@ -49,8 +49,8 @@ public class TestDeterministicUUIDs {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
-		assertEquals(DeterministicUUIDs.fromString(new String(bytes)),
-				DeterministicUUIDs.fromString(new String(bytes)));
+		assertEquals(ReproducibleUUIDs.fromString(new String(bytes)),
+				ReproducibleUUIDs.fromString(new String(bytes)));
 	}
 
 	@Test
@@ -58,8 +58,8 @@ public class TestDeterministicUUIDs {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
-		assertEquals(DeterministicUUIDs.fromInputStream(new ByteArrayInputStream(bytes)),
-				DeterministicUUIDs.fromInputStream(new ByteArrayInputStream(bytes)));
+		assertEquals(ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)),
+				ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)));
 	}
 
 }

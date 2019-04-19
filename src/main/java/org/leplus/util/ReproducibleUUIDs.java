@@ -28,13 +28,13 @@ import java.util.UUID;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-public class DeterministicUUIDs {
+public class ReproducibleUUIDs {
 
 	private static final String MD5 = "MD5";
 	
 	private static final int BUFFER_SIZE = 8192;
 
-	private DeterministicUUIDs() {
+	private ReproducibleUUIDs() {
 		super();
 	}
 
