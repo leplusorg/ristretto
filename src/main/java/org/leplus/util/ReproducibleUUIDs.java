@@ -3,6 +3,7 @@ package org.leplus.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.LongBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
@@ -31,7 +32,7 @@ import java.util.UUID;
 public class ReproducibleUUIDs {
 
 	private static final String MD5 = "MD5";
-	
+	private static final int UUID_BYTES = 16;
 	private static final int BUFFER_SIZE = 8192;
 
 	private ReproducibleUUIDs() {
@@ -120,6 +121,29 @@ public class ReproducibleUUIDs {
 			}
 		}
 		return digest(md);
+	}
+
+	/**
+	 * Generates a UUID from the given UUIDs.
+	 * The same UUIDs will always produce the same UUID.
+	 * 
+	 * @param uuids the UUIDs.
+	 * @return the resulting UUID.
+	 */
+	public static UUID fromUUIDs(final UUID... uuids) {
+		if (uuids == null || uuids.length == 0) {
+			return null;
+		}
+		if (uuids.length == 1) {
+			return uuids[0];
+		}
+		final ByteBuffer bytes = ByteBuffer.allocate(uuids.length * UUID_BYTES);
+		final LongBuffer longs = bytes.asLongBuffer();
+		for (final UUID uuid : uuids) {
+			longs.put(uuid.getMostSignificantBits());
+			longs.put(uuid.getLeastSignificantBits());
+		}
+		return fromByteBuffer(bytes);
 	}
 
 }
