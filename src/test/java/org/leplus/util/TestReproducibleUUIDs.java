@@ -24,7 +24,7 @@ public class TestReproducibleUUIDs {
 	}
 
 	@Test
-	public void testBytes() throws IOException {
+	public void testBytes() {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
@@ -36,7 +36,7 @@ public class TestReproducibleUUIDs {
 	}
 
 	@Test
-	public void testByteBuffer() throws IOException {
+	public void testByteBuffer() {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
@@ -45,7 +45,7 @@ public class TestReproducibleUUIDs {
 	}
 
 	@Test
-	public void testString() throws IOException {
+	public void testString() {
 		final SecureRandom random = new SecureRandom();
 		final byte[] bytes = new byte[NUMBER_OF_BYTES];
 		random.nextBytes(bytes);
@@ -60,6 +60,16 @@ public class TestReproducibleUUIDs {
 		random.nextBytes(bytes);
 		assertEquals(ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)),
 				ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)));
+	}
+
+	@Test
+	public void testUUIDs() {
+		final UUID[] uuids = new UUID[3];
+		for (int i = 0; i < uuids.length; i++) {
+			uuids[i] = UUID.randomUUID();
+		}
+		assertEquals(ReproducibleUUIDs.fromUUIDs(uuids),
+				ReproducibleUUIDs.fromUUIDs(uuids));
 	}
 
 }
