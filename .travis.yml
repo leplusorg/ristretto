@@ -1,4 +1,4 @@
-dist: bionic
+dist: trusty
 language: java
 sudo: false
 install: true
