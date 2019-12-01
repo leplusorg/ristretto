@@ -99,7 +99,7 @@ public class ReproducibleUUIDs {
 		try {
 			return MessageDigest.getInstance(MD5);
 		} catch (final NoSuchAlgorithmException e) {
-			throw new InternalError(MD5 + " not supported", e);
+			throw new IllegalStateException(MD5 + " not supported", e);
 		}
 	}
 
