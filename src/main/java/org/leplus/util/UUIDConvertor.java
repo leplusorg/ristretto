@@ -37,37 +37,37 @@ public class UUIDConvertor {
 	/**
 	 * Maximum number of bytes that can be converted into a UUID.
 	 */
-	public static final int MAX_BYTES = UUID_BYTES / Byte.BYTES;
+	public static final int MAX_BYTES = UUID_BYTES / (Byte.SIZE / 8); // JDK8+: use BYTES
 	
 	/**
 	 * Maximum number of shorts that can be converted into a UUID.
 	 */
-	public static final int MAX_SHORTS = UUID_BYTES / Short.BYTES;
+	public static final int MAX_SHORTS = UUID_BYTES / (Short.SIZE / 8); // JDK8+: use BYTES
 	
 	/**
 	 * Maximum number of doubles that can be converted into a UUID.
 	 */
-	public static final int MAX_DOUBLES = UUID_BYTES / Double.BYTES;
+	public static final int MAX_DOUBLES = UUID_BYTES / (Double.SIZE / 8); // JDK8+: use BYTES
 	
 	/**
 	 * Maximum number of floats that can be converted into a UUID.
 	 */
-	public static final int MAX_FLOATS = UUID_BYTES / Float.BYTES;
+	public static final int MAX_FLOATS = UUID_BYTES / (Float.SIZE / 8); // JDK8+: use BYTES
 	
 	/**
 	 * Maximum number of characters that can be converted into a UUID.
 	 */
-	public static final int MAX_CHARS = UUID_BYTES / Character.BYTES;
+	public static final int MAX_CHARS = UUID_BYTES / (Character.SIZE / 8); // JDK8+: use BYTES
 	
 	/**
 	 * Maximum number of integers that can be converted into a UUID.
 	 */
-	public static final int MAX_INTS = UUID_BYTES / Integer.BYTES;
+	public static final int MAX_INTS = UUID_BYTES / (Integer.SIZE / 8); // JDK8+: use BYTES
 	
 	/**
 	 * Maximum number of longs that can be converted into a UUID.
 	 */
-	public static final int MAX_LONGS = UUID_BYTES / Long.BYTES;
+	public static final int MAX_LONGS = UUID_BYTES / (Long.SIZE / 8); // JDK8+: use BYTES
 
 	private UUIDConvertor() {
 		super();
