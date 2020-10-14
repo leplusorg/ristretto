@@ -4,11 +4,11 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +40,10 @@ import junit.framework.TestSuite;
 @Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class, TestArrayListVector.VectorCompatibilityTests.class,
 		TestArrayListVector.AdditionalTests.class })
 public class TestArrayListVector {
+
+	private TestArrayListVector() {
+		super();
+	}
 
 	/**
 	 * Some additional tests.
