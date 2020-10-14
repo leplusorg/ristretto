@@ -75,7 +75,7 @@
         <plugin>
           <groupId>org.pitest</groupId>
           <artifactId>pitest-maven</artifactId>
-          <version>LATEST</version>
+          <version>1.5.2</version>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
