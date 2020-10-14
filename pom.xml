@@ -59,13 +59,15 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava-testlib</artifactId>
-      <version>23.0</version>
+      <!-- using android version for Java 7 support -->
+      <version>29.0-android</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.11</version>
+      <version>3.8.1</version>
+      <!-- versions 3.9 and above require Java 8 -->
       <scope>test</scope>
     </dependency>
   </dependencies>
