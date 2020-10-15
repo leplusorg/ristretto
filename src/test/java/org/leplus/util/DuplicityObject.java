@@ -32,9 +32,10 @@ public final class DuplicityObject {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#hashcode()
+	 * @see java.lang.Object#hashCode()
 	 */
-	public int hashcode() {
+	@Override
+	public int hashCode() {
 		return Integer.MAX_VALUE;
 	}
 
