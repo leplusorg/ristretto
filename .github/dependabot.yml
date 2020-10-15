@@ -4,6 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    ignored_updates:
+      - match:
+          dependency_name: "org.apache.commons:commons-lang3"
+          version_requirement: "[3.8.1,)"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
