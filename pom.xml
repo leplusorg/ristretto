@@ -60,7 +60,7 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava-testlib</artifactId>
       <!-- using android version for Java 7 support -->
-      <version>29.0-android</version>
+      <version>30.0-android</version>
       <scope>test</scope>
     </dependency>
     <dependency>
