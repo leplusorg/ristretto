@@ -92,8 +92,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
         </configuration>
@@ -118,6 +118,18 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+	<groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>6.0.3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <reporting>
@@ -138,9 +150,14 @@
         <version>3.14.0</version>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.5</version>
+	<groupId>com.github.spotbugs</groupId>
+	<artifactId>spotbugs-maven-plugin</artifactId>
+	<version>4.1.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.1</version>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
