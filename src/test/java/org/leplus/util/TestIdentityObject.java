@@ -38,6 +38,7 @@ public class TestIdentityObject {
 	/**
 	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() itself.
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
 		assertTrue(IdentityObject.IT.equals(IdentityObject.IT));
