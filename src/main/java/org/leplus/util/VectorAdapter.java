@@ -1,11 +1,16 @@
 package org.leplus.util;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Spliterator;
 import java.util.Vector;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 /**
  * This adapter class extends Vector to make it easier to replace Vector uses by
@@ -502,5 +507,55 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	 */
 	@Override
 	public abstract void trimToSize();
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.util.Vector#removeIf(Predicate<? super E>)
+	 */
+	@Override
+	public boolean removeIf(Predicate<? super E> filter) {
+		return delegate().removeIf(filter);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.util.Vector#forEach(Consumer<? super E>)
+	 */
+	@Override
+	public synchronized void forEach(Consumer<? super E> action) {
+		delegate().forEach(action);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.util.Vector#replaceAll(UnaryOperator<E>)
+	 */
+	@Override
+	public synchronized void replaceAll(UnaryOperator<E> operator) {
+		delegate().replaceAll(operator);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.util.Vector#sort(Comparator<? super E>)
+	 */
+	@Override
+	public synchronized void sort(Comparator<? super E> c) {
+		delegate().sort(c);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.util.Vector#spliterator()
+	 */
+	@Override
+	public Spliterator<E> spliterator() {
+		return delegate().spliterator();
+	}
 
 }

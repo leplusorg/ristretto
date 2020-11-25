@@ -29,6 +29,7 @@ public class TestIdentityEnum {
 	/**
 	 * Checks that {@link org.leplus.util.IdentityEnum.IT} equals() itself.
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
 		assertTrue(IdentityEnum.IT.equals(IdentityEnum.IT));
