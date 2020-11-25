@@ -59,7 +59,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava-testlib</artifactId>
-      <version>23.0</version>
+      <version>30.0-jre</version>
       <scope>test</scope>
     </dependency>
     <dependency>
