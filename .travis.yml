@@ -1,24 +1,28 @@
-dist: trusty
+dist: bionic
 language: java
 sudo: false
 install: true
 
 jdk:
-  - openjdk7
   - openjdk8
   - openjdk9
   - openjdk10
   - openjdk11
   - openjdk12
   - openjdk13
+  - openjdk14
+  - oraclejdk8
   - oraclejdk9
+  - oraclejdk10
   - oraclejdk11
+  - oraclejdk12
   - oraclejdk13
+  - oraclejdk14
 
 addons:
  apt:
   packages:
-   - openjdk-7-jdk
+   - openjdk-8-jdk
   sonarcloud:
     organization: "default"
     token:
