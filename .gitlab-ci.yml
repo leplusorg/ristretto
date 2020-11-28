@@ -15,7 +15,7 @@ verify:jdk8:
   stage: test
   image: maven:3-jdk-8
   script:
-    - 'mvn $MAVEN_CLI_OPTS verify'
+    - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
 
@@ -23,6 +23,6 @@ verify:jdk11:
   stage: test
   image: maven:3-jdk-11
   script:
-    - 'mvn $MAVEN_CLI_OPTS verify'
+    - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
