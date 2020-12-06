@@ -16,19 +16,9 @@ jdk:
   - oraclejdk13
   - oraclejdk14
 
-addons:
-  sonarcloud:
-    organization: "default"
-    token:
-        secure: "5nZWKeHbPyT/invqIg8LH4sCO+RqBk+6LSE8EhNNrxfNbYD5N231cglTzXw9czBbvA+9osmK7535ZKo1UFCtJlJjo9ZfXHM53+F2Ri1Hh/mnTukTFX3UK6SV/nwPFlaIf/quxJB4Fl/HZpasVM1ICKi0x6yuunSb8sccKzMeKsNVckvKngPP4HmwDxOFqeb8RhDgWbPqZCFPKDQQBpINV2gQ1WoeatZ6TXX3txlRD/d4pF20smtyZFtv0ngNSbErxTt2sFbsvUnFa4eyNwe2u+Efp37L6w3Up/BCsO+vhzUMVfddgVUeUpxJMTA2lddDuKeqMOXX4wbezeAhQra5S/S5LGzE3XjmbPlv2dOR+EVWfYzpEPEgm6JA0tS/rwKsdq305szY0cl0dFTjeoPn1lihkbNnZKNawR84DR/xR7ZubrQpSrVQCm0zOn3cnYQ8eyE3ENsJLtinSnRNERHRPOmNZxGteosLsk76kAGkfRewtfxl57VTHkPVRpyt1NEsU3I52sVj8Ef5eniueHIou82vm4HHb2HkWWEjRk3hYMzftJ7uO3Bg//CY4ZRZjYzUawXdsNss+gePq68ERKpEtu21XVabrJvUabuyr5G7Sf+IkSObmMdLIO8RuPDvDsYdOB5H7bOt5Bw7G5U/Uspdl3SXZVhjcUEmQOTlDhfo4O0="
-
-script:
-  - "./runSonarCloudAnalysis.sh"
-
 cache:
   directories:
     - "${HOME}/.m2/repository"
-    - "${HOME}/.sonar/cache"
 
 notifications:
   email: true
