@@ -118,12 +118,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ArrayListVector<?> other = (ArrayListVector<?>) obj;
-		return !delegate.equals(other.delegate);
+		return delegate.equals(obj);
 	}
 
 	@Override
