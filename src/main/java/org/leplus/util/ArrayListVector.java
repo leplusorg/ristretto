@@ -31,7 +31,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	 * Constructs an empty list with an initial capacity of ten.
 	 */
 	public ArrayListVector() {
-		this(new ArrayList<E>());
+		this(new ArrayList<>());
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	 * @see org.leplus.util.VectorAdapter#clone()
 	 */
 	@Override
-	public ArrayListVector<E> clone() { // NOSONAR
+	public ArrayListVector<E> clone() {
 		final ArrayListVector<E> clone = (ArrayListVector<E>) super.clone();
 		clone.delegate = new ArrayList<>(delegate);
 		return clone;
@@ -107,6 +107,28 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	@Override
 	public void trimToSize() {
 		delegate.trimToSize();
+	}
+
+	@Override
+	public int hashCode() {
+		return delegate.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ArrayListVector<?> other = (ArrayListVector<?>) obj;
+		return !delegate.equals(other.delegate);
+	}
+
+	@Override
+	public String toString() {
+		return delegate.toString();
 	}
 
 }

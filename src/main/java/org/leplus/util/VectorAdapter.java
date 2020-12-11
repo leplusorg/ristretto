@@ -229,7 +229,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	 */
 	@Override
 	public int hashCode() {
-		return new Vector<>(delegate()).hashCode();
+		return delegate().hashCode();
 	}
 
 	/*
