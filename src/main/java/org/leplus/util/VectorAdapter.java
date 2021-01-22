@@ -150,7 +150,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	/**
 	 * Accessor to the delegate provided by subclass.
 	 *
-	 * @return
+	 * @return the delegate.
 	 */
 	protected abstract List<E> delegate();
 
