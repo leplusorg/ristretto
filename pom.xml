@@ -22,9 +22,9 @@
     </repository>
   </distributionManagement>
   <scm>
-    <url>https://github.com/thomasleplus/ristretto</url>
-    <connection>scm:git:https://github.com/thomasleplus/ristretto.git</connection>
-    <developerConnection>scm:git:git@github.com:thomasleplus/ristretto.git</developerConnection>
+    <url>https://github.com/thomasleplus/ristretto/tree/master</url>
+    <connection>scm:git:git://github.com/thomasleplus/ristretto.git</connection>
+    <developerConnection>scm:git:ssh://github.com:thomasleplus/ristretto.git</developerConnection>
   </scm>
   <organization>
     <name>Leplus.org</name>
@@ -43,6 +43,8 @@
       <roles>
         <role>Project Lead</role>
       </roles>
+      <organization>Leplus.org</organization>
+      <organizationUrl>https://www.leplus.org</organizationUrl>
     </developer>
   </developers>
   <properties>
