@@ -22,6 +22,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
+        gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
     - name: Build with Maven
       run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify
     - name: Scan with SonarCloud
@@ -29,6 +31,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
     - name: Upload artifacts
       uses: actions/upload-artifact@master
