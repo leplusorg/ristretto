@@ -203,6 +203,10 @@ public class TestArrayListVector {
 	 * @since 1.0.0
 	 */
 	public static class GuavaTests {
+		
+		private GuavaTests() {
+			super();
+		}
 
 		/**
 		 * Creates the test suite.
