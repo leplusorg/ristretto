@@ -25,7 +25,7 @@ jobs:
         gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
     - name: Build with Maven
-      run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify
+      run: ./mvnw --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify
       env:
         MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
     - name: Scan with SonarCloud
