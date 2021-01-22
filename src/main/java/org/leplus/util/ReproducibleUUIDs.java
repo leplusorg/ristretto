@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * This class contains utility methods that generate deterministic UUIDs.
  * Meaning that given the same input, these methods will always return the
- * same UUID, as opposed to {@link java.util.UUID.randomUUID()}. The produced
+ * same UUID, as opposed to {@link java.util.UUID#randomUUID()}. The produced
  * UUIDs may not be universally unique (since other code using the same method
  * on the same input would have produce the same UUIDs) but it can still be
  * useful in situations where you need exactly that: be able to generate a UUID
@@ -109,6 +109,7 @@ public class ReproducibleUUIDs {
 	 * 
 	 * @param input the input stream.
 	 * @return the resulting UUID.
+	 * @throws IOException if an I/O error occurs.
 	 */
 	public static UUID fromInputStream(final InputStream input) throws IOException {
 		if (input == null) {

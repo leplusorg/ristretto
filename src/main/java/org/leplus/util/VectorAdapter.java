@@ -158,6 +158,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	 * (non-Javadoc)
 	 *
 	 * @see java.util.Vector#elementAt(int)
+	 * @return the component at the specified index
 	 */
 	@Override
 	public E elementAt(final int index) {

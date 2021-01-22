@@ -12,7 +12,7 @@ import java.util.UUID;
  * 
  * For example if you need to convert a legacy object that has a integer or long ID
  * into a new object that uses UUIDs, you could just generate a new UUID
- * for the new object using {@link java.util.UUID.randomUUID()} but if you need to later link back
+ * for the new object using {@link java.util.UUID#randomUUID()} but if you need to later link back
  * the legacy object from the new one, you might not have a place to store the legacy ID
  * on the new object. If you use this class's toUUID() methods to convert the legacy
  * object's ID into the new object's UUID, you will be able to later convert back
