@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -18,7 +18,7 @@ import java.util.function.UnaryOperator;
  *
  * @author Thomas Leplus
  * @since 1.0.0
- * @see org.leplus.util.ArrayListVector
+ * @see org.leplus.ristretto.util.ArrayListVector
  *
  * @param <E> type of the elements in the collection.
  */

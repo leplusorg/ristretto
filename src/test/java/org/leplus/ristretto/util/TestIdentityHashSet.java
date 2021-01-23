@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,7 +22,7 @@ import com.google.common.testing.EqualsTester;
 import junit.framework.TestSuite;
 
 /**
- * Tests the {@link org.leplus.util.IdentityHashSet} class.
+ * Tests the {@link org.leplus.ristretto.util.IdentityHashSet} class.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -40,7 +40,7 @@ public class TestIdentityHashSet {
 	public static class AdditionalTests {
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.clear()}.
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.clear()}.
 		 */
 		@Test
 		public void testClear() {
@@ -55,7 +55,7 @@ public class TestIdentityHashSet {
 		}
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.clone()}.
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.clone()}.
 		 */
 		@Test
 		public void testClone() {
@@ -71,7 +71,7 @@ public class TestIdentityHashSet {
 		}
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.equals()} with same object in
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.equals()} with same object in
 		 * two set.
 		 */
 		@Test
@@ -85,7 +85,7 @@ public class TestIdentityHashSet {
 		}
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.equals()} with different object
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.equals()} with different object
 		 * in two set.
 		 */
 		@Test
@@ -98,7 +98,7 @@ public class TestIdentityHashSet {
 		}
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.hashCode()}.
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.hashCode()}.
 		 */
 		@Test
 		public void testHashCode() {
@@ -111,7 +111,7 @@ public class TestIdentityHashSet {
 		}
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.isEmpty()}.
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.isEmpty()}.
 		 */
 		@Test
 		public void testIsEmpty() {
@@ -121,7 +121,7 @@ public class TestIdentityHashSet {
 		}
 
 		/**
-		 * Tests {@link org.leplus.util.IdentityHashSet.size()}.
+		 * Tests {@link org.leplus.ristretto.util.IdentityHashSet.size()}.
 		 */
 		@Test
 		public void testNotEmpty() {

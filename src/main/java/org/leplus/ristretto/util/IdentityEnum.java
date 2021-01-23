@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 /**
  * This enum is a very efficient singleton. It supports serialization but not

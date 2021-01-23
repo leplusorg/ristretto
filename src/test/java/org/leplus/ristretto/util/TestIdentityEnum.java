@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,7 @@ import com.google.common.testing.EqualsTester;
 import com.google.common.testing.SerializableTester;
 
 /**
- * Tests for the {@link org.leplus.util.IdentityEnum} enum.
+ * Tests for the {@link org.leplus.ristretto.util.IdentityEnum} enum.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -18,7 +18,7 @@ import com.google.common.testing.SerializableTester;
 public class TestIdentityEnum {
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} is equal (==) to a deep
+	 * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} is equal (==) to a deep
 	 * clone of itself.
 	 */
 	@Test
@@ -27,7 +27,7 @@ public class TestIdentityEnum {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} equals() itself.
+	 * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} equals() itself.
 	 */
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
@@ -37,7 +37,7 @@ public class TestIdentityEnum {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} equals() a deep clone of
+	 * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} equals() a deep clone of
 	 * itself.
 	 */
 	@Test
@@ -47,7 +47,7 @@ public class TestIdentityEnum {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} passes guava's equality
+	 * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} passes guava's equality
 	 * tests.
 	 */
 	@Test
@@ -56,7 +56,7 @@ public class TestIdentityEnum {
 	}
 
 	/**
-	 * Checks {@link org.leplus.util.IdentityEnum.IT}'s hashcode remains constant.
+	 * Checks {@link org.leplus.ristretto.util.IdentityEnum.IT}'s hashcode remains constant.
 	 */
 	@Test
 	public void testHashCode() {
@@ -65,7 +65,7 @@ public class TestIdentityEnum {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityEnum.IT} passes guava's
+	 * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} passes guava's
 	 * serialization tests.
 	 */
 	@Test

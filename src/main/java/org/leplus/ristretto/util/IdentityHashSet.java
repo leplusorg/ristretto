@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import java.util.AbstractSet;
 import java.util.Collection;

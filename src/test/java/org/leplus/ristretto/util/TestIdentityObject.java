@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,7 @@ import com.google.common.testing.EqualsTester;
 import com.google.common.testing.SerializableTester;
 
 /**
- * Tests for the {@link org.leplus.util.IdentityObject} class.
+ * Tests for the {@link org.leplus.ristretto.util.IdentityObject} class.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -18,7 +18,7 @@ import com.google.common.testing.SerializableTester;
 public class TestIdentityObject {
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} is equal (==) to a
 	 * shallow clone of itself.
 	 */
 	@Test
@@ -27,7 +27,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} is equal (==) to a deep
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} is equal (==) to a deep
 	 * clone of itself.
 	 */
 	@Test
@@ -36,7 +36,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() itself.
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() itself.
 	 */
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
@@ -46,7 +46,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's equality
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} passes guava's equality
 	 * tests.
 	 */
 	@Test
@@ -55,7 +55,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a shallow
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() a shallow
 	 * clone of itself.
 	 */
 	@Test
@@ -65,7 +65,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} equals() a deep clone
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() a deep clone
 	 * of itself.
 	 */
 	@Test
@@ -75,7 +75,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks {@link org.leplus.util.IdentityObject.IT}'s hashcode remains constant.
+	 * Checks {@link org.leplus.ristretto.util.IdentityObject.IT}'s hashcode remains constant.
 	 */
 	@Test
 	public void testHashCode() {
@@ -85,7 +85,7 @@ public class TestIdentityObject {
 	}
 
 	/**
-	 * Checks that {@link org.leplus.util.IdentityObject.IT} passes guava's
+	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} passes guava's
 	 * serialization tests.
 	 */
 	@Test

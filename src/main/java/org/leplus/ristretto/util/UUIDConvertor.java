@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;

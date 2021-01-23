@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
