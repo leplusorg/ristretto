@@ -97,6 +97,11 @@ public class ReproducibleUUIDs {
 
 	private static MessageDigest createDigest() {
 		try {
+			/*
+			 * MD5 is not secure but it's OK in this case since we just need
+			 * good entropy, not actual security. Also MD5 gives us exactly
+			 * the 128 bits we need to create a UUID.
+			 */
 			return MessageDigest.getInstance(MD5);
 		} catch (final NoSuchAlgorithmException e) {
 			throw new IllegalStateException(MD5 + " not supported", e);
