@@ -39,3 +39,5 @@ jobs:
       with:
         name: ristretto
         path: target/
+    - name: Clean up
+      run: rm "${HOME}/.m2/settings.xml"
