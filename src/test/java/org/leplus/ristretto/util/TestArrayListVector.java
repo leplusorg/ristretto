@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
@@ -30,8 +30,8 @@ import com.google.common.testing.SerializableTester;
 import junit.framework.TestSuite;
 
 /**
- * Tests the {@link org.leplus.util.ArrayListVector} class (and therefore the
- * {@link org.leplus.util.VectorAdapter} class too).
+ * Tests the {@link org.leplus.ristretto.util.ArrayListVector} class (and therefore the
+ * {@link org.leplus.ristretto.util.VectorAdapter} class too).
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -147,7 +147,7 @@ public class TestArrayListVector {
 
 		/**
 		 * Extra test specifically for
-		 * {@link org.leplus.util.ArrayListVector.removeRange(int, int)}
+		 * {@link org.leplus.ristretto.util.ArrayListVector.removeRange(int, int)}
 		 */
 		@Test
 		public void testRemoveRange() {
@@ -158,7 +158,7 @@ public class TestArrayListVector {
 				/*
 				 * (non-Javadoc)
 				 * 
-				 * @see org.leplus.util.VectorAdapter#removeRange(int, int)
+				 * @see org.leplus.ristretto.util.VectorAdapter#removeRange(int, int)
 				 */
 				@Override
 				public void removeRange(final int fromIndex, final int toIndex) {

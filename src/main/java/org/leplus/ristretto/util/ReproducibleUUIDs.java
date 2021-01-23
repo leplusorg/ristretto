@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import java.io.IOException;
 import java.io.InputStream;

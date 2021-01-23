@@ -1,4 +1,4 @@
-package org.leplus.util;
+package org.leplus.ristretto.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * An {@link java.util.ArrayList}-backed implementation of
- * {@link org.leplus.util.VectorAdapter}.
+ * {@link org.leplus.ristretto.util.VectorAdapter}.
  *
  * Using this class introduces a small memory overhead compared to using an
  * ArrayList directly. Typically that overhead is the size of an empty Vector,
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Thomas Leplus
  * @since 1.0.0
- * @see org.leplus.util.VectorAdapter
+ * @see org.leplus.ristretto.util.VectorAdapter
  *
  * @param <E> type of the elements in the collection.
  */
@@ -70,7 +70,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.leplus.util.VectorAdapter#clone()
+	 * @see org.leplus.ristretto.util.VectorAdapter#clone()
 	 */
 	@Override
 	public ArrayListVector<E> clone() {
@@ -82,7 +82,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.leplus.util.VectorAdapter#delegate()
+	 * @see org.leplus.ristretto.util.VectorAdapter#delegate()
 	 */
 	@Override
 	protected List<E> delegate() {
@@ -92,7 +92,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.leplus.util.VectorAdapter#ensureCapacity(int)
+	 * @see org.leplus.ristretto.util.VectorAdapter#ensureCapacity(int)
 	 */
 	@Override
 	public void ensureCapacity(final int minCapacity) {
@@ -102,7 +102,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.leplus.util.VectorAdapter#trimToSize()
+	 * @see org.leplus.ristretto.util.VectorAdapter#trimToSize()
 	 */
 	@Override
 	public void trimToSize() {
