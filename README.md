@@ -7,6 +7,74 @@ A small library of (hopefully) useful java classes.
 [![Maven Central](https://img.shields.io/maven-central/v/org.leplus/ristretto)](https://search.maven.org/artifact/org.leplus/ristretto)
 [![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto) 
 
+## org.leplus.ristretto.util.UUIDConvertor
+
+This class provides utility method to convert different primitives from/to UUID.
+All the methods in this class are reversible.
+While this is not a recommended way to generate UUIDs in general, it can be useful
+in situations where you need to temporarily assign a UUID to an object based on
+another unique ID.
+
+For example if you need to convert a legacy object that has a integer or long ID
+into a new object that uses UUIDs, you could just generate a new UUID
+for the new object using [`java.util.UUID.randomUUID()`](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--) but if you need to later link back
+the legacy object from the new one, you might not have a place to store the legacy ID
+on the new object. If you use this class's `toUUID()` methods to convert the legacy
+object's ID into the new object's UUID, you will be able to later convert back
+the UUID into the legacy ID. Provided the legacy IDs are unique (at least for the legacy
+object type), the new UUIDs produced will be as unique.
+ 
+Another use case could be to temporarily convert a legacy object into a new object
+temporarily (for example for processing via a new method) and then need to convert
+the result back into a legacy object. Then you can similarly use the methods in
+this class to go back and forth between legacy IDs and UUIDs.
+
+## org.leplus.ristretto.util.ReproducibleUUIDs
+
+This class contains utility methods that generate deterministic UUIDs.
+Meaning that given the same input, these methods will always return the
+same UUID, as opposed to [`java.util.UUID.randomUUID()`](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--). The produced
+UUIDs may not be universally unique (since other code using the same method
+on the same input would have produce the same UUIDs) but it can still be
+useful in situations where you need exactly that: be able to generate a UUID
+and now that other parts of a system will be able to generate a matching UUID
+for the same input.
+
+For example if two parts of a system receive a file and need to independently
+produce pieces of data that will later have to be reconciled. Then each piece
+of data could have it's own unique UUID plus a reference UUID generated from
+the file using one of the methods below. Then both part of the system will have
+generated the same reference UUID allowing for easier reconciliation.
+
+## org.leplus.ristretto.util.IdentityObject
+
+This class is a singleton. It supports serialization and cloning. In both
+case the unique instance of IdentityObject remains the same object.
+
+## org.leplus.ristretto.util.IdentityHashSet<E>
+
+This [`java.util.Set`](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html) relies on identity (`==`) to compare the objects it
+contains. It does not matter what the objects' [`equals`](https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-) methods say.
+
+## org.leplus.ristretto.util.IdentityEnum
+
+This enum is a very efficient singleton. It supports serialization but not
+cloning.
+
+## org.leplus.ristretto.util.VectorAdapter<E>
+
+This adapter class extends [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) uses by
+another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) implementation.
+
+## org.leplus.ristretto.util.ArrayListVector<E>
+
+An `[`java.util.ArrayList`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)`-backed implementation of
+`org.leplus.ristretto.util.VectorAdapter`.
+
+Using this class introduces a small memory overhead compared to using an
+[`java.util.ArrayList`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) directly. Typically that overhead is the size of an empty [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html),
+e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
+
 ## Digital Signature
 
 Releases of Ristretto are digitally signed. You can verify the signature using the following [public key 0x6b1b9be54c155617](https://pgp.mit.edu/pks/lookup?op=get&search=0x6B1B9BE54C155617). I recommend that you verify the signature of all your dependencies:
