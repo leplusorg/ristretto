@@ -68,7 +68,7 @@ another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/L
 
 ## org.leplus.ristretto.util.ArrayListVector<E>
 
-An `[`java.util.ArrayList`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)`-backed implementation of
+An [`java.util.ArrayList`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)-backed implementation of
 `org.leplus.ristretto.util.VectorAdapter`.
 
 Using this class introduces a small memory overhead compared to using an
