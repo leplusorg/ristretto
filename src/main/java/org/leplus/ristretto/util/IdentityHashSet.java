@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * This {@link java.util.Set} relies on identity (==) to compare the objects it
- * contains. It does not matter if what the objects equals() methods say.
+ * contains. It does not matter what the objects {@link java.lang.Object#equals(java.lang.Object)} methods say.
  *
  * @author Thomas Leplus
  * @since 1.0.0

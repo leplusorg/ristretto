@@ -9,7 +9,7 @@ import java.util.List;
  * {@link org.leplus.ristretto.util.VectorAdapter}.
  *
  * Using this class introduces a small memory overhead compared to using an
- * ArrayList directly. Typically that overhead is the size of an empty Vector,
+ * {@link java.util.ArrayList} directly. Typically that overhead is the size of an empty {@link java.util.Vector},
  * e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
  *
  * @author Thomas Leplus
