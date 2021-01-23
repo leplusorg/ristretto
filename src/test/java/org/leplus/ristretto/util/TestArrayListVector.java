@@ -228,16 +228,31 @@ public class TestArrayListVector {
 					return new ArrayListVector<>(Arrays.asList(elements));
 				}
 
-			}).named("ArrayListVector tests").withFeatures(ListFeature.GENERAL_PURPOSE, ListFeature.REMOVE_OPERATIONS,
-					ListFeature.SUPPORTS_ADD_WITH_INDEX, ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
-					ListFeature.SUPPORTS_SET, CollectionFeature.ALLOWS_NULL_QUERIES,
-					CollectionFeature.ALLOWS_NULL_VALUES, CollectionFeature.DESCENDING_VIEW,
-					CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION, CollectionFeature.GENERAL_PURPOSE,
-					CollectionFeature.KNOWN_ORDER, CollectionFeature.REJECTS_DUPLICATES_AT_CREATION,
-					CollectionFeature.REMOVE_OPERATIONS, CollectionFeature.RESTRICTS_ELEMENTS,
-					CollectionFeature.SERIALIZABLE, CollectionFeature.SUBSET_VIEW, CollectionFeature.SUPPORTS_ADD,
-					CollectionFeature.SUPPORTS_ITERATOR_REMOVE, CollectionFeature.SUPPORTS_REMOVE, CollectionSize.ANY,
-					CollectionSize.ONE, CollectionSize.SEVERAL, CollectionSize.ZERO).createTestSuite();
+			}).named("ArrayListVector tests").withFeatures(ListFeature.GENERAL_PURPOSE,
+					ListFeature.REMOVE_OPERATIONS,
+					ListFeature.SUPPORTS_ADD_WITH_INDEX,
+					ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
+					ListFeature.SUPPORTS_SET,
+					CollectionFeature.ALLOWS_NULL_QUERIES,
+					CollectionFeature.ALLOWS_NULL_VALUES,
+					CollectionFeature.DESCENDING_VIEW,
+					CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
+					CollectionFeature.GENERAL_PURPOSE,
+					CollectionFeature.KNOWN_ORDER,
+					CollectionFeature.REJECTS_DUPLICATES_AT_CREATION,
+					CollectionFeature.REMOVE_OPERATIONS,
+					CollectionFeature.RESTRICTS_ELEMENTS,
+					CollectionFeature.SERIALIZABLE,
+					//CollectionFeature.SERIALIZABLE_INCLUDING_VIEWS,
+					CollectionFeature.SUBSET_VIEW,
+					CollectionFeature.SUPPORTS_ADD,
+					CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+					CollectionFeature.SUPPORTS_REMOVE,
+					CollectionSize.ANY,
+					CollectionSize.ONE,
+					CollectionSize.SEVERAL,
+					CollectionSize.ZERO)
+					.createTestSuite();
 		}
 
 	}

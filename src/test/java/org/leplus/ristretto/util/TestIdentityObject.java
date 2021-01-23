@@ -1,10 +1,8 @@
 package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
@@ -41,7 +39,6 @@ public class TestIdentityObject {
 	/**
 	 * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() itself.
 	 */
-	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
 		assertEquals(IdentityObject.IT, IdentityObject.IT);

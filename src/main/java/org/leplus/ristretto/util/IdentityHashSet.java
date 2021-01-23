@@ -1,5 +1,6 @@
 package org.leplus.ristretto.util;
 
+import java.io.Serializable;
 import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.IdentityHashMap;
@@ -9,19 +10,27 @@ import java.util.Set;
 /**
  * This {@link java.util.Set} relies on identity (==) to compare the objects it
  * contains. It does not matter what the objects {@link java.lang.Object#equals(java.lang.Object)} methods say.
+ * 
+ * This collection is Cloneable and Serializable. If you clone an instance of an IdentityHashSet, the clone is
+ * equal to the original instance (i.e. original.equals(clone) == true and clone.equals(original) == true).
+ * However this is not true for serialization, a deserialized instance of IdentityHashSet is not equal
+ * to the instance originally serialized (i.e. original.equals(deserialized) == false
+ * and deserialized.equals(original) == false).
  *
  * @author Thomas Leplus
  * @since 1.0.0
  *
  * @param <E> the type of the elements of the set.
  */
-public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable {
+public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, Serializable {
+
+	private static final long serialVersionUID = -6954699503843913409L;
 
 	/**
 	 * A dummy singleton acting as a placeholder for the values in the underlying
 	 * {@link java.util.IdentityHashMap}.
 	 */
-	private static final Object DUMMY = new Object();
+	private static final IdentityObject DUMMY = IdentityObject.IT;
 
 	/**
 	 * The underlying {@link java.util.IdentityHashMap} which keySet is backing the
@@ -118,7 +127,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
-		}
+        }
 		return map.keySet().equals(obj);
 	}
 
@@ -129,7 +138,13 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	 */
 	@Override
 	public int hashCode() {
-		return map.keySet().hashCode();
+		int hashCode = 0;
+		for (final Object o : map.keySet()) {
+			if (o != null) {
+				hashCode += o.hashCode();
+			}
+		}
+		return hashCode;
 	}
 
 	/*
