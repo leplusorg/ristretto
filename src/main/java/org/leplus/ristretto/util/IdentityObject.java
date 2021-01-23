@@ -28,7 +28,7 @@ public final class IdentityObject implements Cloneable, Serializable {
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
-	public IdentityObject clone() { // NOSONAR
+	public IdentityObject clone() {
 		return IT;
 	}
 

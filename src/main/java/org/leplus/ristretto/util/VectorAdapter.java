@@ -113,7 +113,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public VectorAdapter<E> clone() { // NOSONAR
+	public VectorAdapter<E> clone() {
 		return (VectorAdapter<E>) super.clone();
 	}
 

@@ -88,7 +88,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
-	public Object clone() { // NOSONAR
+	public Object clone() {
 		try {
 			@SuppressWarnings("unchecked")
 			final IdentityHashSet<E> clone = (IdentityHashSet<E>) super.clone();

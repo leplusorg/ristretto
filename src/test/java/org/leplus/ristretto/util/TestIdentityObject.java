@@ -1,6 +1,9 @@
 package org.leplus.ristretto.util;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang3.SerializationUtils;
@@ -23,7 +26,7 @@ public class TestIdentityObject {
 	 */
 	@Test
 	public void testEqualClone() {
-		assertTrue(IdentityObject.IT == IdentityObject.IT.clone());
+		assertSame(IdentityObject.IT, IdentityObject.IT.clone());
 	}
 
 	/**
@@ -32,7 +35,7 @@ public class TestIdentityObject {
 	 */
 	@Test
 	public void testEqualDeepClone() {
-		assertTrue(IdentityObject.IT == SerializationUtils.clone(IdentityObject.IT));
+		assertSame(IdentityObject.IT, SerializationUtils.clone(IdentityObject.IT));
 	}
 
 	/**
@@ -41,8 +44,8 @@ public class TestIdentityObject {
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
-		assertTrue(IdentityObject.IT.equals(IdentityObject.IT));
-		assertFalse(IdentityObject.IT.equals(new DuplicityObject()));
+		assertEquals(IdentityObject.IT, IdentityObject.IT);
+		assertNotEquals(IdentityObject.IT, new DuplicityObject());
 	}
 
 	/**
@@ -60,8 +63,8 @@ public class TestIdentityObject {
 	 */
 	@Test
 	public void testEqualsClone() {
-		assertTrue(IdentityObject.IT.equals(IdentityObject.IT.clone()));
-		assertTrue(IdentityObject.IT.clone().equals(IdentityObject.IT));
+		assertEquals(IdentityObject.IT, IdentityObject.IT.clone());
+		assertEquals(IdentityObject.IT.clone(), IdentityObject.IT);
 	}
 
 	/**
@@ -70,8 +73,8 @@ public class TestIdentityObject {
 	 */
 	@Test
 	public void testEqualsDeepClone() {
-		assertTrue(IdentityObject.IT.equals(SerializationUtils.clone(IdentityObject.IT)));
-		assertTrue(SerializationUtils.clone(IdentityObject.IT).equals(IdentityObject.IT));
+		assertEquals(IdentityObject.IT, SerializationUtils.clone(IdentityObject.IT));
+		assertEquals(SerializationUtils.clone(IdentityObject.IT), IdentityObject.IT);
 	}
 
 	/**
@@ -79,9 +82,9 @@ public class TestIdentityObject {
 	 */
 	@Test
 	public void testHashCode() {
-		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.hashCode());
-		assertTrue(IdentityObject.IT.hashCode() == IdentityObject.IT.clone().hashCode());
-		assertTrue(IdentityObject.IT.hashCode() == SerializationUtils.clone(IdentityObject.IT).hashCode());
+		assertEquals(IdentityObject.IT.hashCode(), IdentityObject.IT.hashCode());
+		assertEquals(IdentityObject.IT.hashCode(), IdentityObject.IT.clone().hashCode());
+		assertEquals(IdentityObject.IT.hashCode(), SerializationUtils.clone(IdentityObject.IT).hashCode());
 	}
 
 	/**
