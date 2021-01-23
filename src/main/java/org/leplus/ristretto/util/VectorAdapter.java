@@ -13,8 +13,8 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
- * This adapter class extends Vector to make it easier to replace Vector uses by
- * another List implementation.
+ * This adapter class extends {@link java.util.Vector} to make it easier to replace {@link java.util.Vector} uses by
+ * another {@link java.util.List} implementation.
  *
  * @author Thomas Leplus
  * @since 1.0.0
