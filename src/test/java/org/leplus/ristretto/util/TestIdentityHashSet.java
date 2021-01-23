@@ -18,7 +18,6 @@ import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.SetFeature;
-import com.google.common.collect.testing.testers.SetHashCodeTester;
 import com.google.common.testing.EqualsTester;
 
 import junit.framework.TestSuite;
@@ -211,14 +210,27 @@ public class TestIdentityHashSet {
 				}
 
 			}).named("IdentityHashSet tests")
-					.withFeatures(SetFeature.GENERAL_PURPOSE, CollectionFeature.ALLOWS_NULL_QUERIES,
-							CollectionFeature.ALLOWS_NULL_VALUES, CollectionFeature.DESCENDING_VIEW,
-							CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION, CollectionFeature.GENERAL_PURPOSE,
-							CollectionFeature.REMOVE_OPERATIONS, CollectionFeature.RESTRICTS_ELEMENTS,
-							CollectionFeature.SUBSET_VIEW, CollectionFeature.SUPPORTS_ADD,
-							CollectionFeature.SUPPORTS_ITERATOR_REMOVE, CollectionFeature.SUPPORTS_REMOVE,
-							CollectionSize.ANY, CollectionSize.ONE, CollectionSize.SEVERAL, CollectionSize.ZERO)
-					.suppressing(SetHashCodeTester.getHashCodeMethods()).createTestSuite();
+					.withFeatures(SetFeature.GENERAL_PURPOSE,
+							CollectionFeature.ALLOWS_NULL_QUERIES,
+							CollectionFeature.ALLOWS_NULL_VALUES,
+							CollectionFeature.DESCENDING_VIEW,
+							CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
+							CollectionFeature.GENERAL_PURPOSE,
+							//CollectionFeature.KNOWN_ORDER, // Sets are not ordered
+							//CollectionFeature.REJECTS_DUPLICATES_AT_CREATION, // Duplicates used in this test are not ==
+							CollectionFeature.REMOVE_OPERATIONS,
+							CollectionFeature.RESTRICTS_ELEMENTS,
+							//CollectionFeature.SERIALIZABLE, // Sets are not == after serialization
+							//CollectionFeature.SERIALIZABLE_INCLUDING_VIEWS, // Sets are not == after serialization
+							CollectionFeature.SUBSET_VIEW,
+							CollectionFeature.SUPPORTS_ADD,
+							CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+							CollectionFeature.SUPPORTS_REMOVE,
+							CollectionSize.ANY,
+							CollectionSize.ONE,
+							CollectionSize.SEVERAL,
+							CollectionSize.ZERO)
+					.createTestSuite();
 		}
 
 	}
