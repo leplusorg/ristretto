@@ -68,8 +68,12 @@ public class TestReproducibleUUIDs {
 		for (int i = 0; i < uuids.length; i++) {
 			uuids[i] = UUID.randomUUID();
 		}
+		final UUID uuid = uuids[0];
+		assertEquals(uuid,
+				ReproducibleUUIDs.fromUUIDs(uuid));
 		assertEquals(ReproducibleUUIDs.fromUUIDs(uuids),
 				ReproducibleUUIDs.fromUUIDs(uuids));
+		assertNull(ReproducibleUUIDs.fromUUIDs((UUID[]) null));
 	}
 
 }

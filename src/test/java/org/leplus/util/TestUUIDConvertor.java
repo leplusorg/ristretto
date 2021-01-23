@@ -10,11 +10,6 @@ import org.junit.Test;
 public class TestUUIDConvertor {
 
 	@Test
-	public void testNullBytes() {
-		assertNull(UUIDConvertor.toUUID((byte[]) null));
-	}
-
-	@Test
 	public void testRandomBytes() {
 		final SecureRandom r = new SecureRandom();
 		for (int i = 0; i < UUIDConvertor.MAX_BYTES; i++) {
@@ -28,6 +23,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j]);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((byte[]) null));
 	}
 
 	@Test
@@ -45,6 +41,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j], 0);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((short[]) null));
 	}
 
 	@Test
@@ -62,6 +59,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j], 0);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((double[]) null));
 	}
 
 	@Test
@@ -79,6 +77,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j], 0);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((float[]) null));
 	}
 
 	@Test
@@ -96,6 +95,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j], 0);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((char[]) null));
 	}
 
 	@Test
@@ -113,6 +113,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j], 0);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((int[]) null));
 	}
 
 	@Test
@@ -130,6 +131,7 @@ public class TestUUIDConvertor {
 				assertEquals(0, output[j], 0);
 			}
 		}
+		assertNull(UUIDConvertor.toUUID((long[]) null));
 	}
 
 }
