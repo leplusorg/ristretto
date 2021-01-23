@@ -2,6 +2,8 @@ package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -64,7 +66,7 @@ public class TestIdentityHashSet {
 			@SuppressWarnings("unchecked")
 			final IdentityHashSet<DuplicityObject> set2 = (IdentityHashSet<DuplicityObject>) set1.clone();
 			assertEquals(set1, set2);
-			assertTrue(set1.iterator().next() == set2.iterator().next());
+			assertSame(set1.iterator().next(), set2.iterator().next());
 			set1.clear();
 			assertEquals(0, set1.size());
 			assertEquals(1, set2.size());
@@ -94,7 +96,7 @@ public class TestIdentityHashSet {
 			set1.add(new DuplicityObject());
 			final Set<DuplicityObject> set2 = new IdentityHashSet<>();
 			set2.add(new DuplicityObject());
-			assertFalse(set1.equals(set2));
+			assertNotEquals(set1, set2);
 		}
 
 		/**

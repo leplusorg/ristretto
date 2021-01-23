@@ -1,6 +1,8 @@
 package org.leplus.ristretto.util;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang3.SerializationUtils;
@@ -29,11 +31,10 @@ public class TestIdentityEnum {
 	/**
 	 * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} equals() itself.
 	 */
-	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
-		assertTrue(IdentityEnum.IT.equals(IdentityEnum.IT));
-		assertFalse(IdentityEnum.IT.equals(new DuplicityObject()));
+		assertEquals(IdentityEnum.IT, IdentityEnum.IT);
+		assertNotEquals(IdentityEnum.IT, new DuplicityObject());
 	}
 
 	/**
@@ -42,8 +43,8 @@ public class TestIdentityEnum {
 	 */
 	@Test
 	public void testEqualsDeepClone() {
-		assertTrue(IdentityEnum.IT.equals(SerializationUtils.clone(IdentityEnum.IT)));
-		assertTrue(SerializationUtils.clone(IdentityEnum.IT).equals(IdentityEnum.IT));
+		assertSame(IdentityEnum.IT, SerializationUtils.clone(IdentityEnum.IT));
+		assertSame(SerializationUtils.clone(IdentityEnum.IT), IdentityEnum.IT);
 	}
 
 	/**
@@ -60,8 +61,8 @@ public class TestIdentityEnum {
 	 */
 	@Test
 	public void testHashCode() {
-		assertTrue(IdentityEnum.IT.hashCode() == IdentityEnum.IT.hashCode());
-		assertTrue(IdentityEnum.IT.hashCode() == SerializationUtils.clone(IdentityEnum.IT).hashCode());
+		assertEquals(IdentityEnum.IT.hashCode(), IdentityEnum.IT.hashCode());
+		assertEquals(IdentityEnum.IT.hashCode(), SerializationUtils.clone(IdentityEnum.IT).hashCode());
 	}
 
 	/**

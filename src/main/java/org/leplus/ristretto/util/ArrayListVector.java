@@ -53,7 +53,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
 	 *                                  negative.
 	 */
 	public ArrayListVector(final int initialCapacity) {
-		this(new ArrayList<E>(initialCapacity));
+		this(new ArrayList<>(initialCapacity));
 	}
 
 	/**
