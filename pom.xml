@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <name>Ristretto</name>
   <packaging>jar</packaging>
   <description>A small library of useful java classes.</description>
@@ -30,7 +30,6 @@
     <url>https://github.com/thomasleplus/ristretto</url>
     <connection>scm:git:https://github.com/thomasleplus/ristretto.git</connection>
     <developerConnection>scm:git:git@github.com:thomasleplus/ristretto.git</developerConnection>
-    <tag>v1.0.0</tag>
   </scm>
   <organization>
     <name>Leplus.org</name>
