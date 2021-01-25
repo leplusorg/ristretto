@@ -81,6 +81,12 @@ Releases of Ristretto are digitally signed. You can verify the signature using t
 - Maven: https://www.simplify4u.org/pgpverify-maven-plugin/
 - Gradle: https://docs.gradle.org/current/userguide/dependency_verification.html
 
-To veriry only Ristretto, you can run the following command (replacing `x.y.z` with the version that you want to use) and check that the displayed keyId matches the public key mentioned above:
+To verify only Ristretto, you can run the following command (replacing `x.y.z` with the version that you want to use) and check that the displayed keyId matches the public key mentioned above:
 
 `mvn org.simplify4u.plugins:pgpverify-maven-plugin:show -Dartifact=org.leplus:ristretto:x.y.z`
+
+You can also use my convenient docker image (shameless plug):
+
+`docker run --rm thomasleplus/pgp-verify-jar org.leplus:ristretto:x.y.z`
+
+See https://github.com/thomasleplus/docker-pgp-verify-jar for details.
