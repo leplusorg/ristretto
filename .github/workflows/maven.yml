@@ -35,6 +35,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
     - name: Upload artifacts
+      if: ${{ matrix.java == 8 }}
       uses: actions/upload-artifact@master
       with:
         name: ristretto
