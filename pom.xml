@@ -7,7 +7,6 @@
   <packaging>jar</packaging>
   <description>A small library of useful java classes.</description>
   <url>https://github.com/thomasleplus/ristretto</url>
-  <logo>https://raw.githubusercontent.com/thomasleplus/ristretto/master/assets/ristretto.png</logo>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
