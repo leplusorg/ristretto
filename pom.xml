@@ -178,7 +178,7 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>sign-artifacts</id>
@@ -186,13 +186,6 @@ limitations under the License.
             <goals>
               <goal>sign</goal>
             </goals>
-            <configuration>
-              <!-- Prevent `gpg` from using pinentry programs -->
-              <gpgArguments>
-                <arg>--pinentry-mode</arg>
-                <arg>loopback</arg>
-              </gpgArguments>
-            </configuration>
           </execution>
         </executions>
       </plugin>
