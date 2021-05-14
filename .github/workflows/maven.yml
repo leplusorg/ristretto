@@ -47,7 +47,7 @@ jobs:
     - name: Scan with SonarCloud
       if: ${{ matrix.java == 11 && github.token != '' }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
     - name: Upload artifacts
