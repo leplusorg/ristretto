@@ -28,11 +28,11 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ 'ubuntu-latest', 'macos-latest', 'windows-latest' ]
+        os: [ 'ubuntu-latest' ]
         distribution: [ 'zulu', 'adopt-hotspot', 'adopt-openj9' ]
         java: [ 8, 9, 10, 11, 12, 13, 14, 15 ]
     runs-on: ${{ matrix.os }}
-    name: Java ${{ matrix.java }}  (${{ matrix.distribution }})
+    name: Java ${{ matrix.java }}  (${{ matrix.distribution }} on ${{ matrix.os }})
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK ${{ matrix.java }}
