@@ -18,4 +18,4 @@ jobs:
     - name: Install YAMLLint
       run: sudo pip install yamllint
     - name: Run YAMLLint
-      run: yamllint .
+      run: yamllint -d '{extends: relaxed, rules: {line-length: disable, new-line-at-end-of-file: disable, trailing-spaces: disable}}' .
