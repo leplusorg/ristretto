@@ -138,8 +138,7 @@ public class ReproducibleUUIDs {
 		final MessageDigest md = createDigest();
 		try (final DigestInputStream dis = new DigestInputStream(input, md)) {
 			final byte[] buffer = new byte[BUFFER_SIZE];
-			while (dis.read(buffer) >= 0) {
-			}
+			while (dis.read(buffer) >= 0) {} // NOPMD
 		}
 		return digest(md);
 	}
