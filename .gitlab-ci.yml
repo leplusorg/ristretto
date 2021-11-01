@@ -25,17 +25,25 @@ cache:
   paths:
     - .m2/repository
 
-verify:jdk8:
+verify:openjdk8:
   stage: test
-  image: maven:3-jdk-8
+  image: maven:3-openjdk-8
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
 
-verify:jdk11:
+verify:openjdk11:
   stage: test
-  image: maven:3-jdk-11
+  image: maven:3-openjdk-11
+  script:
+    - './mvnw $MAVEN_CLI_OPTS verify'
+  only:
+    - master
+
+verify:openjdk17:
+  stage: test
+  image: maven:3-openjdk-17
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
