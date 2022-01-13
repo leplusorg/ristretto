@@ -21,7 +21,7 @@ limitations under the License.
   <name>Ristretto</name>
   <packaging>jar</packaging>
   <description>A small library of useful java classes.</description>
-  <url>https://github.com/thomasleplus/ristretto</url>
+  <url>https://github.com/leplusorg/ristretto</url>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -42,9 +42,9 @@ limitations under the License.
     </repository>
   </distributionManagement>
   <scm>
-    <url>https://github.com/thomasleplus/ristretto</url>
-    <connection>scm:git:https://github.com/thomasleplus/ristretto.git</connection>
-    <developerConnection>scm:git:git@github.com:thomasleplus/ristretto.git</developerConnection>
+    <url>https://github.com/leplusorg/ristretto</url>
+    <connection>scm:git:https://github.com/leplusorg/ristretto.git</connection>
+    <developerConnection>scm:git:git@github.com:leplusorg/ristretto.git</developerConnection>
   </scm>
   <organization>
     <name>Leplus.org</name>
@@ -52,14 +52,14 @@ limitations under the License.
   </organization>
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/thomasleplus/ristretto/issues</url>
+    <url>https://github.com/leplusorg/ristretto/issues</url>
   </issueManagement>
   <developers>
     <developer>
       <email>thomas@leplus.org</email>
       <name>Thomas Leplus</name>
       <url>https://www.leplus.org</url>
-      <id>thomasleplus</id>
+      <id>leplusorg</id>
       <roles>
         <role>Project Lead</role>
       </roles>
