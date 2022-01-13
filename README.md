@@ -2,9 +2,9 @@
 
 A small library of (hopefully) useful Java classes.
 
-[![Maven](https://github.com/thomasleplus/ristretto/workflows/Maven/badge.svg)](https://github.com/thomasleplus/ristretto/actions?query=workflow:"Maven")
-[![CodeQL](https://github.com/thomasleplus/ristretto/workflows/CodeQL/badge.svg)](https://github.com/thomasleplus/ristretto/actions?query=workflow:"CodeQL")
-[![Publish](https://github.com/thomasleplus/ristretto/workflows/Publish/badge.svg)](https://github.com/thomasleplus/ristretto/actions?query=workflow:"Publish")
+[![Maven](https://github.com/leplusorg/ristretto/workflows/Maven/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Maven")
+[![CodeQL](https://github.com/leplusorg/ristretto/workflows/CodeQL/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"CodeQL")
+[![Publish](https://github.com/leplusorg/ristretto/workflows/Publish/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Publish")
 [![Maven Central](https://img.shields.io/maven-central/v/org.leplus/ristretto)](https://search.maven.org/artifact/org.leplus/ristretto)
 [![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto)
 
@@ -88,9 +88,9 @@ To verify only Ristretto, you can run the following command (replacing `x.y.z` w
 
 You can also use my convenient docker image (shameless plug):
 
-`docker run --rm thomasleplus/pgp-verify-jar org.leplus:ristretto:x.y.z`
+`docker run --rm leplusorg/pgp-verify-jar org.leplus:ristretto:x.y.z`
 
-See https://github.com/thomasleplus/docker-pgp-verify-jar for details.
+See https://github.com/leplusorg/docker-pgp-verify-jar for details.
 
 ## License
 
