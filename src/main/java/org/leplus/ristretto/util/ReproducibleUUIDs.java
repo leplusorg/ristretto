@@ -25,6 +25,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * This class contains utility methods that generate deterministic UUIDs.
  * Meaning that given the same input, these methods will always return the
@@ -44,6 +46,7 @@ import java.util.UUID;
  * @author Thomas Leplus
  * @since 1.0.0
  */
+@SuppressFBWarnings(value="WEAK_MESSAGE_DIGEST_MD5")
 public class ReproducibleUUIDs {
 
 	private static final String MD5 = "MD5";
@@ -117,7 +120,7 @@ public class ReproducibleUUIDs {
 			 * good entropy, not actual security. Also MD5 gives us exactly
 			 * the 128 bits we need to create a UUID.
 			 */
-			return MessageDigest.getInstance(MD5);
+			return MessageDigest.getInstance(MD5); 
 		} catch (final NoSuchAlgorithmException e) {
 			throw new IllegalStateException(MD5 + " not supported", e);
 		}
