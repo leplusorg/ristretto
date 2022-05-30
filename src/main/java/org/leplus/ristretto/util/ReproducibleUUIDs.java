@@ -134,6 +134,7 @@ public class ReproducibleUUIDs {
 	 * @return the resulting UUID.
 	 * @throws IOException if an I/O error occurs.
 	 */
+    @SuppressWarnings("PMD.EmptyWhileStmt")
 	public static UUID fromInputStream(final InputStream input) throws IOException {
 		if (input == null) {
 			return null;
@@ -141,7 +142,7 @@ public class ReproducibleUUIDs {
 		final MessageDigest md = createDigest();
 		try (DigestInputStream dis = new DigestInputStream(input, md)) {
 			final byte[] buffer = new byte[BUFFER_SIZE];
-			while (dis.read(buffer) >= 0) {} // NOPMD
+			while (dis.read(buffer) >= 0) {}
 		}
 		return digest(md);
 	}
