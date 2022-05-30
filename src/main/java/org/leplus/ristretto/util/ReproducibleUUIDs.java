@@ -46,7 +46,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-@SuppressFBWarnings(value="WEAK_MESSAGE_DIGEST_MD5")
+@SuppressFBWarnings("WEAK_MESSAGE_DIGEST_MD5")
 public class ReproducibleUUIDs {
 
 	private static final String MD5 = "MD5";
