@@ -134,7 +134,7 @@ public class ReproducibleUUIDs {
 	 * @return the resulting UUID.
 	 * @throws IOException if an I/O error occurs.
 	 */
-    @SuppressWarnings("PMD.EmptyWhileStmt")
+	@SuppressWarnings(["PMD.EmptyWhileStmt", "PMD.EmptyControlStatement"])
 	public static UUID fromInputStream(final InputStream input) throws IOException {
 		if (input == null) {
 			return null;
