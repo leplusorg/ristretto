@@ -40,6 +40,10 @@ limitations under the License.
       <name>Central Repository OSSRH</name>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
+    <site>
+      <id>github</id>
+      <url>scm:git:git@github.com:leplusorg/ristretto.git</url>
+    </site>
   </distributionManagement>
   <scm>
     <url>https://github.com/leplusorg/ristretto</url>
@@ -145,7 +149,14 @@ limitations under the License.
 	<version>0.14</version>
       </plugin>
       <plugin>
-        <groupId>org.pitest</groupId>
+        <groupId>org.pitest</groupId>        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <scmBranch>gh-pages</scmBranch>
+          </configuration>
+        </plugin>
         <artifactId>pitest-maven</artifactId>
         <version>1.9.2</version>
       </plugin>
@@ -294,6 +305,14 @@ limitations under the License.
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <scmBranch>gh-pages</scmBranch>
+        </configuration>
       </plugin>
     </plugins>
   </build>
