@@ -54,7 +54,7 @@ limitations under the License.
     <name>Leplus.org</name>
     <url>https://www.leplus.org</url>
   </organization>
-  <issueManagement>
+  <issueManagement>site site:stage scm-publish:publish-scm
     <system>GitHub</system>
     <url>https://github.com/leplusorg/ristretto/issues</url>
   </issueManagement>
@@ -69,7 +69,7 @@ limitations under the License.
       </roles>
       <organization>Leplus.org</organization>
       <organizationUrl>https://www.leplus.org</organizationUrl>
-    </developer>
+    </developer>site site:stage scm-publish:publish-scm
   </developers>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -77,7 +77,7 @@ limitations under the License.
     <sonar.organization>thomasleplus-github</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
-  <dependencies>
+  <dependencies>site site:stage scm-publish:publish-scm
     <dependency>
       <groupId>net.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
@@ -149,7 +149,7 @@ limitations under the License.
 	<version>0.14</version>
       </plugin>
       <plugin>
-        <groupId>org.pitest</groupId>        <plugin>
+        <groupId>org.pitest</groupId>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>3.0.0</version>
