@@ -74,6 +74,11 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       if: ${{ matrix.java == 11 && env.SONAR_TOKEN != '' }}
       run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - name: Publish Site
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      if: ${{ matrix.java == 8 }}
+      run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
     - name: Upload artifacts
       if: ${{ matrix.java == 8 }}
       uses: actions/upload-artifact@v3
