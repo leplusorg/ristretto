@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.leplus.ristretto.util;
 
 /**
- * This enum is a very efficient singleton. It supports serialization but not
- * cloning.
+ * This enum is a very efficient singleton. It supports serialization but not cloning.
  *
  * @author Thomas Leplus
  * @since 1.0.0
  */
 public enum IdentityEnum {
 
-	/**
-	 * The singleton.
-	 */
-	IT;
+  /**
+   * The singleton.
+   */
+  IT;
 
 }

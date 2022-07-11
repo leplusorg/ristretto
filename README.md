@@ -24,7 +24,7 @@ on the new object. If you use this class's `toUUID()` methods to convert the leg
 object's ID into the new object's UUID, you will be able to later convert back
 the UUID into the legacy ID. Provided the legacy IDs are unique (at least for the legacy
 object type), the new UUIDs produced will be as unique.
- 
+
 Another use case could be to temporarily convert a legacy object into a new object
 temporarily (for example for processing via a new method) and then need to convert
 the result back into a legacy object. Then you can similarly use the methods in
@@ -79,8 +79,8 @@ e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
 ## Digital Signature
 
 Releases of Ristretto are digitally signed. You can verify the signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the signature of all your dependencies:
-- Maven: https://www.simplify4u.org/pgpverify-maven-plugin/
-- Gradle: https://docs.gradle.org/current/userguide/dependency_verification.html
+- [Maven](https://www.simplify4u.org/pgpverify-maven-plugin/)
+- [Gradle](https://docs.gradle.org/current/userguide/dependency_verification.html)
 
 To verify only Ristretto, you can run the following command (replacing `x.y.z` with the version that you want to use) and check that the displayed keyId matches the public key mentioned above:
 
@@ -90,7 +90,7 @@ You can also use my convenient docker image (shameless plug):
 
 `docker run --rm leplusorg/pgp-verify-jar org.leplus:ristretto:x.y.z`
 
-See https://github.com/leplusorg/docker-pgp-verify-jar for details.
+See [here](https://github.com/leplusorg/docker-pgp-verify-jar) for details.
 
 ## License
 
