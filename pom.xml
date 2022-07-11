@@ -53,7 +53,7 @@ limitations under the License.
   <organization>
     <name>Leplus.org</name>
     <url>https://www.leplus.org</url>
-  </organization>
+  </organization>site site:stage scm-publish:publish-scm
   <issueManagement>site site:stage scm-publish:publish-scm
     <system>GitHub</system>
     <url>https://github.com/leplusorg/ristretto/issues</url>
@@ -150,13 +150,6 @@ limitations under the License.
       </plugin>
       <plugin>
         <groupId>org.pitest</groupId>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-scm-publish-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-            <scmBranch>gh-pages</scmBranch>
-          </configuration>
-        </plugin>
         <artifactId>pitest-maven</artifactId>
         <version>1.9.2</version>
       </plugin>
