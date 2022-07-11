@@ -64,9 +64,9 @@ jobs:
       run: |
         if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
         then
-          ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify site site:stage scm-publish:publish-scm -Dgpg.skip=true
+          ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify -Dgpg.skip=true
         elsesite site:stage scm-publish:publish-scm
-          ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify site site:stage scm-publish:publish-scm
+          ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify
         fi
     - name: Scan with SonarCloud
       env:
