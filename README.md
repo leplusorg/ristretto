@@ -7,6 +7,7 @@ A small library of (hopefully) useful Java classes.
 [![Publish](https://github.com/leplusorg/ristretto/workflows/Publish/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Publish")
 [![Maven Central](https://img.shields.io/maven-central/v/org.leplus/ristretto)](https://search.maven.org/artifact/org.leplus/ristretto)
 [![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto)
+[![Maven Site](https://github.com/leplusorg/ristretto/workflows/pages-build-deployment/badge.svg)](https://leplusorg.github.io/ristretto)
 
 ## [org.leplus.ristretto.util.UUIDConvertor](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/UUIDConvertor.html)
 
