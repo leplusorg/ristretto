@@ -60,12 +60,12 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
     - name: Build with Maven
       env:
-        MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}site site:stage scm-publish:publish-scm
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       run: |
         if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
         then
           ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify -Dgpg.skip=true
-        elsesite site:stage scm-publish:publish-scm
+        else
           ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true verify
         fi
     - name: Scan with SonarCloud
