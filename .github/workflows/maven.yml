@@ -79,8 +79,8 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       if: ${{ matrix.java == 8 }}
       run: |
-        git config user.email "maven-action@github"
-        git config user.name "maven-action"
+        git config user.email "git@github.com"
+        git config user.name "git"
         ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
     - name: Upload artifacts
       if: ${{ matrix.java == 8 }}
