@@ -78,7 +78,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       if: ${{ matrix.java == 8 }}
-      run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
+      run: |
+        git config user.email "maven-action@github"
+        git config user.name "maven-action"
+        ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
     - name: Upload artifacts
       if: ${{ matrix.java == 8 }}
       uses: actions/upload-artifact@v3
