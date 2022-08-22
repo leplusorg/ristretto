@@ -151,7 +151,7 @@ limitations under the License.
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <version>1.9.4</version>
+        <version>1.9.5</version>
       </plugin>
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
