@@ -68,3 +68,11 @@ verify:openjdk17:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
+
+verify:openjdk19:
+  stage: test
+  image: maven:3-openjdk-19
+  script:
+    - './mvnw $MAVEN_CLI_OPTS verify'
+  only:
+    - master
