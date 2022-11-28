@@ -56,7 +56,7 @@ versions:
 
 verify:openjdk8:
   stage: test
-  image: maven:3-openjdk-8
+  image: maven:3-openjdk-8-slim
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
@@ -64,7 +64,7 @@ verify:openjdk8:
 
 verify:openjdk11:
   stage: test
-  image: maven:3-openjdk-11
+  image: maven:3-openjdk-11-slim
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
@@ -72,15 +72,15 @@ verify:openjdk11:
 
 verify:openjdk17:
   stage: test
-  image: maven:3-openjdk-17
+  image: maven:3-openjdk-17-slim
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
 
-verify:openjdk19:
+verify:openjdk18:
   stage: test
-  image: maven:3-openjdk-19
+  image: maven:3-openjdk-18-slim
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
