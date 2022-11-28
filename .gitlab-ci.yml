@@ -43,6 +43,9 @@ cache:
 sast:
   stage: check
 
+secret_detection:
+  stage: check
+
 versions:
   image:
     name: leplusorg/maven-check-versions:latest
