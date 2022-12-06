@@ -72,13 +72,14 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       if: ${{ matrix.java == 11 && env.SONAR_TOKEN != '' }}
       run: ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-    - name: Publish Site
+    - name: Publish site
       env:
         GITHUB_TOKEN: ${{ github.token }}
       if: ${{ matrix.java == 8 }}
       run: |
         git config --global user.email "publish-action@github"
         git config --global user.name "publish-action"
+        git remote set-url origin https://publish-action@github.com/leplusorg/ristretto.git
         ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
     - name: Upload artifacts
       if: ${{ matrix.java == 8 }}
