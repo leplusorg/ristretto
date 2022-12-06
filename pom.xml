@@ -50,7 +50,7 @@ limitations under the License.
   <scm>
     <url>https://github.com/leplusorg/ristretto</url>
     <connection>scm:git:https://github.com/leplusorg/ristretto.git</connection>
-    <developerConnection>scm:git:git@github.com:leplusorg/ristretto.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com:leplusorg/ristretto.git</developerConnection>
   </scm>
   <organization>
     <name>Leplus.org</name>
