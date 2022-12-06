@@ -75,11 +75,13 @@ jobs:
     - name: Publish site
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       if: ${{ matrix.java == 8 }}
       run: |
         git config --global user.email "publish-action@github"
         git config --global user.name "publish-action"
-        git remote set-url origin https://publish-action@github.com/leplusorg/ristretto.git
+        ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
+        ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
         ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
     - name: Upload artifacts
       if: ${{ matrix.java == 8 }}
