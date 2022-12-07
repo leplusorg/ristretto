@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.security.SecureRandom;
 import java.util.UUID;
+
 import org.junit.Test;
 
 /**
@@ -49,9 +50,11 @@ public class TestReproducibleUUIDs {
     final SecureRandom random = new SecureRandom();
     final byte[] bytes = new byte[NUMBER_OF_BYTES];
     random.nextBytes(bytes);
-    assertEquals(ReproducibleUUIDs.fromBytes(bytes), ReproducibleUUIDs.fromBytes(bytes));
+    assertEquals(ReproducibleUUIDs.fromBytes(bytes),
+        ReproducibleUUIDs.fromBytes(bytes));
     // Test compatibility with java.util.UUID.nameUUIDFromBytes(byte[])
-    assertEquals(ReproducibleUUIDs.fromBytes(bytes), UUID.nameUUIDFromBytes(bytes));
+    assertEquals(ReproducibleUUIDs.fromBytes(bytes),
+        UUID.nameUUIDFromBytes(bytes));
   }
 
   @Test
@@ -77,8 +80,10 @@ public class TestReproducibleUUIDs {
     final SecureRandom random = new SecureRandom();
     final byte[] bytes = new byte[NUMBER_OF_BYTES];
     random.nextBytes(bytes);
-    assertEquals(ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)),
-        ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)));
+    assertEquals(ReproducibleUUIDs
+        .fromInputStream(new ByteArrayInputStream(bytes)),
+        ReproducibleUUIDs
+        .fromInputStream(new ByteArrayInputStream(bytes)));
   }
 
   @Test
@@ -89,7 +94,8 @@ public class TestReproducibleUUIDs {
     }
     final UUID uuid = uuids[0];
     assertEquals(uuid, ReproducibleUUIDs.fromUUIDs(uuid));
-    assertEquals(ReproducibleUUIDs.fromUUIDs(uuids), ReproducibleUUIDs.fromUUIDs(uuids));
+    assertEquals(ReproducibleUUIDs.fromUUIDs(uuids),
+        ReproducibleUUIDs.fromUUIDs(uuids));
     assertNull(ReproducibleUUIDs.fromUUIDs((UUID[]) null));
   }
 

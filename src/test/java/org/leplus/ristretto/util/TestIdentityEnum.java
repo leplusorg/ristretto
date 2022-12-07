@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,13 +21,14 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.testing.EqualsTester;
-import com.google.common.testing.SerializableTester;
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
+import com.google.common.testing.EqualsTester;
+import com.google.common.testing.SerializableTester;
+
 /**
- * Tests for the {@link org.leplus.ristretto.util.IdentityEnum} enum.
+ * Tests for the {@link IdentityEnum} enum.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -35,7 +36,7 @@ import org.junit.Test;
 public class TestIdentityEnum {
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} is equal (==) to a deep clone of
+   * Checks that {@link IdentityEnum.IT} is equal (==) to a deep clone of
    * itself.
    */
   @Test
@@ -44,7 +45,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} equals() itself.
+   * Checks that {@link IdentityEnum.IT} equals() itself.
    */
   @Test
   public void testEquals() {
@@ -53,7 +54,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} equals() a deep clone of itself.
+   * Checks that {@link IdentityEnum.IT} equals() a deep clone of itself.
    */
   @Test
   public void testEqualsDeepClone() {
@@ -62,7 +63,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} passes guava's equality tests.
+   * Checks that {@link IdentityEnum.IT} passes guava's equality tests.
    */
   @Test
   public void testEqualsGuava() {
@@ -70,7 +71,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks {@link org.leplus.ristretto.util.IdentityEnum.IT}'s hashcode remains constant.
+   * Checks {@link IdentityEnum.IT}'s hashcode remains constant.
    */
   @Test
   public void testHashCode() {
@@ -79,7 +80,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityEnum.IT} passes guava's serialization
+   * Checks that {@link IdentityEnum.IT} passes guava's serialization
    * tests.
    */
   @Test

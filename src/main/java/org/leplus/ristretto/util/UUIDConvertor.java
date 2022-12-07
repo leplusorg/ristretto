@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,21 +20,31 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 /**
- * <p>This class provides utility method to convert different primitives from/to UUID. All the
- * methods in this class are reversible. While this is not a recommended way to generate UUIDs in
- * general, it can be useful in situations where you need to temporarily assign a UUID to an object
- * based on another unique ID.</p>
- * <p>For example if you need to convert a legacy object that has a integer or long ID into a new
- * object that uses UUIDs, you could just generate a new UUID for the new object using
- * {@link java.util.UUID#randomUUID()} but if you need to later link back the legacy object from the
- * new one, you might not have a place to store the legacy ID on the new object. If you use this
- * class's toUUID() methods to convert the legacy object's ID into the new object's UUID, you will
- * be able to later convert back the UUID into the legacy ID. Provided the legacy IDs are unique (at
- * least for the legacy object type), the new UUIDs produced will be as unique.</p>
- * <p>Another use case could be to temporarily convert a legacy object into a new object temporarily
- * (for example for processing via a new method) and then need to convert the result back into a
- * legacy object. Then you can similarly use the methods in this class to go back and forth between
- * legacy IDs and UUIDs.</p>
+ * <p>
+ * This class provides utility method to convert different primitives from/to
+ * UUID. All the methods in this class are reversible. While this is not a
+ * recommended way to generate UUIDs in general, it can be useful in situations
+ * where you need to temporarily assign a UUID to an object based on another
+ * unique ID.
+ * </p>
+ * <p>
+ * For example if you need to convert a legacy object that has a integer or
+ * long ID into a new object that uses UUIDs, you could just generate a new
+ * UUID for the new object using {@link java.util.UUID#randomUUID()} but if
+ * you need to later link back the legacy object from the new one, you might
+ * not have a place to store the legacy ID on the new object. If you use this
+ * class's toUUID() methods to convert the legacy object's ID into the new
+ * object's UUID, you will be able to later convert back the UUID into the
+ * legacy ID. Provided the legacy IDs are unique (at least for the legacy
+ * object type), the new UUIDs produced will be as unique.
+ * </p>
+ * <p>
+ * Another use case could be to temporarily convert a legacy object into a new
+ * object temporarily (for example for processing via a new method) and then
+ * need to convert the result back into a legacy object. Then you can
+ * similarly use the methods in this class to go back and forth between legacy
+ * IDs and UUIDs.
+ * </p>
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -91,7 +101,9 @@ public class UUIDConvertor {
 
   private static ByteBuffer toByteBuffer(final UUID uuid) {
     final ByteBuffer buffer = ByteBuffer.allocate(UUID_BYTES);
-    buffer.asLongBuffer().put(uuid.getMostSignificantBits()).put(uuid.getLeastSignificantBits());
+    buffer.asLongBuffer()
+      .put(uuid.getMostSignificantBits())
+      .put(uuid.getLeastSignificantBits());
     return buffer;
   }
 
@@ -196,16 +208,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_BYTES} bytes into an UUID. If the array is shorter than
-   * the maximum length, it will be padded with 0s. If the array is longer than the maximum length,
-   * this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_BYTES} bytes into an UUID. If
+   * the array is shorter than the maximum length, it will be padded with 0s.
+   * If the array is longer than the maximum length, this method will throw an
+   * ArrayIndexOutOfBoundsException.
    *
    * @param bytes the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
-   *     {@value #MAX_BYTES}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_BYTES}.
    */
-  public static UUID toUUID(final byte... bytes) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final byte... bytes)
+      throws ArrayIndexOutOfBoundsException {
     if (bytes == null) {
       return null;
     }
@@ -223,16 +237,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_CHARS} characters into an UUID. If the array is shorter
-   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
-   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_CHARS} characters into an UUID.
+   * If the array is shorter than the maximum length, it will be padded with
+   * 0s. If the array is longer than the maximum length, this method will
+   * throw an ArrayIndexOutOfBoundsException.
    *
    * @param chars the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
-   *     {@value #MAX_CHARS}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_CHARS}.
    */
-  public static UUID toUUID(final char... chars) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final char... chars)
+      throws ArrayIndexOutOfBoundsException {
     if (chars == null) {
       return null;
     }
@@ -245,16 +261,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_DOUBLES} doubles into an UUID. If the array is shorter
-   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
-   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_DOUBLES} doubles into an UUID.
+   * If the array is shorter than the maximum length, it will be padded with
+   * 0s. If the array is longer than the maximum length, this method will
+   * throw an ArrayIndexOutOfBoundsException.
    *
    * @param doubles the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
-   *     {@value #MAX_DOUBLES}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_DOUBLES}.
    */
-  public static UUID toUUID(final double... doubles) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final double... doubles)
+      throws ArrayIndexOutOfBoundsException {
     if (doubles == null) {
       return null;
     }
@@ -267,16 +285,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_FLOATS} floats into an UUID. If the array is shorter
-   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
-   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_FLOATS} floats into an UUID. If
+   * the array is shorter than the maximum length, it will be padded with 0s.
+   * If the array is longer than the maximum length, this method will throw
+   * an ArrayIndexOutOfBoundsException.
    *
    * @param floats the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
-   *      {@value #MAX_FLOATS}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_FLOATS}.
    */
-  public static UUID toUUID(final float... floats) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final float... floats)
+      throws ArrayIndexOutOfBoundsException {
     if (floats == null) {
       return null;
     }
@@ -289,15 +309,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_INTS} integers into an UUID. If the array is shorter
-   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
-   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_INTS} integers into an UUID.
+   * If the array is shorter than the maximum length, it will be padded
+   * with 0s. If the array is longer than the maximum length, this method
+   * will throw an ArrayIndexOutOfBoundsException.
    *
    * @param ints the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than {@value #MAX_INTS}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_INTS}.
    */
-  public static UUID toUUID(final int... ints) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final int... ints)
+      throws ArrayIndexOutOfBoundsException {
     if (ints == null) {
       return null;
     }
@@ -310,16 +333,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_LONGS} longs into an UUID. If the array is shorter than
-   * the maximum length, it will be padded with 0s. If the array is longer than the maximum length,
-   * this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_LONGS} longs into an UUID. If
+   * the array is shorter than the maximum length, it will be padded with 0s.
+   * If the array is longer than the maximum length, this method will throw
+   * an ArrayIndexOutOfBoundsException.
    *
    * @param longs the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
-   *     {@value #MAX_LONGS}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_LONGS}.
    */
-  public static UUID toUUID(final long... longs) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final long... longs)
+      throws ArrayIndexOutOfBoundsException {
     if (longs == null) {
       return null;
     }
@@ -332,16 +357,18 @@ public class UUIDConvertor {
   }
 
   /**
-   * Converts an array of up to {@value #MAX_SHORTS} shorts into an UUID. If the array is shorter
-   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
-   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   * Converts an array of up to {@value #MAX_SHORTS} shorts into an UUID. If
+   * the array is shorter than the maximum length, it will be padded with 0s.
+   * If the array is longer than the maximum length, this method will throw
+   * an ArrayIndexOutOfBoundsException.
    *
    * @param shorts the array to convert.
    * @return the resulting UUID.
-   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
-   *     {@value #MAX_SHORTS}.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer
+   * than {@value #MAX_SHORTS}.
    */
-  public static UUID toUUID(final short... shorts) throws ArrayIndexOutOfBoundsException {
+  public static UUID toUUID(final short... shorts)
+      throws ArrayIndexOutOfBoundsException {
     if (shorts == null) {
       return null;
     }

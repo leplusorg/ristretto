@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,18 +22,21 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+import java.util.Set;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
 import com.google.common.collect.testing.SetTestSuiteBuilder;
 import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.SetFeature;
 import com.google.common.testing.EqualsTester;
-import java.util.Arrays;
-import java.util.Set;
+
 import junit.framework.TestSuite;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 /**
  * Tests the {@link org.leplus.ristretto.util.IdentityHashSet} class.
@@ -41,9 +44,10 @@ import org.junit.runners.Suite;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({ TestIdentityHashSet.GuavaTests.class,
-    TestIdentityHashSet.AdditionalTests.class })
+@RunWith(Suite.class) @Suite.SuiteClasses({
+    TestIdentityHashSet.GuavaTests.class,
+    TestIdentityHashSet.AdditionalTests.class
+  })
 public class TestIdentityHashSet {
 
   /**
@@ -77,7 +81,8 @@ public class TestIdentityHashSet {
       final IdentityHashSet<DuplicityObject> set1 = new IdentityHashSet<>();
       set1.add(new DuplicityObject());
       @SuppressWarnings("unchecked")
-      final IdentityHashSet<DuplicityObject> set2 = (IdentityHashSet<DuplicityObject>) set1.clone();
+      final IdentityHashSet<DuplicityObject> set2 =
+        (IdentityHashSet<DuplicityObject>) set1.clone();
       assertEquals(set1, set2);
       assertSame(set1.iterator().next(), set2.iterator().next());
       set1.clear();
@@ -86,7 +91,7 @@ public class TestIdentityHashSet {
     }
 
     /**
-     * Tests {@link IdentityHashSet#equals()} with same object in two set.
+     * Tests {@link IdentityHashSet#equals(Object)} with same object in two set.
      */
     @Test
     public void testEqualsOneObject() {
@@ -99,8 +104,7 @@ public class TestIdentityHashSet {
     }
 
     /**
-     * Tests {@link IdentityHashSet#equals()} with different object in two
-     * set.
+     * Tests {@link IdentityHashSet#equals(Object)} with different object in two set.
      */
     @Test
     public void testEqualsTwoObjects() {
@@ -119,8 +123,10 @@ public class TestIdentityHashSet {
       final DuplicityObject a = new DuplicityObject();
       final DuplicityObject b = new DuplicityObject();
       final DuplicityObject c = new DuplicityObject();
-      final Set<DuplicityObject> set1 = new IdentityHashSet<>(Arrays.asList(a, b, c));
-      final Set<DuplicityObject> set2 = new IdentityHashSet<>(Arrays.asList(b, c, a));
+      final Set<DuplicityObject> set1 =
+          new IdentityHashSet<>(Arrays.asList(a, b, c));
+      final Set<DuplicityObject> set2 =
+          new IdentityHashSet<>(Arrays.asList(b, c, a));
       assertEquals(set1.hashCode(), set2.hashCode());
     }
 
@@ -183,11 +189,14 @@ public class TestIdentityHashSet {
     @Test
     public void testEquals() {
       final DuplicityObject d = new DuplicityObject();
-      new EqualsTester().addEqualityGroup(new IdentityHashSet<DuplicityObject>(0),
+      new EqualsTester()
+        .addEqualityGroup(new IdentityHashSet<DuplicityObject>(0),
           new IdentityHashSet<DuplicityObject>()).testEquals();
-      new EqualsTester().addEqualityGroup(new IdentityHashSet<>(Arrays.asList(d)),
+      new EqualsTester()
+        .addEqualityGroup(new IdentityHashSet<>(Arrays.asList(d)),
           new IdentityHashSet<>(Arrays.asList(d))).testEquals();
-      new EqualsTester().addEqualityGroup(new IdentityHashSet<>(Arrays.asList(d, d, d)),
+      new EqualsTester()
+        .addEqualityGroup(new IdentityHashSet<>(Arrays.asList(d, d, d)),
           new IdentityHashSet<>(Arrays.asList(d, d, d))).testEquals();
     }
 
@@ -203,13 +212,15 @@ public class TestIdentityHashSet {
 
     /**
      * Creates the test suite.
+     * 
+     * @return the test suite
      */
     public static TestSuite suite() {
       return SetTestSuiteBuilder.using(new TestStringSetGenerator() {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see com.google.common.collect.testing.TestStringSetGenerator#create(java.lang. String[])
          */
         @Override
@@ -218,20 +229,30 @@ public class TestIdentityHashSet {
         }
 
       }).named("IdentityHashSet tests")
-          .withFeatures(SetFeature.GENERAL_PURPOSE, CollectionFeature.ALLOWS_NULL_QUERIES,
-              CollectionFeature.ALLOWS_NULL_VALUES, CollectionFeature.DESCENDING_VIEW,
+          .withFeatures(SetFeature.GENERAL_PURPOSE,
+              CollectionFeature.ALLOWS_NULL_QUERIES,
+              CollectionFeature.ALLOWS_NULL_VALUES,
+              CollectionFeature.DESCENDING_VIEW,
               CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
               CollectionFeature.GENERAL_PURPOSE,
-              // CollectionFeature.KNOWN_ORDER, // Sets are not ordered
-              // CollectionFeature.REJECTS_DUPLICATES_AT_CREATION, // Duplicates used in this test
-              // are not ==
-              CollectionFeature.REMOVE_OPERATIONS, CollectionFeature.RESTRICTS_ELEMENTS,
-              // CollectionFeature.SERIALIZABLE, // Sets are not == after serialization
-              // CollectionFeature.SERIALIZABLE_INCLUDING_VIEWS, // Sets are not == after
-              // serialization
-              CollectionFeature.SUBSET_VIEW, CollectionFeature.SUPPORTS_ADD,
-              CollectionFeature.SUPPORTS_ITERATOR_REMOVE, CollectionFeature.SUPPORTS_REMOVE,
-              CollectionSize.ANY, CollectionSize.ONE, CollectionSize.SEVERAL, CollectionSize.ZERO)
+              // Sets are not ordered
+              // CollectionFeature.KNOWN_ORDER,
+              // Duplicates used in this test are not ==
+              // CollectionFeature.REJECTS_DUPLICATES_AT_CREATION,
+              CollectionFeature.REMOVE_OPERATIONS,
+              CollectionFeature.RESTRICTS_ELEMENTS,
+              // Sets are not == after serialization
+              // CollectionFeature.SERIALIZABLE,
+              // Sets are not == after serialization
+              // CollectionFeature.SERIALIZABLE_INCLUDING_VIEWS,
+              CollectionFeature.SUBSET_VIEW,
+              CollectionFeature.SUPPORTS_ADD,
+              CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+              CollectionFeature.SUPPORTS_REMOVE,
+              CollectionSize.ANY,
+              CollectionSize.ONE,
+              CollectionSize.SEVERAL,
+              CollectionSize.ZERO)
           .createTestSuite();
     }
 

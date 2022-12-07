@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,7 +16,6 @@
 
 package org.leplus.ristretto.util;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -27,17 +26,27 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
- * <p>This class contains utility methods that generate deterministic UUIDs. Meaning that given the
- * same input, these methods will always return the same UUID, as opposed to
- * {@link java.util.UUID#randomUUID()}. The produced UUIDs may not be universally unique (since
- * other code using the same method on the same input would have produce the same UUIDs) but it can
- * still be useful in situations where you need exactly that: be able to generate a UUID and now
- * that other parts of a system will be able to generate a matching UUID for the same input.</p>
- * <p>For example if two parts of a system receive a file and need to independently produce pieces
- * of data that will later have to be reconciled. Then each piece of data could have it's own unique
- * UUID plus a reference UUID generated from the file using one of the methods below. Then both part
- * of the system will have generated the same reference UUID allowing for easier reconciliation.</p>
+ * <p>
+ * This class contains utility methods that generate deterministic UUIDs.
+ * Meaning that given the same input, these methods will always return the
+ * same UUID, as opposed to {@link java.util.UUID#randomUUID()}. The produced
+ * UUIDs may not be universally unique (since other code using the same method
+ * on the same input would have produce the same UUIDs) but it can still be
+ * useful in situations where you need exactly that: be able to generate a UUID
+ * and now that other parts of a system will be able to generate a matching
+ * UUID for the same input.
+ * </p>
+ * <p>
+ * For example if two parts of a system receive a file and need to
+ * independently produce pieces of data that will later have to be reconciled.
+ * Then each piece of data could have it's own unique UUID plus a reference
+ * UUID generated from the file using one of the methods below. Then both
+ * parts of the system will have generated the same reference UUID allowing
+ * for easier reconciliation.
+ * </p>
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -54,7 +63,8 @@ public class ReproducibleUUIDs {
   }
 
   /**
-   * Generates a UUID from the given String. The same String will always produce the same UUID.
+   * Generates a UUID from the given String. The same String will always
+   * produce the same UUID.
    *
    * @param s the input string.
    * @return the resulting UUID.
@@ -67,7 +77,8 @@ public class ReproducibleUUIDs {
   }
 
   /**
-   * Generates a UUID from the given bytes. The same bytes will always produce the same UUID.
+   * Generates a UUID from the given bytes. The same bytes will always produce
+   * the same UUID.
    *
    * @param bytes the input bytes.
    * @return the resulting UUID.
@@ -82,7 +93,8 @@ public class ReproducibleUUIDs {
   }
 
   /**
-   * Generates a UUID from the given byte buffer. The same bytes will always produce the same UUID.
+   * Generates a UUID from the given byte buffer. The same bytes will always
+   * produce the same UUID.
    *
    * @param buffer the input byte buffer.
    * @return the resulting UUID.
@@ -109,8 +121,9 @@ public class ReproducibleUUIDs {
   private static MessageDigest createDigest() {
     try {
       /*
-       * MD5 is not secure but it's OK in this case since we just need good entropy, not actual
-       * security. Also MD5 gives us exactly the 128 bits we need to create a UUID.
+       * MD5 is not secure but it's OK in this case since we just need good
+       * entropy, not actual security. Also MD5 gives us exactly the 128 bits
+       * we need to create a UUID.
        */
       return MessageDigest.getInstance(MD5);
     } catch (final NoSuchAlgorithmException e) {
@@ -119,14 +132,16 @@ public class ReproducibleUUIDs {
   }
 
   /**
-   * Generates a UUID from the given input stream. The same bytes will always produce the same UUID.
+   * Generates a UUID from the given input stream. The same bytes will always
+   * produce the same UUID.
    *
    * @param input the input stream.
    * @return the resulting UUID.
    * @throws IOException if an I/O error occurs.
    */
   @SuppressWarnings({ "PMD.EmptyWhileStmt", "PMD.EmptyControlStatement" })
-  public static UUID fromInputStream(final InputStream input) throws IOException {
+  public static UUID fromInputStream(final InputStream input)
+      throws IOException {
     if (input == null) {
       return null;
     }
@@ -140,7 +155,8 @@ public class ReproducibleUUIDs {
   }
 
   /**
-   * Generates a UUID from the given UUIDs. The same UUIDs will always produce the same UUID.
+   * Generates a UUID from the given UUIDs. The same UUIDs will always produce
+   * the same UUID.
    *
    * @param uuids the UUIDs.
    * @return the resulting UUID.

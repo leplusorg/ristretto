@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,8 +29,9 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
- * This adapter class extends {@link java.util.Vector} to make it easier to replace
- * {@link java.util.Vector} uses by another {@link java.util.List} implementation.
+ * This adapter class extends {@link java.util.Vector} to make it easier to
+ * replace {@link java.util.Vector} uses by another {@link java.util.List}
+ * implementation.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -127,8 +128,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    *
    * @see java.util.Vector#clone()
    */
-  @SuppressWarnings("unchecked")
-  @Override
+  @SuppressWarnings("unchecked") @Override
   public VectorAdapter<E> clone() {
     return (VectorAdapter<E>) super.clone();
   }
@@ -174,7 +174,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * (non-Javadoc)
    *
    * @see java.util.Vector#elementAt(int)
-   * 
+   *
    * @return the component at the specified index
    */
   @Override
@@ -532,7 +532,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * @see java.util.Vector#removeIf(Predicate<? super E>)
    */
   @Override
-  public boolean removeIf(Predicate<? super E> filter) {
+  public boolean removeIf(final Predicate<? super E> filter) {
     return delegate().removeIf(filter);
   }
 
@@ -542,7 +542,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * @see java.util.Vector#forEach(Consumer<? super E>)
    */
   @Override
-  public synchronized void forEach(Consumer<? super E> action) {
+  public synchronized void forEach(final Consumer<? super E> action) {
     delegate().forEach(action);
   }
 
@@ -552,7 +552,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * @see java.util.Vector#replaceAll(UnaryOperator<E>)
    */
   @Override
-  public synchronized void replaceAll(UnaryOperator<E> operator) {
+  public synchronized void replaceAll(final UnaryOperator<E> operator) {
     delegate().replaceAll(operator);
   }
 
@@ -562,7 +562,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * @see java.util.Vector#sort(Comparator<? super E>)
    */
   @Override
-  public synchronized void sort(Comparator<? super E> c) {
+  public synchronized void sort(final Comparator<? super E> c) {
     delegate().sort(c);
   }
 

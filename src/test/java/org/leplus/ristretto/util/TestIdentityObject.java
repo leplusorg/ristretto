@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,13 +20,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 
-import com.google.common.testing.EqualsTester;
-import com.google.common.testing.SerializableTester;
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
+import com.google.common.testing.EqualsTester;
+import com.google.common.testing.SerializableTester;
+
 /**
- * Tests for the {@link org.leplus.ristretto.util.IdentityObject} class.
+ * Tests for the {@link IdentityObject} class.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -34,8 +35,8 @@ import org.junit.Test;
 public class TestIdentityObject {
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} is equal (==) to a shallow
-   * clone of itself.
+   * Checks that {@link IdentityObject.IT} is equal
+   * (==) to a shallow clone of itself.
    */
   @Test
   public void testEqualClone() {
@@ -43,8 +44,8 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} is equal (==) to a deep clone
-   * of itself.
+   * Checks that {@link IdentityObject.IT} is equal
+   * (==) to a deep clone of itself.
    */
   @Test
   public void testEqualDeepClone() {
@@ -52,7 +53,8 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() itself.
+   * Checks that {@link IdentityObject.IT} equals()
+   * itself.
    */
   @Test
   public void testEquals() {
@@ -61,16 +63,18 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} passes guava's equality tests.
+   * Checks that {@link IdentityObject.IT} passes
+   * guava's equality tests.
    */
   @Test
   public void testEqualsGuava() {
-    new EqualsTester().addEqualityGroup(IdentityObject.IT, IdentityObject.IT).testEquals();
+    new EqualsTester()
+      .addEqualityGroup(IdentityObject.IT, IdentityObject.IT).testEquals();
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() a shallow clone of
-   * itself.
+   * Checks that {@link IdentityObject.IT} equals()
+   * a shallow clone of itself.
    */
   @Test
   public void testEqualsClone() {
@@ -79,29 +83,33 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} equals() a deep clone of
-   * itself.
+   * Checks that {@link IdentityObject.IT} equals()
+   * a deep clone of itself.
    */
   @Test
   public void testEqualsDeepClone() {
-    assertEquals(IdentityObject.IT, SerializationUtils.clone(IdentityObject.IT));
-    assertEquals(SerializationUtils.clone(IdentityObject.IT), IdentityObject.IT);
+    assertEquals(IdentityObject.IT,
+        SerializationUtils.clone(IdentityObject.IT));
+    assertEquals(SerializationUtils.clone(IdentityObject.IT),
+        IdentityObject.IT);
   }
 
   /**
-   * Checks {@link org.leplus.ristretto.util.IdentityObject.IT}'s hashcode remains constant.
+   * Checks {@link IdentityObject.IT}'s hashcode
+   * remains constant.
    */
   @Test
   public void testHashCode() {
     assertEquals(IdentityObject.IT.hashCode(), IdentityObject.IT.hashCode());
-    assertEquals(IdentityObject.IT.hashCode(), IdentityObject.IT.clone().hashCode());
+    assertEquals(IdentityObject.IT.hashCode(),
+        IdentityObject.IT.clone().hashCode());
     assertEquals(IdentityObject.IT.hashCode(),
         SerializationUtils.clone(IdentityObject.IT).hashCode());
   }
 
   /**
-   * Checks that {@link org.leplus.ristretto.util.IdentityObject.IT} passes guava's serialization
-   * tests.
+   * Checks that {@link IdentityObject.IT} passes
+   * guava's serialization tests.
    */
   @Test
   public void testSerializeGuava() {

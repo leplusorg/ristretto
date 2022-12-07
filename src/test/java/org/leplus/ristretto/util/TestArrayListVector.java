@@ -1,12 +1,12 @@
 /*
  * Copyright 2016-present Thomas Leplus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,6 +26,15 @@ import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInA
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
+
+import org.hamcrest.collection.IsEmptyCollection;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
 import com.google.common.collect.testing.ListTestSuiteBuilder;
 import com.google.common.collect.testing.TestStringListGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
@@ -33,14 +42,8 @@ import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.ListFeature;
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.SerializableTester;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Vector;
+
 import junit.framework.TestSuite;
-import org.hamcrest.collection.IsEmptyCollection;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 /**
  * Tests the {@link org.leplus.ristretto.util.ArrayListVector} class (and therefore the
@@ -49,8 +52,7 @@ import org.junit.runners.Suite;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class,
+@RunWith(Suite.class) @Suite.SuiteClasses({ TestArrayListVector.GuavaTests.class,
     TestArrayListVector.VectorCompatibilityTests.class, TestArrayListVector.AdditionalTests.class })
 public class TestArrayListVector {
 
@@ -164,7 +166,7 @@ public class TestArrayListVector {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see org.leplus.ristretto.util.VectorAdapter#removeRange(int, int)
          */
         @Override
@@ -226,7 +228,7 @@ public class TestArrayListVector {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see com.google.common.collect.testing.TestStringListGenerator#create(java.lang.
          * String[])
          */
