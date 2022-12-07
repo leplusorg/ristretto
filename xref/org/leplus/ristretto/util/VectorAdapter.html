@@ -8,13 +8,13 @@
 <div id="overview"><a href="../../../../../apidocs/org/leplus/ristretto/util/VectorAdapter.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2016-present Thomas Leplus</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> *     <a href="http://www.apache.org/licenses/LICENSE-2.0" target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.0</a></em>
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> * Unless required by applicable law or agreed to in writing, software</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_comment"> * distributed under the License is distributed on an "AS IS" BASIS,</em>
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</em>
@@ -37,106 +37,106 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> java.util.function.UnaryOperator;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * This adapter class extends {@link java.util.Vector} to make it easier to replace</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * {@link java.util.Vector} uses by another {@link java.util.List} implementation.</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> * @author Thomas Leplus</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * @since 1.0.0</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * @see org.leplus.ristretto.util.ArrayListVector</em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * @param &lt;E&gt; type of the elements in the collection.</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> VectorAdapter&lt;E&gt; <strong class="jxr_keyword">extends</strong> Vector&lt;E&gt; {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = -5465186583387834552L;
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>    <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">   * Default constructor. Should be called by subclasses.</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">protected</strong> <a name="VectorAdapter" href="../../../../org/leplus/ristretto/util/VectorAdapter.html#VectorAdapter">VectorAdapter</a>() {
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <strong class="jxr_keyword">super</strong>(0);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>    }
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>    <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_comment">   * @see java.util.Vector#add(java.lang.Object)</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>    @Override
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> add(<strong class="jxr_keyword">final</strong> E o) {
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">return</strong> delegate().add(o);
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>    }
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>    <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_comment">   * @see java.util.Vector#add(int, java.lang.Object)</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>    @Override
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> add(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> index, <strong class="jxr_keyword">final</strong> E element) {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      delegate().add(index, element);
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>    }
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>    <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_comment">   * @see java.util.Vector#addAll(java.util.Collection)</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>    @Override
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> addAll(<strong class="jxr_keyword">final</strong> Collection&lt;? <strong class="jxr_keyword">extends</strong> E&gt; c) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">return</strong> delegate().addAll(c);
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>    }
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>    <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_comment">   * @see java.util.Vector#addAll(int, java.util.Collection)</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>    @Override
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> addAll(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> index, <strong class="jxr_keyword">final</strong> Collection&lt;? <strong class="jxr_keyword">extends</strong> E&gt; c) {
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">return</strong> delegate().addAll(index, c);
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>    }
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>    <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_comment">   * @see java.util.Vector#addElement(java.lang.Object)</em>
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>    @Override
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addElement(<strong class="jxr_keyword">final</strong> E obj) {
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>      delegate().add(obj);
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>   }
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_comment">   * @see java.util.Vector#capacity()</em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>   @Override
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> capacity() {
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>     <em class="jxr_comment">// Sadly even if underlying is an ArrayList,</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>     <em class="jxr_comment">// we don't have access to it's capacity. So</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <em class="jxr_comment">// the size is the closest thing we have.</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>     <strong class="jxr_keyword">return</strong> delegate().size();
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>   }
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_comment">   * @see java.util.Vector#clear()</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>   @Override
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> clear() {
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>     delegate().clear();
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>   }
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_comment">   * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_comment">   *</em>
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_comment">   * @see java.util.Vector#clone()</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_comment">   */</em>
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>   @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>   @Override
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * This adapter class extends {@link java.util.Vector} to make it easier to</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * replace {@link java.util.Vector} uses by another {@link java.util.List}</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * implementation.</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * @author Thomas Leplus</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * @since 1.0.0</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * @see org.leplus.ristretto.util.ArrayListVector</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * @param &lt;E&gt; type of the elements in the collection.</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> VectorAdapter&lt;E&gt; <strong class="jxr_keyword">extends</strong> Vector&lt;E&gt; {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = -5465186583387834552L;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">   * Default constructor. Should be called by subclasses.</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>    <strong class="jxr_keyword">protected</strong> <a name="VectorAdapter" href="../../../../org/leplus/ristretto/util/VectorAdapter.html#VectorAdapter">VectorAdapter</a>() {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">super</strong>(0);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>    }
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>    <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_comment">   * @see java.util.Vector#add(java.lang.Object)</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>    @Override
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> add(<strong class="jxr_keyword">final</strong> E o) {
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">return</strong> delegate().add(o);
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>    }
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>    <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_comment">   * @see java.util.Vector#add(int, java.lang.Object)</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>    @Override
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> add(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> index, <strong class="jxr_keyword">final</strong> E element) {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      delegate().add(index, element);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>    }
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_comment">   * @see java.util.Vector#addAll(java.util.Collection)</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>    @Override
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> addAll(<strong class="jxr_keyword">final</strong> Collection&lt;? <strong class="jxr_keyword">extends</strong> E&gt; c) {
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>      <strong class="jxr_keyword">return</strong> delegate().addAll(c);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>    }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>    <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_comment">   * @see java.util.Vector#addAll(int, java.util.Collection)</em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>    @Override
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> addAll(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> index, <strong class="jxr_keyword">final</strong> Collection&lt;? <strong class="jxr_keyword">extends</strong> E&gt; c) {
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>      <strong class="jxr_keyword">return</strong> delegate().addAll(index, c);
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>    }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>    <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_comment">   * @see java.util.Vector#addElement(java.lang.Object)</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>    @Override
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addElement(<strong class="jxr_keyword">final</strong> E obj) {
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>     delegate().add(obj);
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>   }
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_comment">   * @see java.util.Vector#capacity()</em>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>   @Override
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> capacity() {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>     <em class="jxr_comment">// Sadly even if underlying is an ArrayList,</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <em class="jxr_comment">// we don't have access to it's capacity. So</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>     <em class="jxr_comment">// the size is the closest thing we have.</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">return</strong> delegate().size();
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>   }
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_comment">   * @see java.util.Vector#clear()</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>   @Override
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> clear() {
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>     delegate().clear();
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>   }
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_comment">   * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_comment">   *</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_comment">   * @see java.util.Vector#clone()</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_comment">   */</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>   @SuppressWarnings(<span class="jxr_string">"unchecked"</span>) @Override
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>   <strong class="jxr_keyword">public</strong> VectorAdapter&lt;E&gt; clone() {
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>     <strong class="jxr_keyword">return</strong> (VectorAdapter&lt;E&gt;) <strong class="jxr_keyword">super</strong>.clone();
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>   }
@@ -182,7 +182,7 @@
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> <em class="jxr_comment">   * (non-Javadoc)</em>
 <a class="jxr_linenumber" name="L175" href="#L175">175</a> <em class="jxr_comment">   *</em>
 <a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_comment">   * @see java.util.Vector#elementAt(int)</em>
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_comment">   * </em>
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_comment">   *</em>
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_comment">   * @return the component at the specified index</em>
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> <em class="jxr_comment">   */</em>
 <a class="jxr_linenumber" name="L180" href="#L180">180</a>   @Override
@@ -540,7 +540,7 @@
 <a class="jxr_linenumber" name="L532" href="#L532">532</a> <em class="jxr_comment">   * @see java.util.Vector#removeIf(Predicate&lt;? super E&gt;)</em>
 <a class="jxr_linenumber" name="L533" href="#L533">533</a> <em class="jxr_comment">   */</em>
 <a class="jxr_linenumber" name="L534" href="#L534">534</a>   @Override
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> removeIf(Predicate&lt;? <strong class="jxr_keyword">super</strong> E&gt; filter) {
+<a class="jxr_linenumber" name="L535" href="#L535">535</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> removeIf(<strong class="jxr_keyword">final</strong> Predicate&lt;? <strong class="jxr_keyword">super</strong> E&gt; filter) {
 <a class="jxr_linenumber" name="L536" href="#L536">536</a>     <strong class="jxr_keyword">return</strong> delegate().removeIf(filter);
 <a class="jxr_linenumber" name="L537" href="#L537">537</a>   }
 <a class="jxr_linenumber" name="L538" href="#L538">538</a> 
@@ -550,7 +550,7 @@
 <a class="jxr_linenumber" name="L542" href="#L542">542</a> <em class="jxr_comment">   * @see java.util.Vector#forEach(Consumer&lt;? super E&gt;)</em>
 <a class="jxr_linenumber" name="L543" href="#L543">543</a> <em class="jxr_comment">   */</em>
 <a class="jxr_linenumber" name="L544" href="#L544">544</a>   @Override
-<a class="jxr_linenumber" name="L545" href="#L545">545</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> forEach(Consumer&lt;? <strong class="jxr_keyword">super</strong> E&gt; action) {
+<a class="jxr_linenumber" name="L545" href="#L545">545</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> forEach(<strong class="jxr_keyword">final</strong> Consumer&lt;? <strong class="jxr_keyword">super</strong> E&gt; action) {
 <a class="jxr_linenumber" name="L546" href="#L546">546</a>     delegate().forEach(action);
 <a class="jxr_linenumber" name="L547" href="#L547">547</a>   }
 <a class="jxr_linenumber" name="L548" href="#L548">548</a> 
@@ -560,7 +560,7 @@
 <a class="jxr_linenumber" name="L552" href="#L552">552</a> <em class="jxr_comment">   * @see java.util.Vector#replaceAll(UnaryOperator&lt;E&gt;)</em>
 <a class="jxr_linenumber" name="L553" href="#L553">553</a> <em class="jxr_comment">   */</em>
 <a class="jxr_linenumber" name="L554" href="#L554">554</a>   @Override
-<a class="jxr_linenumber" name="L555" href="#L555">555</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> replaceAll(UnaryOperator&lt;E&gt; <strong class="jxr_keyword">operator</strong>) {
+<a class="jxr_linenumber" name="L555" href="#L555">555</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> replaceAll(<strong class="jxr_keyword">final</strong> UnaryOperator&lt;E&gt; <strong class="jxr_keyword">operator</strong>) {
 <a class="jxr_linenumber" name="L556" href="#L556">556</a>     delegate().replaceAll(<strong class="jxr_keyword">operator</strong>);
 <a class="jxr_linenumber" name="L557" href="#L557">557</a>   }
 <a class="jxr_linenumber" name="L558" href="#L558">558</a> 
@@ -570,7 +570,7 @@
 <a class="jxr_linenumber" name="L562" href="#L562">562</a> <em class="jxr_comment">   * @see java.util.Vector#sort(Comparator&lt;? super E&gt;)</em>
 <a class="jxr_linenumber" name="L563" href="#L563">563</a> <em class="jxr_comment">   */</em>
 <a class="jxr_linenumber" name="L564" href="#L564">564</a>   @Override
-<a class="jxr_linenumber" name="L565" href="#L565">565</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> sort(Comparator&lt;? <strong class="jxr_keyword">super</strong> E&gt; c) {
+<a class="jxr_linenumber" name="L565" href="#L565">565</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> sort(<strong class="jxr_keyword">final</strong> Comparator&lt;? <strong class="jxr_keyword">super</strong> E&gt; c) {
 <a class="jxr_linenumber" name="L566" href="#L566">566</a>     delegate().sort(c);
 <a class="jxr_linenumber" name="L567" href="#L567">567</a>   }
 <a class="jxr_linenumber" name="L568" href="#L568">568</a> 
