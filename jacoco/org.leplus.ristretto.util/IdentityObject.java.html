@@ -38,48 +38,40 @@ public final class IdentityObject implements Cloneable, Serializable {
     super();
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#clone()
    */
   @Override
   public IdentityObject clone() {
-<span class="fc" id="L48">    return IT;</span>
+<span class="fc" id="L46">    return IT;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
   public boolean equals(final Object obj) {
-<span class="fc" id="L58">    return obj instanceof IdentityObject;</span>
+<span class="fc" id="L54">    return obj instanceof IdentityObject;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#hashCode()
    */
   @Override
   public int hashCode() {
-<span class="fc" id="L68">    return Integer.MAX_VALUE;</span>
+<span class="fc" id="L62">    return Integer.MAX_VALUE;</span>
   }
 
   private Object readResolve() {
-<span class="fc" id="L72">    return IT;</span>
+<span class="fc" id="L66">    return IT;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
-<span class="fc" id="L82">    return getClass().getName();</span>
+<span class="fc" id="L74">    return getClass().getName();</span>
   }
 
 }

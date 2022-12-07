@@ -52,10 +52,22 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * @since 1.0.0
  */
 @SuppressFBWarnings(&quot;WEAK_MESSAGE_DIGEST_MD5&quot;)
-public class ReproducibleUUIDs {
+public final class ReproducibleUUIDs {
 
+  /**
+   * Underlying hash algorithm. MD5 is OK since we do not need a one-way
+   * hash function.
+   */
   private static final String MD5 = &quot;MD5&quot;;
+
+  /**
+   * Bytes per UUID.
+   */
   private static final int UUID_BYTES = 16;
+
+  /**
+   * Buffer size for digest.
+   */
   private static final int BUFFER_SIZE = 8192;
 
   private ReproducibleUUIDs() {
@@ -70,10 +82,10 @@ public class ReproducibleUUIDs {
    * @return the resulting UUID.
    */
   public static UUID fromString(final String s) {
-<span class="fc bfc" id="L73" title="All 2 branches covered.">    if (s == null) {</span>
-<span class="fc" id="L74">      return null;</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">    if (s == null) {</span>
+<span class="fc" id="L86">      return null;</span>
     }
-<span class="fc" id="L76">    return fromBytes(s.getBytes(StandardCharsets.UTF_8));</span>
+<span class="fc" id="L88">    return fromBytes(s.getBytes(StandardCharsets.UTF_8));</span>
   }
 
   /**
@@ -84,12 +96,12 @@ public class ReproducibleUUIDs {
    * @return the resulting UUID.
    */
   public static UUID fromBytes(final byte... bytes) {
-<span class="fc bfc" id="L87" title="All 2 branches covered.">    if (bytes == null) {</span>
-<span class="fc" id="L88">      return null;</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">    if (bytes == null) {</span>
+<span class="fc" id="L100">      return null;</span>
     }
-<span class="fc" id="L90">    final MessageDigest md = createDigest();</span>
-<span class="fc" id="L91">    md.update(bytes);</span>
-<span class="fc" id="L92">    return digest(md);</span>
+<span class="fc" id="L102">    final MessageDigest md = createDigest();</span>
+<span class="fc" id="L103">    md.update(bytes);</span>
+<span class="fc" id="L104">    return digest(md);</span>
   }
 
   /**
@@ -100,22 +112,23 @@ public class ReproducibleUUIDs {
    * @return the resulting UUID.
    */
   public static UUID fromByteBuffer(final ByteBuffer buffer) {
-<span class="fc bfc" id="L103" title="All 2 branches covered.">    if (buffer == null) {</span>
-<span class="fc" id="L104">      return null;</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">    if (buffer == null) {</span>
+<span class="fc" id="L116">      return null;</span>
     }
-<span class="fc" id="L106">    final MessageDigest md = createDigest();</span>
-<span class="fc" id="L107">    md.update(buffer);</span>
-<span class="fc" id="L108">    return digest(md);</span>
+<span class="fc" id="L118">    final MessageDigest md = createDigest();</span>
+<span class="fc" id="L119">    md.update(buffer);</span>
+<span class="fc" id="L120">    return digest(md);</span>
   }
 
+  @SuppressWarnings(&quot;checkstyle:magicnumber&quot;)
   private static UUID digest(final MessageDigest md) {
-<span class="fc" id="L112">    final byte[] md5Bytes = md.digest();</span>
+<span class="fc" id="L125">    final byte[] md5Bytes = md.digest();</span>
     // for compatibility with UUID.nameUUIDFromBytes(byte[]).
-<span class="fc" id="L114">    md5Bytes[6] &amp;= 0x0f;</span>
-<span class="fc" id="L115">    md5Bytes[6] |= 0x30;</span>
-<span class="fc" id="L116">    md5Bytes[8] &amp;= 0x3f;</span>
-<span class="fc" id="L117">    md5Bytes[8] |= 0x80;</span>
-<span class="fc" id="L118">    return UUIDConvertor.toUUID(md5Bytes);</span>
+<span class="fc" id="L127">    md5Bytes[6] &amp;= 0x0f;</span>
+<span class="fc" id="L128">    md5Bytes[6] |= 0x30;</span>
+<span class="fc" id="L129">    md5Bytes[8] &amp;= 0x3f;</span>
+<span class="fc" id="L130">    md5Bytes[8] |= 0x80;</span>
+<span class="fc" id="L131">    return UUIDConvertor.toUUID(md5Bytes);</span>
   }
 
   private static MessageDigest createDigest() {
@@ -125,9 +138,9 @@ public class ReproducibleUUIDs {
        * entropy, not actual security. Also MD5 gives us exactly the 128 bits
        * we need to create a UUID.
        */
-<span class="fc" id="L128">      return MessageDigest.getInstance(MD5);</span>
-<span class="nc" id="L129">    } catch (final NoSuchAlgorithmException e) {</span>
-<span class="nc" id="L130">      throw new IllegalStateException(MD5 + &quot; not supported&quot;, e);</span>
+<span class="fc" id="L141">      return MessageDigest.getInstance(MD5);</span>
+<span class="nc" id="L142">    } catch (final NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L143">      throw new IllegalStateException(MD5 + &quot; not supported&quot;, e);</span>
     }
   }
 
@@ -139,19 +152,21 @@ public class ReproducibleUUIDs {
    * @return the resulting UUID.
    * @throws IOException if an I/O error occurs.
    */
-  @SuppressWarnings({ &quot;PMD.EmptyWhileStmt&quot;, &quot;PMD.EmptyControlStatement&quot; })
+  @SuppressWarnings({ &quot;PMD.EmptyWhileStmt&quot;,
+      &quot;PMD.EmptyControlStatement&quot;,
+      &quot;checkstyle:emptyblock&quot; })
   public static UUID fromInputStream(final InputStream input)
       throws IOException {
-<span class="fc bfc" id="L145" title="All 2 branches covered.">    if (input == null) {</span>
-<span class="fc" id="L146">      return null;</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">    if (input == null) {</span>
+<span class="fc" id="L161">      return null;</span>
     }
-<span class="fc" id="L148">    final MessageDigest md = createDigest();</span>
-<span class="fc" id="L149">    try (DigestInputStream dis = new DigestInputStream(input, md)) {</span>
-<span class="fc" id="L150">      final byte[] buffer = new byte[BUFFER_SIZE];</span>
-<span class="fc bfc" id="L151" title="All 2 branches covered.">      while (dis.read(buffer) &gt;= 0) {</span>
+<span class="fc" id="L163">    final MessageDigest md = createDigest();</span>
+<span class="fc" id="L164">    try (DigestInputStream dis = new DigestInputStream(input, md)) {</span>
+<span class="fc" id="L165">      final byte[] buffer = new byte[BUFFER_SIZE];</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">      while (dis.read(buffer) &gt;= 0) {</span>
       }
     }
-<span class="fc" id="L154">    return digest(md);</span>
+<span class="fc" id="L169">    return digest(md);</span>
   }
 
   /**
@@ -162,19 +177,19 @@ public class ReproducibleUUIDs {
    * @return the resulting UUID.
    */
   public static UUID fromUUIDs(final UUID... uuids) {
-<span class="pc bpc" id="L165" title="1 of 4 branches missed.">    if (uuids == null || uuids.length == 0) {</span>
-<span class="fc" id="L166">      return null;</span>
+<span class="pc bpc" id="L180" title="1 of 4 branches missed.">    if (uuids == null || uuids.length == 0) {</span>
+<span class="fc" id="L181">      return null;</span>
     }
-<span class="fc bfc" id="L168" title="All 2 branches covered.">    if (uuids.length == 1) {</span>
-<span class="fc" id="L169">      return uuids[0];</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">    if (uuids.length == 1) {</span>
+<span class="fc" id="L184">      return uuids[0];</span>
     }
-<span class="fc" id="L171">    final ByteBuffer bytes = ByteBuffer.allocate(uuids.length * UUID_BYTES);</span>
-<span class="fc" id="L172">    final LongBuffer longs = bytes.asLongBuffer();</span>
-<span class="fc bfc" id="L173" title="All 2 branches covered.">    for (final UUID uuid : uuids) {</span>
-<span class="fc" id="L174">      longs.put(uuid.getMostSignificantBits());</span>
-<span class="fc" id="L175">      longs.put(uuid.getLeastSignificantBits());</span>
+<span class="fc" id="L186">    final ByteBuffer bytes = ByteBuffer.allocate(uuids.length * UUID_BYTES);</span>
+<span class="fc" id="L187">    final LongBuffer longs = bytes.asLongBuffer();</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">    for (final UUID uuid : uuids) {</span>
+<span class="fc" id="L189">      longs.put(uuid.getMostSignificantBits());</span>
+<span class="fc" id="L190">      longs.put(uuid.getLeastSignificantBits());</span>
     }
-<span class="fc" id="L177">    return fromByteBuffer(bytes);</span>
+<span class="fc" id="L192">    return fromByteBuffer(bytes);</span>
   }
 
 }

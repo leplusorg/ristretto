@@ -87,64 +87,65 @@ public class ArrayListVector&lt;E&gt; extends VectorAdapter&lt;E&gt; {
 <span class="fc" id="L87">    this.delegate = list;</span>
 <span class="fc" id="L88">  }</span>
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#clone()
    */
   @Override
   public ArrayListVector&lt;E&gt; clone() {
-<span class="fc" id="L97">    final ArrayListVector&lt;E&gt; clone = (ArrayListVector&lt;E&gt;) super.clone();</span>
-<span class="fc" id="L98">    clone.delegate = new ArrayList&lt;&gt;(delegate);</span>
-<span class="fc" id="L99">    return clone;</span>
+<span class="fc" id="L95">    final ArrayListVector&lt;E&gt; clone = (ArrayListVector&lt;E&gt;) super.clone();</span>
+<span class="fc" id="L96">    clone.delegate = new ArrayList&lt;&gt;(delegate);</span>
+<span class="fc" id="L97">    return clone;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#delegate()
    */
   @Override
   protected List&lt;E&gt; delegate() {
-<span class="fc" id="L109">    return delegate;</span>
+<span class="fc" id="L105">    return delegate;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#ensureCapacity(int)
    */
   @Override
   public void ensureCapacity(final int minCapacity) {
-<span class="fc" id="L119">    delegate.ensureCapacity(minCapacity);</span>
-<span class="fc" id="L120">  }</span>
+<span class="fc" id="L113">    delegate.ensureCapacity(minCapacity);</span>
+<span class="fc" id="L114">  }</span>
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#trimToSize()
    */
   @Override
   public void trimToSize() {
-<span class="fc" id="L129">    delegate.trimToSize();</span>
-<span class="fc" id="L130">  }</span>
+<span class="fc" id="L121">    delegate.trimToSize();</span>
+<span class="fc" id="L122">  }</span>
 
+  /**
+   * @see org.leplus.ristretto.util.VectorAdapter#hashCode()
+   */
   @Override
   public int hashCode() {
-<span class="fc" id="L134">    return delegate.hashCode();</span>
+<span class="fc" id="L129">    return delegate.hashCode();</span>
   }
 
+  /**
+   * @see org.leplus.ristretto.util.VectorAdapter#equals(Object)
+   */
   @Override
   public boolean equals(final Object obj) {
-<span class="fc bfc" id="L139" title="All 2 branches covered.">    if (this == obj) {</span>
-<span class="fc" id="L140">      return true;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (this == obj) {</span>
+<span class="fc" id="L138">      return true;</span>
     }
-<span class="fc" id="L142">    return delegate.equals(obj);</span>
+<span class="fc" id="L140">    return delegate.equals(obj);</span>
   }
 
+  /**
+   * @see org.leplus.ristretto.util.VectorAdapter#hashCode()
+   */
   @Override
   public String toString() {
-<span class="fc" id="L147">    return delegate.toString();</span>
+<span class="fc" id="L148">    return delegate.toString();</span>
   }
 
 }

@@ -94,120 +94,100 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
 <span class="fc" id="L94">    map = new IdentityHashMap&lt;&gt;(expectedMaxSize);</span>
 <span class="fc" id="L95">  }</span>
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#add(java.lang.Object)
    */
   @Override
   public boolean add(final E e) {
-<span class="fc bfc" id="L104" title="All 2 branches covered.">    return map.put(e, DUMMY) == null;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">    return map.put(e, DUMMY) == null;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#clear()
    */
   @Override
   public void clear() {
-<span class="fc" id="L114">    map.clear();</span>
-<span class="fc" id="L115">  }</span>
+<span class="fc" id="L110">    map.clear();</span>
+<span class="fc" id="L111">  }</span>
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#clone()
    */
   @Override
   public Object clone() {
     try {
       @SuppressWarnings(&quot;unchecked&quot;)
-<span class="fc" id="L126">      final IdentityHashSet&lt;E&gt; clone = (IdentityHashSet&lt;E&gt;) super.clone();</span>
-<span class="fc" id="L127">      clone.map = new IdentityHashMap&lt;&gt;(map);</span>
-<span class="fc" id="L128">      return clone;</span>
-<span class="nc" id="L129">    } catch (final CloneNotSupportedException e) {</span>
-<span class="nc" id="L130">      throw new AssertionError(e);</span>
+<span class="fc" id="L120">      final IdentityHashSet&lt;E&gt; clone = (IdentityHashSet&lt;E&gt;) super.clone();</span>
+<span class="fc" id="L121">      clone.map = new IdentityHashMap&lt;&gt;(map);</span>
+<span class="fc" id="L122">      return clone;</span>
+<span class="nc" id="L123">    } catch (final CloneNotSupportedException e) {</span>
+<span class="nc" id="L124">      throw new AssertionError(e);</span>
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#contains(java.lang.Object)
    */
   @Override
   public boolean contains(final Object o) {
-<span class="fc" id="L141">    return map.containsKey(o);</span>
+<span class="fc" id="L133">    return map.containsKey(o);</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractSet#equals(java.lang.Object)
    */
   @Override
   public boolean equals(final Object obj) {
-<span class="fc bfc" id="L151" title="All 2 branches covered.">    if (this == obj) {</span>
-<span class="fc" id="L152">      return true;</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">    if (this == obj) {</span>
+<span class="fc" id="L142">      return true;</span>
     }
-<span class="fc" id="L154">    return map.keySet().equals(obj);</span>
+<span class="fc" id="L144">    return map.keySet().equals(obj);</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractSet#hashCode()
    */
   @Override
   public int hashCode() {
-<span class="fc" id="L164">    int hashCode = 0;</span>
-<span class="fc bfc" id="L165" title="All 2 branches covered.">    for (final Object o : map.keySet()) {</span>
-<span class="fc bfc" id="L166" title="All 2 branches covered.">      if (o != null) {</span>
-<span class="fc" id="L167">        hashCode += o.hashCode();</span>
+<span class="fc" id="L152">    int hashCode = 0;</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">    for (final Object o : map.keySet()) {</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">      if (o != null) {</span>
+<span class="fc" id="L155">        hashCode += o.hashCode();</span>
       }
-<span class="fc" id="L169">    }</span>
-<span class="fc" id="L170">    return hashCode;</span>
+<span class="fc" id="L157">    }</span>
+<span class="fc" id="L158">    return hashCode;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#isEmpty()
    */
   @Override
   public boolean isEmpty() {
-<span class="fc" id="L180">    return map.isEmpty();</span>
+<span class="fc" id="L166">    return map.isEmpty();</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#iterator()
    */
   @Override
   public Iterator&lt;E&gt; iterator() {
-<span class="fc" id="L190">    return map.keySet().iterator();</span>
+<span class="fc" id="L174">    return map.keySet().iterator();</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#remove(java.lang.Object)
    */
   @Override
   public boolean remove(final Object o) {
-<span class="fc bfc" id="L200" title="All 2 branches covered.">    return map.remove(o) == DUMMY;</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">    return map.remove(o) == DUMMY;</span>
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#size()
    */
   @Override
   public int size() {
-<span class="fc" id="L210">    return map.size();</span>
+<span class="fc" id="L190">    return map.size();</span>
   }
 
 }

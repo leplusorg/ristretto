@@ -41,7 +41,7 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * @author Thomas Leplus</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * @since 1.0.0</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="TestIdentityEnum" href="../../../../org/leplus/ristretto/util/TestIdentityEnum.html#TestIdentityEnum">TestIdentityEnum</a> {
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="TestIdentityEnum" href="../../../../org/leplus/ristretto/util/TestIdentityEnum.html#TestIdentityEnum">TestIdentityEnum</a> {
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">   * Checks that IdentityEnum.IT is equal (==) to a deep clone of</em>
@@ -75,28 +75,31 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>    @Test
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testEqualsGuava() {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">new</strong> EqualsTester().addEqualityGroup(IdentityEnum.IT, IdentityEnum.IT).testEquals();
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>    }
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">   * Checks IdentityEnum.IT's hashcode remains constant.</em>
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>    @Test
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testHashCode() {
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>      assertEquals(IdentityEnum.IT.hashCode(), IdentityEnum.IT.hashCode());
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>      assertEquals(IdentityEnum.IT.hashCode(), SerializationUtils.clone(IdentityEnum.IT).hashCode());
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>    }
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>    <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">   * Checks that IdentityEnum.IT passes guava's serialization</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">   * tests.</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>    @Test
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSerializeGuava() {
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>      SerializableTester.reserializeAndAssert(IdentityEnum.IT);
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>    }
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  }
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">new</strong> EqualsTester().addEqualityGroup(IdentityEnum.IT,
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>              IdentityEnum.IT).testEquals();
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>    }
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">   * Checks IdentityEnum.IT's hashcode remains constant.</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>    @Test
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testHashCode() {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      assertEquals(IdentityEnum.IT.hashCode(),
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              IdentityEnum.IT.hashCode());
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      assertEquals(IdentityEnum.IT.hashCode(),
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>              SerializationUtils.clone(IdentityEnum.IT).hashCode());
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>    }
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">   * Checks that IdentityEnum.IT passes guava's serialization</em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">   * tests.</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>    @Test
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSerializeGuava() {
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>      SerializableTester.reserializeAndAssert(IdentityEnum.IT);
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>    }
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2022 <a href="https://www.leplus.org">Leplus.org</a>. All rights reserved.</div>
