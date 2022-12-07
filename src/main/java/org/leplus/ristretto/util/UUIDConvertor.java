@@ -49,7 +49,7 @@ import java.util.UUID;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-public class UUIDConvertor {
+public final class UUIDConvertor {
 
   /**
    * Number of bytes in a UUID.

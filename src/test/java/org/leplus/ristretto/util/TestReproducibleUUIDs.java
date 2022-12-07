@@ -33,10 +33,17 @@ import org.junit.Test;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-public class TestReproducibleUUIDs {
+@SuppressWarnings({ "checkstyle:magicnumber" })
+public final class TestReproducibleUUIDs {
 
+  /**
+   * Byte buffer size.
+   */
   private static final int NUMBER_OF_BYTES = 1024;
 
+ /**
+  * @throws IOException
+  */
   @Test
   public void testNulls() throws IOException {
     assertNull(ReproducibleUUIDs.fromBytes(null));
@@ -45,6 +52,9 @@ public class TestReproducibleUUIDs {
     assertNull(ReproducibleUUIDs.fromInputStream(null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testBytes() {
     final SecureRandom random = new SecureRandom();
@@ -57,6 +67,9 @@ public class TestReproducibleUUIDs {
         UUID.nameUUIDFromBytes(bytes));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testByteBuffer() {
     final SecureRandom random = new SecureRandom();
@@ -66,6 +79,9 @@ public class TestReproducibleUUIDs {
         ReproducibleUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testString() {
     final SecureRandom random = new SecureRandom();
@@ -75,6 +91,9 @@ public class TestReproducibleUUIDs {
         ReproducibleUUIDs.fromString(new String(bytes)));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testInputStream() throws IOException {
     final SecureRandom random = new SecureRandom();
@@ -86,6 +105,9 @@ public class TestReproducibleUUIDs {
         .fromInputStream(new ByteArrayInputStream(bytes)));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testUUIDs() {
     final UUID[] uuids = new UUID[3];

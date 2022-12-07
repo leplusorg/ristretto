@@ -33,7 +33,7 @@ import com.google.common.testing.SerializableTester;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-public class TestIdentityEnum {
+public final class TestIdentityEnum {
 
   /**
    * Checks that IdentityEnum.IT is equal (==) to a deep clone of
@@ -67,7 +67,8 @@ public class TestIdentityEnum {
    */
   @Test
   public void testEqualsGuava() {
-    new EqualsTester().addEqualityGroup(IdentityEnum.IT, IdentityEnum.IT).testEquals();
+    new EqualsTester().addEqualityGroup(IdentityEnum.IT,
+            IdentityEnum.IT).testEquals();
   }
 
   /**
@@ -75,8 +76,10 @@ public class TestIdentityEnum {
    */
   @Test
   public void testHashCode() {
-    assertEquals(IdentityEnum.IT.hashCode(), IdentityEnum.IT.hashCode());
-    assertEquals(IdentityEnum.IT.hashCode(), SerializationUtils.clone(IdentityEnum.IT).hashCode());
+    assertEquals(IdentityEnum.IT.hashCode(),
+            IdentityEnum.IT.hashCode());
+    assertEquals(IdentityEnum.IT.hashCode(),
+            SerializationUtils.clone(IdentityEnum.IT).hashCode());
   }
 
   /**

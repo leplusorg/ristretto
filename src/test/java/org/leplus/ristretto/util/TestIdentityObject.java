@@ -32,7 +32,7 @@ import com.google.common.testing.SerializableTester;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-public class TestIdentityObject {
+public final class TestIdentityObject {
 
   /**
    * Checks that IdentityObject.IT is equal

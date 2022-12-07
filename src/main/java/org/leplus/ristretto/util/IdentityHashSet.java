@@ -94,9 +94,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     map = new IdentityHashMap<>(expectedMaxSize);
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#add(java.lang.Object)
    */
   @Override
@@ -104,9 +102,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return map.put(e, DUMMY) == null;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#clear()
    */
   @Override
@@ -114,9 +110,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     map.clear();
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#clone()
    */
   @Override
@@ -131,9 +125,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#contains(java.lang.Object)
    */
   @Override
@@ -141,9 +133,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return map.containsKey(o);
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractSet#equals(java.lang.Object)
    */
   @Override
@@ -154,9 +144,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return map.keySet().equals(obj);
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractSet#hashCode()
    */
   @Override
@@ -170,9 +158,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return hashCode;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#isEmpty()
    */
   @Override
@@ -180,9 +166,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return map.isEmpty();
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#iterator()
    */
   @Override
@@ -190,9 +174,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return map.keySet().iterator();
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#remove(java.lang.Object)
    */
   @Override
@@ -200,9 +182,7 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
     return map.remove(o) == DUMMY;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.util.AbstractCollection#size()
    */
   @Override

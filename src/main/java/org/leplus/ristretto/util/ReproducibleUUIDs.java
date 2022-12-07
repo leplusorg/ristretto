@@ -52,10 +52,22 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * @since 1.0.0
  */
 @SuppressFBWarnings("WEAK_MESSAGE_DIGEST_MD5")
-public class ReproducibleUUIDs {
+public final class ReproducibleUUIDs {
 
+  /**
+   * Underlying hash algorithm. MD5 is OK since we do not need a one-way
+   * hash function.
+   */
   private static final String MD5 = "MD5";
+
+  /**
+   * Bytes per UUID.
+   */
   private static final int UUID_BYTES = 16;
+
+  /**
+   * Buffer size for digest.
+   */
   private static final int BUFFER_SIZE = 8192;
 
   private ReproducibleUUIDs() {
@@ -108,6 +120,7 @@ public class ReproducibleUUIDs {
     return digest(md);
   }
 
+  @SuppressWarnings("checkstyle:magicnumber")
   private static UUID digest(final MessageDigest md) {
     final byte[] md5Bytes = md.digest();
     // for compatibility with UUID.nameUUIDFromBytes(byte[]).
@@ -139,7 +152,9 @@ public class ReproducibleUUIDs {
    * @return the resulting UUID.
    * @throws IOException if an I/O error occurs.
    */
-  @SuppressWarnings({ "PMD.EmptyWhileStmt", "PMD.EmptyControlStatement" })
+  @SuppressWarnings({ "PMD.EmptyWhileStmt",
+      "PMD.EmptyControlStatement",
+      "checkstyle:emptyblock" })
   public static UUID fromInputStream(final InputStream input)
       throws IOException {
     if (input == null) {

@@ -13,8 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This workflow executes several linters on changed files based on languages used in your code base whenever
-# you push a code or open a pull request.
+# This workflow executes several linters on changed files based on
+# languages used in your code base whenever you push a code or open a
+# pull request.
 #
 # You can adjust the behavior by modifying this file.
 # For more information, see:
@@ -25,7 +26,7 @@ on:
   push:
   pull_request:
   schedule:
-  - cron: '0 0 * * 0'
+    - cron: '0 0 * * 0'
   workflow_dispatch:
   
 jobs:
@@ -35,7 +36,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
+          # Full git history is needed to get a proper list of changed
+          # files within `super-linter` 
           fetch-depth: 0
 
       - name: Lint Code Base

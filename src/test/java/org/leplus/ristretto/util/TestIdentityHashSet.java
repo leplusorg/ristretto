@@ -48,7 +48,7 @@ import junit.framework.TestSuite;
     TestIdentityHashSet.GuavaTests.class,
     TestIdentityHashSet.AdditionalTests.class
   })
-public class TestIdentityHashSet {
+public final class TestIdentityHashSet {
 
   /**
    * Some additional tests.
@@ -91,7 +91,8 @@ public class TestIdentityHashSet {
     }
 
     /**
-     * Tests {@link IdentityHashSet#equals(Object)} with same object in two set.
+     * Tests {@link IdentityHashSet#equals(Object)} with same object in two
+     * sets.
      */
     @Test
     public void testEqualsOneObject() {
@@ -104,7 +105,8 @@ public class TestIdentityHashSet {
     }
 
     /**
-     * Tests {@link IdentityHashSet#equals(Object)} with different object in two set.
+     * Tests {@link IdentityHashSet#equals(Object)} with different object in
+     * two sets.
      */
     @Test
     public void testEqualsTwoObjects() {
@@ -208,20 +210,19 @@ public class TestIdentityHashSet {
    * @author Thomas Leplus
    * @since 1.0.0
    */
-  public static class GuavaTests {
+  public static final class GuavaTests {
 
     /**
      * Creates the test suite.
-     * 
+     *
      * @return the test suite
      */
     public static TestSuite suite() {
       return SetTestSuiteBuilder.using(new TestStringSetGenerator() {
 
-        /*
-         * (non-Javadoc)
-         *
-         * @see com.google.common.collect.testing.TestStringSetGenerator#create(java.lang. String[])
+        /**
+         * @see com.google.common.collect.testing.
+         * TestStringSetGenerator#create(java.lang. String[])
          */
         @Override
         protected Set<String> create(final String[] elements) {

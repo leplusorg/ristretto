@@ -87,9 +87,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
     this.delegate = list;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#clone()
    */
   @Override
@@ -99,9 +97,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
     return clone;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#delegate()
    */
   @Override
@@ -109,9 +105,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
     return delegate;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#ensureCapacity(int)
    */
   @Override
@@ -119,9 +113,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
     delegate.ensureCapacity(minCapacity);
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see org.leplus.ristretto.util.VectorAdapter#trimToSize()
    */
   @Override
@@ -129,11 +121,17 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
     delegate.trimToSize();
   }
 
+  /**
+   * @see org.leplus.ristretto.util.VectorAdapter#hashCode()
+   */
   @Override
   public int hashCode() {
     return delegate.hashCode();
   }
 
+  /**
+   * @see org.leplus.ristretto.util.VectorAdapter#equals(Object)
+   */
   @Override
   public boolean equals(final Object obj) {
     if (this == obj) {
@@ -142,6 +140,9 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
     return delegate.equals(obj);
   }
 
+  /**
+   * @see org.leplus.ristretto.util.VectorAdapter#hashCode()
+   */
   @Override
   public String toString() {
     return delegate.toString();

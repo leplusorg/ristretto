@@ -29,8 +29,11 @@ import org.junit.Test;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-public class TestUUIDConvertor {
+public final class TestUUIDConvertor {
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomBytes() {
     final SecureRandom r = new SecureRandom();
@@ -49,6 +52,9 @@ public class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((byte[]) null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomShorts() {
     for (int i = 0; i < UUIDConvertor.MAX_SHORTS; i++) {
@@ -68,6 +74,9 @@ public class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((short[]) null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomDoubles() {
     for (int i = 0; i < UUIDConvertor.MAX_DOUBLES; i++) {
@@ -87,6 +96,9 @@ public class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((double[]) null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomFloats() {
     for (int i = 0; i < UUIDConvertor.MAX_FLOATS; i++) {
@@ -106,6 +118,9 @@ public class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((float[]) null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomChars() {
     for (int i = 0; i < UUIDConvertor.MAX_CHARS; i++) {
@@ -125,6 +140,9 @@ public class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((char[]) null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomInts() {
     for (int i = 0; i < UUIDConvertor.MAX_INTS; i++) {
@@ -144,6 +162,9 @@ public class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((int[]) null));
   }
 
+  /**
+   * Test.
+   */
   @Test
   public void testRandomLongs() {
     for (int i = 0; i < UUIDConvertor.MAX_LONGS; i++) {

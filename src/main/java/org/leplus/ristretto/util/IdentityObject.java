@@ -38,9 +38,7 @@ public final class IdentityObject implements Cloneable, Serializable {
     super();
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#clone()
    */
   @Override
@@ -48,9 +46,7 @@ public final class IdentityObject implements Cloneable, Serializable {
     return IT;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -58,9 +54,7 @@ public final class IdentityObject implements Cloneable, Serializable {
     return obj instanceof IdentityObject;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -72,9 +66,7 @@ public final class IdentityObject implements Cloneable, Serializable {
     return IT;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#toString()
    */
   @Override

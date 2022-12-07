@@ -56,12 +56,16 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
       - name: Publish package
         run: |
-          if [ "${MAVEN_USERNAME}" != '' ] && [ "${MAVEN_PASSWORD}" != '' ] && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
+          if [ "${MAVEN_USERNAME}" != '' ] \
+            && [ "${MAVEN_PASSWORD}" != '' ] \
+            && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
             # shellcheck disable=SC2086
             ./mvnw ${MAVEN_CLI_OPTS} deploy
           fi
       - name: Clean up
         run: |
-          if [ "${MAVEN_USERNAME}" != '' ] && [ "${MAVEN_PASSWORD}" != '' ] && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
+          if [ "${MAVEN_USERNAME}" != '' ] \
+            && [ "${MAVEN_PASSWORD}" != '' ] \
+            && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
             rm "${HOME}/.m2/settings.xml"
           fi

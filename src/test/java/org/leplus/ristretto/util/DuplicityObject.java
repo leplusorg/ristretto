@@ -17,10 +17,11 @@
 package org.leplus.ristretto.util;
 
 /**
- * This class is meant to confuse the identity related tests. It is the evil twin sister of
- * {@link org.leplus.ristretto.util.IdentityObject}. Whereas identity can be seen as the strictest
- * form of equality (i.e. being the same object instance), instances of the DuplicityObject class
- * have the weakest form of equality (they are all equal to each other).
+ * This class is meant to confuse the identity related tests. It is the evil
+ * twin sister of {@link org.leplus.ristretto.util.IdentityObject}. Whereas
+ * identity can be seen as the strictest form of equality (i.e. being the same
+ * object instance), instances of the DuplicityObject class have the weakest
+ * form of equality (they are all equal to each other).
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -34,9 +35,7 @@ public final class DuplicityObject {
     super();
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -44,9 +43,7 @@ public final class DuplicityObject {
     return o instanceof DuplicityObject;
   }
 
-  /*
-   * (non-Javadoc)
-   *
+  /**
    * @see java.lang.Object#hashCode()
    */
   @Override
