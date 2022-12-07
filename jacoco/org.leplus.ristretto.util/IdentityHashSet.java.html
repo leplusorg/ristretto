@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IdentityHashSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ristretto</a> &gt; <a href="index.source.html" class="el_package">org.leplus.ristretto.util</a> &gt; <span class="el_source">IdentityHashSet.java</span></div><h1>IdentityHashSet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2016-present Thomas Leplus
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.leplus.ristretto.util;
+
+import java.io.Serializable;
+import java.util.AbstractSet;
+import java.util.Collection;
+import java.util.IdentityHashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+/**
+ * &lt;p&gt;This {@link java.util.Set} relies on identity (==) to compare the objects it contains. It does
+ * not matter what the objects {@link java.lang.Object#equals(java.lang.Object)} methods say.&lt;/p&gt;
+ * &lt;p&gt;This collection is Cloneable and Serializable. If you clone an instance of an IdentityHashSet,
+ * the clone is equal to the original instance (i.e. original.equals(clone) == true and
+ * clone.equals(original) == true). However this is not true for serialization, a deserialized
+ * instance of IdentityHashSet is not equal to the instance originally serialized (i.e.
+ * original.equals(deserialized) == false and deserialized.equals(original) == false).&lt;/p&gt;
+ *
+ * @author Thomas Leplus
+ * @since 1.0.0
+ *
+ * @param &lt;E&gt; the type of the elements of the set.
+ */
+public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Set&lt;E&gt;, Cloneable, Serializable {
+
+  private static final long serialVersionUID = -6954699503843913409L;
+
+  /**
+   * A dummy singleton acting as a placeholder for the values in the underlying
+   * {@link java.util.IdentityHashMap}.
+   */
+<span class="fc" id="L48">  private static final IdentityObject DUMMY = IdentityObject.IT;</span>
+
+  /**
+   * The underlying {@link java.util.IdentityHashMap} which keySet is backing the implementation of
+   * this class.
+   */
+  private IdentityHashMap&lt;E, Object&gt; map;
+
+  /**
+   * Constructs a new, empty identity hash set with a default expected maximum size (21).
+   */
+  public IdentityHashSet() {
+<span class="fc" id="L60">    super();</span>
+<span class="fc" id="L61">    map = new IdentityHashMap&lt;&gt;();</span>
+<span class="fc" id="L62">  }</span>
+
+  /**
+   * Constructs a new identity hash set containing the objects of the provided collection.
+   *
+   * @param c a collection of objects to put in this identity hash set.
+   */
+  public IdentityHashSet(final Collection&lt;? extends E&gt; c) {
+<span class="fc" id="L70">    this();</span>
+<span class="fc" id="L71">    addAll(c);</span>
+<span class="fc" id="L72">  }</span>
+
+  /**
+   * Constructs a new, empty set with the specified expected maximum size. Putting more than the
+   * expected number of objects into the set may cause the internal data structure to grow, which
+   * may be somewhat time-consuming.
+   *
+   * @param expectedMaxSize the expected maximum size of the set.
+   * @throws IllegalArgumentException if expectedMaxSize is negative.
+   */
+  public IdentityHashSet(final int expectedMaxSize) {
+<span class="fc" id="L83">    super();</span>
+<span class="fc" id="L84">    map = new IdentityHashMap&lt;&gt;(expectedMaxSize);</span>
+<span class="fc" id="L85">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#add(java.lang.Object)
+   */
+  @Override
+  public boolean add(final E e) {
+<span class="fc bfc" id="L94" title="All 2 branches covered.">    return map.put(e, DUMMY) == null;</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#clear()
+   */
+  @Override
+  public void clear() {
+<span class="fc" id="L104">    map.clear();</span>
+<span class="fc" id="L105">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.lang.Object#clone()
+   */
+  @Override
+  public Object clone() {
+    try {
+      @SuppressWarnings(&quot;unchecked&quot;)
+<span class="fc" id="L116">      final IdentityHashSet&lt;E&gt; clone = (IdentityHashSet&lt;E&gt;) super.clone();</span>
+<span class="fc" id="L117">      clone.map = new IdentityHashMap&lt;&gt;(map);</span>
+<span class="fc" id="L118">      return clone;</span>
+<span class="nc" id="L119">    } catch (final CloneNotSupportedException e) {</span>
+<span class="nc" id="L120">      throw new AssertionError(e);</span>
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#contains(java.lang.Object)
+   */
+  @Override
+  public boolean contains(final Object o) {
+<span class="fc" id="L131">    return map.containsKey(o);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractSet#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+<span class="fc bfc" id="L141" title="All 2 branches covered.">    if (this == obj) {</span>
+<span class="fc" id="L142">      return true;</span>
+    }
+<span class="fc" id="L144">    return map.keySet().equals(obj);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractSet#hashCode()
+   */
+  @Override
+  public int hashCode() {
+<span class="fc" id="L154">    int hashCode = 0;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">    for (final Object o : map.keySet()) {</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">      if (o != null) {</span>
+<span class="fc" id="L157">        hashCode += o.hashCode();</span>
+      }
+<span class="fc" id="L159">    }</span>
+<span class="fc" id="L160">    return hashCode;</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#isEmpty()
+   */
+  @Override
+  public boolean isEmpty() {
+<span class="fc" id="L170">    return map.isEmpty();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#iterator()
+   */
+  @Override
+  public Iterator&lt;E&gt; iterator() {
+<span class="fc" id="L180">    return map.keySet().iterator();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#remove(java.lang.Object)
+   */
+  @Override
+  public boolean remove(final Object o) {
+<span class="fc bfc" id="L190" title="All 2 branches covered.">    return map.remove(o) == DUMMY;</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.AbstractCollection#size()
+   */
+  @Override
+  public int size() {
+<span class="fc" id="L200">    return map.size();</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

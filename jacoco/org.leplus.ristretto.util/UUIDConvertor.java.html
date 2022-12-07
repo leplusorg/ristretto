@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UUIDConvertor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ristretto</a> &gt; <a href="index.source.html" class="el_package">org.leplus.ristretto.util</a> &gt; <span class="el_source">UUIDConvertor.java</span></div><h1>UUIDConvertor.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2016-present Thomas Leplus
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.leplus.ristretto.util;
+
+import java.nio.ByteBuffer;
+import java.util.UUID;
+
+/**
+ * &lt;p&gt;This class provides utility method to convert different primitives from/to UUID. All the
+ * methods in this class are reversible. While this is not a recommended way to generate UUIDs in
+ * general, it can be useful in situations where you need to temporarily assign a UUID to an object
+ * based on another unique ID.&lt;/p&gt;
+ * &lt;p&gt;For example if you need to convert a legacy object that has a integer or long ID into a new
+ * object that uses UUIDs, you could just generate a new UUID for the new object using
+ * {@link java.util.UUID#randomUUID()} but if you need to later link back the legacy object from the
+ * new one, you might not have a place to store the legacy ID on the new object. If you use this
+ * class's toUUID() methods to convert the legacy object's ID into the new object's UUID, you will
+ * be able to later convert back the UUID into the legacy ID. Provided the legacy IDs are unique (at
+ * least for the legacy object type), the new UUIDs produced will be as unique.&lt;/p&gt;
+ * &lt;p&gt;Another use case could be to temporarily convert a legacy object into a new object temporarily
+ * (for example for processing via a new method) and then need to convert the result back into a
+ * legacy object. Then you can similarly use the methods in this class to go back and forth between
+ * legacy IDs and UUIDs.&lt;/p&gt;
+ *
+ * @author Thomas Leplus
+ * @since 1.0.0
+ */
+public class UUIDConvertor {
+
+  /**
+   * Number of bytes in a UUID.
+   */
+  public static final int UUID_BYTES = 16;
+
+  /**
+   * Maximum number of bytes that can be converted into a UUID.
+   */
+  public static final int MAX_BYTES = UUID_BYTES / Byte.BYTES;
+
+  /**
+   * Maximum number of shorts that can be converted into a UUID.
+   */
+  public static final int MAX_SHORTS = UUID_BYTES / Short.BYTES;
+
+  /**
+   * Maximum number of doubles that can be converted into a UUID.
+   */
+  public static final int MAX_DOUBLES = UUID_BYTES / Double.BYTES;
+
+  /**
+   * Maximum number of floats that can be converted into a UUID.
+   */
+  public static final int MAX_FLOATS = UUID_BYTES / Float.BYTES;
+
+  /**
+   * Maximum number of characters that can be converted into a UUID.
+   */
+  public static final int MAX_CHARS = UUID_BYTES / Character.BYTES;
+
+  /**
+   * Maximum number of integers that can be converted into a UUID.
+   */
+  public static final int MAX_INTS = UUID_BYTES / Integer.BYTES;
+
+  /**
+   * Maximum number of longs that can be converted into a UUID.
+   */
+  public static final int MAX_LONGS = UUID_BYTES / Long.BYTES;
+
+  private UUIDConvertor() {
+    super();
+  }
+
+  private static ByteBuffer allocateByteBuffer() {
+<span class="fc" id="L89">    return ByteBuffer.allocate(UUID_BYTES);</span>
+  }
+
+  private static ByteBuffer toByteBuffer(final UUID uuid) {
+<span class="fc" id="L93">    final ByteBuffer buffer = ByteBuffer.allocate(UUID_BYTES);</span>
+<span class="fc" id="L94">    buffer.asLongBuffer().put(uuid.getMostSignificantBits()).put(uuid.getLeastSignificantBits());</span>
+<span class="fc" id="L95">    return buffer;</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_BYTES} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static byte[] toBytes(final UUID uuid) {
+<span class="fc" id="L105">    return toByteBuffer(uuid).array();</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_CHARS} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static char[] toChars(final UUID uuid) {
+<span class="fc" id="L115">    final ByteBuffer byteBuffer = toByteBuffer(uuid);</span>
+<span class="fc" id="L116">    final char[] result = new char[MAX_CHARS];</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L118">      result[i] = byteBuffer.getChar();</span>
+    }
+<span class="fc" id="L120">    return result;</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_DOUBLES} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static double[] toDoubles(final UUID uuid) {
+<span class="fc" id="L130">    final ByteBuffer byteBuffer = toByteBuffer(uuid);</span>
+<span class="fc" id="L131">    final double[] result = new double[MAX_DOUBLES];</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">    for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L133">      result[i] = byteBuffer.getDouble();</span>
+    }
+<span class="fc" id="L135">    return result;</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_FLOATS} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static float[] toFloats(final UUID uuid) {
+<span class="fc" id="L145">    final ByteBuffer byteBuffer = toByteBuffer(uuid);</span>
+<span class="fc" id="L146">    final float[] result = new float[MAX_FLOATS];</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">    for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L148">      result[i] = byteBuffer.getFloat();</span>
+    }
+<span class="fc" id="L150">    return result;</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_INTS} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static int[] toInts(final UUID uuid) {
+<span class="fc" id="L160">    final ByteBuffer byteBuffer = toByteBuffer(uuid);</span>
+<span class="fc" id="L161">    final int[] result = new int[MAX_INTS];</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">    for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L163">      result[i] = byteBuffer.getInt();</span>
+    }
+<span class="fc" id="L165">    return result;</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_LONGS} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static long[] toLongs(final UUID uuid) {
+<span class="fc" id="L175">    final ByteBuffer byteBuffer = toByteBuffer(uuid);</span>
+<span class="fc" id="L176">    final long[] result = new long[MAX_LONGS];</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">    for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L178">      result[i] = byteBuffer.getLong();</span>
+    }
+<span class="fc" id="L180">    return result;</span>
+  }
+
+  /**
+   * Converts a UUID into an array of {@value #MAX_SHORTS} bytes.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting array.
+   */
+  public static short[] toShorts(final UUID uuid) {
+<span class="fc" id="L190">    final ByteBuffer byteBuffer = toByteBuffer(uuid);</span>
+<span class="fc" id="L191">    final short[] result = new short[MAX_SHORTS];</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">    for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L193">      result[i] = byteBuffer.getShort();</span>
+    }
+<span class="fc" id="L195">    return result;</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_BYTES} bytes into an UUID. If the array is shorter than
+   * the maximum length, it will be padded with 0s. If the array is longer than the maximum length,
+   * this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param bytes the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
+   *     {@value #MAX_BYTES}.
+   */
+  public static UUID toUUID(final byte... bytes) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L209" title="All 2 branches covered.">    if (bytes == null) {</span>
+<span class="fc" id="L210">      return null;</span>
+    }
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">    if (bytes.length &gt; MAX_BYTES) {</span>
+<span class="nc" id="L213">      throw new ArrayIndexOutOfBoundsException(bytes.length);</span>
+    }
+<span class="fc" id="L215">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L216">    byteBuffer.put(bytes);</span>
+<span class="fc" id="L217">    return toUUID(byteBuffer);</span>
+  }
+
+  private static UUID toUUID(final ByteBuffer bytes) {
+<span class="fc" id="L221">    bytes.position(0);</span>
+<span class="fc" id="L222">    return new UUID(bytes.getLong(), bytes.getLong());</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_CHARS} characters into an UUID. If the array is shorter
+   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
+   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param chars the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
+   *     {@value #MAX_CHARS}.
+   */
+  public static UUID toUUID(final char... chars) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L236" title="All 2 branches covered.">    if (chars == null) {</span>
+<span class="fc" id="L237">      return null;</span>
+    }
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">    if (chars.length &gt; MAX_CHARS) {</span>
+<span class="nc" id="L240">      throw new ArrayIndexOutOfBoundsException(chars.length);</span>
+    }
+<span class="fc" id="L242">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L243">    byteBuffer.asCharBuffer().put(chars);</span>
+<span class="fc" id="L244">    return toUUID(byteBuffer);</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_DOUBLES} doubles into an UUID. If the array is shorter
+   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
+   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param doubles the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
+   *     {@value #MAX_DOUBLES}.
+   */
+  public static UUID toUUID(final double... doubles) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L258" title="All 2 branches covered.">    if (doubles == null) {</span>
+<span class="fc" id="L259">      return null;</span>
+    }
+<span class="pc bpc" id="L261" title="1 of 2 branches missed.">    if (doubles.length &gt; MAX_DOUBLES) {</span>
+<span class="nc" id="L262">      throw new ArrayIndexOutOfBoundsException(doubles.length);</span>
+    }
+<span class="fc" id="L264">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L265">    byteBuffer.asDoubleBuffer().put(doubles);</span>
+<span class="fc" id="L266">    return toUUID(byteBuffer);</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_FLOATS} floats into an UUID. If the array is shorter
+   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
+   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param floats the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
+   *      {@value #MAX_FLOATS}.
+   */
+  public static UUID toUUID(final float... floats) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L280" title="All 2 branches covered.">    if (floats == null) {</span>
+<span class="fc" id="L281">      return null;</span>
+    }
+<span class="pc bpc" id="L283" title="1 of 2 branches missed.">    if (floats.length &gt; MAX_FLOATS) {</span>
+<span class="nc" id="L284">      throw new ArrayIndexOutOfBoundsException(floats.length);</span>
+    }
+<span class="fc" id="L286">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L287">    byteBuffer.asFloatBuffer().put(floats);</span>
+<span class="fc" id="L288">    return toUUID(byteBuffer);</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_INTS} integers into an UUID. If the array is shorter
+   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
+   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param ints the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than {@value #MAX_INTS}.
+   */
+  public static UUID toUUID(final int... ints) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L301" title="All 2 branches covered.">    if (ints == null) {</span>
+<span class="fc" id="L302">      return null;</span>
+    }
+<span class="pc bpc" id="L304" title="1 of 2 branches missed.">    if (ints.length &gt; MAX_INTS) {</span>
+<span class="nc" id="L305">      throw new ArrayIndexOutOfBoundsException(ints.length);</span>
+    }
+<span class="fc" id="L307">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L308">    byteBuffer.asIntBuffer().put(ints);</span>
+<span class="fc" id="L309">    return toUUID(byteBuffer);</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_LONGS} longs into an UUID. If the array is shorter than
+   * the maximum length, it will be padded with 0s. If the array is longer than the maximum length,
+   * this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param longs the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
+   *     {@value #MAX_LONGS}.
+   */
+  public static UUID toUUID(final long... longs) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L323" title="All 2 branches covered.">    if (longs == null) {</span>
+<span class="fc" id="L324">      return null;</span>
+    }
+<span class="pc bpc" id="L326" title="1 of 2 branches missed.">    if (longs.length &gt; MAX_LONGS) {</span>
+<span class="nc" id="L327">      throw new ArrayIndexOutOfBoundsException(longs.length);</span>
+    }
+<span class="fc" id="L329">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L330">    byteBuffer.asLongBuffer().put(longs);</span>
+<span class="fc" id="L331">    return toUUID(byteBuffer);</span>
+  }
+
+  /**
+   * Converts an array of up to {@value #MAX_SHORTS} shorts into an UUID. If the array is shorter
+   * than the maximum length, it will be padded with 0s. If the array is longer than the maximum
+   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param shorts the array to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided array is longer than
+   *     {@value #MAX_SHORTS}.
+   */
+  public static UUID toUUID(final short... shorts) throws ArrayIndexOutOfBoundsException {
+<span class="fc bfc" id="L345" title="All 2 branches covered.">    if (shorts == null) {</span>
+<span class="fc" id="L346">      return null;</span>
+    }
+<span class="pc bpc" id="L348" title="1 of 2 branches missed.">    if (shorts.length &gt; MAX_SHORTS) {</span>
+<span class="nc" id="L349">      throw new ArrayIndexOutOfBoundsException(shorts.length);</span>
+    }
+<span class="fc" id="L351">    final ByteBuffer byteBuffer = allocateByteBuffer();</span>
+<span class="fc" id="L352">    byteBuffer.asShortBuffer().put(shorts);</span>
+<span class="fc" id="L353">    return toUUID(byteBuffer);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

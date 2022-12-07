@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VectorAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ristretto</a> &gt; <a href="index.source.html" class="el_package">org.leplus.ristretto.util</a> &gt; <span class="el_source">VectorAdapter.java</span></div><h1>VectorAdapter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2016-present Thomas Leplus
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.leplus.ristretto.util;
+
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Spliterator;
+import java.util.Vector;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+
+/**
+ * This adapter class extends {@link java.util.Vector} to make it easier to replace
+ * {@link java.util.Vector} uses by another {@link java.util.List} implementation.
+ *
+ * @author Thomas Leplus
+ * @since 1.0.0
+ * @see org.leplus.ristretto.util.ArrayListVector
+ *
+ * @param &lt;E&gt; type of the elements in the collection.
+ */
+public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
+
+  private static final long serialVersionUID = -5465186583387834552L;
+
+  /**
+   * Default constructor. Should be called by subclasses.
+   */
+  protected VectorAdapter() {
+<span class="fc" id="L49">    super(0);</span>
+<span class="fc" id="L50">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#add(java.lang.Object)
+   */
+  @Override
+  public boolean add(final E o) {
+<span class="fc" id="L59">    return delegate().add(o);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#add(int, java.lang.Object)
+   */
+  @Override
+  public void add(final int index, final E element) {
+<span class="fc" id="L69">    delegate().add(index, element);</span>
+<span class="fc" id="L70">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#addAll(java.util.Collection)
+   */
+  @Override
+  public boolean addAll(final Collection&lt;? extends E&gt; c) {
+<span class="fc" id="L79">    return delegate().addAll(c);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#addAll(int, java.util.Collection)
+   */
+  @Override
+  public boolean addAll(final int index, final Collection&lt;? extends E&gt; c) {
+<span class="fc" id="L89">    return delegate().addAll(index, c);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#addElement(java.lang.Object)
+   */
+  @Override
+  public void addElement(final E obj) {
+<span class="fc" id="L99">    delegate().add(obj);</span>
+<span class="fc" id="L100">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#capacity()
+   */
+  @Override
+  public int capacity() {
+    // Sadly even if underlying is an ArrayList,
+    // we don't have access to it's capacity. So
+    // the size is the closest thing we have.
+<span class="fc" id="L112">    return delegate().size();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#clear()
+   */
+  @Override
+  public void clear() {
+<span class="fc" id="L122">    delegate().clear();</span>
+<span class="fc" id="L123">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#clone()
+   */
+  @SuppressWarnings(&quot;unchecked&quot;)
+  @Override
+  public VectorAdapter&lt;E&gt; clone() {
+<span class="fc" id="L133">    return (VectorAdapter&lt;E&gt;) super.clone();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#contains(java.lang.Object)
+   */
+  @Override
+  public boolean contains(final Object elem) {
+<span class="fc" id="L143">    return delegate().contains(elem);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#containsAll(java.util.Collection)
+   */
+  @Override
+  public boolean containsAll(final Collection&lt;?&gt; c) {
+<span class="fc" id="L153">    return delegate().containsAll(c);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#copyInto(java.lang.Object[])
+   */
+  @Override
+  public void copyInto(final Object[] anArray) {
+<span class="fc" id="L163">    delegate().toArray(anArray);</span>
+<span class="fc" id="L164">  }</span>
+
+  /**
+   * Accessor to the delegate provided by subclass.
+   *
+   * @return the delegate.
+   */
+  protected abstract List&lt;E&gt; delegate();
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#elementAt(int)
+   * 
+   * @return the component at the specified index
+   */
+  @Override
+  public E elementAt(final int index) {
+<span class="fc" id="L182">    return delegate().get(index);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#elements()
+   */
+  @Override
+  public Enumeration&lt;E&gt; elements() {
+<span class="fc" id="L192">    return new Vector&lt;&gt;(delegate()).elements();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#ensureCapacity(int)
+   */
+  @Override
+  public abstract void ensureCapacity(final int minCapacity);
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+<span class="nc bnc" id="L210" title="All 2 branches missed.">    if (this == obj) {</span>
+<span class="nc" id="L211">      return true;</span>
+    }
+<span class="nc bnc" id="L213" title="All 2 branches missed.">    if (!(obj instanceof List)) {</span>
+<span class="nc" id="L214">      return false;</span>
+    }
+<span class="nc" id="L216">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">    if (delegate == null) {</span>
+<span class="nc" id="L218">      return false;</span>
+    }
+<span class="nc" id="L220">    return delegate.equals(obj);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#firstElement()
+   */
+  @Override
+  public E firstElement() {
+<span class="fc" id="L230">    return delegate().get(0);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#get(int)
+   */
+  @Override
+  public E get(final int index) {
+<span class="fc" id="L240">    return delegate().get(index);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#hashCode()
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L250">    return delegate().hashCode();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#indexOf(java.lang.Object)
+   */
+  @Override
+  public int indexOf(final Object elem) {
+<span class="fc" id="L260">    return delegate().indexOf(elem);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#indexOf(java.lang.Object, int)
+   */
+  @Override
+  public int indexOf(final Object elem, final int index) {
+<span class="fc" id="L270">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="fc" id="L271">    final int r = delegate.subList(index, delegate.size()).indexOf(elem);</span>
+<span class="pc bpc" id="L272" title="1 of 2 branches missed.">    return r &lt; 0 ? r : index + r;</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#insertElementAt(java.lang.Object, int)
+   */
+  @Override
+  public void insertElementAt(final E obj, final int index) {
+<span class="fc" id="L282">    delegate().add(index, obj);</span>
+<span class="fc" id="L283">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#isEmpty()
+   */
+  @Override
+  public boolean isEmpty() {
+<span class="fc" id="L292">    return delegate().isEmpty();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#iterator()
+   */
+  @Override
+  public Iterator&lt;E&gt; iterator() {
+<span class="fc" id="L302">    return delegate().iterator();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#lastElement()
+   */
+  @Override
+  public E lastElement() {
+<span class="fc" id="L312">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="fc" id="L313">    return delegate.get(delegate.size() - 1);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#lastIndexOf(java.lang.Object)
+   */
+  @Override
+  public int lastIndexOf(final Object elem) {
+<span class="fc" id="L323">    return delegate().lastIndexOf(elem);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#lastIndexOf(java.lang.Object, int)
+   */
+  @Override
+  public int lastIndexOf(final Object elem, final int index) {
+<span class="fc" id="L333">    return delegate().subList(0, index).lastIndexOf(elem);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#listIterator()
+   */
+  @Override
+  public ListIterator&lt;E&gt; listIterator() {
+<span class="fc" id="L343">    return delegate().listIterator();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#listIterator(int)
+   */
+  @Override
+  public ListIterator&lt;E&gt; listIterator(final int index) {
+<span class="fc" id="L353">    return delegate().listIterator(index);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#remove(int)
+   */
+  @Override
+  public E remove(final int index) {
+<span class="fc" id="L363">    return delegate().remove(index);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#remove(java.lang.Object)
+   */
+  @Override
+  public boolean remove(final Object o) {
+<span class="fc" id="L373">    return delegate().remove(o);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#removeAll(java.util.Collection)
+   */
+  @Override
+  public boolean removeAll(final Collection&lt;?&gt; c) {
+<span class="fc" id="L383">    return delegate().removeAll(c);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#removeAllElements()
+   */
+  @Override
+  public void removeAllElements() {
+<span class="fc" id="L393">    delegate().clear();</span>
+<span class="fc" id="L394">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#removeElement(java.lang.Object)
+   */
+  @Override
+  public boolean removeElement(final Object obj) {
+<span class="fc" id="L403">    return delegate().remove(obj);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#removeElementAt(int)
+   */
+  @Override
+  public void removeElementAt(final int index) {
+<span class="fc" id="L413">    delegate().remove(index);</span>
+<span class="fc" id="L414">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#removeRange(int, int)
+   */
+  @Override
+  protected void removeRange(final int fromIndex, final int toIndex) {
+<span class="fc" id="L423">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="fc bfc" id="L424" title="All 2 branches covered.">    for (int i = fromIndex; i &lt; toIndex; i++) {</span>
+<span class="fc" id="L425">      delegate.remove(fromIndex);</span>
+    }
+<span class="fc" id="L427">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#retainAll(java.util.Collection)
+   */
+  @Override
+  public boolean retainAll(final Collection&lt;?&gt; c) {
+<span class="fc" id="L436">    return delegate().retainAll(c);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#set(int, java.lang.Object)
+   */
+  @Override
+  public E set(final int index, final E element) {
+<span class="fc" id="L446">    return delegate().set(index, element);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#setElementAt(java.lang.Object, int)
+   */
+  @Override
+  public void setElementAt(final E obj, final int index) {
+<span class="fc" id="L456">    delegate().set(index, obj);</span>
+<span class="fc" id="L457">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#setSize(int)
+   */
+  @Override
+  public void setSize(final int newSize) {
+<span class="fc bfc" id="L466" title="All 2 branches covered.">    while (delegate().size() &lt; newSize) {</span>
+<span class="fc" id="L467">      add(null);</span>
+    }
+<span class="fc" id="L469">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#size()
+   */
+  @Override
+  public int size() {
+<span class="fc" id="L478">    return delegate().size();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#subList(int, int)
+   */
+  @Override
+  public List&lt;E&gt; subList(final int fromIndex, final int toIndex) {
+<span class="fc" id="L488">    return delegate().subList(fromIndex, toIndex);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#toArray()
+   */
+  @Override
+  public Object[] toArray() {
+<span class="fc" id="L498">    return delegate().toArray();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#toArray(java.lang.Object[])
+   */
+  @Override
+  public &lt;T&gt; T[] toArray(final T[] a) {
+<span class="fc" id="L508">    return delegate().toArray(a);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#toString()
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L518">    return delegate().toString();</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#trimToSize()
+   */
+  @Override
+  public abstract void trimToSize();
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#removeIf(Predicate&lt;? super E&gt;)
+   */
+  @Override
+  public boolean removeIf(Predicate&lt;? super E&gt; filter) {
+<span class="fc" id="L536">    return delegate().removeIf(filter);</span>
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#forEach(Consumer&lt;? super E&gt;)
+   */
+  @Override
+  public synchronized void forEach(Consumer&lt;? super E&gt; action) {
+<span class="fc" id="L546">    delegate().forEach(action);</span>
+<span class="fc" id="L547">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#replaceAll(UnaryOperator&lt;E&gt;)
+   */
+  @Override
+  public synchronized void replaceAll(UnaryOperator&lt;E&gt; operator) {
+<span class="fc" id="L556">    delegate().replaceAll(operator);</span>
+<span class="fc" id="L557">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#sort(Comparator&lt;? super E&gt;)
+   */
+  @Override
+  public synchronized void sort(Comparator&lt;? super E&gt; c) {
+<span class="nc" id="L566">    delegate().sort(c);</span>
+<span class="nc" id="L567">  }</span>
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see java.util.Vector#spliterator()
+   */
+  @Override
+  public Spliterator&lt;E&gt; spliterator() {
+<span class="fc" id="L576">    return delegate().spliterator();</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
