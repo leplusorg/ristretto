@@ -192,7 +192,9 @@ limitations under the License.
             </goals>
 	    <configuration>
               <source>8</source>
-	    </configuration>
+              <show>private</show>
+              <nohelp>true</nohelp>
+            </configuration>
           </execution>
 	</executions>
       </plugin>
@@ -314,6 +316,15 @@ limitations under the License.
   </build>
   <reporting>
     <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-javadoc-plugin</artifactId>
+	<version>3.4.1</version>
+        <configuration>
+          <source>8</source>
+          <show>public</show>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
