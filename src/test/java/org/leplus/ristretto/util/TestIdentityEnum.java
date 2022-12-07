@@ -36,7 +36,7 @@ import com.google.common.testing.SerializableTester;
 public class TestIdentityEnum {
 
   /**
-   * Checks that {@link IdentityEnum.IT} is equal (==) to a deep clone of
+   * Checks that IdentityEnum.IT is equal (==) to a deep clone of
    * itself.
    */
   @Test
@@ -45,7 +45,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link IdentityEnum.IT} equals() itself.
+   * Checks that IdentityEnum.IT equals() itself.
    */
   @Test
   public void testEquals() {
@@ -54,7 +54,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link IdentityEnum.IT} equals() a deep clone of itself.
+   * Checks that IdentityEnum.IT equals() a deep clone of itself.
    */
   @Test
   public void testEqualsDeepClone() {
@@ -63,7 +63,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link IdentityEnum.IT} passes guava's equality tests.
+   * Checks that IdentityEnum.IT passes guava's equality tests.
    */
   @Test
   public void testEqualsGuava() {
@@ -71,7 +71,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks {@link IdentityEnum.IT}'s hashcode remains constant.
+   * Checks IdentityEnum.IT's hashcode remains constant.
    */
   @Test
   public void testHashCode() {
@@ -80,7 +80,7 @@ public class TestIdentityEnum {
   }
 
   /**
-   * Checks that {@link IdentityEnum.IT} passes guava's serialization
+   * Checks that IdentityEnum.IT passes guava's serialization
    * tests.
    */
   @Test

@@ -35,7 +35,7 @@ import com.google.common.testing.SerializableTester;
 public class TestIdentityObject {
 
   /**
-   * Checks that {@link IdentityObject.IT} is equal
+   * Checks that IdentityObject.IT is equal
    * (==) to a shallow clone of itself.
    */
   @Test
@@ -44,7 +44,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link IdentityObject.IT} is equal
+   * Checks that IdentityObject.IT is equal
    * (==) to a deep clone of itself.
    */
   @Test
@@ -53,7 +53,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link IdentityObject.IT} equals()
+   * Checks that IdentityObject.IT equals()
    * itself.
    */
   @Test
@@ -63,7 +63,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link IdentityObject.IT} passes
+   * Checks that IdentityObject.IT passes
    * guava's equality tests.
    */
   @Test
@@ -73,7 +73,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link IdentityObject.IT} equals()
+   * Checks that IdentityObject.IT equals()
    * a shallow clone of itself.
    */
   @Test
@@ -83,7 +83,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link IdentityObject.IT} equals()
+   * Checks that IdentityObject.IT equals()
    * a deep clone of itself.
    */
   @Test
@@ -95,7 +95,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks {@link IdentityObject.IT}'s hashcode
+   * Checks IdentityObject.IT's hashcode
    * remains constant.
    */
   @Test
@@ -108,7 +108,7 @@ public class TestIdentityObject {
   }
 
   /**
-   * Checks that {@link IdentityObject.IT} passes
+   * Checks that IdentityObject.IT passes
    * guava's serialization tests.
    */
   @Test
