@@ -78,8 +78,6 @@ jobs:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       if: ${{ matrix.java == 8 }}
       run: |
-        git config user.email "publish-action@github"
-        git config user.name "publish-action"
         ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
         ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
         ./mvnw --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=false -DdeployAtEnd=false site site:stage scm-publish:publish-scm
