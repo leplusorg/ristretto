@@ -46,6 +46,16 @@ sast:
 secret_detection:
   stage: check
 
+OSV scanner:
+  image:
+    name: golang:latest
+  stage: check
+  before_script:
+    - 'go install github.com/google/osv-scanner/cmd/osv-scanner@v1'
+  script:
+    - 'PATH="${PATH}:$(go env GOPATH)/bin" osv-scanner -r .'
+  timeout: 10 minutes
+
 super linter:
   image:
     name: github/super-linter:latest
