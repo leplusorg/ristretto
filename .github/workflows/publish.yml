@@ -60,7 +60,7 @@ jobs:
             && [ "${MAVEN_PASSWORD}" != '' ] \
             && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
             # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} deploy
+            ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress deploy
           fi
       - name: Clean up
         run: |
