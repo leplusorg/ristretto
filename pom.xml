@@ -19,7 +19,7 @@ limitations under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4-SNAPSHOT</version>
   <name>Ristretto</name>
   <packaging>jar</packaging>
   <description>A small library of useful java classes.</description>
@@ -51,7 +51,7 @@ limitations under the License.
     <url>https://github.com/leplusorg/ristretto</url>
     <connection>scm:git:https://github.com/leplusorg/ristretto.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/leplusorg/ristretto.git</developerConnection>
-    <tag>v1.0.3</tag>
+    <tag>HEAD</tag>
   </scm>
   <organization>
     <name>Leplus.org</name>
