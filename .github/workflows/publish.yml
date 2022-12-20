@@ -35,6 +35,8 @@ on:
     types: [created]
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
