@@ -18,7 +18,7 @@
 # https://help.github.com/actions/language-and-framework-guides
 # /building-and-testing-java-with-maven
 
-name: Maven
+name: Dependency Check
 
 on:
   push:
