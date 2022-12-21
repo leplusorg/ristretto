@@ -67,10 +67,10 @@ jobs:
           if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
           then
             # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} verify -Dgpg.skip=true
+            ./mvnw ${MAVEN_CLI_OPTS} verify -DdependencyCheck.skip=true -Dgpg.skip=true
           else
             # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} verify
+            ./mvnw ${MAVEN_CLI_OPTS} verify -DdependencyCheck.skip=true
           fi
       - name: Scan with SonarCloud
         env:
