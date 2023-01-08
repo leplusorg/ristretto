@@ -93,7 +93,7 @@ jobs:
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
           ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true site site:stage scm-publish:publish-scm
+          ./mvnw ${MAVEN_CLI_OPTS} site site:stage scm-publish:publish-scm
       - name: Upload artifacts
         if: ${{ matrix.java == 8 }}
         uses: actions/upload-artifact@v3
