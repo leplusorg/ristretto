@@ -80,6 +80,7 @@ limitations under the License.
     <sonar.projectKey>thomasleplus_ristretto</sonar.projectKey>
     <sonar.organization>thomasleplus-github</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <dependencyCheck.version>7.4.4</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
   </properties>
   <dependencies>
@@ -256,7 +257,7 @@ limitations under the License.
       <plugin>
 	<groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.4.4</version>
+        <version>${dependencyCheck.version}</version>
         <configuration>
           <failBuildOnCVSS>7</failBuildOnCVSS>
 	  <failOnError>true</failOnError>
@@ -350,7 +351,10 @@ limitations under the License.
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.4.4</version>
+        <version>${dependencyCheck.version}</version>
+        <configuration>
+	  <skip>${dependencyCheck.skip}</skip>
+        </configuration>
         <reportSets>
           <reportSet>
             <reports>
