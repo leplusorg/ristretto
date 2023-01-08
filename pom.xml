@@ -350,7 +350,7 @@ limitations under the License.
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.4.3</version>
+        <version>7.4.4</version>
         <reportSets>
           <reportSet>
             <reports>
