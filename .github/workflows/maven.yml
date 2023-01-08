@@ -67,10 +67,10 @@ jobs:
           if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
           then
             # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} verify -DdependencyCheck.skip=true -Dgpg.skip=true
+            ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Dgpg.skip=true verify
           else
             # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} verify -DdependencyCheck.skip=true
+            ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true verify
           fi
       - name: Scan with SonarCloud
         env:
@@ -79,7 +79,7 @@ jobs:
         if: ${{ matrix.java == 11 && env.SONAR_TOKEN != '' }}
         run: |
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} \
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true \
             org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
       - name: Publish site
         env:
@@ -93,7 +93,7 @@ jobs:
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
           ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} site site:stage scm-publish:publish-scm
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true site site:stage scm-publish:publish-scm
       - name: Upload artifacts
         if: ${{ matrix.java == 8 }}
         uses: actions/upload-artifact@v3
