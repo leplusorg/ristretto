@@ -80,33 +80,33 @@ versions:
   stage: check
   timeout: 10 minutes
 
-verify:openjdk8:
+verify:jdk8:
   stage: test
-  image: maven:3-openjdk-8-slim
+  image: maven:3-eclipse-temurin-8-alpine
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
 
-verify:openjdk11:
+verify:jdk11:
   stage: test
-  image: maven:3-openjdk-11-slim
+  image: maven:3-eclipse-temurin-11-alpine
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
 
-verify:openjdk17:
+verify:jdk17:
   stage: test
-  image: maven:3-openjdk-17-slim
+  image: maven:3-eclipse-temurin-17-alpine
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
     - master
 
-verify:openjdk18:
+verify:jdk19:
   stage: test
-  image: maven:3-openjdk-18-slim
+  image: maven:3-eclipse-temurin-19-alpine
   script:
     - './mvnw $MAVEN_CLI_OPTS verify'
   only:
