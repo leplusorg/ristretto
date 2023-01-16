@@ -80,7 +80,7 @@ limitations under the License.
     <sonar.projectKey>thomasleplus_ristretto</sonar.projectKey>
     <sonar.organization>thomasleplus-github</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    <dependencyCheck.version>7.4.4</dependencyCheck.version>
+    <dependencyCheck.version>8.0.0</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
   </properties>
   <dependencies>
