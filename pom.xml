@@ -77,9 +77,6 @@ limitations under the License.
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <sonar.projectKey>thomasleplus_ristretto</sonar.projectKey>
-    <sonar.organization>thomasleplus-github</sonar.organization>
-    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <dependencyCheck.version>8.0.1</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
   </properties>
@@ -153,11 +150,6 @@ limitations under the License.
 	<groupId>org.apache.rat</groupId>
 	<artifactId>apache-rat-plugin</artifactId>
 	<version>0.15</version>
-      </plugin>
-      <plugin>
-        <groupId>org.sonarsource.scanner.maven</groupId>
-        <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.9.1.2184</version>
       </plugin>
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
