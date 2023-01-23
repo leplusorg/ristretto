@@ -72,15 +72,6 @@ jobs:
             # shellcheck disable=SC2086
             ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true verify
           fi
-      - name: Scan with SonarCloud
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        if: ${{ matrix.java == 11 && env.SONAR_TOKEN != '' }}
-        run: |
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true \
-            org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
       - name: Publish site
         env:
           GITHUB_TOKEN: ${{ github.token }}
