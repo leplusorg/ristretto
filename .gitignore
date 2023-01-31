@@ -4,6 +4,7 @@ pom.xml.next
 pom.xml.releaseBackup
 pom.xml.tag
 release.properties
+.m2/
 
 # Eclipse stuff #
 .project
@@ -23,6 +24,18 @@ build/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# AWS
+.aws/
+
+# Git
+.git-credentials
+
+# Docker
+.docker/
+
+# SSH
+.ssh/
 
 # =========================
 # Operating System Files
