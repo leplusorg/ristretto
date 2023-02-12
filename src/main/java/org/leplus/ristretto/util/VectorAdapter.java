@@ -112,9 +112,9 @@ public abstract class VectorAdapter<E> extends Vector<E> {
   /**
    * @see java.util.Vector#clone()
    */
-  @SuppressWarnings("unchecked") @Override
-  public VectorAdapter<E> clone() {
-    return (VectorAdapter<E>) super.clone();
+  @Override
+  public Object clone() {
+    return super.clone();
   }
 
   /**
