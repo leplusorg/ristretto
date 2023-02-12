@@ -17,7 +17,6 @@
 package org.leplus.ristretto.util;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -49,9 +48,37 @@ public final class TestVectorAdapter {
 
     private static class Signature implements Comparable<Signature> {
 
+        /*
+         * Replace with java.util.Arrays.compare() once Java 8 no longer
+         * supported.
+         */
+        private static <T> int compare(final T[] a, final T[] b,
+                final Comparator<? super T> cmp) {
+            Objects.requireNonNull(cmp);
+            if (a == b) {
+                return 0;
+            }
+            if (a == null || b == null) {
+                return a == null ? -1 : 1;
+            }
+            final int length = Math.min(a.length, b.length);
+            for (int i = 0; i < length; i++) {
+                final T oa = a[i];
+                final T ob = b[i];
+                if (oa != ob) {
+                    final int v = cmp.compare(oa, ob);
+                    if (v != 0) {
+                        return v;
+                    }
+                }
+            }
+            return a.length - b.length;
+        }
+
         private final String methodName;
         private final Class<?>[] methodParameterTypes;
         private final Class<?> methodReturnType;
+
         private final Class<?>[] methodExceptionTypes;
 
         public Signature(final Method method) {
@@ -72,14 +99,12 @@ public final class TestVectorAdapter {
             if (c != 0) {
                 return c;
             }
-            c = Arrays.compare(methodExceptionTypes, other.methodExceptionTypes,
-                    comp);
+            c = compare(methodExceptionTypes, other.methodExceptionTypes, comp);
             if (c != 0) {
                 return c;
             }
-            c = Arrays.compare(methodParameterTypes, other.methodParameterTypes,
+            return compare(methodParameterTypes, other.methodParameterTypes,
                     comp);
-            return c;
         }
 
         @Override
@@ -87,7 +112,7 @@ public final class TestVectorAdapter {
             if (this == obj) {
                 return true;
             }
-            if ((obj == null) || (getClass() != obj.getClass())) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             final Signature other = (Signature) obj;
@@ -121,7 +146,6 @@ public final class TestVectorAdapter {
     }
 
     public TestVectorAdapter() {
-        super();
     }
 
     /**
