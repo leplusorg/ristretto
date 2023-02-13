@@ -83,7 +83,7 @@ limitations under the License.
     <jarsigner.keypass>keypass</jarsigner.keypass>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <dependencyCheck.version>8.0.2</dependencyCheck.version>
+    <dependencyCheck.version>8.1.0</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
   </properties>
