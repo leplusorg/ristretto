@@ -113,6 +113,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * @see java.util.Vector#clone()
    */
   @Override
+  @SuppressWarnings({ "PMD.UselessOverridingMethod" }) // False-positive
   public Object clone() {
     return super.clone();
   }
