@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
-// TODO: Auto-generated Javadoc
 /**
  * Tests the {@link org.leplus.ristretto.util.VectorAdapter} class.
  *
@@ -100,13 +99,13 @@ public final class TestVectorAdapter {
 
         /** The method name. */
         private final String methodName;
-        
+
         /** The method parameter types. */
         private final Class<?>[] methodParameterTypes;
-        
+
         /** The method return type. */
         private final Class<?> methodReturnType;
-        
+
         /** The method exception types. */
         private final Class<?>[] methodExceptionTypes;
 
