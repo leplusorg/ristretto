@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
 /**
  * Tests the {@link org.leplus.ristretto.util.VectorAdapter} class.
  *
@@ -37,8 +38,18 @@ import org.junit.Test;
  */
 public final class TestVectorAdapter {
 
-    public static class ClassComparator implements Comparator<Class<?>> {
+    /**
+     * The Class ClassComparator.
+     */
+    public static final class ClassComparator implements Comparator<Class<?>> {
 
+        /**
+         * Compare.
+         *
+         * @param o1 the o 1
+         * @param o2 the o 2
+         * @return the int
+         */
         @Override
         public int compare(final Class<?> o1, final Class<?> o2) {
             return o1.toString().compareTo(o2.toString());
@@ -46,8 +57,20 @@ public final class TestVectorAdapter {
 
     }
 
-    private static class Signature implements Comparable<Signature> {
+    /**
+     * The Class Signature.
+     */
+    private static final class Signature implements Comparable<Signature> {
 
+        /**
+         * Compare.
+         *
+         * @param <T> the generic type
+         * @param a the a
+         * @param b the b
+         * @param cmp the cmp
+         * @return the int
+         */
         /*
          * Replace with java.util.Arrays.compare() once Java 8 no longer
          * supported.
@@ -75,19 +98,36 @@ public final class TestVectorAdapter {
             return a.length - b.length;
         }
 
+        /** The method name. */
         private final String methodName;
+        
+        /** The method parameter types. */
         private final Class<?>[] methodParameterTypes;
+        
+        /** The method return type. */
         private final Class<?> methodReturnType;
-
+        
+        /** The method exception types. */
         private final Class<?>[] methodExceptionTypes;
 
-        public Signature(final Method method) {
+        /**
+         * Instantiates a new signature.
+         *
+         * @param method the method
+         */
+        private Signature(final Method method) {
             methodName = method.getName();
             methodParameterTypes = method.getParameterTypes();
             methodReturnType = method.getReturnType();
             methodExceptionTypes = method.getExceptionTypes();
         }
 
+        /**
+         * Compare to.
+         *
+         * @param other the other
+         * @return the int
+         */
         @Override
         public int compareTo(final Signature other) {
             final ClassComparator comp = new ClassComparator();
@@ -107,6 +147,12 @@ public final class TestVectorAdapter {
                     comp);
         }
 
+        /**
+         * Equals.
+         *
+         * @param obj the obj
+         * @return true, if successful
+         */
         @Override
         public boolean equals(final Object obj) {
             if (this == obj) {
@@ -124,6 +170,11 @@ public final class TestVectorAdapter {
                     && Objects.equals(methodReturnType, other.methodReturnType);
         }
 
+        /**
+         * Hash code.
+         *
+         * @return the int
+         */
         @Override
         public int hashCode() {
             final int prime = 31;
@@ -133,6 +184,11 @@ public final class TestVectorAdapter {
             return prime * result + Objects.hash(methodName, methodReturnType);
         }
 
+        /**
+         * To string.
+         *
+         * @return the string
+         */
         @Override
         public String toString() {
             return methodReturnType.getName() + " " + methodName + "("
@@ -145,7 +201,11 @@ public final class TestVectorAdapter {
 
     }
 
+    /**
+     * Default constructor.
+     */
     public TestVectorAdapter() {
+        super();
     }
 
     /**
