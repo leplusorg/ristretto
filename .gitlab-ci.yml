@@ -64,6 +64,7 @@ super linter:
   stage: check
   variables:
     RUN_LOCAL: 'true'
+    USE_FIND_ALGORITHM: 'true'
     VALIDATE_ALL_CODEBASE: 'true'
     FILTER_REGEX_EXCLUDE: '(gradlew|gradlew.bat|gradle/*|mvnw|mvnw.cmd|.mvn/*)'
   before_script:
