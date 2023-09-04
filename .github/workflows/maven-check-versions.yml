@@ -28,6 +28,6 @@ jobs:
     container:
       image: leplusorg/maven-check-versions:latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Check the versions
         run: /opt/maven-check-versions.sh
