@@ -81,7 +81,7 @@ limitations under the License.
     <maven.javadoc.version>3.6.0</maven.javadoc.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <dependencyCheck.version>8.4.0</dependencyCheck.version>
+    <dependencyCheck.version>8.4.1</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
   </properties>
