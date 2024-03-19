@@ -15,6 +15,10 @@
 
 name: Scorecards supply-chain security
 on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
   workflow_dispatch:
 
 permissions: read-all
