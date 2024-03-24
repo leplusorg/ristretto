@@ -138,7 +138,7 @@ limitations under the License.
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.3.9</version>
+                  <version>3.6.3</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>1.8</version>
