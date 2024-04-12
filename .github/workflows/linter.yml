@@ -52,5 +52,5 @@ jobs:
           FILTER_REGEX_EXCLUDE: '(gradlew|gradlew.bat|gradle/*|mvnw|mvnw.cmd|.mvn/*)'
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVA_FILE_NAME: google_checks.xml
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
