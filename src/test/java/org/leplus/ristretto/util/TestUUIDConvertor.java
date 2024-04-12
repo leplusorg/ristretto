@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.security.SecureRandom;
-
 import org.junit.Test;
 
 /**
@@ -31,17 +30,14 @@ import org.junit.Test;
  */
 public final class TestUUIDConvertor {
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomBytes() {
     final SecureRandom r = new SecureRandom();
     for (int i = 0; i < UUIDConvertor.MAX_BYTES; i++) {
       final byte[] input = new byte[i];
       r.nextBytes(input);
-      final byte[] output = UUIDConvertor
-          .toBytes(UUIDConvertor.toUUID(input));
+      final byte[] output = UUIDConvertor.toBytes(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j]);
       }
@@ -52,9 +48,7 @@ public final class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((byte[]) null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomShorts() {
     for (int i = 0; i < UUIDConvertor.MAX_SHORTS; i++) {
@@ -62,8 +56,7 @@ public final class TestUUIDConvertor {
       for (int j = 0; j < i; j++) {
         input[j] = (short) (Math.random() * Short.MIN_VALUE);
       }
-      final short[] output = UUIDConvertor
-          .toShorts(UUIDConvertor.toUUID(input));
+      final short[] output = UUIDConvertor.toShorts(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j], 0);
       }
@@ -74,9 +67,7 @@ public final class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((short[]) null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomDoubles() {
     for (int i = 0; i < UUIDConvertor.MAX_DOUBLES; i++) {
@@ -84,8 +75,7 @@ public final class TestUUIDConvertor {
       for (int j = 0; j < i; j++) {
         input[j] = (long) (Math.random() * Long.MIN_VALUE);
       }
-      final double[] output = UUIDConvertor
-          .toDoubles(UUIDConvertor.toUUID(input));
+      final double[] output = UUIDConvertor.toDoubles(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j], 0);
       }
@@ -96,9 +86,7 @@ public final class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((double[]) null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomFloats() {
     for (int i = 0; i < UUIDConvertor.MAX_FLOATS; i++) {
@@ -106,8 +94,7 @@ public final class TestUUIDConvertor {
       for (int j = 0; j < i; j++) {
         input[j] = (float) (Math.random() * Float.MIN_VALUE);
       }
-      final float[] output = UUIDConvertor
-          .toFloats(UUIDConvertor.toUUID(input));
+      final float[] output = UUIDConvertor.toFloats(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j], 0);
       }
@@ -118,9 +105,7 @@ public final class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((float[]) null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomChars() {
     for (int i = 0; i < UUIDConvertor.MAX_CHARS; i++) {
@@ -128,8 +113,7 @@ public final class TestUUIDConvertor {
       for (int j = 0; j < i; j++) {
         input[j] = (char) (Math.random() * Character.MIN_VALUE);
       }
-      final char[] output = UUIDConvertor
-          .toChars(UUIDConvertor.toUUID(input));
+      final char[] output = UUIDConvertor.toChars(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j], 0);
       }
@@ -140,9 +124,7 @@ public final class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((char[]) null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomInts() {
     for (int i = 0; i < UUIDConvertor.MAX_INTS; i++) {
@@ -150,8 +132,7 @@ public final class TestUUIDConvertor {
       for (int j = 0; j < i; j++) {
         input[j] = (int) (Math.random() * Integer.MIN_VALUE);
       }
-      final int[] output = UUIDConvertor
-          .toInts(UUIDConvertor.toUUID(input));
+      final int[] output = UUIDConvertor.toInts(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j], 0);
       }
@@ -162,9 +143,7 @@ public final class TestUUIDConvertor {
     assertNull(UUIDConvertor.toUUID((int[]) null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testRandomLongs() {
     for (int i = 0; i < UUIDConvertor.MAX_LONGS; i++) {
@@ -172,8 +151,7 @@ public final class TestUUIDConvertor {
       for (int j = 0; j < i; j++) {
         input[j] = (long) (Math.random() * Long.MIN_VALUE);
       }
-      final long[] output = UUIDConvertor
-          .toLongs(UUIDConvertor.toUUID(input));
+      final long[] output = UUIDConvertor.toLongs(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j], 0);
       }
@@ -183,5 +161,4 @@ public final class TestUUIDConvertor {
     }
     assertNull(UUIDConvertor.toUUID((long[]) null));
   }
-
 }
