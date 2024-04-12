@@ -55,4 +55,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: List
-        run: ls -al /action/lib/.automation/
+        run: find / -name '*.xml'
