@@ -29,23 +29,19 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
- * This adapter class extends {@link java.util.Vector} to make it easier to
- * replace {@link java.util.Vector} uses by another {@link java.util.List}
- * implementation.
+ * This adapter class extends {@link java.util.Vector} to make it easier to replace {@link
+ * java.util.Vector} uses by another {@link java.util.List} implementation.
  *
  * @author Thomas Leplus
  * @since 1.0.0
  * @see org.leplus.ristretto.util.ArrayListVector
- *
  * @param <E> type of the elements in the collection.
  */
 public abstract class VectorAdapter<E> extends Vector<E> {
 
   private static final long serialVersionUID = -5465186583387834552L;
 
-  /**
-   * Default constructor. Should be called by subclasses.
-   */
+  /** Default constructor. Should be called by subclasses. */
   protected VectorAdapter() {
     super(0);
   }
@@ -113,7 +109,7 @@ public abstract class VectorAdapter<E> extends Vector<E> {
    * @see java.util.Vector#clone()
    */
   @Override
-  @SuppressWarnings({ "PMD.UselessOverridingMethod" }) // False-positive
+  @SuppressWarnings({"PMD.UselessOverridingMethod"}) // False-positive
   public Object clone() {
     return super.clone();
   }
@@ -151,7 +147,6 @@ public abstract class VectorAdapter<E> extends Vector<E> {
 
   /**
    * @see java.util.Vector#elementAt(int)
-   *
    * @return the component at the specified index
    */
   @Override
@@ -476,5 +471,4 @@ public abstract class VectorAdapter<E> extends Vector<E> {
   public Spliterator<E> spliterator() {
     return delegate().spliterator();
   }
-
 }

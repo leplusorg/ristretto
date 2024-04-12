@@ -24,55 +24,43 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * <p>
- * This {@link java.util.Set} relies on identity (==) to compare the objects
- * it contains. It does not matter what the objects
- * {@link java.lang.Object#equals(java.lang.Object)} methods say.
- * </p>
- * <p>
- * This collection is Cloneable and Serializable. If you clone an instance of
- * an IdentityHashSet, the clone is equal to the original instance (i.e.
- * original.equals(clone) == true and clone.equals(original) == true). However
- * this is not true for serialization, a deserialized instance of
- * IdentityHashSet is not equal to the instance originally serialized (i.e.
- * original.equals(deserialized) == false and
- * deserialized.equals(original) == false).
- * </p>
+ * This {@link java.util.Set} relies on identity (==) to compare the objects it contains. It does
+ * not matter what the objects {@link java.lang.Object#equals(java.lang.Object)} methods say.
+ *
+ * <p>This collection is Cloneable and Serializable. If you clone an instance of an IdentityHashSet,
+ * the clone is equal to the original instance (i.e. original.equals(clone) == true and
+ * clone.equals(original) == true). However this is not true for serialization, a deserialized
+ * instance of IdentityHashSet is not equal to the instance originally serialized (i.e.
+ * original.equals(deserialized) == false and deserialized.equals(original) == false).
  *
  * @author Thomas Leplus
  * @since 1.0.0
- *
  * @param <E> the type of the elements of the set.
  */
-public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
-  Cloneable, Serializable {
+public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, Serializable {
 
   private static final long serialVersionUID = -6954699503843913409L;
 
   /**
-   * A dummy singleton acting as a placeholder for the values in the
-   * underlying {@link java.util.IdentityHashMap}.
+   * A dummy singleton acting as a placeholder for the values in the underlying {@link
+   * java.util.IdentityHashMap}.
    */
   private static final IdentityObject DUMMY = IdentityObject.IT;
 
   /**
-   * The underlying {@link java.util.IdentityHashMap} which keySet is backing
-   * the implementation of this class.
+   * The underlying {@link java.util.IdentityHashMap} which keySet is backing the implementation of
+   * this class.
    */
   private IdentityHashMap<E, Object> map;
 
-  /**
-   * Constructs a new, empty identity hash set with a default expected maximum
-   * size (21).
-   */
+  /** Constructs a new, empty identity hash set with a default expected maximum size (21). */
   public IdentityHashSet() {
     super();
     map = new IdentityHashMap<>();
   }
 
   /**
-   * Constructs a new identity hash set containing the objects of the provided
-   * collection.
+   * Constructs a new identity hash set containing the objects of the provided collection.
    *
    * @param c a collection of objects to put in this identity hash set.
    */
@@ -82,9 +70,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
   }
 
   /**
-   * Constructs a new, empty set with the specified expected maximum size.
-   * Putting more than the expected number of objects into the set may cause
-   * the internal data structure to grow, which may be somewhat time-consuming.
+   * Constructs a new, empty set with the specified expected maximum size. Putting more than the
+   * expected number of objects into the set may cause the internal data structure to grow, which
+   * may be somewhat time-consuming.
    *
    * @param expectedMaxSize the expected maximum size of the set.
    * @throws IllegalArgumentException if expectedMaxSize is negative.
@@ -189,5 +177,4 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>,
   public int size() {
     return map.size();
   }
-
 }

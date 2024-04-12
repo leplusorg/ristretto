@@ -22,21 +22,18 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.Set;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-
 import com.google.common.collect.testing.SetTestSuiteBuilder;
 import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.SetFeature;
 import com.google.common.testing.EqualsTester;
-
+import java.util.Arrays;
+import java.util.Set;
 import junit.framework.TestSuite;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
 /**
  * Tests the {@link org.leplus.ristretto.util.IdentityHashSet} class.
@@ -44,10 +41,11 @@ import junit.framework.TestSuite;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-@RunWith(Suite.class) @Suite.SuiteClasses({
-    TestIdentityHashSet.GuavaTests.class,
-    TestIdentityHashSet.AdditionalTests.class
-  })
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+  TestIdentityHashSet.GuavaTests.class,
+  TestIdentityHashSet.AdditionalTests.class
+})
 public final class TestIdentityHashSet {
 
   /**
@@ -58,9 +56,7 @@ public final class TestIdentityHashSet {
    */
   public static class AdditionalTests {
 
-    /**
-     * Tests {@link IdentityHashSet#clear()}.
-     */
+    /** Tests {@link IdentityHashSet#clear()}. */
     @Test
     public void testClear() {
       final Set<DuplicityObject> set = new IdentityHashSet<>();
@@ -73,16 +69,13 @@ public final class TestIdentityHashSet {
       assertEquals(0, set.size());
     }
 
-    /**
-     * Tests {@link IdentityHashSet#clone()}.
-     */
+    /** Tests {@link IdentityHashSet#clone()}. */
     @Test
     public void testClone() {
       final IdentityHashSet<DuplicityObject> set1 = new IdentityHashSet<>();
       set1.add(new DuplicityObject());
       @SuppressWarnings("unchecked")
-      final IdentityHashSet<DuplicityObject> set2 =
-        (IdentityHashSet<DuplicityObject>) set1.clone();
+      final IdentityHashSet<DuplicityObject> set2 = (IdentityHashSet<DuplicityObject>) set1.clone();
       assertEquals(set1, set2);
       assertSame(set1.iterator().next(), set2.iterator().next());
       set1.clear();
@@ -90,10 +83,7 @@ public final class TestIdentityHashSet {
       assertEquals(1, set2.size());
     }
 
-    /**
-     * Tests {@link IdentityHashSet#equals(Object)} with same object in two
-     * sets.
-     */
+    /** Tests {@link IdentityHashSet#equals(Object)} with same object in two sets. */
     @Test
     public void testEqualsOneObject() {
       final DuplicityObject d = new DuplicityObject();
@@ -104,10 +94,7 @@ public final class TestIdentityHashSet {
       assertEquals(set1, set2);
     }
 
-    /**
-     * Tests {@link IdentityHashSet#equals(Object)} with different object in
-     * two sets.
-     */
+    /** Tests {@link IdentityHashSet#equals(Object)} with different object in two sets. */
     @Test
     public void testEqualsTwoObjects() {
       final Set<DuplicityObject> set1 = new IdentityHashSet<>();
@@ -117,24 +104,18 @@ public final class TestIdentityHashSet {
       assertNotEquals(set1, set2);
     }
 
-    /**
-     * Tests {@link IdentityHashSet#hashCode()}.
-     */
+    /** Tests {@link IdentityHashSet#hashCode()}. */
     @Test
     public void testHashCode() {
       final DuplicityObject a = new DuplicityObject();
       final DuplicityObject b = new DuplicityObject();
       final DuplicityObject c = new DuplicityObject();
-      final Set<DuplicityObject> set1 =
-          new IdentityHashSet<>(Arrays.asList(a, b, c));
-      final Set<DuplicityObject> set2 =
-          new IdentityHashSet<>(Arrays.asList(b, c, a));
+      final Set<DuplicityObject> set1 = new IdentityHashSet<>(Arrays.asList(a, b, c));
+      final Set<DuplicityObject> set2 = new IdentityHashSet<>(Arrays.asList(b, c, a));
       assertEquals(set1.hashCode(), set2.hashCode());
     }
 
-    /**
-     * Tests {@link IdentityHashSet#isEmpty()}.
-     */
+    /** Tests {@link IdentityHashSet#isEmpty()}. */
     @Test
     public void testIsEmpty() {
       final Set<DuplicityObject> set = new IdentityHashSet<>();
@@ -142,9 +123,7 @@ public final class TestIdentityHashSet {
       assertEquals(0, set.size());
     }
 
-    /**
-     * Tests {@link IdentityHashSet#size()}.
-     */
+    /** Tests {@link IdentityHashSet#size()}. */
     @Test
     public void testNotEmpty() {
       final Set<DuplicityObject> set = new IdentityHashSet<>();
@@ -153,9 +132,7 @@ public final class TestIdentityHashSet {
       assertEquals(1, set.size());
     }
 
-    /**
-     * Various tests with single object.
-     */
+    /** Various tests with single object. */
     @Test
     public void testOneObject() {
       final Set<DuplicityObject> set = new IdentityHashSet<>();
@@ -172,9 +149,7 @@ public final class TestIdentityHashSet {
       assertEquals(0, set.size());
     }
 
-    /**
-     * Various tests with two different objects.
-     */
+    /** Various tests with two different objects. */
     @Test
     public void testTwoObjects() {
       final Set<DuplicityObject> set = new IdentityHashSet<>();
@@ -185,23 +160,24 @@ public final class TestIdentityHashSet {
       assertFalse(set.contains(new DuplicityObject()));
     }
 
-    /**
-     * Various equality tests.
-     */
+    /** Various equality tests. */
     @Test
     public void testEquals() {
       final DuplicityObject d = new DuplicityObject();
       new EqualsTester()
-        .addEqualityGroup(new IdentityHashSet<DuplicityObject>(0),
-          new IdentityHashSet<DuplicityObject>()).testEquals();
+          .addEqualityGroup(
+              new IdentityHashSet<DuplicityObject>(0), new IdentityHashSet<DuplicityObject>())
+          .testEquals();
       new EqualsTester()
-        .addEqualityGroup(new IdentityHashSet<>(Arrays.asList(d)),
-          new IdentityHashSet<>(Arrays.asList(d))).testEquals();
+          .addEqualityGroup(
+              new IdentityHashSet<>(Arrays.asList(d)), new IdentityHashSet<>(Arrays.asList(d)))
+          .testEquals();
       new EqualsTester()
-        .addEqualityGroup(new IdentityHashSet<>(Arrays.asList(d, d, d)),
-          new IdentityHashSet<>(Arrays.asList(d, d, d))).testEquals();
+          .addEqualityGroup(
+              new IdentityHashSet<>(Arrays.asList(d, d, d)),
+              new IdentityHashSet<>(Arrays.asList(d, d, d)))
+          .testEquals();
     }
-
   }
 
   /**
@@ -218,19 +194,21 @@ public final class TestIdentityHashSet {
      * @return the test suite
      */
     public static TestSuite suite() {
-      return SetTestSuiteBuilder.using(new TestStringSetGenerator() {
+      return SetTestSuiteBuilder.using(
+              new TestStringSetGenerator() {
 
-        /**
-         * @see com.google.common.collect.testing.
-         * TestStringSetGenerator#create(java.lang. String[])
-         */
-        @Override
-        protected Set<String> create(final String[] elements) {
-          return new IdentityHashSet<>(Arrays.asList(elements));
-        }
-
-      }).named("IdentityHashSet tests")
-          .withFeatures(SetFeature.GENERAL_PURPOSE,
+                /**
+                 * @see com.google.common.collect.testing. TestStringSetGenerator#create(java.lang.
+                 *     String[])
+                 */
+                @Override
+                protected Set<String> create(final String[] elements) {
+                  return new IdentityHashSet<>(Arrays.asList(elements));
+                }
+              })
+          .named("IdentityHashSet tests")
+          .withFeatures(
+              SetFeature.GENERAL_PURPOSE,
               CollectionFeature.ALLOWS_NULL_QUERIES,
               CollectionFeature.ALLOWS_NULL_VALUES,
               CollectionFeature.DESCENDING_VIEW,
@@ -256,7 +234,5 @@ public final class TestIdentityHashSet {
               CollectionSize.ZERO)
           .createTestSuite();
     }
-
   }
-
 }

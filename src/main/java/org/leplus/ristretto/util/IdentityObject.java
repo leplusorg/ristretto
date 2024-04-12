@@ -19,8 +19,8 @@ package org.leplus.ristretto.util;
 import java.io.Serializable;
 
 /**
- * This class is a singleton. It supports serialization and cloning. In both
- * case the unique instance of IdentityObject remains the same object.
+ * This class is a singleton. It supports serialization and cloning. In both case the unique
+ * instance of IdentityObject remains the same object.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -29,9 +29,7 @@ public final class IdentityObject implements Cloneable, Serializable {
 
   private static final long serialVersionUID = Long.MAX_VALUE;
 
-  /**
-   * The singleton.
-   */
+  /** The singleton. */
   public static final IdentityObject IT = new IdentityObject();
 
   private IdentityObject() {
@@ -73,5 +71,4 @@ public final class IdentityObject implements Cloneable, Serializable {
   public String toString() {
     return getClass().getName();
   }
-
 }
