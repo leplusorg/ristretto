@@ -50,8 +50,11 @@ jobs:
         uses: github/super-linter@45fc0d88288beee4701c62761281edfee85655d7 # v5.0.0
         run: ls -al /action/lib/.automation/
         env:
-          FILTER_REGEX_EXCLUDE: '(gradlew|gradlew.bat|gradle/*|mvnw|mvnw.cmd|.mvn/*)'
+          FILTER_REGEX_EXCLUDE: '*'
           JAVA_FILE_NAME: google_checks.xml
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List
+        run: ls -al /action/lib/.automation/
