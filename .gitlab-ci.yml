@@ -58,7 +58,7 @@ OSV scanner:
 
 super linter:
   image:
-    name: super-linter/super-linter:latest
+    name: ghcr.io/super-linter/super-linter:latest
     entrypoint:
       - ''
   stage: check
