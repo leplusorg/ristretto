@@ -54,4 +54,4 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JAVA_FILE_NAME=google_checks.xml
+          JAVA_FILE_NAME: google_checks.xml
