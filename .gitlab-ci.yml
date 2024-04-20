@@ -64,6 +64,7 @@ super linter:
   stage: check
   variables:
     RUN_LOCAL: 'true'
+    DEFAULT_BRANCH: 'main'
     USE_FIND_ALGORITHM: 'true'
     VALIDATE_ALL_CODEBASE: 'true'
     LINTER_RULES_PATH: '.'
