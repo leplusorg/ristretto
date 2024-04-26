@@ -62,4 +62,4 @@ jobs:
           name: ${{ github.workflow }}
           path: target/
       - name: Clean up
-        run: rm .m2/settings.xml
+        run: rm "${HOME}/.m2/settings.xml"

@@ -63,4 +63,4 @@ jobs:
           ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress deploy
       - name: Clean up
         run: |
-          rm .m2/settings.xml
+          rm "${HOME}/.m2/settings.xml"
