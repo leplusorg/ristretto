@@ -59,7 +59,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
         with:
-          name: ${{ env.REPOSITORY }}
+          name: ${{ github.workflow }}
           path: target/
       - name: Clean up
-        run: rm "${HOME}/.m2/settings.xml"
+        run: rm .m2/settings.xml

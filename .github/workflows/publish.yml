@@ -39,6 +39,7 @@ permissions: {}
 
 jobs:
   publish:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
       MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
@@ -58,16 +59,8 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
       - name: Publish package
         run: |
-          if [ "${MAVEN_USERNAME}" != '' ] \
-            && [ "${MAVEN_PASSWORD}" != '' ] \
-            && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
-            # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress deploy
-          fi
+          # shellcheck disable=SC2086
+          ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress deploy
       - name: Clean up
         run: |
-          if [ "${MAVEN_USERNAME}" != '' ] \
-            && [ "${MAVEN_PASSWORD}" != '' ] \
-            && [ "${MAVEN_GPG_PASSPHRASE}" != '' ]; then
-            rm "${HOME}/.m2/settings.xml"
-          fi
+          rm .m2/settings.xml
