@@ -78,7 +78,7 @@ super linter:
 
 versions:
   image:
-    name: leplusorg/maven-check-versions:latest
+    name: leplusorg/maven-check-versions:1.0.0@sha256:e8f760bb1faf3d3c333d75810e82289fdd275688421cc8bad04cdbbc757ae5a5
   script:
     - '/opt/maven-check-versions.sh'
   stage: check
