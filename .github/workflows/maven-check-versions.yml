@@ -28,4 +28,5 @@ jobs:
     steps:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - name: Check the versions
-        uses: docker://leplusorg/maven-check-versions:1.0.0@sha256:e8f760bb1faf3d3c333d75810e82289fdd275688421cc8bad04cdbbc757ae5a5
+#        uses: docker://leplusorg/maven-check-versions:1.0.0@sha256:e8f760bb1faf3d3c333d75810e82289fdd275688421cc8bad04cdbbc757ae5a5
+        uses: docker://amazon/aws-cli:2.15.60@sha256:293e7098868b734bdcb547b10e3689cb91e946ef4f5926f215679c49cf9e8418
