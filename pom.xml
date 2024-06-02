@@ -78,7 +78,7 @@ limitations under the License.
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-    <maven.javadoc.version>3.6.3</maven.javadoc.version>
+    <maven.javadoc.version>3.7.0</maven.javadoc.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <dependencyCheck.version>9.2.0</dependencyCheck.version>
