@@ -88,6 +88,10 @@ jobs:
           git config --global user.name "${GITHUB_REPOSITORY_OWNER}"
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
           ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
+	  echo >> ~/.ssh/config
+	  echo 'Host github' >> ~/.ssh/config
+	  echo '    HostName github.com' >> ~/.ssh/config
+	  echo '    User git' >> ~/.ssh/config
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} site site:stage scm-publish:publish-scm
       - name: Upload artifacts
