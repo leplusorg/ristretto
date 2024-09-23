@@ -29,29 +29,33 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
- * This adapter class extends {@link java.util.Vector} to make it easier to replace {@link
- * java.util.Vector} uses by another {@link java.util.List} implementation.
+ * This adapter class extends {@link java.util.Vector} to make it easier to
+ * replace {@link java.util.Vector} uses by another {@link java.util.List}
+ * implementation.
  *
  * @author Thomas Leplus
  * @since 1.0.0
  * @see org.leplus.ristretto.util.ArrayListVector
+ *
  * @param &lt;E&gt; type of the elements in the collection.
  */
 public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
 
   private static final long serialVersionUID = -5465186583387834552L;
 
-  /** Default constructor. Should be called by subclasses. */
+  /**
+   * Default constructor. Should be called by subclasses.
+   */
   protected VectorAdapter() {
-<span class="fc" id="L46">    super(0);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L50">    super(0);</span>
+<span class="fc" id="L51">  }</span>
 
   /**
    * @see java.util.Vector#add(java.lang.Object)
    */
   @Override
   public boolean add(final E o) {
-<span class="fc" id="L54">    return delegate().add(o);</span>
+<span class="fc" id="L58">    return delegate().add(o);</span>
   }
 
   /**
@@ -59,15 +63,15 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void add(final int index, final E element) {
-<span class="fc" id="L62">    delegate().add(index, element);</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L66">    delegate().add(index, element);</span>
+<span class="fc" id="L67">  }</span>
 
   /**
    * @see java.util.Vector#addAll(java.util.Collection)
    */
   @Override
   public boolean addAll(final Collection&lt;? extends E&gt; c) {
-<span class="fc" id="L70">    return delegate().addAll(c);</span>
+<span class="fc" id="L74">    return delegate().addAll(c);</span>
   }
 
   /**
@@ -75,7 +79,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean addAll(final int index, final Collection&lt;? extends E&gt; c) {
-<span class="fc" id="L78">    return delegate().addAll(index, c);</span>
+<span class="fc" id="L82">    return delegate().addAll(index, c);</span>
   }
 
   /**
@@ -83,8 +87,8 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void addElement(final E obj) {
-<span class="fc" id="L86">    delegate().add(obj);</span>
-<span class="fc" id="L87">  }</span>
+<span class="fc" id="L90">    delegate().add(obj);</span>
+<span class="fc" id="L91">  }</span>
 
   /**
    * @see java.util.Vector#capacity()
@@ -94,7 +98,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
     // Sadly even if underlying is an ArrayList,
     // we don't have access to it's capacity. So
     // the size is the closest thing we have.
-<span class="fc" id="L97">    return delegate().size();</span>
+<span class="fc" id="L101">    return delegate().size();</span>
   }
 
   /**
@@ -102,16 +106,15 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void clear() {
-<span class="fc" id="L105">    delegate().clear();</span>
-<span class="fc" id="L106">  }</span>
+<span class="fc" id="L109">    delegate().clear();</span>
+<span class="fc" id="L110">  }</span>
 
   /**
    * @see java.util.Vector#clone()
    */
-  @Override
-  @SuppressWarnings({&quot;PMD.UselessOverridingMethod&quot;}) // False-positive
-  public Object clone() {
-<span class="fc" id="L114">    return super.clone();</span>
+  @SuppressWarnings(&quot;unchecked&quot;) @Override
+  public VectorAdapter&lt;E&gt; clone() {
+<span class="fc" id="L117">    return (VectorAdapter&lt;E&gt;) super.clone();</span>
   }
 
   /**
@@ -119,7 +122,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean contains(final Object elem) {
-<span class="fc" id="L122">    return delegate().contains(elem);</span>
+<span class="fc" id="L125">    return delegate().contains(elem);</span>
   }
 
   /**
@@ -127,7 +130,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean containsAll(final Collection&lt;?&gt; c) {
-<span class="fc" id="L130">    return delegate().containsAll(c);</span>
+<span class="fc" id="L133">    return delegate().containsAll(c);</span>
   }
 
   /**
@@ -135,8 +138,8 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void copyInto(final Object[] anArray) {
-<span class="fc" id="L138">    delegate().toArray(anArray);</span>
-<span class="fc" id="L139">  }</span>
+<span class="fc" id="L141">    delegate().toArray(anArray);</span>
+<span class="fc" id="L142">  }</span>
 
   /**
    * Accessor to the delegate provided by subclass.
@@ -147,11 +150,12 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
 
   /**
    * @see java.util.Vector#elementAt(int)
+   *
    * @return the component at the specified index
    */
   @Override
   public E elementAt(final int index) {
-<span class="fc" id="L154">    return delegate().get(index);</span>
+<span class="fc" id="L158">    return delegate().get(index);</span>
   }
 
   /**
@@ -159,7 +163,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public Enumeration&lt;E&gt; elements() {
-<span class="fc" id="L162">    return new Vector&lt;&gt;(delegate()).elements();</span>
+<span class="fc" id="L166">    return new Vector&lt;&gt;(delegate()).elements();</span>
   }
 
   /**
@@ -173,17 +177,17 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean equals(final Object obj) {
-<span class="nc bnc" id="L176" title="All 2 branches missed.">    if (this == obj) {</span>
-<span class="nc" id="L177">      return true;</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">    if (this == obj) {</span>
+<span class="nc" id="L181">      return true;</span>
     }
-<span class="nc bnc" id="L179" title="All 2 branches missed.">    if (!(obj instanceof List)) {</span>
-<span class="nc" id="L180">      return false;</span>
-    }
-<span class="nc" id="L182">    final List&lt;E&gt; delegate = delegate();</span>
-<span class="nc bnc" id="L183" title="All 2 branches missed.">    if (delegate == null) {</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">    if (!(obj instanceof List)) {</span>
 <span class="nc" id="L184">      return false;</span>
     }
-<span class="nc" id="L186">    return delegate.equals(obj);</span>
+<span class="nc" id="L186">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">    if (delegate == null) {</span>
+<span class="nc" id="L188">      return false;</span>
+    }
+<span class="nc" id="L190">    return delegate.equals(obj);</span>
   }
 
   /**
@@ -191,7 +195,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public E firstElement() {
-<span class="fc" id="L194">    return delegate().get(0);</span>
+<span class="fc" id="L198">    return delegate().get(0);</span>
   }
 
   /**
@@ -199,7 +203,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public E get(final int index) {
-<span class="fc" id="L202">    return delegate().get(index);</span>
+<span class="fc" id="L206">    return delegate().get(index);</span>
   }
 
   /**
@@ -207,7 +211,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public int hashCode() {
-<span class="nc" id="L210">    return delegate().hashCode();</span>
+<span class="nc" id="L214">    return delegate().hashCode();</span>
   }
 
   /**
@@ -215,7 +219,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public int indexOf(final Object elem) {
-<span class="fc" id="L218">    return delegate().indexOf(elem);</span>
+<span class="fc" id="L222">    return delegate().indexOf(elem);</span>
   }
 
   /**
@@ -223,9 +227,9 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public int indexOf(final Object elem, final int index) {
-<span class="fc" id="L226">    final List&lt;E&gt; delegate = delegate();</span>
-<span class="fc" id="L227">    final int r = delegate.subList(index, delegate.size()).indexOf(elem);</span>
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">    return r &lt; 0 ? r : index + r;</span>
+<span class="fc" id="L230">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="fc" id="L231">    final int r = delegate.subList(index, delegate.size()).indexOf(elem);</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">    return r &lt; 0 ? r : index + r;</span>
   }
 
   /**
@@ -233,15 +237,15 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void insertElementAt(final E obj, final int index) {
-<span class="fc" id="L236">    delegate().add(index, obj);</span>
-<span class="fc" id="L237">  }</span>
+<span class="fc" id="L240">    delegate().add(index, obj);</span>
+<span class="fc" id="L241">  }</span>
 
   /**
    * @see java.util.Vector#isEmpty()
    */
   @Override
   public boolean isEmpty() {
-<span class="fc" id="L244">    return delegate().isEmpty();</span>
+<span class="fc" id="L248">    return delegate().isEmpty();</span>
   }
 
   /**
@@ -249,7 +253,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public Iterator&lt;E&gt; iterator() {
-<span class="fc" id="L252">    return delegate().iterator();</span>
+<span class="fc" id="L256">    return delegate().iterator();</span>
   }
 
   /**
@@ -257,8 +261,8 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public E lastElement() {
-<span class="fc" id="L260">    final List&lt;E&gt; delegate = delegate();</span>
-<span class="fc" id="L261">    return delegate.get(delegate.size() - 1);</span>
+<span class="fc" id="L264">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="fc" id="L265">    return delegate.get(delegate.size() - 1);</span>
   }
 
   /**
@@ -266,7 +270,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public int lastIndexOf(final Object elem) {
-<span class="fc" id="L269">    return delegate().lastIndexOf(elem);</span>
+<span class="fc" id="L273">    return delegate().lastIndexOf(elem);</span>
   }
 
   /**
@@ -274,7 +278,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public int lastIndexOf(final Object elem, final int index) {
-<span class="fc" id="L277">    return delegate().subList(0, index).lastIndexOf(elem);</span>
+<span class="fc" id="L281">    return delegate().subList(0, index).lastIndexOf(elem);</span>
   }
 
   /**
@@ -282,7 +286,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public ListIterator&lt;E&gt; listIterator() {
-<span class="fc" id="L285">    return delegate().listIterator();</span>
+<span class="fc" id="L289">    return delegate().listIterator();</span>
   }
 
   /**
@@ -290,7 +294,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public ListIterator&lt;E&gt; listIterator(final int index) {
-<span class="fc" id="L293">    return delegate().listIterator(index);</span>
+<span class="fc" id="L297">    return delegate().listIterator(index);</span>
   }
 
   /**
@@ -298,7 +302,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public E remove(final int index) {
-<span class="fc" id="L301">    return delegate().remove(index);</span>
+<span class="fc" id="L305">    return delegate().remove(index);</span>
   }
 
   /**
@@ -306,7 +310,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean remove(final Object o) {
-<span class="fc" id="L309">    return delegate().remove(o);</span>
+<span class="fc" id="L313">    return delegate().remove(o);</span>
   }
 
   /**
@@ -314,7 +318,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean removeAll(final Collection&lt;?&gt; c) {
-<span class="fc" id="L317">    return delegate().removeAll(c);</span>
+<span class="fc" id="L321">    return delegate().removeAll(c);</span>
   }
 
   /**
@@ -322,15 +326,15 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void removeAllElements() {
-<span class="fc" id="L325">    delegate().clear();</span>
-<span class="fc" id="L326">  }</span>
+<span class="fc" id="L329">    delegate().clear();</span>
+<span class="fc" id="L330">  }</span>
 
   /**
    * @see java.util.Vector#removeElement(java.lang.Object)
    */
   @Override
   public boolean removeElement(final Object obj) {
-<span class="fc" id="L333">    return delegate().remove(obj);</span>
+<span class="fc" id="L337">    return delegate().remove(obj);</span>
   }
 
   /**
@@ -338,26 +342,26 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void removeElementAt(final int index) {
-<span class="fc" id="L341">    delegate().remove(index);</span>
-<span class="fc" id="L342">  }</span>
+<span class="fc" id="L345">    delegate().remove(index);</span>
+<span class="fc" id="L346">  }</span>
 
   /**
    * @see java.util.Vector#removeRange(int, int)
    */
   @Override
   protected void removeRange(final int fromIndex, final int toIndex) {
-<span class="fc" id="L349">    final List&lt;E&gt; delegate = delegate();</span>
-<span class="fc bfc" id="L350" title="All 2 branches covered.">    for (int i = fromIndex; i &lt; toIndex; i++) {</span>
-<span class="fc" id="L351">      delegate.remove(fromIndex);</span>
+<span class="fc" id="L353">    final List&lt;E&gt; delegate = delegate();</span>
+<span class="fc bfc" id="L354" title="All 2 branches covered.">    for (int i = fromIndex; i &lt; toIndex; i++) {</span>
+<span class="fc" id="L355">      delegate.remove(fromIndex);</span>
     }
-<span class="fc" id="L353">  }</span>
+<span class="fc" id="L357">  }</span>
 
   /**
    * @see java.util.Vector#retainAll(java.util.Collection)
    */
   @Override
   public boolean retainAll(final Collection&lt;?&gt; c) {
-<span class="fc" id="L360">    return delegate().retainAll(c);</span>
+<span class="fc" id="L364">    return delegate().retainAll(c);</span>
   }
 
   /**
@@ -365,7 +369,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public E set(final int index, final E element) {
-<span class="fc" id="L368">    return delegate().set(index, element);</span>
+<span class="fc" id="L372">    return delegate().set(index, element);</span>
   }
 
   /**
@@ -373,25 +377,25 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public void setElementAt(final E obj, final int index) {
-<span class="fc" id="L376">    delegate().set(index, obj);</span>
-<span class="fc" id="L377">  }</span>
+<span class="fc" id="L380">    delegate().set(index, obj);</span>
+<span class="fc" id="L381">  }</span>
 
   /**
    * @see java.util.Vector#setSize(int)
    */
   @Override
   public void setSize(final int newSize) {
-<span class="fc bfc" id="L384" title="All 2 branches covered.">    while (delegate().size() &lt; newSize) {</span>
-<span class="fc" id="L385">      add(null);</span>
+<span class="fc bfc" id="L388" title="All 2 branches covered.">    while (delegate().size() &lt; newSize) {</span>
+<span class="fc" id="L389">      add(null);</span>
     }
-<span class="fc" id="L387">  }</span>
+<span class="fc" id="L391">  }</span>
 
   /**
    * @see java.util.Vector#size()
    */
   @Override
   public int size() {
-<span class="fc" id="L394">    return delegate().size();</span>
+<span class="fc" id="L398">    return delegate().size();</span>
   }
 
   /**
@@ -399,7 +403,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public List&lt;E&gt; subList(final int fromIndex, final int toIndex) {
-<span class="fc" id="L402">    return delegate().subList(fromIndex, toIndex);</span>
+<span class="fc" id="L406">    return delegate().subList(fromIndex, toIndex);</span>
   }
 
   /**
@@ -407,7 +411,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public Object[] toArray() {
-<span class="fc" id="L410">    return delegate().toArray();</span>
+<span class="fc" id="L414">    return delegate().toArray();</span>
   }
 
   /**
@@ -415,7 +419,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public &lt;T&gt; T[] toArray(final T[] a) {
-<span class="fc" id="L418">    return delegate().toArray(a);</span>
+<span class="fc" id="L422">    return delegate().toArray(a);</span>
   }
 
   /**
@@ -423,7 +427,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public String toString() {
-<span class="nc" id="L426">    return delegate().toString();</span>
+<span class="nc" id="L430">    return delegate().toString();</span>
   }
 
   /**
@@ -437,7 +441,7 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public boolean removeIf(final Predicate&lt;? super E&gt; filter) {
-<span class="fc" id="L440">    return delegate().removeIf(filter);</span>
+<span class="fc" id="L444">    return delegate().removeIf(filter);</span>
   }
 
   /**
@@ -445,31 +449,32 @@ public abstract class VectorAdapter&lt;E&gt; extends Vector&lt;E&gt; {
    */
   @Override
   public synchronized void forEach(final Consumer&lt;? super E&gt; action) {
-<span class="fc" id="L448">    delegate().forEach(action);</span>
-<span class="fc" id="L449">  }</span>
+<span class="fc" id="L452">    delegate().forEach(action);</span>
+<span class="fc" id="L453">  }</span>
 
   /**
    * @see java.util.Vector#replaceAll(java.util.function.UnaryOperator)
    */
   @Override
   public synchronized void replaceAll(final UnaryOperator&lt;E&gt; operator) {
-<span class="fc" id="L456">    delegate().replaceAll(operator);</span>
-<span class="fc" id="L457">  }</span>
+<span class="fc" id="L460">    delegate().replaceAll(operator);</span>
+<span class="fc" id="L461">  }</span>
 
   /**
    * @see java.util.Vector#sort(java.util.Comparator)
    */
   @Override
   public synchronized void sort(final Comparator&lt;? super E&gt; c) {
-<span class="nc" id="L464">    delegate().sort(c);</span>
-<span class="nc" id="L465">  }</span>
+<span class="nc" id="L468">    delegate().sort(c);</span>
+<span class="nc" id="L469">  }</span>
 
   /**
    * @see java.util.Vector#spliterator()
    */
   @Override
   public Spliterator&lt;E&gt; spliterator() {
-<span class="fc" id="L472">    return delegate().spliterator();</span>
+<span class="fc" id="L476">    return delegate().spliterator();</span>
   }
+
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

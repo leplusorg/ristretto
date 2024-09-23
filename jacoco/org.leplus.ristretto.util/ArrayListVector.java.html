@@ -21,69 +21,80 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * An {@link java.util.ArrayList}-backed implementation of {@link
- * org.leplus.ristretto.util.VectorAdapter}.
- *
- * &lt;p&gt;Using this class introduces a small memory overhead compared to using an {@link
- * java.util.ArrayList} directly. Typically that overhead is the size of an empty {@link
- * java.util.Vector}, e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
+ * &lt;p&gt;
+ * An {@link java.util.ArrayList}-backed implementation of
+ * {@link org.leplus.ristretto.util.VectorAdapter}.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * Using this class introduces a small memory overhead compared to using an
+ * {@link java.util.ArrayList} directly. Typically that overhead is the size
+ * of an empty {@link java.util.Vector}, e.g. 48 bytes on Oracle Java HotSpot
+ * 1.8.0 for Windows (64-Bit).
+ * &lt;/p&gt;
  *
  * @author Thomas Leplus
  * @since 1.0.0
  * @see org.leplus.ristretto.util.VectorAdapter
+ *
  * @param &lt;E&gt; type of the elements in the collection.
  */
 public class ArrayListVector&lt;E&gt; extends VectorAdapter&lt;E&gt; {
 
   private static final long serialVersionUID = -7584729063793597958L;
 
-  /** The {@link java.util.ArrayList} delegate. */
+  /**
+   * The {@link java.util.ArrayList} delegate.
+   */
   private ArrayList&lt;E&gt; delegate;
 
-  /** Constructs an empty list with an initial capacity of ten. */
+  /**
+   * Constructs an empty list with an initial capacity of ten.
+   */
   public ArrayListVector() {
-<span class="fc" id="L45">    this(new ArrayList&lt;&gt;());</span>
-<span class="fc" id="L46">  }</span>
+<span class="fc" id="L54">    this(new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L55">  }</span>
 
   /**
-   * Constructs a list containing the elements of the specified collection, in the order they are
-   * returned by the collection's iterator.
+   * Constructs a list containing the elements of the specified collection,
+   * in the order they are returned by the collection's iterator.
    *
    * @param c the collection whose elements are to be placed into this list.
    * @throws NullPointerException if the specified collection is null.
    */
   public ArrayListVector(final Collection&lt;? extends E&gt; c) {
-<span class="fc" id="L56">    this(new ArrayList&lt;&gt;(c));</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L65">    this(new ArrayList&lt;&gt;(c));</span>
+<span class="fc" id="L66">  }</span>
 
   /**
    * Constructs an empty list with the specified initial capacity.
    *
    * @param initialCapacity the initial capacity of the list.
-   * @throws IllegalArgumentException if the specified initial capacity is negative.
+   * @throws IllegalArgumentException if the specified initial capacity is
+   * negative.
    */
   public ArrayListVector(final int initialCapacity) {
-<span class="fc" id="L66">    this(new ArrayList&lt;&gt;(initialCapacity));</span>
-<span class="fc" id="L67">  }</span>
+<span class="fc" id="L76">    this(new ArrayList&lt;&gt;(initialCapacity));</span>
+<span class="fc" id="L77">  }</span>
 
   /**
-   * Common constructor called by the public ones once they have constructed the delegate.
+   * Common constructor called by the public ones once they have constructed
+   * the delegate.
    *
    * @param list the delegating {@link java.util.ArrayList}.
    */
   private ArrayListVector(final ArrayList&lt;E&gt; list) {
-<span class="fc" id="L75">    super();</span>
-<span class="fc" id="L76">    this.delegate = list;</span>
-<span class="fc" id="L77">  }</span>
+<span class="fc" id="L86">    super();</span>
+<span class="fc" id="L87">    this.delegate = list;</span>
+<span class="fc" id="L88">  }</span>
 
   /**
    * @see org.leplus.ristretto.util.VectorAdapter#clone()
    */
   @Override
   public ArrayListVector&lt;E&gt; clone() {
-<span class="fc" id="L84">    final ArrayListVector&lt;E&gt; clone = (ArrayListVector&lt;E&gt;) super.clone();</span>
-<span class="fc" id="L85">    clone.delegate = new ArrayList&lt;&gt;(delegate);</span>
-<span class="fc" id="L86">    return clone;</span>
+<span class="fc" id="L95">    final ArrayListVector&lt;E&gt; clone = (ArrayListVector&lt;E&gt;) super.clone();</span>
+<span class="fc" id="L96">    clone.delegate = new ArrayList&lt;&gt;(delegate);</span>
+<span class="fc" id="L97">    return clone;</span>
   }
 
   /**
@@ -91,7 +102,7 @@ public class ArrayListVector&lt;E&gt; extends VectorAdapter&lt;E&gt; {
    */
   @Override
   protected List&lt;E&gt; delegate() {
-<span class="fc" id="L94">    return delegate;</span>
+<span class="fc" id="L105">    return delegate;</span>
   }
 
   /**
@@ -99,23 +110,23 @@ public class ArrayListVector&lt;E&gt; extends VectorAdapter&lt;E&gt; {
    */
   @Override
   public void ensureCapacity(final int minCapacity) {
-<span class="fc" id="L102">    delegate.ensureCapacity(minCapacity);</span>
-<span class="fc" id="L103">  }</span>
+<span class="fc" id="L113">    delegate.ensureCapacity(minCapacity);</span>
+<span class="fc" id="L114">  }</span>
 
   /**
    * @see org.leplus.ristretto.util.VectorAdapter#trimToSize()
    */
   @Override
   public void trimToSize() {
-<span class="fc" id="L110">    delegate.trimToSize();</span>
-<span class="fc" id="L111">  }</span>
+<span class="fc" id="L121">    delegate.trimToSize();</span>
+<span class="fc" id="L122">  }</span>
 
   /**
    * @see org.leplus.ristretto.util.VectorAdapter#hashCode()
    */
   @Override
   public int hashCode() {
-<span class="fc" id="L118">    return delegate.hashCode();</span>
+<span class="fc" id="L129">    return delegate.hashCode();</span>
   }
 
   /**
@@ -123,10 +134,10 @@ public class ArrayListVector&lt;E&gt; extends VectorAdapter&lt;E&gt; {
    */
   @Override
   public boolean equals(final Object obj) {
-<span class="fc bfc" id="L126" title="All 2 branches covered.">    if (this == obj) {</span>
-<span class="fc" id="L127">      return true;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (this == obj) {</span>
+<span class="fc" id="L138">      return true;</span>
     }
-<span class="fc" id="L129">    return delegate.equals(obj);</span>
+<span class="fc" id="L140">    return delegate.equals(obj);</span>
   }
 
   /**
@@ -134,7 +145,8 @@ public class ArrayListVector&lt;E&gt; extends VectorAdapter&lt;E&gt; {
    */
   @Override
   public String toString() {
-<span class="fc" id="L137">    return delegate.toString();</span>
+<span class="fc" id="L148">    return delegate.toString();</span>
   }
+
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

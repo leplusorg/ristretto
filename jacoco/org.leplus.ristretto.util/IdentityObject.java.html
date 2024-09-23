@@ -19,8 +19,8 @@ package org.leplus.ristretto.util;
 import java.io.Serializable;
 
 /**
- * This class is a singleton. It supports serialization and cloning. In both case the unique
- * instance of IdentityObject remains the same object.
+ * This class is a singleton. It supports serialization and cloning. In both
+ * case the unique instance of IdentityObject remains the same object.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -29,8 +29,10 @@ public final class IdentityObject implements Cloneable, Serializable {
 
   private static final long serialVersionUID = Long.MAX_VALUE;
 
-  /** The singleton. */
-<span class="fc" id="L33">  public static final IdentityObject IT = new IdentityObject();</span>
+  /**
+   * The singleton.
+   */
+<span class="fc" id="L35">  public static final IdentityObject IT = new IdentityObject();</span>
 
   private IdentityObject() {
     super();
@@ -41,7 +43,7 @@ public final class IdentityObject implements Cloneable, Serializable {
    */
   @Override
   public IdentityObject clone() {
-<span class="fc" id="L44">    return IT;</span>
+<span class="fc" id="L46">    return IT;</span>
   }
 
   /**
@@ -49,7 +51,7 @@ public final class IdentityObject implements Cloneable, Serializable {
    */
   @Override
   public boolean equals(final Object obj) {
-<span class="fc" id="L52">    return obj instanceof IdentityObject;</span>
+<span class="fc" id="L54">    return obj instanceof IdentityObject;</span>
   }
 
   /**
@@ -57,11 +59,11 @@ public final class IdentityObject implements Cloneable, Serializable {
    */
   @Override
   public int hashCode() {
-<span class="fc" id="L60">    return Integer.MAX_VALUE;</span>
+<span class="fc" id="L62">    return Integer.MAX_VALUE;</span>
   }
 
   private Object readResolve() {
-<span class="fc" id="L64">    return IT;</span>
+<span class="fc" id="L66">    return IT;</span>
   }
 
   /**
@@ -69,7 +71,8 @@ public final class IdentityObject implements Cloneable, Serializable {
    */
   @Override
   public String toString() {
-<span class="fc" id="L72">    return getClass().getName();</span>
+<span class="fc" id="L74">    return getClass().getName();</span>
   }
+
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
