@@ -88,6 +88,7 @@ jobs:
           git config --global user.name "${GITHUB_REPOSITORY_OWNER}"
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
           ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
+          mkdir ~/.ssh
           echo >> ~/.ssh/config
           echo 'Host github' >> ~/.ssh/config
           echo '    HostName github.com' >> ~/.ssh/config
