@@ -71,22 +71,17 @@ jobs:
         run: |
           if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
           then
-            # Forcing dependency check version to a version compatible
-            # with Java 8 since version does not matter due to
-            # dependencyCheck.skip=true. But otherwise Maven initialization
-            # fails with error: "java.lang.TypeNotPresentException:
-            # Type org.owasp.dependencycheck.maven.CheckMojo not present".
-            # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true -Dgpg.skip=true verify
+            GPG_SKIP=true
           else
-            # Forcing dependency check version to a version compatible
-            # with Java 8 since version does not matter due to
-            # dependencyCheck.skip=true. But otherwise Maven initialization
-            # fails with error: "java.lang.TypeNotPresentException:
-            # Type org.owasp.dependencycheck.maven.CheckMojo not present".
-            # shellcheck disable=SC2086
-            ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true verify
+            GPG_SKIP=false
           fi
+          # Forcing dependency check version to a version compatible
+          # with Java 8 since version does not matter due to
+          # dependencyCheck.skip=true. But otherwise Maven initialization
+          # fails with error: "java.lang.TypeNotPresentException:
+          # Type org.owasp.dependencycheck.maven.CheckMojo not present".
+          # shellcheck disable=SC2086
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true -Dgpg.skip=${GPG_SKIP} verify
       - name: Publish site
         env:
           GITHUB_TOKEN: ${{ github.token }}

@@ -84,6 +84,7 @@ limitations under the License.
     <dependencyCheck.version>11.1.1</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
+    <cyclonedx.skip>false</cyclonedx.skip>
   </properties>
   <dependencies>
     <dependency>
@@ -316,6 +317,22 @@ limitations under the License.
         <configuration>
           <scmBranch>gh-pages</scmBranch>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+	  <skip>${cyclonedx.skip}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>makeAggregateBom</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
