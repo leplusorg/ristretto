@@ -182,6 +182,16 @@ public final class UUIDConvertor {
   }
 
   /**
+   * Converts a UUID into a String of {@value #MAX_CHARS} characters.
+   *
+   * @param uuid the UUID to convert.
+   * @return the resulting String.
+   */
+  public static String toString(final UUID uuid) {
+    return String.valueOf(toChars(uuid));
+  }
+
+  /**
    * Converts an array of up to {@value #MAX_BYTES} bytes into an UUID. If the array is shorter than
    * the maximum length, it will be padded with 0s. If the array is longer than the maximum length,
    * this method will throw an ArrayIndexOutOfBoundsException.
@@ -337,5 +347,22 @@ public final class UUIDConvertor {
     final ByteBuffer byteBuffer = allocateByteBuffer();
     byteBuffer.asShortBuffer().put(shorts);
     return toUUID(byteBuffer);
+  }
+
+  /**
+   * Converts a String of up to {@value #MAX_CHARS} characters into an UUID. If the String is shorter
+   * than the maximum length, it will be padded with 0s. If the String is longer than the maximum
+   * length, this method will throw an ArrayIndexOutOfBoundsException.
+   *
+   * @param string the String to convert.
+   * @return the resulting UUID.
+   * @throws ArrayIndexOutOfBoundsException if the provided String is longer than {@value
+   *     #MAX_CHARS}.
+   */
+  public static UUID toUUID(final String string) throws ArrayIndexOutOfBoundsException {
+    if (string == null) {
+      return null;
+    }
+    return toUUID(string.toCharArray());
   }
 }

@@ -161,4 +161,23 @@ public final class TestUUIDConvertor {
     }
     assertNull(UUIDConvertor.toUUID((long[]) null));
   }
+
+  /** Test. */
+  @Test
+  public void testRandomStrings() {
+    for (int i = 0; i < UUIDConvertor.MAX_CHARS; i++) {
+      final char[] input = new char[i];
+      for (int j = 0; j < i; j++) {
+        input[j] = (char) (Math.random() * Character.MIN_VALUE);
+      }
+      final char[] output = UUIDConvertor.toChars(UUIDConvertor.toUUID(new String(input)));
+      for (int j = 0; j < i; j++) {
+        assertEquals(input[j], output[j], 0);
+      }
+      for (int j = i; j < UUIDConvertor.MAX_CHARS; j++) {
+        assertEquals(0, output[j], 0);
+      }
+    }
+    assertNull(UUIDConvertor.toUUID((String) null));
+  }
 }
