@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.util.Random;
-
 import org.junit.Test;
 
 /**
@@ -168,17 +167,14 @@ public final class TestUUIDConvertor {
   @Test
   public void testRandomStrings() {
     for (int i = 0; i < UUIDConvertor.MAX_CHARS; i++) {
-      final char[] input = new char[i];
+      final char[] chars = new char[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (char) PRNG.nextInt(Character.MAX_VALUE + 1);
+        chars[j] = (char) PRNG.nextInt(Character.MAX_VALUE + 1);
       }
-      final char[] output = UUIDConvertor.toChars(UUIDConvertor.toUUID(new String(input)));
-      for (int j = 0; j < i; j++) {
-        assertEquals(input[j], output[j], 0);
-      }
-      for (int j = i; j < UUIDConvertor.MAX_CHARS; j++) {
-        assertEquals(0, output[j], 0);
-      }
+      final String input = String.valueOf(chars);
+      final String output = UUIDConvertor.toString(UUIDConvertor.toUUID(input));
+      final char[] padding = new char[UUIDConvertor.MAX_CHARS - i];
+      assertEquals(input + String.valueOf(padding), output);
     }
     assertNull(UUIDConvertor.toUUID((String) null));
   }
