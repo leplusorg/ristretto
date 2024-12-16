@@ -33,7 +33,7 @@ import java.util.UUID;
  * to later convert back the UUID into the legacy ID. Provided the legacy IDs are unique (at least
  * for the legacy object type), the new UUIDs produced will be as unique.
  *
- * <p>Another use case could be to temporarily convert a legacy object into a new object temporarily
+ * <p>Another use case could be to temporarily convert a legacy object into a new object
  * (for example for processing via a new method) and then need to convert the result back into a
  * legacy object. Then you can similarly use the methods in this class to go back and forth between
  * legacy IDs and UUIDs.
