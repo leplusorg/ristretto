@@ -74,7 +74,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_DOUBLES; i++) {
       final double[] input = new double[i];
       for (int j = 0; j < i; j++) {
-        input[j] = PRNG.nextLong();;
+        input[j] = PRNG.nextLong();
       }
       final double[] output = UUIDConvertor.toDoubles(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
