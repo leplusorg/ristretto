@@ -153,51 +153,51 @@ limitations under the License.
         </executions>
       </plugin>
       <plugin>
-	<groupId>org.apache.rat</groupId>
-	<artifactId>apache-rat-plugin</artifactId>
-	<version>0.16.1</version>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-compiler-plugin</artifactId>
-	<version>3.13.0</version>
-	<configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
           <source>1.8</source>
           <target>1.8</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
-	</configuration>
+        </configuration>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-source-plugin</artifactId>
-	<version>3.3.1</version>
-	<executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
           <execution>
             <id>attach-sources</id>
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
           </execution>
-	</executions>
+        </executions>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>${maven.javadoc.version}</version>
-	<executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven.javadoc.version}</version>
+        <executions>
           <execution>
             <id>attach-javadocs</id>
             <goals>
               <goal>jar</goal>
             </goals>
-	    <configuration>
+            <configuration>
               <source>8</source>
               <show>private</show>
               <nohelp>true</nohelp>
             </configuration>
           </execution>
-	</executions>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -208,15 +208,15 @@ limitations under the License.
         </configuration>
       </plugin>
       <plugin>
-	<groupId>org.sonatype.plugins</groupId>
-	<artifactId>nexus-staging-maven-plugin</artifactId>
-	<version>1.7.0</version>
-	<extensions>true</extensions>
-	<configuration>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.7.0</version>
+        <extensions>true</extensions>
+        <configuration>
           <serverId>ossrh</serverId>
           <nexusUrl>https://oss.sonatype.org/</nexusUrl>
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
-	</configuration>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -253,13 +253,13 @@ limitations under the License.
         </executions>
       </plugin>
       <plugin>
-	<groupId>org.owasp</groupId>
+        <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
         <version>${dependencyCheck.version}</version>
         <configuration>
           <failBuildOnCVSS>${dependencyCheck.threshold}</failBuildOnCVSS>
-	  <failOnError>true</failOnError>
-	  <skip>${dependencyCheck.skip}</skip>
+          <failOnError>true</failOnError>
+          <skip>${dependencyCheck.skip}</skip>
         </configuration>
         <executions>
           <execution>
@@ -285,9 +285,9 @@ limitations under the License.
         </executions>
       </plugin>
       <plugin>
-	<groupId>com.github.spotbugs</groupId>
-	<artifactId>spotbugs-maven-plugin</artifactId>
-	<version>4.8.6.6</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.8.6.6</version>
         <configuration>
           <plugins>
             <plugin>
@@ -323,8 +323,8 @@ limitations under the License.
         <artifactId>cyclonedx-maven-plugin</artifactId>
         <version>2.9.1</version>
         <configuration>
-	  <skip>${cyclonedx.skip}</skip>
-	  <outputName>${artifactId}-${version}-bom</outputName>
+          <skip>${cyclonedx.skip}</skip>
+          <outputName>${artifactId}-${version}-bom</outputName>
         </configuration>
         <executions>
           <execution>
@@ -335,14 +335,43 @@ limitations under the License.
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${artifactId}-${version}-bom.xml</file>
+                  <type>xml</type>
+                  <classifier>bom</classifier>
+                </artifact>
+                <artifact>
+                  <file>${artifactId}-${version}-bom.json</file>
+                  <type>json</type>
+                  <classifier>bom</classifier>
+                </artifact>
+              </artifacts>
+              <skipAttach>${cyclonedx.skip}</skipAttach>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <reporting>
     <plugins>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>${maven.javadoc.version}</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven.javadoc.version}</version>
         <configuration>
           <source>8</source>
           <show>public</show>
@@ -368,7 +397,7 @@ limitations under the License.
         <artifactId>dependency-check-maven</artifactId>
         <version>${dependencyCheck.version}</version>
         <configuration>
-	  <skip>${dependencyCheck.skip}</skip>
+          <skip>${dependencyCheck.skip}</skip>
         </configuration>
         <reportSets>
           <reportSet>
