@@ -335,35 +335,6 @@ limitations under the License.
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.6.0</version>
-        <executions>
-          <execution>
-            <id>attach-artifacts</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>${artifactId}-${version}-bom.xml</file>
-                  <type>xml</type>
-                  <classifier>bom</classifier>
-                </artifact>
-                <artifact>
-                  <file>${artifactId}-${version}-bom.json</file>
-                  <type>json</type>
-                  <classifier>bom</classifier>
-                </artifact>
-              </artifacts>
-              <skipAttach>${cyclonedx.skip}</skipAttach>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
   <reporting>
