@@ -81,12 +81,13 @@ limitations under the License.
     <jarsigner.alias>alias</jarsigner.alias>
     <jarsigner.storepass>storepass</jarsigner.storepass>
     <jarsigner.keypass>keypass</jarsigner.keypass>
-    <maven.javadoc.version>3.5.0</maven.javadoc.version>
+    <maven.javadoc.version>3.11.2</maven.javadoc.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <dependencyCheck.version>8.2.1</dependencyCheck.version>
+    <dependencyCheck.version>11.1.1</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
+    <cyclonedx.skip>false</cyclonedx.skip>
   </properties>
   <dependencies>
     <dependency>
@@ -98,7 +99,7 @@ limitations under the License.
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.7.3</version>
+      <version>4.8.6</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -116,13 +117,13 @@ limitations under the License.
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava-testlib</artifactId>
-      <version>31.1-jre</version>
+      <version>33.3.1-jre</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.12.0</version>
+      <version>3.17.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -131,7 +132,7 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.5.0</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -141,7 +142,7 @@ limitations under the License.
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.3.9</version>
+                  <version>3.6.3</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>1.8</version>
@@ -155,70 +156,70 @@ limitations under the License.
         </executions>
       </plugin>
       <plugin>
-	<groupId>org.apache.rat</groupId>
-	<artifactId>apache-rat-plugin</artifactId>
-	<version>0.15</version>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-compiler-plugin</artifactId>
-	<version>3.11.0</version>
-	<configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
           <source>1.8</source>
           <target>1.8</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
-	</configuration>
+        </configuration>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-source-plugin</artifactId>
-	<version>3.2.1</version>
-	<executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
           <execution>
             <id>attach-sources</id>
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
           </execution>
-	</executions>
+        </executions>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>${maven.javadoc.version}</version>
-	<executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven.javadoc.version}</version>
+        <executions>
           <execution>
             <id>attach-javadocs</id>
             <goals>
               <goal>jar</goal>
             </goals>
-	    <configuration>
+            <configuration>
               <source>8</source>
               <show>private</show>
               <nohelp>true</nohelp>
             </configuration>
           </execution>
-	</executions>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.1</version>
         <configuration>
           <tagNameFormat>v@{project.version}</tagNameFormat>
         </configuration>
       </plugin>
       <plugin>
-	<groupId>org.sonatype.plugins</groupId>
-	<artifactId>nexus-staging-maven-plugin</artifactId>
-	<version>1.6.13</version>
-	<extensions>true</extensions>
-	<configuration>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.7.0</version>
+        <extensions>true</extensions>
+        <configuration>
           <serverId>ossrh</serverId>
           <nexusUrl>https://oss.sonatype.org/</nexusUrl>
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
-	</configuration>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -247,7 +248,7 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.2.7</version>
         <executions>
           <execution>
             <id>sign-artifacts</id>
@@ -261,7 +262,7 @@ limitations under the License.
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.9</version>
+        <version>0.8.12</version>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -279,13 +280,13 @@ limitations under the License.
         </executions>
       </plugin>
       <plugin>
-	<groupId>org.owasp</groupId>
+        <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
         <version>${dependencyCheck.version}</version>
         <configuration>
           <failBuildOnCVSS>${dependencyCheck.threshold}</failBuildOnCVSS>
-	  <failOnError>true</failOnError>
-	  <skip>${dependencyCheck.skip}</skip>
+          <failOnError>true</failOnError>
+          <skip>${dependencyCheck.skip}</skip>
         </configuration>
         <executions>
           <execution>
@@ -298,7 +299,7 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.20.0</version>
+        <version>3.26.0</version>
         <configuration>
             <printFailingErrors>true</printFailingErrors>
         </configuration>
@@ -311,15 +312,15 @@ limitations under the License.
         </executions>
       </plugin>
       <plugin>
-	<groupId>com.github.spotbugs</groupId>
-	<artifactId>spotbugs-maven-plugin</artifactId>
-	<version>4.7.3.4</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.8.6.6</version>
         <configuration>
           <plugins>
             <plugin>
               <groupId>com.h3xstream.findsecbugs</groupId>
               <artifactId>findsecbugs-plugin</artifactId>
-              <version>1.12.0</version>
+              <version>1.13.0</version>
             </plugin>
           </plugins>
         </configuration>
@@ -334,24 +335,41 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>4.0.0-M6</version>
+        <version>3.21.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-scm-publish-plugin</artifactId>
-        <version>3.2.1</version>
+        <version>3.3.0</version>
         <configuration>
           <scmBranch>gh-pages</scmBranch>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+          <skip>${cyclonedx.skip}</skip>
+          <outputName>${artifactId}-${version}-bom</outputName>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>makeAggregateBom</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
   <reporting>
     <plugins>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>${maven.javadoc.version}</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven.javadoc.version}</version>
         <configuration>
           <source>8</source>
           <show>public</show>
@@ -360,24 +378,24 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.4.2</version>
+        <version>3.8.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.6.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.2.1</version>
+        <version>3.6.0</version>
       </plugin>
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
         <version>${dependencyCheck.version}</version>
         <configuration>
-	  <skip>${dependencyCheck.skip}</skip>
+          <skip>${dependencyCheck.skip}</skip>
         </configuration>
         <reportSets>
           <reportSet>

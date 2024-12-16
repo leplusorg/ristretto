@@ -1,12 +1,12 @@
 ---
 # Copyright 2016-present Thomas Leplus
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,32 +51,36 @@ OSV scanner:
     name: golang:latest
   stage: check
   before_script:
-    - 'go install github.com/google/osv-scanner/cmd/osv-scanner@v1'
+    - "go install github.com/google/osv-scanner/cmd/osv-scanner@v1"
   script:
     - 'PATH="${PATH}:$(go env GOPATH)/bin" osv-scanner -r .'
   timeout: 10 minutes
 
 super linter:
   image:
-    name: github/super-linter:latest
+    name: ghcr.io/super-linter/super-linter:latest
     entrypoint:
-      - ''
+      - ""
   stage: check
   variables:
-    RUN_LOCAL: 'true'
-    VALIDATE_ALL_CODEBASE: 'true'
-    FILTER_REGEX_EXCLUDE: '(gradlew|gradlew.bat|gradle/*|mvnw|mvnw.cmd|.mvn/*)'
+    RUN_LOCAL: "true"
+    DEFAULT_BRANCH: "main"
+    USE_FIND_ALGORITHM: "true"
+    VALIDATE_ALL_CODEBASE: "true"
+    LINTER_RULES_PATH: "."
+    FILTER_REGEX_EXCLUDE: "(gradlew|gradlew.bat|gradle/*|mvnw|mvnw.cmd|.m2/*|.mvn/**)"
+    JAVA_FILE_NAME: "google_checks.xml"
   before_script:
     - 'ln -s "$(pwd)" /tmp/lint'
   script:
-    - '/action/lib/linter.sh'
+    - "/action/lib/linter.sh"
   timeout: 10 minutes
 
 versions:
   image:
-    name: leplusorg/maven-check-versions:latest
+    name: leplusorg/maven-check-versions:1.0.0@sha256:e8f760bb1faf3d3c333d75810e82289fdd275688421cc8bad04cdbbc757ae5a5
   script:
-    - '/opt/maven-check-versions.sh'
+    - "/opt/maven-check-versions.sh"
   stage: check
   timeout: 10 minutes
 
@@ -84,7 +88,7 @@ verify:jdk8:
   stage: test
   image: maven:3-eclipse-temurin-8-alpine
   script:
-    - './mvnw $MAVEN_CLI_OPTS verify'
+    - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master
 
@@ -92,7 +96,7 @@ verify:jdk11:
   stage: test
   image: maven:3-eclipse-temurin-11-alpine
   script:
-    - './mvnw $MAVEN_CLI_OPTS verify'
+    - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master
 
@@ -100,7 +104,7 @@ verify:jdk17:
   stage: test
   image: maven:3-eclipse-temurin-17-alpine
   script:
-    - './mvnw $MAVEN_CLI_OPTS verify'
+    - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master
 
@@ -108,6 +112,6 @@ verify:jdk19:
   stage: test
   image: maven:3-eclipse-temurin-19-alpine
   script:
-    - './mvnw $MAVEN_CLI_OPTS verify'
+    - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master

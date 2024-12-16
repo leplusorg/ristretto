@@ -1,24 +1,54 @@
 ---
-name: "OSV Scanner"
+# Copyright 2016-present Thomas Leplus
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# A sample workflow which sets up periodic OSV-Scanner scanning for vulnerabilities,
+# in addition to a PR check which fails if new vulnerabilities are introduced.
+#
+# For more examples and options, including how to ignore specific vulnerabilities,
+# see https://google.github.io/osv-scanner/github-action/
+
+name: OSV-Scanner
 
 on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
   schedule:
-  - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  # Require writing security events to upload SARIF file to security tab
+  security-events: write
+  # Read commit contents
+  contents: read
+  # Actions read-only
+  actions: read
 
 jobs:
-
-  check:
-    name: Check with OSV Scanner
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check out
-      uses: actions/checkout@v3
-    - name: Set up Go
-      uses: actions/setup-go@v4
-    - name: Install OSV Scanner
-      run: go install github.com/google/osv-scanner/cmd/osv-scanner@v1
-    - name: OSV Scanner
-      run: 'PATH="${PATH}:$(go env GOPATH)/bin" osv-scanner -r .'
+  scan:
+    uses: "google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@daa2c68f50d845057895a9c300e42478481c1d26" # v1.9.1
+    with:
+      # Example of specifying custom arguments
+      scan-args: |-
+        -r
+        --skip-git
+        ./

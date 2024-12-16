@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.security.SecureRandom;
 import java.util.UUID;
-
 import org.junit.Test;
 
 /**
@@ -33,17 +32,15 @@ import org.junit.Test;
  * @author Thomas Leplus
  * @since 1.0.0
  */
-@SuppressWarnings({ "checkstyle:magicnumber" })
+@SuppressWarnings({"checkstyle:magicnumber"})
 public final class TestReproducibleUUIDs {
 
-  /**
-   * Byte buffer size.
-   */
+  /** Byte buffer size. */
   private static final int NUMBER_OF_BYTES = 1024;
 
- /**
-  * @throws IOException
-  */
+  /**
+   * @throws IOException
+   */
   @Test
   public void testNulls() throws IOException {
     assertNull(ReproducibleUUIDs.fromBytes(null));
@@ -52,62 +49,51 @@ public final class TestReproducibleUUIDs {
     assertNull(ReproducibleUUIDs.fromInputStream(null));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testBytes() {
     final SecureRandom random = new SecureRandom();
     final byte[] bytes = new byte[NUMBER_OF_BYTES];
     random.nextBytes(bytes);
-    assertEquals(ReproducibleUUIDs.fromBytes(bytes),
-        ReproducibleUUIDs.fromBytes(bytes));
+    assertEquals(ReproducibleUUIDs.fromBytes(bytes), ReproducibleUUIDs.fromBytes(bytes));
     // Test compatibility with java.util.UUID.nameUUIDFromBytes(byte[])
-    assertEquals(ReproducibleUUIDs.fromBytes(bytes),
-        UUID.nameUUIDFromBytes(bytes));
+    assertEquals(ReproducibleUUIDs.fromBytes(bytes), UUID.nameUUIDFromBytes(bytes));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testByteBuffer() {
     final SecureRandom random = new SecureRandom();
     final byte[] bytes = new byte[NUMBER_OF_BYTES];
     random.nextBytes(bytes);
-    assertEquals(ReproducibleUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)),
+    assertEquals(
+        ReproducibleUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)),
         ReproducibleUUIDs.fromByteBuffer(ByteBuffer.wrap(bytes)));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testString() {
     final SecureRandom random = new SecureRandom();
     final byte[] bytes = new byte[NUMBER_OF_BYTES];
     random.nextBytes(bytes);
-    assertEquals(ReproducibleUUIDs.fromString(new String(bytes)),
+    assertEquals(
+        ReproducibleUUIDs.fromString(new String(bytes)),
         ReproducibleUUIDs.fromString(new String(bytes)));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testInputStream() throws IOException {
     final SecureRandom random = new SecureRandom();
     final byte[] bytes = new byte[NUMBER_OF_BYTES];
     random.nextBytes(bytes);
-    assertEquals(ReproducibleUUIDs
-        .fromInputStream(new ByteArrayInputStream(bytes)),
-        ReproducibleUUIDs
-        .fromInputStream(new ByteArrayInputStream(bytes)));
+    assertEquals(
+        ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)),
+        ReproducibleUUIDs.fromInputStream(new ByteArrayInputStream(bytes)));
   }
 
-  /**
-   * Test.
-   */
+  /** Test. */
   @Test
   public void testUUIDs() {
     final UUID[] uuids = new UUID[3];
@@ -116,9 +102,7 @@ public final class TestReproducibleUUIDs {
     }
     final UUID uuid = uuids[0];
     assertEquals(uuid, ReproducibleUUIDs.fromUUIDs(uuid));
-    assertEquals(ReproducibleUUIDs.fromUUIDs(uuids),
-        ReproducibleUUIDs.fromUUIDs(uuids));
+    assertEquals(ReproducibleUUIDs.fromUUIDs(uuids), ReproducibleUUIDs.fromUUIDs(uuids));
     assertNull(ReproducibleUUIDs.fromUUIDs((UUID[]) null));
   }
-
 }
