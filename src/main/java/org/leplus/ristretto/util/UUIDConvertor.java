@@ -38,6 +38,18 @@ import java.util.UUID;
  * legacy object. Then you can similarly use the methods in this class to go back and forth between
  * legacy IDs and UUIDs.
  *
+ * If the legacy ID that you use has more bits than an UUID (i.e. more than {@value #MAX_BYTES} bytes,
+ * {@value #MAX_SHORTS} shorts, {@value #MAX_DOUBLES} doubles, {@value #MAX_FLOATS} floats,
+ * {@value #MAX_CHARS} characters, {@value #MAX_INTS} integers, or {@value #MAX_LONGS} longs), you
+ * need to truncate your input first. The library does not do this for you because it cannot now which
+ * part of the input would provide the best (i.e. unique) input. For example if you have long Strings
+ * that need to be converted to UUIDs, you need to choose {@value #MAX_CHARS} characters from these
+ * Strings that are guaranteed or very likely to be unique to avoid collisions. Otherwise you should
+ * consider using {@link org.leplus.ristretto.util.ReproducibleUUIDs} instead. It won't produce reversible
+ * UUIDs but it will maximize the entropy of the produced UUIDs to avoid collisions. If needed, you can
+ * maintain a separate Map from the generated UUIDs to the corresponding original input to achieve
+ * reversibility.
+ *
  * @author Thomas Leplus
  * @since 1.0.0
  */
@@ -92,7 +104,7 @@ public final class UUIDConvertor {
   }
 
   /**
-   * Converts a UUID into an array of {@value #MAX_CHARS} bytes.
+   * Converts a UUID into an array of {@value #MAX_CHARS} characters.
    *
    * @param uuid the UUID to convert.
    * @return the resulting array.
@@ -107,7 +119,7 @@ public final class UUIDConvertor {
   }
 
   /**
-   * Converts a UUID into an array of {@value #MAX_DOUBLES} bytes.
+   * Converts a UUID into an array of {@value #MAX_DOUBLES} doubles.
    *
    * @param uuid the UUID to convert.
    * @return the resulting array.
@@ -122,7 +134,7 @@ public final class UUIDConvertor {
   }
 
   /**
-   * Converts a UUID into an array of {@value #MAX_FLOATS} bytes.
+   * Converts a UUID into an array of {@value #MAX_FLOATS} floats.
    *
    * @param uuid the UUID to convert.
    * @return the resulting array.
@@ -137,7 +149,7 @@ public final class UUIDConvertor {
   }
 
   /**
-   * Converts a UUID into an array of {@value #MAX_INTS} bytes.
+   * Converts a UUID into an array of {@value #MAX_INTS} integers.
    *
    * @param uuid the UUID to convert.
    * @return the resulting array.
@@ -152,7 +164,7 @@ public final class UUIDConvertor {
   }
 
   /**
-   * Converts a UUID into an array of {@value #MAX_LONGS} bytes.
+   * Converts a UUID into an array of {@value #MAX_LONGS} longs.
    *
    * @param uuid the UUID to convert.
    * @return the resulting array.
@@ -167,7 +179,7 @@ public final class UUIDConvertor {
   }
 
   /**
-   * Converts a UUID into an array of {@value #MAX_SHORTS} bytes.
+   * Converts a UUID into an array of {@value #MAX_SHORTS} shorts.
    *
    * @param uuid the UUID to convert.
    * @return the resulting array.
