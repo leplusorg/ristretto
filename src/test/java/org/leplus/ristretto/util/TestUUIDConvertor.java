@@ -19,7 +19,8 @@ package org.leplus.ristretto.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import java.security.SecureRandom;
+import java.util.Random;
+
 import org.junit.Test;
 
 /**
@@ -30,13 +31,14 @@ import org.junit.Test;
  */
 public final class TestUUIDConvertor {
 
+  private static final Random PRNG = new Random();
+
   /** Test. */
   @Test
   public void testRandomBytes() {
-    final SecureRandom r = new SecureRandom();
     for (int i = 0; i < UUIDConvertor.MAX_BYTES; i++) {
       final byte[] input = new byte[i];
-      r.nextBytes(input);
+      PRNG.nextBytes(input);
       final byte[] output = UUIDConvertor.toBytes(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
         assertEquals(input[j], output[j]);
@@ -54,7 +56,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_SHORTS; i++) {
       final short[] input = new short[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (short) (Math.random() * Short.MIN_VALUE);
+        input[j] = (short) PRNG.nextInt(Short.MAX_VALUE + 1);
       }
       final short[] output = UUIDConvertor.toShorts(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
@@ -73,7 +75,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_DOUBLES; i++) {
       final double[] input = new double[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (long) (Math.random() * Long.MIN_VALUE);
+        input[j] = PRNG.nextLong();;
       }
       final double[] output = UUIDConvertor.toDoubles(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
@@ -92,7 +94,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_FLOATS; i++) {
       final float[] input = new float[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (float) (Math.random() * Float.MIN_VALUE);
+        input[j] = PRNG.nextFloat();
       }
       final float[] output = UUIDConvertor.toFloats(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
@@ -111,7 +113,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_CHARS; i++) {
       final char[] input = new char[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (char) (Math.random() * Character.MIN_VALUE);
+        input[j] = (char) PRNG.nextInt(Character.MAX_VALUE + 1);
       }
       final char[] output = UUIDConvertor.toChars(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
@@ -130,7 +132,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_INTS; i++) {
       final int[] input = new int[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (int) (Math.random() * Integer.MIN_VALUE);
+        input[j] = PRNG.nextInt();
       }
       final int[] output = UUIDConvertor.toInts(UUIDConvertor.toUUID(input));
       for (int j = 0; j < i; j++) {
@@ -168,7 +170,7 @@ public final class TestUUIDConvertor {
     for (int i = 0; i < UUIDConvertor.MAX_CHARS; i++) {
       final char[] input = new char[i];
       for (int j = 0; j < i; j++) {
-        input[j] = (char) (Math.random() * Character.MIN_VALUE);
+        input[j] = (char) PRNG.nextInt(Character.MAX_VALUE + 1);
       }
       final char[] output = UUIDConvertor.toChars(UUIDConvertor.toUUID(new String(input)));
       for (int j = 0; j < i; j++) {
