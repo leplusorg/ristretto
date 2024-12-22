@@ -49,7 +49,7 @@ limitations under the License.
   </distributionManagement>
   <scm>
     <url>https://github.com/leplusorg/ristretto</url>
-    <connection>scm:git:ssh://git@github.com/leplusorg/ristretto.git</connection>
+    <connection>scm:git:https://github.com/leplusorg/ristretto.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/leplusorg/ristretto.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
