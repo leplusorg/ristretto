@@ -324,7 +324,7 @@ limitations under the License.
         <version>2.9.1</version>
         <configuration>
           <skip>${cyclonedx.skip}</skip>
-          <outputName>${artifactId}-${version}-bom</outputName>
+          <outputName>${project.artifactId}-${project.version}-bom</outputName>
         </configuration>
         <executions>
           <execution>
