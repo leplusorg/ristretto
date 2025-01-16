@@ -10,6 +10,38 @@ A small library of (hopefully) useful Java classes.
 
 [Maven Site](https://leplusorg.github.io/ristretto)
 
+# Installation
+
+## Maven
+
+```xml
+<dependency>
+  <groupId>org.leplus</groupId>
+  <artifactId>ristretto</artifactId>
+  <version>1.0.3</version>
+</dependency>
+```
+
+## Gradle
+
+If you use ristretto in your implementation only:
+
+```gradle
+dependencies {
+  implementation("org.leplus:ristretto:1.0.3")
+}
+```
+
+If you expose ristretto types in your public API:
+
+```gradle
+dependencies {
+  api("org.leplus:ristretto:1.0.3")
+}
+```
+
+# Usage
+
 ## [org.leplus.ristretto.util.UUIDConvertor](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/UUIDConvertor.html)
 
 This class provides utility method to convert different primitives from/to UUID.
