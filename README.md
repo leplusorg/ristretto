@@ -110,7 +110,7 @@ Using this class introduces a small memory overhead compared to using an
 [`java.util.ArrayList<E>`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) directly. Typically that overhead is the size of an empty [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html),
 e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
 
-## Digital Signature
+# Digital Signature
 
 Releases of Ristretto are digitally signed. You can verify the signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the signature of all your dependencies:
 
@@ -127,7 +127,7 @@ You can also use my convenient docker image (shameless plug):
 
 See [here](https://github.com/leplusorg/docker-pgp-verify-jar) for details.
 
-## License
+# License
 
 Copyright 2016-present Thomas Leplus
 
