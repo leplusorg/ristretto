@@ -30,4 +30,4 @@ jobs:
       - name: Check the versions
         uses: docker://leplusorg/maven-check-versions:3.9.9@sha256:abdd53328be1c87d7bf21b868d47d7934b28dfc66e168d9625877616ab14d6da
         env:
-          IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\d+,(?i).+-rc\d+,4\.9\.0"
+          IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+,4\\.9\\.0"
