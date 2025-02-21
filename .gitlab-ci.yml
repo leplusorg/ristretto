@@ -76,12 +76,14 @@ super linter:
     - "/action/lib/linter.sh"
   timeout: 10 minutes
 
-versions:
+maven check versions:
   image:
-    name: leplusorg/maven-check-versions:1.0.0@sha256:e8f760bb1faf3d3c333d75810e82289fdd275688421cc8bad04cdbbc757ae5a5
+    name: leplusorg/maven-check-versions:3.9.9@sha256:abdd53328be1c87d7bf21b868d47d7934b28dfc66e168d9625877616ab14d6da
+  stage: check
+  variables:
+    IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+,4\\.9\\.\\d+,4\\.9\\.\\d+.\\d+"
   script:
     - "/opt/maven-check-versions.sh"
-  stage: check
   timeout: 10 minutes
 
 verify:jdk8:
