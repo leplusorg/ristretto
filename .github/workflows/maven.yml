@@ -64,7 +64,7 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java }}
           gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+          gpg-passphrase: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       - name: Build with Maven
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
