@@ -77,10 +77,8 @@ limitations under the License.
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
+    <java.minVersion>1.8</java.minVersion>
     <maven.javadoc.version>3.11.2</maven.javadoc.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
     <dependencyCheck.version>12.1.0</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
@@ -142,7 +140,7 @@ limitations under the License.
                   <version>3.6.3</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>1.8</version>
+                  <version>${java.minVersion}</version>
                 </requireJavaVersion>
                 <requireOS>
                   <family>unix</family>
@@ -162,8 +160,8 @@ limitations under the License.
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.0</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>${java.minVersion}</source>
+          <target>${java.minVersion}</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
         </configuration>
