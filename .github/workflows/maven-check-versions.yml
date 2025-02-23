@@ -28,4 +28,6 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Check the versions
-        uses: docker://leplusorg/maven-check-versions:3.9.9@sha256:6460492dbf6c6423081e04fd48300351d52f723d41a952cb2e08ae80882f0a89
+        uses: docker://leplusorg/maven-check-versions:3.9.9@sha256:abdd53328be1c87d7bf21b868d47d7934b28dfc66e168d9625877616ab14d6da
+        env:
+          IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+,4\\.9\\.\\d+,4\\.9\\.\\d+.\\d+"

@@ -76,25 +76,27 @@ super linter:
     - "/action/lib/linter.sh"
   timeout: 10 minutes
 
-versions:
+maven check versions:
   image:
-    name: leplusorg/maven-check-versions:1.0.0@sha256:e8f760bb1faf3d3c333d75810e82289fdd275688421cc8bad04cdbbc757ae5a5
+    name: leplusorg/maven-check-versions:3.9.9@sha256:abdd53328be1c87d7bf21b868d47d7934b28dfc66e168d9625877616ab14d6da
+  stage: check
+  variables:
+    IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+,4\\.9\\.\\d+,4\\.9\\.\\d+.\\d+"
   script:
     - "/opt/maven-check-versions.sh"
-  stage: check
   timeout: 10 minutes
 
 verify:jdk8:
   stage: test
-  image: maven:3-eclipse-temurin-8-alpine
+  image: maven:3-openjdk-8-slim
   script:
-    - "./mvnw $MAVEN_CLI_OPTS verify"
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.version=10.0.4 verify"
   only:
     - master
 
 verify:jdk11:
   stage: test
-  image: maven:3-eclipse-temurin-11-alpine
+  image: maven:3-openjdk-11-slim
   script:
     - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
@@ -102,16 +104,17 @@ verify:jdk11:
 
 verify:jdk17:
   stage: test
-  image: maven:3-eclipse-temurin-17-alpine
+  image: maven:3-openjdk-17-slim
   script:
     - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master
 
-verify:jdk19:
+verify:jdk21:
   stage: test
-  image: maven:3-eclipse-temurin-19-alpine
+  image: maven:3-eclipse-temurin-21-alpine
   script:
     - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master
+  when: manual
