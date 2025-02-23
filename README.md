@@ -112,7 +112,7 @@ e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
 
 ## Digital Signature
 
-Releases of Ristretto are digitally signed. You can verify the signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the signature of all your dependencies:
+Releases of Ristretto are digitally signed. You can verify the GPG signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the GPG signature of all your dependencies:
 
 - [Maven](https://www.simplify4u.org/pgpverify-maven-plugin/)
 - [Gradle](https://docs.gradle.org/current/userguide/dependency_verification.html)
