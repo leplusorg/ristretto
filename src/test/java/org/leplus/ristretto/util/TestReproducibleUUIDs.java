@@ -39,7 +39,7 @@ public final class TestReproducibleUUIDs {
   private static final int NUMBER_OF_BYTES = 1024;
 
   /**
-   * @throws IOException
+   * @throws IOException then test failed.
    */
   @Test
   public void testNulls() throws IOException {
@@ -82,7 +82,9 @@ public final class TestReproducibleUUIDs {
         ReproducibleUUIDs.fromString(new String(bytes)));
   }
 
-  /** Test. */
+  /**
+   * @throws IOException then test failed.
+   */
   @Test
   public void testInputStream() throws IOException {
     final SecureRandom random = new SecureRandom();
