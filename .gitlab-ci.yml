@@ -90,7 +90,7 @@ verify:jdk11:
   stage: test
   image: maven:3-openjdk-11-slim
   script:
-    - "./mvnw $MAVEN_CLI_OPTS verify"
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
   only:
     - master
 
@@ -98,7 +98,7 @@ verify:jdk17:
   stage: test
   image: maven:3-openjdk-17-slim
   script:
-    - "./mvnw $MAVEN_CLI_OPTS verify"
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
   only:
     - master
 
@@ -106,7 +106,7 @@ verify:jdk21:
   stage: test
   image: maven:3-eclipse-temurin-21-alpine
   script:
-    - "./mvnw $MAVEN_CLI_OPTS verify"
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
   only:
     - master
   when: manual
