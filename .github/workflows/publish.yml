@@ -75,7 +75,7 @@ jobs:
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} site site:stage
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -X -DdependencyCheck.skip=true scm-publish:publish-scm
+          ./mvnw ${MAVEN_CLI_OPTS} -X -DdependencyCheck.skip=true site site:stage scm-publish:publish-scm
       - name: Clean up
         run: |
           rm "${HOME}/.m2/settings.xml"

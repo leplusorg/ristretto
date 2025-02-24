@@ -374,21 +374,6 @@ limitations under the License.
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.6.0</version>
       </plugin>
-      <plugin>
-        <groupId>org.owasp</groupId>
-        <artifactId>dependency-check-maven</artifactId>
-        <version>${dependencyCheck.version}</version>
-        <configuration>
-          <skip>${dependencyCheck.skip}</skip>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>aggregate</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
     </plugins>
   </reporting>
 </project>
