@@ -68,6 +68,9 @@ jobs:
       - name: Build with Maven
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
+          MAVEN_JARSIGNER_ALIAS: ${{ secrets.JARSIGNER_ALIAS }}
+          MAVEN_JARSIGNER_KEYSTORE: ${{ secrets.KEYSTORE_BASE64 }}
+          MAVEN_JARSIGNER_STOREPASS: ${{ secrets.KEYSTORE_PASSPHRASE }}
         run: |
           if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
           then
@@ -75,13 +78,20 @@ jobs:
           else
             GPG_SKIP=false
           fi
+          if [ -z "${MAVEN_JARSIGNER_STOREPASS}" ]
+          then
+            JARSIGNER_SKIP=true
+          else
+            JARSIGNER_SKIP=false
+	    echo "${MAVEN_JARSIGNER_KEYSTORE}" | base64 --decode > "${HOME}/.keystore"
+          fi
           # Forcing dependency check version to a version compatible
           # with Java 8 since version does not matter due to
           # dependencyCheck.skip=true. But otherwise Maven initialization
           # fails with error: "java.lang.TypeNotPresentException:
           # Type org.owasp.dependencycheck.maven.CheckMojo not present".
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true -Dgpg.skip=${GPG_SKIP} verify
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true -Dgpg.skip=${GPG_SKIP} -Djarsigner.alias=${JARSIGNER_ALIAS} -Djarsigner.storepass=${JARSIGNER_STOREPASS} verify
       - name: Publish site
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -104,4 +114,4 @@ jobs:
           name: ${{ env.REPOSITORY }}
           path: target/
       - name: Clean up
-        run: rm "${HOME}/.m2/settings.xml"
+        run: rm "${HOME}/.keystore" "${HOME}/.m2/settings.xml"

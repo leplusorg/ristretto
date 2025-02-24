@@ -77,9 +77,6 @@ limitations under the License.
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <jarsigner.alias>alias</jarsigner.alias>
-    <jarsigner.storepass>storepass</jarsigner.storepass>
-    <jarsigner.keypass>keypass</jarsigner.keypass>
     <java.minVersion>1.8</java.minVersion>
     <maven.javadoc.version>3.11.2</maven.javadoc.version>
     <dependencyCheck.version>12.1.0</dependencyCheck.version>
