@@ -63,7 +63,7 @@ jobs:
       - name: Build
         run: |
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true package
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Daether.layout.maven2.checksumAlgorithms=MD5,SHA-1,SHA-256,SHA-512 -Daether.checksums.omitChecksumsForExtensions=.asc,.sigstore.json package
       - name: Publish packages
         run: |
           # shellcheck disable=SC2086
@@ -81,7 +81,7 @@ jobs:
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} site site:stage
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true site site:stage scm-publish:publish-scm
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Daether.layout.maven2.checksumAlgorithms=MD5,SHA-1,SHA-256,SHA-512 -Daether.checksums.omitChecksumsForExtensions=.asc,.sigstore.json site site:stage scm-publish:publish-scm
       - name: Upload artifacts
         uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
