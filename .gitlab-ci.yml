@@ -86,14 +86,6 @@ maven check versions:
     - "/opt/maven-check-versions.sh"
   timeout: 10 minutes
 
-verify:jdk8:
-  stage: test
-  image: maven:3-openjdk-8-slim
-  script:
-    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.version=10.0.4 verify"
-  only:
-    - master
-
 verify:jdk11:
   stage: test
   image: maven:3-openjdk-11-slim
