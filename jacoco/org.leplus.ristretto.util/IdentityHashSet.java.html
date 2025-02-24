@@ -24,82 +24,70 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * &lt;p&gt;
- * This {@link java.util.Set} relies on identity (==) to compare the objects
- * it contains. It does not matter what the objects
- * {@link java.lang.Object#equals(java.lang.Object)} methods say.
- * &lt;/p&gt;
- * &lt;p&gt;
- * This collection is Cloneable and Serializable. If you clone an instance of
- * an IdentityHashSet, the clone is equal to the original instance (i.e.
- * original.equals(clone) == true and clone.equals(original) == true). However
- * this is not true for serialization, a deserialized instance of
- * IdentityHashSet is not equal to the instance originally serialized (i.e.
- * original.equals(deserialized) == false and
- * deserialized.equals(original) == false).
- * &lt;/p&gt;
+ * This {@link java.util.Set} relies on identity (==) to compare the objects it contains. It does
+ * not matter what the objects {@link java.lang.Object#equals(java.lang.Object)} methods say.
+ *
+ * &lt;p&gt;This collection is Cloneable and Serializable. If you clone an instance of an IdentityHashSet,
+ * the clone is equal to the original instance (i.e. original.equals(clone) == true and
+ * clone.equals(original) == true). However this is not true for serialization, a deserialized
+ * instance of IdentityHashSet is not equal to the instance originally serialized (i.e.
+ * original.equals(deserialized) == false and deserialized.equals(original) == false).
  *
  * @author Thomas Leplus
  * @since 1.0.0
- *
  * @param &lt;E&gt; the type of the elements of the set.
  */
-public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Set&lt;E&gt;,
-  Cloneable, Serializable {
+public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Set&lt;E&gt;, Cloneable, Serializable {
 
   private static final long serialVersionUID = -6954699503843913409L;
 
   /**
-   * A dummy singleton acting as a placeholder for the values in the
-   * underlying {@link java.util.IdentityHashMap}.
+   * A dummy singleton acting as a placeholder for the values in the underlying {@link
+   * java.util.IdentityHashMap}.
    */
-<span class="fc" id="L56">  private static final IdentityObject DUMMY = IdentityObject.IT;</span>
+<span class="fc" id="L48">  private static final IdentityObject DUMMY = IdentityObject.IT;</span>
 
   /**
-   * The underlying {@link java.util.IdentityHashMap} which keySet is backing
-   * the implementation of this class.
+   * The underlying {@link java.util.IdentityHashMap} which keySet is backing the implementation of
+   * this class.
    */
   private IdentityHashMap&lt;E, Object&gt; map;
 
-  /**
-   * Constructs a new, empty identity hash set with a default expected maximum
-   * size (21).
-   */
+  /** Constructs a new, empty identity hash set with a default expected maximum size (21). */
   public IdentityHashSet() {
-<span class="fc" id="L69">    super();</span>
-<span class="fc" id="L70">    map = new IdentityHashMap&lt;&gt;();</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L58">    super();</span>
+<span class="fc" id="L59">    map = new IdentityHashMap&lt;&gt;();</span>
+<span class="fc" id="L60">  }</span>
 
   /**
-   * Constructs a new identity hash set containing the objects of the provided
-   * collection.
+   * Constructs a new identity hash set containing the objects of the provided collection.
    *
    * @param c a collection of objects to put in this identity hash set.
    */
   public IdentityHashSet(final Collection&lt;? extends E&gt; c) {
-<span class="fc" id="L80">    this();</span>
-<span class="fc" id="L81">    addAll(c);</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L68">    this();</span>
+<span class="fc" id="L69">    addAll(c);</span>
+<span class="fc" id="L70">  }</span>
 
   /**
-   * Constructs a new, empty set with the specified expected maximum size.
-   * Putting more than the expected number of objects into the set may cause
-   * the internal data structure to grow, which may be somewhat time-consuming.
+   * Constructs a new, empty set with the specified expected maximum size. Putting more than the
+   * expected number of objects into the set may cause the internal data structure to grow, which
+   * may be somewhat time-consuming.
    *
    * @param expectedMaxSize the expected maximum size of the set.
    * @throws IllegalArgumentException if expectedMaxSize is negative.
    */
   public IdentityHashSet(final int expectedMaxSize) {
-<span class="fc" id="L93">    super();</span>
-<span class="fc" id="L94">    map = new IdentityHashMap&lt;&gt;(expectedMaxSize);</span>
-<span class="fc" id="L95">  }</span>
+<span class="fc" id="L81">    super();</span>
+<span class="fc" id="L82">    map = new IdentityHashMap&lt;&gt;(expectedMaxSize);</span>
+<span class="fc" id="L83">  }</span>
 
   /**
    * @see java.util.AbstractCollection#add(java.lang.Object)
    */
   @Override
   public boolean add(final E e) {
-<span class="fc bfc" id="L102" title="All 2 branches covered.">    return map.put(e, DUMMY) == null;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">    return map.put(e, DUMMY) == null;</span>
   }
 
   /**
@@ -107,8 +95,8 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public void clear() {
-<span class="fc" id="L110">    map.clear();</span>
-<span class="fc" id="L111">  }</span>
+<span class="fc" id="L98">    map.clear();</span>
+<span class="fc" id="L99">  }</span>
 
   /**
    * @see java.lang.Object#clone()
@@ -117,11 +105,11 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
   public Object clone() {
     try {
       @SuppressWarnings(&quot;unchecked&quot;)
-<span class="fc" id="L120">      final IdentityHashSet&lt;E&gt; clone = (IdentityHashSet&lt;E&gt;) super.clone();</span>
-<span class="fc" id="L121">      clone.map = new IdentityHashMap&lt;&gt;(map);</span>
-<span class="fc" id="L122">      return clone;</span>
-<span class="nc" id="L123">    } catch (final CloneNotSupportedException e) {</span>
-<span class="nc" id="L124">      throw new AssertionError(e);</span>
+<span class="fc" id="L108">      final IdentityHashSet&lt;E&gt; clone = (IdentityHashSet&lt;E&gt;) super.clone();</span>
+<span class="fc" id="L109">      clone.map = new IdentityHashMap&lt;&gt;(map);</span>
+<span class="fc" id="L110">      return clone;</span>
+<span class="nc" id="L111">    } catch (final CloneNotSupportedException e) {</span>
+<span class="nc" id="L112">      throw new AssertionError(e);</span>
     }
   }
 
@@ -130,7 +118,7 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public boolean contains(final Object o) {
-<span class="fc" id="L133">    return map.containsKey(o);</span>
+<span class="fc" id="L121">    return map.containsKey(o);</span>
   }
 
   /**
@@ -138,10 +126,10 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public boolean equals(final Object obj) {
-<span class="fc bfc" id="L141" title="All 2 branches covered.">    if (this == obj) {</span>
-<span class="fc" id="L142">      return true;</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">    if (this == obj) {</span>
+<span class="fc" id="L130">      return true;</span>
     }
-<span class="fc" id="L144">    return map.keySet().equals(obj);</span>
+<span class="fc" id="L132">    return map.keySet().equals(obj);</span>
   }
 
   /**
@@ -149,13 +137,13 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public int hashCode() {
-<span class="fc" id="L152">    int hashCode = 0;</span>
-<span class="fc bfc" id="L153" title="All 2 branches covered.">    for (final Object o : map.keySet()) {</span>
-<span class="fc bfc" id="L154" title="All 2 branches covered.">      if (o != null) {</span>
-<span class="fc" id="L155">        hashCode += o.hashCode();</span>
+<span class="fc" id="L140">    int hashCode = 0;</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">    for (final Object o : map.keySet()) {</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">      if (o != null) {</span>
+<span class="fc" id="L143">        hashCode += o.hashCode();</span>
       }
-<span class="fc" id="L157">    }</span>
-<span class="fc" id="L158">    return hashCode;</span>
+<span class="fc" id="L145">    }</span>
+<span class="fc" id="L146">    return hashCode;</span>
   }
 
   /**
@@ -163,7 +151,7 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public boolean isEmpty() {
-<span class="fc" id="L166">    return map.isEmpty();</span>
+<span class="fc" id="L154">    return map.isEmpty();</span>
   }
 
   /**
@@ -171,7 +159,7 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public Iterator&lt;E&gt; iterator() {
-<span class="fc" id="L174">    return map.keySet().iterator();</span>
+<span class="fc" id="L162">    return map.keySet().iterator();</span>
   }
 
   /**
@@ -179,7 +167,7 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public boolean remove(final Object o) {
-<span class="fc bfc" id="L182" title="All 2 branches covered.">    return map.remove(o) == DUMMY;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">    return map.remove(o) == DUMMY;</span>
   }
 
   /**
@@ -187,8 +175,7 @@ public class IdentityHashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Se
    */
   @Override
   public int size() {
-<span class="fc" id="L190">    return map.size();</span>
+<span class="fc" id="L178">    return map.size();</span>
   }
-
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

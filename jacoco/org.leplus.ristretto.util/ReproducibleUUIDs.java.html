@@ -16,6 +16,7 @@
 
 package org.leplus.ristretto.util;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -26,27 +27,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 /**
- * &lt;p&gt;
- * This class contains utility methods that generate deterministic UUIDs.
- * Meaning that given the same input, these methods will always return the
- * same UUID, as opposed to {@link java.util.UUID#randomUUID()}. The produced
- * UUIDs may not be universally unique (since other code using the same method
- * on the same input would have produce the same UUIDs) but it can still be
- * useful in situations where you need exactly that: be able to generate a UUID
- * and now that other parts of a system will be able to generate a matching
- * UUID for the same input.
- * &lt;/p&gt;
- * &lt;p&gt;
- * For example if two parts of a system receive a file and need to
- * independently produce pieces of data that will later have to be reconciled.
- * Then each piece of data could have it's own unique UUID plus a reference
- * UUID generated from the file using one of the methods below. Then both
- * parts of the system will have generated the same reference UUID allowing
- * for easier reconciliation.
- * &lt;/p&gt;
+ * This class contains utility methods that generate deterministic UUIDs. Meaning that given the
+ * same input, these methods will always return the same UUID, as opposed to {@link
+ * java.util.UUID#randomUUID()}. The produced UUIDs may not be universally unique (since other code
+ * using the same method on the same input would have produce the same UUIDs) but it can still be
+ * useful in situations where you need exactly that: be able to generate a UUID and now that other
+ * parts of a system will be able to generate a matching UUID for the same input.
+ *
+ * &lt;p&gt;For example if two parts of a system receive a file and need to independently produce pieces
+ * of data that will later have to be reconciled. Then each piece of data could have it's own unique
+ * UUID plus a reference UUID generated from the file using one of the methods below. Then both
+ * parts of the system will have generated the same reference UUID allowing for easier
+ * reconciliation.
  *
  * @author Thomas Leplus
  * @since 1.0.0
@@ -54,20 +47,13 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 @SuppressFBWarnings(&quot;WEAK_MESSAGE_DIGEST_MD5&quot;)
 public final class ReproducibleUUIDs {
 
-  /**
-   * Underlying hash algorithm. MD5 is OK since we do not need a one-way
-   * hash function.
-   */
+  /** Underlying hash algorithm. MD5 is OK since we do not need a one-way hash function. */
   private static final String MD5 = &quot;MD5&quot;;
 
-  /**
-   * Bytes per UUID.
-   */
+  /** Bytes per UUID. */
   private static final int UUID_BYTES = 16;
 
-  /**
-   * Buffer size for digest.
-   */
+  /** Buffer size for digest. */
   private static final int BUFFER_SIZE = 8192;
 
   private ReproducibleUUIDs() {
@@ -75,60 +61,57 @@ public final class ReproducibleUUIDs {
   }
 
   /**
-   * Generates a UUID from the given String. The same String will always
-   * produce the same UUID.
+   * Generates a UUID from the given String. The same String will always produce the same UUID.
    *
    * @param s the input string.
    * @return the resulting UUID.
    */
   public static UUID fromString(final String s) {
-<span class="fc bfc" id="L85" title="All 2 branches covered.">    if (s == null) {</span>
-<span class="fc" id="L86">      return null;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">    if (s == null) {</span>
+<span class="fc" id="L71">      return null;</span>
     }
-<span class="fc" id="L88">    return fromBytes(s.getBytes(StandardCharsets.UTF_8));</span>
+<span class="fc" id="L73">    return fromBytes(s.getBytes(StandardCharsets.UTF_8));</span>
   }
 
   /**
-   * Generates a UUID from the given bytes. The same bytes will always produce
-   * the same UUID.
+   * Generates a UUID from the given bytes. The same bytes will always produce the same UUID.
    *
    * @param bytes the input bytes.
    * @return the resulting UUID.
    */
   public static UUID fromBytes(final byte... bytes) {
-<span class="fc bfc" id="L99" title="All 2 branches covered.">    if (bytes == null) {</span>
-<span class="fc" id="L100">      return null;</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (bytes == null) {</span>
+<span class="fc" id="L84">      return null;</span>
     }
-<span class="fc" id="L102">    final MessageDigest md = createDigest();</span>
-<span class="fc" id="L103">    md.update(bytes);</span>
-<span class="fc" id="L104">    return digest(md);</span>
+<span class="fc" id="L86">    final MessageDigest md = createDigest();</span>
+<span class="fc" id="L87">    md.update(bytes);</span>
+<span class="fc" id="L88">    return digest(md);</span>
   }
 
   /**
-   * Generates a UUID from the given byte buffer. The same bytes will always
-   * produce the same UUID.
+   * Generates a UUID from the given byte buffer. The same bytes will always produce the same UUID.
    *
    * @param buffer the input byte buffer.
    * @return the resulting UUID.
    */
   public static UUID fromByteBuffer(final ByteBuffer buffer) {
-<span class="fc bfc" id="L115" title="All 2 branches covered.">    if (buffer == null) {</span>
-<span class="fc" id="L116">      return null;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">    if (buffer == null) {</span>
+<span class="fc" id="L99">      return null;</span>
     }
-<span class="fc" id="L118">    final MessageDigest md = createDigest();</span>
-<span class="fc" id="L119">    md.update(buffer);</span>
-<span class="fc" id="L120">    return digest(md);</span>
+<span class="fc" id="L101">    final MessageDigest md = createDigest();</span>
+<span class="fc" id="L102">    md.update(buffer);</span>
+<span class="fc" id="L103">    return digest(md);</span>
   }
 
   @SuppressWarnings(&quot;checkstyle:magicnumber&quot;)
   private static UUID digest(final MessageDigest md) {
-<span class="fc" id="L125">    final byte[] md5Bytes = md.digest();</span>
+<span class="fc" id="L108">    final byte[] md5Bytes = md.digest();</span>
     // for compatibility with UUID.nameUUIDFromBytes(byte[]).
-<span class="fc" id="L127">    md5Bytes[6] &amp;= 0x0f;</span>
-<span class="fc" id="L128">    md5Bytes[6] |= 0x30;</span>
-<span class="fc" id="L129">    md5Bytes[8] &amp;= 0x3f;</span>
-<span class="fc" id="L130">    md5Bytes[8] |= 0x80;</span>
-<span class="fc" id="L131">    return UUIDConvertor.toUUID(md5Bytes);</span>
+<span class="fc" id="L110">    md5Bytes[6] &amp;= 0x0f;</span>
+<span class="fc" id="L111">    md5Bytes[6] |= 0x30;</span>
+<span class="fc" id="L112">    md5Bytes[8] &amp;= 0x3f;</span>
+<span class="fc" id="L113">    md5Bytes[8] |= 0x80;</span>
+<span class="fc" id="L114">    return UUIDConvertor.toUUID(md5Bytes);</span>
   }
 
   private static MessageDigest createDigest() {
@@ -138,59 +121,52 @@ public final class ReproducibleUUIDs {
        * entropy, not actual security. Also MD5 gives us exactly the 128 bits
        * we need to create a UUID.
        */
-<span class="fc" id="L141">      return MessageDigest.getInstance(MD5);</span>
-<span class="nc" id="L142">    } catch (final NoSuchAlgorithmException e) {</span>
-<span class="nc" id="L143">      throw new IllegalStateException(MD5 + &quot; not supported&quot;, e);</span>
+<span class="fc" id="L124">      return MessageDigest.getInstance(MD5);</span>
+<span class="nc" id="L125">    } catch (final NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L126">      throw new IllegalStateException(MD5 + &quot; not supported&quot;, e);</span>
     }
   }
 
   /**
-   * Generates a UUID from the given input stream. The same bytes will always
-   * produce the same UUID.
+   * Generates a UUID from the given input stream. The same bytes will always produce the same UUID.
    *
    * @param input the input stream.
    * @return the resulting UUID.
    * @throws IOException if an I/O error occurs.
    */
-  @SuppressWarnings({ &quot;PMD.EmptyWhileStmt&quot;,
-      &quot;PMD.EmptyControlStatement&quot;,
-      &quot;checkstyle:emptyblock&quot; })
-  public static UUID fromInputStream(final InputStream input)
-      throws IOException {
-<span class="fc bfc" id="L160" title="All 2 branches covered.">    if (input == null) {</span>
-<span class="fc" id="L161">      return null;</span>
+  @SuppressWarnings({&quot;PMD.EmptyWhileStmt&quot;, &quot;PMD.EmptyControlStatement&quot;, &quot;checkstyle:emptyblock&quot;})
+  public static UUID fromInputStream(final InputStream input) throws IOException {
+<span class="fc bfc" id="L139" title="All 2 branches covered.">    if (input == null) {</span>
+<span class="fc" id="L140">      return null;</span>
     }
-<span class="fc" id="L163">    final MessageDigest md = createDigest();</span>
-<span class="fc" id="L164">    try (DigestInputStream dis = new DigestInputStream(input, md)) {</span>
-<span class="fc" id="L165">      final byte[] buffer = new byte[BUFFER_SIZE];</span>
-<span class="fc bfc" id="L166" title="All 2 branches covered.">      while (dis.read(buffer) &gt;= 0) {</span>
-      }
+<span class="fc" id="L142">    final MessageDigest md = createDigest();</span>
+<span class="fc" id="L143">    try (DigestInputStream dis = new DigestInputStream(input, md)) {</span>
+<span class="fc" id="L144">      final byte[] buffer = new byte[BUFFER_SIZE];</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">      while (dis.read(buffer) &gt;= 0) {}</span>
     }
-<span class="fc" id="L169">    return digest(md);</span>
+<span class="fc" id="L147">    return digest(md);</span>
   }
 
   /**
-   * Generates a UUID from the given UUIDs. The same UUIDs will always produce
-   * the same UUID.
+   * Generates a UUID from the given UUIDs. The same UUIDs will always produce the same UUID.
    *
    * @param uuids the UUIDs.
    * @return the resulting UUID.
    */
   public static UUID fromUUIDs(final UUID... uuids) {
-<span class="pc bpc" id="L180" title="1 of 4 branches missed.">    if (uuids == null || uuids.length == 0) {</span>
-<span class="fc" id="L181">      return null;</span>
+<span class="pc bpc" id="L157" title="1 of 4 branches missed.">    if (uuids == null || uuids.length == 0) {</span>
+<span class="fc" id="L158">      return null;</span>
     }
-<span class="fc bfc" id="L183" title="All 2 branches covered.">    if (uuids.length == 1) {</span>
-<span class="fc" id="L184">      return uuids[0];</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">    if (uuids.length == 1) {</span>
+<span class="fc" id="L161">      return uuids[0];</span>
     }
-<span class="fc" id="L186">    final ByteBuffer bytes = ByteBuffer.allocate(uuids.length * UUID_BYTES);</span>
-<span class="fc" id="L187">    final LongBuffer longs = bytes.asLongBuffer();</span>
-<span class="fc bfc" id="L188" title="All 2 branches covered.">    for (final UUID uuid : uuids) {</span>
-<span class="fc" id="L189">      longs.put(uuid.getMostSignificantBits());</span>
-<span class="fc" id="L190">      longs.put(uuid.getLeastSignificantBits());</span>
+<span class="fc" id="L163">    final ByteBuffer bytes = ByteBuffer.allocate(uuids.length * UUID_BYTES);</span>
+<span class="fc" id="L164">    final LongBuffer longs = bytes.asLongBuffer();</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">    for (final UUID uuid : uuids) {</span>
+<span class="fc" id="L166">      longs.put(uuid.getMostSignificantBits());</span>
+<span class="fc" id="L167">      longs.put(uuid.getLeastSignificantBits());</span>
     }
-<span class="fc" id="L192">    return fromByteBuffer(bytes);</span>
+<span class="fc" id="L169">    return fromByteBuffer(bytes);</span>
   }
-
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
