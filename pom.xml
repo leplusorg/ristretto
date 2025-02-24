@@ -221,16 +221,10 @@ limitations under the License.
         <version>1.2.0</version>
         <executions>
           <execution>
-            <id>sign-sigstore</id>
+            <id>sigstore-sign</id>
             <phase>verify</phase>
             <goals>
               <goal>sign</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>sigstore-jarsign</id>
-            <goals>
-              <goal>jarsign</goal>
             </goals>
           </execution>
         </executions>
@@ -241,7 +235,7 @@ limitations under the License.
         <version>3.2.7</version>
         <executions>
           <execution>
-            <id>sign-pgp</id>
+            <id>pgp-sign</id>
             <phase>verify</phase>
             <goals>
               <goal>sign</goal>
