@@ -47,6 +47,8 @@ jobs:
       MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
       MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
     steps:
+      - name: Set REPOSITORY
+        run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Set up Maven Central Repository
         uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
