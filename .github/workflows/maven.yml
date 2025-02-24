@@ -65,41 +65,10 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ matrix.java }}
-          gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
       - name: Build with Maven
-        env:
-          MAVEN_GPG_KEY: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
         run: |
-          if [ -z "${MAVEN_GPG_PASSPHRASE}" ]
-          then
-            GPG_SKIP=true
-          else
-            GPG_SKIP=false
-          fi
-          # Forcing dependency check version to a version compatible
-          # with Java 8 since version does not matter due to
-          # dependencyCheck.skip=true. But otherwise Maven initialization
-          # fails with error: "java.lang.TypeNotPresentException:
-          # Type org.owasp.dependencycheck.maven.CheckMojo not present".
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true -Dgpg.skip=${GPG_SKIP} verify
-      - name: Publish site
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        if: ${{ matrix.java == 21 && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: |
-          git config --global user.email \
-            "${GITHUB_REPOSITORY_OWNER}@users.noreply.github.com"
-          git config --global user.name "${GITHUB_REPOSITORY_OWNER}"
-          ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
-          ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} site site:stage
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -X scm-publish:publish-scm
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Dgpg.skip=true verify
       - name: Upload artifacts
         if: ${{ matrix.java == 11 }}
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
