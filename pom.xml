@@ -19,7 +19,7 @@ limitations under the License.
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>2.0.0</version>
   <name>Ristretto</name>
   <packaging>jar</packaging>
   <description>A small library of useful java classes.</description>
