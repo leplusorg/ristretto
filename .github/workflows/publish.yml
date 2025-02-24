@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-      MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+      MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
       MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_PASSPHRASE }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -55,10 +55,14 @@ jobs:
           java-version: 11
           server-id: ossrh
           server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-password: MAVEN_CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
-      - name: Build and publish packages
+      - name: Build
+        run: |
+          # shellcheck disable=SC2086
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true package
+      - name: Publish packages
         run: |
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress -DdependencyCheck.skip=true deploy
@@ -75,7 +79,12 @@ jobs:
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} site site:stage
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -X -DdependencyCheck.skip=true site site:stage scm-publish:publish-scm
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true site site:stage scm-publish:publish-scm
+      - name: Upload artifacts
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: ${{ env.REPOSITORY }}
+          path: target/
       - name: Clean up
         run: |
           rm "${HOME}/.m2/settings.xml"
