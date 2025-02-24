@@ -83,7 +83,7 @@ jobs:
             JARSIGNER_SKIP=true
           else
             JARSIGNER_SKIP=false
-	    echo "${MAVEN_JARSIGNER_KEYSTORE}" | base64 --decode > "${HOME}/.keystore"
+            echo "${MAVEN_JARSIGNER_KEYSTORE}" | base64 --decode > "${HOME}/.keystore"
           fi
           # Forcing dependency check version to a version compatible
           # with Java 8 since version does not matter due to
