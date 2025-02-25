@@ -99,7 +99,7 @@ cloning.
 ### [org.leplus.ristretto.util.VectorAdapter<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/VectorAdapter.html)
 
 This adapter class extends [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) uses by
-another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) implementation.
+ another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) implementation.
 
 ### [org.leplus.ristretto.util.ArrayListVector<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/ArrayListVector.html)
 
@@ -112,14 +112,24 @@ e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
 
 ## Digital Signature
 
-Releases of Ristretto are digitally signed in two different ways: using Sigstore and using PGP.
+Releases of Ristretto are digitally signed in two different ways:
+using Sigstore and using PGP.
 
 ### Sigstore
 
-[Sigstore](https://docs.sigstore.dev) is trying to improve supply chain security by allowing you to verify the origin of an artifcat. You can verify that the jar that you use was actually produced by this repository. This means that if you verify the signature of the ristretto jar, you can trust the integrity of the whole supply chain from code source, to CI/CD build, to distribution on Maven Central or whever you got the jar from.
+[Sigstore](https://docs.sigstore.dev) is trying to improve supply
+chain security by allowing you to verify the origin of an
+artifcat. You can verify that the jar that you use was actually
+produced by this repository. This means that if you verify the
+signature of the ristretto jar, you can trust the integrity of the
+whole supply chain from code source, to CI/CD build, to distribution
+on Maven Central or whever you got the jar from.
 
-To verify the jar using its sigstore signature, you need to download them both locally and then use the `cosign` tool to verify the signature. The
-whole process can be done using the following 3 commands (replacing all occurrences of `x.y.z` with the version that you want to check):
+To verify the jar using its sigstore signature, you need to download
+them both locally and then use the `cosign` tool to verify the
+signature. The whole process can be done using the following 3
+commands (replacing all 9 occurrences of `x.y.z` with the version that
+you want to check):
 
 ```bash
 curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/x.y.z/ristretto-x.y.z.jar' -o ristretto-x.y.z.jar

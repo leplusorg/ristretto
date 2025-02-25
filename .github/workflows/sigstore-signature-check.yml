@@ -1,0 +1,51 @@
+---
+# Copyright 2016-present Thomas Leplus
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This workflow will build a Java project with Maven
+# For more information see:
+# https://help.github.com/actions/language-and-framework-guides
+# /building-and-testing-java-with-maven
+
+name: Sigstore Signature Check
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set REPOSITORY
+        run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
+      - name: Set VERSION
+        run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+      - name: Download
+        run: |
+          curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar" -o "${REPOSITORY}-${VERSION}.jar"
+          curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar.sigstore.json" -o "${REPOSITORY}-${VERSION}.jar.sigstore.json"
+      - name: Set up Go
+        uses: actions/setup-go@3041bf56c941b39c61721a86cd11f3bb1338122a # v5.2.0
+        with:
+          go-version: "stable"
+          check-latest: true
+        id: go
+      - name: Cosign
+        run: |
+          go install github.com/sigstore/cosign/v2/cmd/cosign@latest
+          cosign verify-blob --bundle "${REPOSITORY}-${VERSION}.jar.sigstore.json" --certificate-identity "https://github.com/leplusorg/${REPOSITORY}/.github/workflows/publish.yml@refs/tags/v${VERSION}" --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' "${REPOSITORY}-${VERSION}.jar"
