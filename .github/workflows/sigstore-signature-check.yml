@@ -48,4 +48,4 @@ jobs:
       - name: Cosign
         run: |
           go install github.com/sigstore/cosign/v2/cmd/cosign@latest
-          cosign verify-blob --bundle "${REPOSITORY}-${VERSION}.jar.sigstore.json" --certificate-identity "https://github.com/leplusorg/${REPOSITORY}/.github/workflows/publish.yml@refs/tags/v${VERSION}" --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' "${REPOSITORY}-${VERSION}.jar"
+          cosign verify-blob --bundle "${REPOSITORY}-${VERSION}.jar.sigstore.json" --certificate-identity "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/.github/workflows/publish.yml@refs/tags/v${VERSION}" --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' "${REPOSITORY}-${VERSION}.jar"
