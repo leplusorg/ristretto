@@ -99,7 +99,7 @@ cloning.
 ### [org.leplus.ristretto.util.VectorAdapter<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/VectorAdapter.html)
 
 This adapter class extends [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) uses by
- another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) implementation.
+another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) implementation.
 
 ### [org.leplus.ristretto.util.ArrayListVector<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/ArrayListVector.html)
 
