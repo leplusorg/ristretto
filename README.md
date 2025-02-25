@@ -112,12 +112,33 @@ e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
 
 ## Digital Signature
 
-Releases of Ristretto are digitally signed. You can verify the GPG signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the GPG signature of all your dependencies:
+Releases of Ristretto are digitally signed in two different ways: using Sigstore and using PGP.
+
+### Sigstore
+
+[Sigstore](https://docs.sigstore.dev) is trying to improve supply chain security by allowing you to verify the origin of an artifcat. You can verify that the jar that you use was actually produced by this repository. This means that if you verify the signature of the ristretto jar, you can trust the integrity of the whole supply chain from code source, to CI/CD build, to distribution on Maven Central or whever you got the jar from.
+
+To verify the jar using its sigstore signature, you need to download them both locally and then use the `cosign` tool to verify the signature. The
+whole process can be done using the following 3 commands (replacing all occurrences of `x.y.z` with the version that you want to check):
+
+```bash
+curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/x.y.z/ristretto-x.y.z.jar' -o ristretto-x.y.z.jar
+curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/x.y.z/ristretto-x.y.z.jar.sigstore.json' -o ristretto-x.y.z.jar.sigstore.json
+cosign verify-blob --bundle ristretto-x.y.z.jar.sigstore.json --certificate-identity 'https://github.com/leplusorg/ristretto/.github/workflows/publish.yml@refs/tags/vx.y.z' --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' ristretto-x.y.z.jar
+```
+
+The only output that you should get is a message saying `Verified OK`.
+
+For instructions on how to install `cosign`, please read this [documentation](https://docs.sigstore.dev/cosign/system_config/installation/).
+
+### GPG
+
+Having GPG signature is a requirement to publish artifacts to Maven Central. You can verify the GPG signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the GPG signature of all your dependencies:
 
 - [Maven](https://www.simplify4u.org/pgpverify-maven-plugin/)
 - [Gradle](https://docs.gradle.org/current/userguide/dependency_verification.html)
 
-To verify only Ristretto, you can run the following command (replacing `x.y.z` with the version that you want to use) and check that the displayed keyId matches the public key mentioned above:
+To verify only Ristretto, you can run the following command (replacing `x.y.z` with the version that you want to check) and check that the displayed keyId matches the public key mentioned above:
 
 `mvn org.simplify4u.plugins:pgpverify-maven-plugin:show -Dartifact=org.leplus:ristretto:x.y.z`
 
