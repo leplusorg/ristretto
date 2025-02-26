@@ -1,0 +1,49 @@
+---
+# Copyright 2016-present Thomas Leplus
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This workflow will build a Java project with Maven
+# For more information see:
+# https://help.github.com/actions/language-and-framework-guides
+# /building-and-testing-java-with-maven
+
+name: Maven Central
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set VERSION
+        shell: bash
+        run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+      - name: Set up JDK
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Download
+        shell: bash
+        run: |
+          ./mvnw -DgroupId=org.leplus -DartifactId=ristretto -Dversion=${VERSION} -Dtransitive=false dependency:get
+          ./mvnw -DgroupId=org.leplus -DartifactId=ristretto -Dversion=${VERSION} -Dclassifier=sources dependency:get
+          ./mvnw -DgroupId=org.leplus -DartifactId=ristretto -Dversion=${VERSION} -Dclassifier=javadoc dependency:get
+          ./mvnw -DgroupId=org.leplus -DartifactId=ristretto -Dversion=${VERSION} -Dclassifier=cyclonedx -Dpackaging=json dependency:get
+          ./mvnw -DgroupId=org.leplus -DartifactId=ristretto -Dversion=${VERSION} -Dclassifier=cyclonedx -Dpackaging=xml dependency:get
