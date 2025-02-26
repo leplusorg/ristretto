@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        meta: [" ", ".asc", ".sigstore.json", ".md5", ".sha1"]
+        meta: ["", ".asc", ".sigstore.json", ".md5", ".sha1"]
     steps:
       - name: Set VERSION
         shell: bash
@@ -62,7 +62,7 @@ jobs:
         shell: bash
         run: |
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}" -Dtransitive=false dependency:get
+          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:" -Dtransitive=false dependency:get
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:sources" dependency:get
           # shellcheck disable=SC2086
