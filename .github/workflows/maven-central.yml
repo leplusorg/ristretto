@@ -45,6 +45,9 @@ env:
 jobs:
   check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        meta: ['', '.asc', '.sigstore.json', '.md5', '.sha1']
     steps:
       - name: Set VERSION
         shell: bash
@@ -55,56 +58,16 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Download
+      - name: Download ${{ matrix.meta }}
         shell: bash
         run: |
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar" -Dtransitive=false dependency:get
+          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}" -Dtransitive=false dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.asc" -Dtransitive=false dependency:get
+          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:sources" dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.sigstore.json" -Dtransitive=false dependency:get
+          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:javadoc" dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.md5" -Dtransitive=false dependency:get
+          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json${{ matrix.meta }}:cyclonedx" dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.sha1" -Dtransitive=false dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar:sources" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.asc:sources" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.sigstore.json:sources" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.md5:sources" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.sha1:sources" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar:javadoc" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.asc:javadoc" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.sigstore.json:javadoc" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.md5:javadoc" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar.sha1:javadoc" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json.asc:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json.sigstore.json:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json.md5:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json.sha1:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml.asc:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml.sigstore.json:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml.md5:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml.sha1:cyclonedx" dependency:get
+          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml${{ matrix.meta }}:cyclonedx" dependency:get
