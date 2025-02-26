@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        meta: ['', '.asc', '.sigstore.json', '.md5', '.sha1']
+        meta: [" ", ".asc", ".sigstore.json", ".md5", ".sha1"]
     steps:
       - name: Set VERSION
         shell: bash
