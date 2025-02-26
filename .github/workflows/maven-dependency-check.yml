@@ -55,6 +55,7 @@ jobs:
       - name: Dependency Check with Maven
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        shell: bash
         run: |
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.NVDApiKey=${NVD_API_KEY} dependency-check:aggregate
@@ -64,4 +65,5 @@ jobs:
           name: ${{ github.workflow }}
           path: target/
       - name: Clean up
+        shell: bash
         run: rm "${HOME}/.m2/settings.xml"

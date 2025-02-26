@@ -32,10 +32,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set REPOSITORY
+        shell: bash
         run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
       - name: Set VERSION
+        shell: bash
         run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
       - name: Download
+        shell: bash
         run: |
           curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar" -o "${REPOSITORY}-${VERSION}.jar"
           curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar.sigstore.json" -o "${REPOSITORY}-${VERSION}.jar.sigstore.json"
@@ -46,6 +49,7 @@ jobs:
           check-latest: true
         id: go
       - name: Cosign
+        shell: bash
         run: |
           go install github.com/sigstore/cosign/v2/cmd/cosign@latest
           cosign verify-blob --bundle "${REPOSITORY}-${VERSION}.jar.sigstore.json" --certificate-identity "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/.github/workflows/publish.yml@refs/tags/v${VERSION}" --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' "${REPOSITORY}-${VERSION}.jar"
