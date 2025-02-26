@@ -42,14 +42,9 @@ jobs:
         run: |
           curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar" -o "${REPOSITORY}-${VERSION}.jar"
           curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar.sigstore.json" -o "${REPOSITORY}-${VERSION}.jar.sigstore.json"
-      - name: Set up Go
-        uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34 # v5.3.0
-        with:
-          go-version: "stable"
-          check-latest: true
-        id: go
-      - name: Cosign
+      - name: Install cosign
+        uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
+      - name: Verify signature
         shell: bash
         run: |
-          go install github.com/sigstore/cosign/v2/cmd/cosign@latest
           cosign verify-blob --bundle "${REPOSITORY}-${VERSION}.jar.sigstore.json" --certificate-identity "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/.github/workflows/publish.yml@refs/tags/v${VERSION}" --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' "${REPOSITORY}-${VERSION}.jar"
