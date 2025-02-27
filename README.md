@@ -7,6 +7,8 @@ A small library of (hopefully) useful Java classes.
 [![Publish](https://github.com/leplusorg/ristretto/workflows/Publish/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Publish")
 [![Maven Central](https://img.shields.io/maven-central/v/org.leplus/ristretto)](https://search.maven.org/artifact/org.leplus/ristretto)
 [![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/10084/badge)](https://bestpractices.coreinfrastructure.org/projects/10084)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/leplusorg/ristretto/badge)](https://securityscorecards.dev/viewer/?uri=github.com/leplusorg/ristretto)
 
 [Maven Site](https://leplusorg.github.io/ristretto)
 
