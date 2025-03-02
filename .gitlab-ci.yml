@@ -19,7 +19,7 @@ include:
 
 stages:
   - check
-  - test
+  - build
 
 variables:
   MAVEN_OPTS: >
@@ -87,26 +87,19 @@ maven check versions:
   timeout: 10 minutes
 
 verify:jdk11:
-  stage: test
+  stage: build
   image: maven:3-openjdk-11-slim
   script:
     - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
-  only:
-    - master
 
 verify:jdk17:
-  stage: test
+  stage: build
   image: maven:3-openjdk-17-slim
   script:
     - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
-  only:
-    - master
 
 verify:jdk21:
-  stage: test
+  stage: build
   image: maven:3-eclipse-temurin-21-alpine
   script:
     - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
-  only:
-    - master
-  when: manual
