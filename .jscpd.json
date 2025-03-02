@@ -1,6 +1,3 @@
 {
-  "ignore": [
-    "README.md",
-    "docs/README.md"
-  ]
+  "ignore": ["README.md", "docs/README.md"]
 }

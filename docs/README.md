@@ -2,7 +2,7 @@
 
 See the [Maven Site](https://leplusorg.github.io/ristretto) for the
 detailed documentation of the library.
- 
+
 ## License
 
 Copyright 2016-present Thomas Leplus
