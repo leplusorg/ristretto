@@ -9,7 +9,7 @@ A small library of (hopefully) useful Java classes.
 [![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/10084/badge)](https://bestpractices.coreinfrastructure.org/projects/10084)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/leplusorg/ristretto/badge)](https://securityscorecards.dev/viewer/?uri=github.com/leplusorg/ristretto)
-[![Maven Site](https://img.shields.io/badge/Maven%20Site)](https://leplusorg.github.io/ristretto)
+[![Maven Site](https://img.shields.io/badge/Maven-Site-blue)](https://leplusorg.github.io/ristretto)
 
 ## Maven Coordinates
 
