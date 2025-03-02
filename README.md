@@ -9,28 +9,43 @@ A small library of (hopefully) useful Java classes.
 [![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/10084/badge)](https://bestpractices.coreinfrastructure.org/projects/10084)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/leplusorg/ristretto/badge)](https://securityscorecards.dev/viewer/?uri=github.com/leplusorg/ristretto)
+[![Maven Site](https://img.shields.io/badge/Maven%20Site)](https://leplusorg.github.io/ristretto)
 
-[Maven Site](https://leplusorg.github.io/ristretto)
+## Maven Coordinates
 
-## Installation
-
-### Maven
+### Apache Maven
 
 ```xml
 <dependency>
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
-  <version>1.0.3</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
-### Gradle
+### Apache Ivy
+
+```xml
+<dependency org="org.leplus" name="ristretto" rev="2.0.0">
+  <artifact name="ristretto" type="jar" />
+</dependency>
+```
+
+### Groovy Grape
+
+```groovy
+@Grapes(
+@Grab(group='org.leplus', module='ristretto', version='2.0.0')
+)
+```
+
+### Gradle/Grails
 
 If you use ristretto in your implementation only:
 
 ```gradle
 dependencies {
-  implementation("org.leplus:ristretto:1.0.3")
+  implementation 'org.leplus:ristretto:2.0.0'
 }
 ```
 
@@ -38,8 +53,20 @@ If you expose ristretto types in your public API:
 
 ```gradle
 dependencies {
-  api("org.leplus:ristretto:1.0.3")
+  api("org.leplus:ristretto:2.0.0")
 }
+```
+
+### Scala SBT
+
+```scala
+libraryDependencies += "org.leplus" % "ristretto" % "2.0.0"
+```
+
+### Leiningen
+
+```clojure
+[org.leplus/ristretto "2.0.0"]
 ```
 
 ## Usage
