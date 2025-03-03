@@ -13,14 +13,14 @@ A small library of (hopefully) useful Java classes.
 
 ## Java version
 
-Since version 2.0.0 of this library, it requires Java 11 or higher. If you
-need a version compatible with Java 8, please use version 1.0.3.
+Since version 2 of this library, it requires Java 11 or higher. If you
+need a version compatible with Java 8, please use the last version 1
+release (1.0.3).
 
 ## Maven Coordinates
 
 Below are instructions on how to add this library to your project
-using various build tools. Just replace the version `x.y.z` with the
-desired version (see Maven Central badge above for the latest).
+using various build tools.
 
 ### Apache Maven
 
@@ -28,14 +28,14 @@ desired version (see Maven Central badge above for the latest).
 <dependency>
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
-  <version>x.y.z</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
 ### Apache Ivy
 
 ```xml
-<dependency org="org.leplus" name="ristretto" rev="x.y.z">
+<dependency org="org.leplus" name="ristretto" rev="2.0.0">
   <artifact name="ristretto" type="jar" />
 </dependency>
 ```
@@ -44,7 +44,7 @@ desired version (see Maven Central badge above for the latest).
 
 ```groovy
 @Grapes(
-@Grab(group='org.leplus', module='ristretto', version='x.y.z')
+@Grab(group='org.leplus', module='ristretto', version='2.0.0')
 )
 ```
 
@@ -54,7 +54,7 @@ If you use ristretto in your implementation only:
 
 ```gradle
 dependencies {
-  implementation 'org.leplus:ristretto:x.y.z'
+  implementation 'org.leplus:ristretto:2.0.0'
 }
 ```
 
@@ -62,20 +62,20 @@ If you expose ristretto types in your public API:
 
 ```gradle
 dependencies {
-  api("org.leplus:ristretto:x.y.z")
+  api("org.leplus:ristretto:2.0.0")
 }
 ```
 
 ### Scala SBT
 
 ```scala
-libraryDependencies += "org.leplus" % "ristretto" % "x.y.z"
+libraryDependencies += "org.leplus" % "ristretto" % "2.0.0"
 ```
 
 ### Leiningen
 
 ```clojure
-[org.leplus/ristretto "x.y.z"]
+[org.leplus/ristretto "2.0.0"]
 ```
 
 ## Usage
@@ -166,13 +166,12 @@ on Maven Central or whever you got the jar from.
 To verify the jar using its sigstore signature, you need to download
 them both locally and then use the `cosign` tool to verify the
 signature. The whole process can be done using the following 3
-commands (replacing all 9 occurrences of `x.y.z` with the version that
-you want to check, see Maven Central badge above for the latest):
+commands:
 
 ```bash
-curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/x.y.z/ristretto-x.y.z.jar' -o ristretto-x.y.z.jar
-curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/x.y.z/ristretto-x.y.z.jar.sigstore.json' -o ristretto-x.y.z.jar.sigstore.json
-cosign verify-blob --bundle ristretto-x.y.z.jar.sigstore.json --certificate-identity 'https://github.com/leplusorg/ristretto/.github/workflows/publish.yml@refs/tags/vx.y.z' --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' ristretto-x.y.z.jar
+curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0.jar' -o ristretto-2.0.0.jar
+curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0.jar.sigstore.json' -o ristretto-2.0.0.jar.sigstore.json
+cosign verify-blob --bundle ristretto-2.0.0.jar.sigstore.json --certificate-identity 'https://github.com/leplusorg/ristretto/.github/workflows/publish.yml@refs/tags/v2.0.0' --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' ristretto-2.0.0.jar
 ```
 
 The only output that you should get is a message saying `Verified OK`.
@@ -186,16 +185,14 @@ Having GPG signature is a requirement to publish artifacts to Maven Central. You
 - [Maven](https://www.simplify4u.org/pgpverify-maven-plugin/)
 - [Gradle](https://docs.gradle.org/current/userguide/dependency_verification.html)
 
-To verify only Ristretto, you can run the following command (replacing
-`x.y.z` with the version that you want to check, see Maven Central
-badge above for the latest) and check that the displayed keyId matches
-the public key mentioned above:
+To verify only Ristretto, you can run the following command and check
+that the displayed keyId matches the public key mentioned above:
 
-`mvn org.simplify4u.plugins:pgpverify-maven-plugin:show -Dartifact=org.leplus:ristretto:x.y.z`
+`mvn org.simplify4u.plugins:pgpverify-maven-plugin:show -Dartifact=org.leplus:ristretto:2.0.0`
 
 You can also use my convenient docker image (shameless plug):
 
-`docker run --rm leplusorg/pgp-verify-jar org.leplus:ristretto:x.y.z`
+`docker run --rm leplusorg/pgp-verify-jar org.leplus:ristretto:2.0.0`
 
 See [here](https://github.com/leplusorg/docker-pgp-verify-jar) for details.
 
