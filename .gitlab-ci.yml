@@ -81,7 +81,7 @@ maven check versions:
     name: leplusorg/maven-check-versions:3.9.9@sha256:abdd53328be1c87d7bf21b868d47d7934b28dfc66e168d9625877616ab14d6da
   stage: check
   variables:
-    IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+,4\\.9\\.\\d+,4\\.9\\.\\d+.\\d+"
+    IGNORED_VERSIONS: "(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+"
   script:
     - "/opt/maven-check-versions.sh"
   timeout: 10 minutes

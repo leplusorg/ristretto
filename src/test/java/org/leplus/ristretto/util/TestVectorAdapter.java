@@ -64,30 +64,8 @@ public final class TestVectorAdapter {
      * @param cmp the cmp
      * @return the int
      */
-    /*
-     * Replace with java.util.Arrays.compare() once Java 8 no longer
-     * supported.
-     */
     private static <T> int compare(final T[] a, final T[] b, final Comparator<? super T> cmp) {
-      Objects.requireNonNull(cmp);
-      if (a == b) {
-        return 0;
-      }
-      if (a == null || b == null) {
-        return a == null ? -1 : 1;
-      }
-      final int length = Math.min(a.length, b.length);
-      for (int i = 0; i < length; i++) {
-        final T oa = a[i];
-        final T ob = b[i];
-        if (oa != ob) {
-          final int v = cmp.compare(oa, ob);
-          if (v != 0) {
-            return v;
-          }
-        }
-      }
-      return a.length - b.length;
+	return Arrays.compare(a, b, cmp);
     }
 
     /** The method name. */

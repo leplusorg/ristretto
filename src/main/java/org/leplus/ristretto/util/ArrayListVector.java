@@ -26,7 +26,7 @@ import java.util.List;
  *
  * <p>Using this class introduces a small memory overhead compared to using an {@link
  * java.util.ArrayList} directly. Typically that overhead is the size of an empty {@link
- * java.util.Vector}, e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
+ * java.util.Vector}, e.g. 48 bytes on Oracle Java HotSpot 11 for Windows (64-Bit).
  *
  * @author Thomas Leplus
  * @since 1.0.0

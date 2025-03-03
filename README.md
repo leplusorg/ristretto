@@ -11,7 +11,16 @@ A small library of (hopefully) useful Java classes.
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/leplusorg/ristretto/badge)](https://securityscorecards.dev/viewer/?uri=github.com/leplusorg/ristretto)
 [![Maven Site](https://img.shields.io/badge/Maven-Site-blue)](https://leplusorg.github.io/ristretto)
 
+## Java version
+
+Since version 2.0.0 of this library, it requires Java 11 or higher. If you
+need a version compatible with Java 8, please use version 1.0.3.
+
 ## Maven Coordinates
+
+Below are instructions on how to add this library to your project
+using various build tools. Just replace the version `x.y.z` with the
+desired version.
 
 ### Apache Maven
 
@@ -19,14 +28,14 @@ A small library of (hopefully) useful Java classes.
 <dependency>
   <groupId>org.leplus</groupId>
   <artifactId>ristretto</artifactId>
-  <version>2.0.0</version>
+  <version>x.y.z</version>
 </dependency>
 ```
 
 ### Apache Ivy
 
 ```xml
-<dependency org="org.leplus" name="ristretto" rev="2.0.0">
+<dependency org="org.leplus" name="ristretto" rev="x.y.z">
   <artifact name="ristretto" type="jar" />
 </dependency>
 ```
@@ -35,7 +44,7 @@ A small library of (hopefully) useful Java classes.
 
 ```groovy
 @Grapes(
-@Grab(group='org.leplus', module='ristretto', version='2.0.0')
+@Grab(group='org.leplus', module='ristretto', version='x.y.z')
 )
 ```
 
@@ -45,7 +54,7 @@ If you use ristretto in your implementation only:
 
 ```gradle
 dependencies {
-  implementation 'org.leplus:ristretto:2.0.0'
+  implementation 'org.leplus:ristretto:x.y.z'
 }
 ```
 
@@ -53,25 +62,25 @@ If you expose ristretto types in your public API:
 
 ```gradle
 dependencies {
-  api("org.leplus:ristretto:2.0.0")
+  api("org.leplus:ristretto:x.y.z")
 }
 ```
 
 ### Scala SBT
 
 ```scala
-libraryDependencies += "org.leplus" % "ristretto" % "2.0.0"
+libraryDependencies += "org.leplus" % "ristretto" % "x.y.z"
 ```
 
 ### Leiningen
 
 ```clojure
-[org.leplus/ristretto "2.0.0"]
+[org.leplus/ristretto "x.y.z"]
 ```
 
 ## Usage
 
-### [org.leplus.ristretto.util.UUIDConvertor](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/UUIDConvertor.html)
+### [org.leplus.ristretto.util.UUIDConvertor](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/UUIDConvertor.html)
 
 This class provides utility method to convert different primitives from/to UUID.
 All the methods in this class are reversible.
@@ -81,7 +90,7 @@ another unique ID.
 
 For example if you need to convert a legacy object that has a integer or long ID
 into a new object that uses UUIDs, you could just generate a new UUID
-for the new object using [`java.util.UUID.randomUUID()`](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--) but if you need to later link back
+for the new object using [`java.util.UUID.randomUUID()`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/UUID.html#randomUUID%28%29) but if you need to later link back
 the legacy object from the new one, you might not have a place to store the legacy ID
 on the new object. If you use this class's `toUUID()` methods to convert the legacy
 object's ID into the new object's UUID, you will be able to later convert back
@@ -93,11 +102,11 @@ temporarily (for example for processing via a new method) and then need to conve
 the result back into a legacy object. Then you can similarly use the methods in
 this class to go back and forth between legacy IDs and UUIDs.
 
-### [org.leplus.ristretto.util.ReproducibleUUIDs](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/ReproducibleUUIDs.html)
+### [org.leplus.ristretto.util.ReproducibleUUIDs](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/ReproducibleUUIDs.html)
 
 This class contains utility methods that generate deterministic UUIDs.
 Meaning that given the same input, these methods will always return the
-same UUID, as opposed to [`java.util.UUID.randomUUID()`](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--). The produced
+same UUID, as opposed to [`java.util.UUID.randomUUID()`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/UUID.html#randomUUID%28%29). The produced
 UUIDs may not be universally unique (since other code using the same method
 on the same input would have produce the same UUIDs) but it can still be
 useful in situations where you need exactly that: be able to generate a UUID
@@ -110,34 +119,34 @@ of data could have it's own unique UUID plus a reference UUID generated from
 the file using one of the methods below. Then both part of the system will have
 generated the same reference UUID allowing for easier reconciliation.
 
-### [org.leplus.ristretto.util.IdentityObject](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/IdentityObject.html)
+### [org.leplus.ristretto.util.IdentityObject](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/IdentityObject.html)
 
 This class is a singleton. It supports serialization and cloning. In both
 case the unique instance of IdentityObject remains the same object.
 
-### [org.leplus.ristretto.util.IdentityHashSet<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/IdentityHashSet.html)
+### [org.leplus.ristretto.util.IdentityHashSet<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/IdentityHashSet.html)
 
-This [`java.util.Set`](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html) relies on identity (`==`) to compare the objects it
-contains. It does not matter what the objects' [`equals`](https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-) methods say.
+This [`java.util.Set`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Set.html) relies on identity (`==`) to compare the objects it
+contains. It does not matter what the objects' [`equals`](https://docs.oracle.com/en/java/javase/11/docs/api/java/lang/Object.html#equals-java.lang.Object-) methods say.
 
-### [org.leplus.ristretto.util.IdentityEnum](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/IdentityEnum.html)
+### [org.leplus.ristretto.util.IdentityEnum](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/IdentityEnum.html)
 
 This enum is a very efficient singleton. It supports serialization but not
 cloning.
 
-### [org.leplus.ristretto.util.VectorAdapter<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/VectorAdapter.html)
+### [org.leplus.ristretto.util.VectorAdapter<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/VectorAdapter.html)
 
-This adapter class extends [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) uses by
-another [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) implementation.
+This adapter class extends [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Vector.html) uses by
+another [`java.util.List`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/List.html) implementation.
 
-### [org.leplus.ristretto.util.ArrayListVector<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/ArrayListVector.html)
+### [org.leplus.ristretto.util.ArrayListVector<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/ArrayListVector.html)
 
-An [`java.util.ArrayList<E>`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)-backed implementation of
-[org.leplus.ristretto.util.VectorAdapter<E>](https://javadoc.io/doc/org.leplus/ristretto/latest/org/leplus/ristretto/util/VectorAdapter.html).
+An [`java.util.ArrayList<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/ArrayList.html)-backed implementation of
+[org.leplus.ristretto.util.VectorAdapter<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/VectorAdapter.html).
 
 Using this class introduces a small memory overhead compared to using an
-[`java.util.ArrayList<E>`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) directly. Typically that overhead is the size of an empty [`java.util.Vector`](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html),
-e.g. 48 bytes on Oracle Java HotSpot 1.8.0 for Windows (64-Bit).
+[`java.util.ArrayList<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/ArrayList.html) directly. Typically that overhead is the size of an empty [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Vector.html),
+e.g. 48 bytes on Oracle Java HotSpot 11 for Windows (64-Bit).
 
 ## Digital Signature
 
