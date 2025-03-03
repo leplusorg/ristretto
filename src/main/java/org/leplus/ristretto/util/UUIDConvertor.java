@@ -196,6 +196,7 @@ public final class UUIDConvertor {
   /**
    * Converts a UUID into a String of {@value #MAX_CHARS} characters.
    *
+   * @since 2.0.0
    * @param uuid the UUID to convert.
    * @return the resulting String.
    */
@@ -366,6 +367,7 @@ public final class UUIDConvertor {
    * shorter than the maximum length, it will be padded with 0s. If the String is longer than the
    * maximum length, this method will throw an ArrayIndexOutOfBoundsException.
    *
+   * @since 2.0.0
    * @param string the String to convert.
    * @return the resulting UUID.
    * @throws ArrayIndexOutOfBoundsException if the provided String is longer than {@value
