@@ -90,7 +90,7 @@ another unique ID.
 
 For example if you need to convert a legacy object that has a integer or long ID
 into a new object that uses UUIDs, you could just generate a new UUID
-for the new object using [`java.util.UUID.randomUUID()`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/UUID.html#randomUUID%28%29) but if you need to later link back
+for the new object using [`java.util.UUID.randomUUID()`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/UUID.html#randomUUID%28%29) but if you need to later link back
 the legacy object from the new one, you might not have a place to store the legacy ID
 on the new object. If you use this class's `toUUID()` methods to convert the legacy
 object's ID into the new object's UUID, you will be able to later convert back
@@ -106,7 +106,7 @@ this class to go back and forth between legacy IDs and UUIDs.
 
 This class contains utility methods that generate deterministic UUIDs.
 Meaning that given the same input, these methods will always return the
-same UUID, as opposed to [`java.util.UUID.randomUUID()`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/UUID.html#randomUUID%28%29). The produced
+same UUID, as opposed to [`java.util.UUID.randomUUID()`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/UUID.html#randomUUID%28%29). The produced
 UUIDs may not be universally unique (since other code using the same method
 on the same input would have produce the same UUIDs) but it can still be
 useful in situations where you need exactly that: be able to generate a UUID
@@ -126,8 +126,8 @@ case the unique instance of IdentityObject remains the same object.
 
 ### [org.leplus.ristretto.util.IdentityHashSet<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/IdentityHashSet.html)
 
-This [`java.util.Set`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Set.html) relies on identity (`==`) to compare the objects it
-contains. It does not matter what the objects' [`equals`](https://docs.oracle.com/en/java/javase/11/docs/api/java/lang/Object.html#equals-java.lang.Object-) methods say.
+This [`java.util.Set`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Set.html) relies on identity (`==`) to compare the objects it
+contains. It does not matter what the objects' [`equals`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#equals%28java.lang.Object%29) methods say.
 
 ### [org.leplus.ristretto.util.IdentityEnum](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/IdentityEnum.html)
 
@@ -136,16 +136,16 @@ cloning.
 
 ### [org.leplus.ristretto.util.VectorAdapter<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/VectorAdapter.html)
 
-This adapter class extends [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Vector.html) uses by
-another [`java.util.List`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/List.html) implementation.
+This adapter class extends [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Vector.html) to make it easier to replace [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Vector.html) uses by
+another [`java.util.List`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html) implementation.
 
 ### [org.leplus.ristretto.util.ArrayListVector<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/ArrayListVector.html)
 
-An [`java.util.ArrayList<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/ArrayList.html)-backed implementation of
+An [`java.util.ArrayList<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ArrayList.html)-backed implementation of
 [org.leplus.ristretto.util.VectorAdapter<E>](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/VectorAdapter.html).
 
 Using this class introduces a small memory overhead compared to using an
-[`java.util.ArrayList<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/ArrayList.html) directly. Typically that overhead is the size of an empty [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java/util/Vector.html),
+[`java.util.ArrayList<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ArrayList.html) directly. Typically that overhead is the size of an empty [`java.util.Vector`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Vector.html),
 e.g. 48 bytes on Oracle Java HotSpot 11 for Windows (64-Bit).
 
 ## Digital Signature
