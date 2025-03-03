@@ -65,7 +65,7 @@ public final class TestVectorAdapter {
      * @return the int
      */
     private static <T> int compare(final T[] a, final T[] b, final Comparator<? super T> cmp) {
-	return Arrays.compare(a, b, cmp);
+      return Arrays.compare(a, b, cmp);
     }
 
     /** The method name. */
