@@ -1,7 +1,7 @@
 # Documentation
 
 See the [Maven Site](https://leplusorg.github.io/ristretto) for the
-detailed documentation of the library.
+detailed documentation of the library including the Javadoc.
 
 ## License
 

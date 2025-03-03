@@ -6,10 +6,10 @@ A small library of (hopefully) useful Java classes.
 [![CodeQL](https://github.com/leplusorg/ristretto/workflows/CodeQL/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"CodeQL")
 [![Publish](https://github.com/leplusorg/ristretto/workflows/Publish/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Publish")
 [![Maven Central](https://img.shields.io/maven-central/v/org.leplus/ristretto)](https://search.maven.org/artifact/org.leplus/ristretto)
-[![Javadoc](https://javadoc.io/badge2/org.leplus/ristretto/javadoc.svg)](https://javadoc.io/doc/org.leplus/ristretto)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/10084/badge)](https://bestpractices.coreinfrastructure.org/projects/10084)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/leplusorg/ristretto/badge)](https://securityscorecards.dev/viewer/?uri=github.com/leplusorg/ristretto)
 [![Maven Site](https://img.shields.io/badge/Maven-Site-blue)](https://leplusorg.github.io/ristretto)
+[![Javadoc](https://img.shields.io/badge/Javadoc-Site-blue)](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/package-summary.html)
 
 ## Java version
 
@@ -20,7 +20,7 @@ need a version compatible with Java 8, please use version 1.0.3.
 
 Below are instructions on how to add this library to your project
 using various build tools. Just replace the version `x.y.z` with the
-desired version.
+desired version (see Maven Central badge above for the latest).
 
 ### Apache Maven
 
