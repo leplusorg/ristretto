@@ -56,6 +56,7 @@ public final class ReproducibleUUIDs {
   /** Buffer size for digest. */
   private static final int BUFFER_SIZE = 8192;
 
+  /** Private constructor to prevent instantiation. */
   private ReproducibleUUIDs() {
     super();
   }
@@ -103,17 +104,28 @@ public final class ReproducibleUUIDs {
     return digest(md);
   }
 
+  /**
+   * Digests bytes in a manner compatible with UUID.nameUUIDFromBytes(byte[]).
+   *
+   * @param md the digest.
+   * @return the resulting UUID.
+   */
   @SuppressWarnings("checkstyle:magicnumber")
   private static UUID digest(final MessageDigest md) {
     final byte[] md5Bytes = md.digest();
     // for compatibility with UUID.nameUUIDFromBytes(byte[]).
-    md5Bytes[6] &= 0x0f;
-    md5Bytes[6] |= 0x30;
-    md5Bytes[8] &= 0x3f;
-    md5Bytes[8] |= 0x80;
+    md5Bytes[6] &= (byte) 0x0f;
+    md5Bytes[6] |= (byte) 0x30;
+    md5Bytes[8] &= (byte) 0x3f;
+    md5Bytes[8] |= (byte) 0x80;
     return UUIDConvertor.toUUID(md5Bytes);
   }
 
+  /**
+   * Private factory method for digests.
+   *
+   * @return the digest to use.
+   */
   private static MessageDigest createDigest() {
     try {
       /*

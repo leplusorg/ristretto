@@ -35,10 +35,17 @@ import org.junit.Test;
 @SuppressWarnings({"checkstyle:magicnumber"})
 public final class TestReproducibleUUIDs {
 
+  /** Default constructor. */
+  public TestReproducibleUUIDs() {
+    super();
+  }
+
   /** Byte buffer size. */
   private static final int NUMBER_OF_BYTES = 1024;
 
   /**
+   * Tests nulls.
+   *
    * @throws IOException then test failed.
    */
   @Test
@@ -83,6 +90,8 @@ public final class TestReproducibleUUIDs {
   }
 
   /**
+   * Tests input stream.
+   *
    * @throws IOException then test failed.
    */
   @Test

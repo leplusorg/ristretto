@@ -39,6 +39,7 @@ import java.util.function.UnaryOperator;
  */
 public abstract class VectorAdapter<E> extends Vector<E> {
 
+  /** The serial version UID. */
   private static final long serialVersionUID = -5465186583387834552L;
 
   /** Default constructor. Should be called by subclasses. */

@@ -30,6 +30,12 @@ import org.junit.Test;
  */
 public final class TestUUIDConvertor {
 
+  /** Default constructor. */
+  public TestUUIDConvertor() {
+    super();
+  }
+
+  /** The random number generator. */
   private static final Random PRNG = new Random();
 
   /** Test. */

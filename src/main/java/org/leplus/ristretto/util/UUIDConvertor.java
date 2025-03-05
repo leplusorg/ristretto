@@ -79,14 +79,26 @@ public final class UUIDConvertor {
   /** Maximum number of longs that can be converted into a UUID. */
   public static final int MAX_LONGS = UUID_BYTES / Long.BYTES;
 
+  /** Private constructor to prevent instantiation. */
   private UUIDConvertor() {
     super();
   }
 
+  /**
+   * Allocates a buffer.
+   *
+   * @return the buffer.
+   */
   private static ByteBuffer allocateByteBuffer() {
     return ByteBuffer.allocate(UUID_BYTES);
   }
 
+  /**
+   * Converts a UUID to a byte buffer.
+   *
+   * @param uuid the uuid to convert.
+   * @return the resulting byte buffer.
+   */
   private static ByteBuffer toByteBuffer(final UUID uuid) {
     final ByteBuffer buffer = ByteBuffer.allocate(UUID_BYTES);
     buffer.asLongBuffer().put(uuid.getMostSignificantBits()).put(uuid.getLeastSignificantBits());
@@ -226,6 +238,12 @@ public final class UUIDConvertor {
     return toUUID(byteBuffer);
   }
 
+  /**
+   * Converts a byte buffer to a UUID.
+   *
+   * @param bytes the byte buffer to convert.
+   * @return the resulting UUID.
+   */
   private static UUID toUUID(final ByteBuffer bytes) {
     bytes.position(0);
     return new UUID(bytes.getLong(), bytes.getLong());

@@ -35,6 +35,7 @@ import java.util.List;
  */
 public class ArrayListVector<E> extends VectorAdapter<E> {
 
+  /** The serial version UID. */
   private static final long serialVersionUID = -7584729063793597958L;
 
   /** The {@link java.util.ArrayList} delegate. */
@@ -81,9 +82,7 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
    */
   @Override
   public ArrayListVector<E> clone() {
-    final ArrayListVector<E> clone = (ArrayListVector<E>) super.clone();
-    clone.delegate = new ArrayList<>(delegate);
-    return clone;
+    return new ArrayListVector<E>(new ArrayList<E>(delegate));
   }
 
   /**

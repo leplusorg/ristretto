@@ -27,11 +27,13 @@ import java.io.Serializable;
  */
 public final class IdentityObject implements Cloneable, Serializable {
 
+  /** The serial version UID. */
   private static final long serialVersionUID = Long.MAX_VALUE;
 
   /** The singleton. */
   public static final IdentityObject IT = new IdentityObject();
 
+  /** Private constructor to prevent instantiation. */
   private IdentityObject() {
     super();
   }
@@ -60,6 +62,11 @@ public final class IdentityObject implements Cloneable, Serializable {
     return Integer.MAX_VALUE;
   }
 
+  /**
+   * To replace the deserialized object with the singleton.
+   *
+   * @return the singleton.
+   */
   private Object readResolve() {
     return IT;
   }

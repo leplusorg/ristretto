@@ -48,6 +48,11 @@ import org.junit.runners.Suite;
 })
 public final class TestIdentityHashSet {
 
+  /** Default constructor. */
+  public TestIdentityHashSet() {
+    super();
+  }
+
   /**
    * Some additional tests.
    *
@@ -55,6 +60,11 @@ public final class TestIdentityHashSet {
    * @since 1.0.0
    */
   public static class AdditionalTests {
+
+    /** Default constructor. */
+    public AdditionalTests() {
+      super();
+    }
 
     /** Tests {@link IdentityHashSet#clear()}. */
     @Test
@@ -187,6 +197,11 @@ public final class TestIdentityHashSet {
    * @since 1.0.0
    */
   public static final class GuavaTests {
+
+    /** Private constructor. */
+    private GuavaTests() {
+      super();
+    }
 
     /**
      * Creates the test suite.

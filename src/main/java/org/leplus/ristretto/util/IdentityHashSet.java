@@ -39,6 +39,7 @@ import java.util.Set;
  */
 public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, Serializable {
 
+  /** The serial version UID. */
   private static final long serialVersionUID = -6954699503843913409L;
 
   /**
@@ -66,7 +67,9 @@ public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Clonea
    */
   public IdentityHashSet(final Collection<? extends E> c) {
     this();
-    addAll(c);
+    for (E e : c) {
+      map.put(e, DUMMY);
+    }
   }
 
   /**

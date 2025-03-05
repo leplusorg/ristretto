@@ -163,6 +163,11 @@ limitations under the License.
           <release>${java.minVersion}</release>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+            <arg>-Xdoclint:all</arg>
+            <arg>-Werror</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
@@ -189,7 +194,7 @@ limitations under the License.
               <goal>jar</goal>
             </goals>
             <configuration>
-              <source>8</source>
+              <source>${java.minVersion}</source>
               <show>private</show>
               <nohelp>true</nohelp>
             </configuration>
@@ -363,7 +368,7 @@ limitations under the License.
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven.javadoc.version}</version>
         <configuration>
-          <source>8</source>
+          <source>${java.minVersion}</source>
           <show>public</show>
         </configuration>
       </plugin>

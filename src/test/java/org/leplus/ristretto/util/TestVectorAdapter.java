@@ -36,8 +36,18 @@ import org.junit.Test;
  */
 public final class TestVectorAdapter {
 
+  /** Default constructor. */
+  public TestVectorAdapter() {
+    super();
+  }
+
   /** The Class ClassComparator. */
   public static final class ClassComparator implements Comparator<Class<?>> {
+
+    /** Private constructor. */
+    private ClassComparator() {
+      super();
+    }
 
     /**
      * Compare.
@@ -168,11 +178,6 @@ public final class TestVectorAdapter {
               ? ""
               : " throws " + Arrays.toString(methodExceptionTypes));
     }
-  }
-
-  /** Default constructor. */
-  public TestVectorAdapter() {
-    super();
   }
 
   /** Tests that VectorAdapter overrides all public methods from Vector. */

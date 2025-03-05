@@ -33,6 +33,11 @@ import org.junit.Test;
  */
 public final class TestIdentityObject {
 
+  /** Public constructor. */
+  public TestIdentityObject() {
+    super();
+  }
+
   /** Checks that IdentityObject.IT is equal (==) to a shallow clone of itself. */
   @Test
   public void testEqualClone() {

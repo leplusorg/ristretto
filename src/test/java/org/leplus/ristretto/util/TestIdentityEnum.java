@@ -34,6 +34,11 @@ import org.junit.Test;
  */
 public final class TestIdentityEnum {
 
+  /** Default constructor. */
+  public TestIdentityEnum() {
+    super();
+  }
+
   /** Checks that IdentityEnum.IT is equal (==) to a deep clone of itself. */
   @Test
   public void testEqualDeepClone() {

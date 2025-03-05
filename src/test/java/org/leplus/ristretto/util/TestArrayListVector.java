@@ -58,7 +58,8 @@ import org.junit.runners.Suite;
 @SuppressWarnings({"checkstyle:magicnumber"})
 public final class TestArrayListVector {
 
-  private TestArrayListVector() {
+  /** Default constructor. */
+  public TestArrayListVector() {
     super();
   }
 
@@ -69,6 +70,11 @@ public final class TestArrayListVector {
    * @since 1.0.0
    */
   public static class AdditionalTests {
+
+    /** Default constructor. */
+    public AdditionalTests() {
+      super();
+    }
 
     /** A bunch of tests. */
     @Test
@@ -144,6 +150,11 @@ public final class TestArrayListVector {
       assertThat(actual, not(IsEmptyCollection.empty()));
     }
 
+    /**
+     * Various checks.
+     *
+     * @param v a vector containing "a", "b" and "c".
+     */
     private void checkAbc(final Vector<String> v) {
       assertThat(v, hasSize(3));
       assertThat(v.size(), is(3));
@@ -209,6 +220,7 @@ public final class TestArrayListVector {
    */
   public static final class GuavaTests {
 
+    /** Private constructor. */
     private GuavaTests() {
       super();
     }
@@ -268,6 +280,11 @@ public final class TestArrayListVector {
    * @since 1.0.0
    */
   public static class VectorCompatibilityTests {
+
+    /** Default constructor. */
+    public VectorCompatibilityTests() {
+      super();
+    }
 
     /** Test equality between a Vector and an ArrayListVector. */
     @Test
