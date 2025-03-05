@@ -82,7 +82,10 @@ public class ArrayListVector<E> extends VectorAdapter<E> {
    */
   @Override
   public ArrayListVector<E> clone() {
-    return new ArrayListVector<E>(new ArrayList<E>(delegate));
+    @SuppressWarnings("unchecked")
+    final ArrayListVector<E> clone = (ArrayListVector<E>) super.clone();
+    clone.delegate = new ArrayList<>(delegate);
+    return clone;
   }
 
   /**
