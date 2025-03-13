@@ -43,5 +43,5 @@ jobs:
       - name: Verify signature
         uses: docker://leplusorg/pgp-verify-jar:3.21.3@sha256:b89ac86a4b8e9dfd1b7a10137eb0c27c83458751e2ef42b36314553a2ca2b174
         env:
-          ONLINE_KEYS: "85911F425EC61B51"
-          GNUPGHOME: "/home/default"
+          ONLINE_KEYS: "6B1B9BE54C155617"
+          GNUPGHOME: "/home/default/.gnupg"

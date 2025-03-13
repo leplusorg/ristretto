@@ -153,7 +153,7 @@ e.g. 48 bytes on Oracle Java HotSpot 11 for Windows (64-Bit).
 ## Digital Signature
 
 Releases of Ristretto are digitally signed in two different ways:
-using Sigstore and using GPG.
+using Sigstore and using GnuPG.
 
 ### Sigstore
 
@@ -180,9 +180,9 @@ The only output that you should get is a message saying `Verified OK`.
 
 For instructions on how to install `cosign`, please read this [documentation](https://docs.sigstore.dev/cosign/system_config/installation/).
 
-### GPG
+### GnuPG
 
-Having GPG signature is a requirement to publish artifacts to Maven Central. You can verify the GPG signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the GPG signature of all your dependencies:
+Having PGP signature is a requirement to publish artifacts to Maven Central. You can verify the PGP signature using the following [public key 3F147B345EADE8C92DA0C0006B1B9BE54C155617](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617). I recommend that you verify the PGP signature of all your dependencies:
 
 - [Maven](https://www.simplify4u.org/pgpverify-maven-plugin/)
 - [Gradle](https://docs.gradle.org/current/userguide/dependency_verification.html)
@@ -194,7 +194,7 @@ that the displayed keyId matches the public key mentioned above:
 
 You can also use my convenient docker image (shameless plug):
 
-`docker run --rm leplusorg/pgp-verify-jar org.leplus:ristretto:2.0.0`
+`docker run --rm leplusorg/pgp-verify-jar --online-keys=6B1B9BE54C155617 org.leplus:ristretto:2.0.0`
 
 See [here](https://github.com/leplusorg/docker-pgp-verify-jar) for details.
 
