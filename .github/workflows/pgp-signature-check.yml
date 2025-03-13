@@ -42,3 +42,4 @@ jobs:
         env:
           ARTIFACTS: "org.leplus:${REPOSITORY}:${VERSION}"
           ONLINE_KEYS: "85911F425EC61B51"
+          GNUPGHOME: "/home/default"
