@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: echo "ARTIFACTS=org.leplus:${REPOSITORY}:${VERSION}" >> "${GITHUB_ENV}"
       - name: Verify signature
-        uses: docker://leplusorg/pgp-verify-jar:3.21.3@sha256:b89ac86a4b8e9dfd1b7a10137eb0c27c83458751e2ef42b36314553a2ca2b174
+        uses: docker://leplusorg/pgp-verify-jar:3.21.3@sha256:da148be2adb02ef47cb4b951a94cdc78616d1dede9cf2b5835b5ed6ff2394f4d
         env:
           ONLINE_KEYS: "6B1B9BE54C155617"
           GNUPGHOME: "/home/default/.gnupg"
