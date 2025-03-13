@@ -37,9 +37,11 @@ jobs:
       - name: Set VERSION
         shell: bash
         run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+      - name: Set ARTIFACTS
+        shell: bash
+        run: echo "ARTIFACTS=org.leplus:${REPOSITORY}:${VERSION}" >> "${GITHUB_ENV}"
       - name: Verify signature
         uses: docker://leplusorg/pgp-verify-jar:3.21.3@sha256:b89ac86a4b8e9dfd1b7a10137eb0c27c83458751e2ef42b36314553a2ca2b174
         env:
-          ARTIFACTS: "org.leplus:${REPOSITORY}:${VERSION}"
           ONLINE_KEYS: "85911F425EC61B51"
           GNUPGHOME: "/home/default"
