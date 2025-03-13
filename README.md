@@ -151,7 +151,7 @@ e.g. 48 bytes on Oracle Java HotSpot 11 for Windows (64-Bit).
 ## Digital Signature
 
 Releases of Ristretto are digitally signed in two different ways:
-using Sigstore and using PGP.
+using Sigstore and using GPG.
 
 ### Sigstore
 

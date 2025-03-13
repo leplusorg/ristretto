@@ -1,0 +1,44 @@
+---
+# Copyright 2016-present Thomas Leplus
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This workflow will build a Java project with Maven
+# For more information see:
+# https://help.github.com/actions/language-and-framework-guides
+# /building-and-testing-java-with-maven
+
+name: PGP Signature Check
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set REPOSITORY
+        shell: bash
+        run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
+      - name: Set VERSION
+        shell: bash
+        run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+      - name: Verify signature
+        uses: docker://leplusorg/pgp-verify-jar:3.21.3@sha256:b89ac86a4b8e9dfd1b7a10137eb0c27c83458751e2ef42b36314553a2ca2b174
+        env:
+          ARTIFACTS: "org.leplus:${REPOSITORY}:${VERSION}"
+          ONLINE_KEYS: "85911F425EC61B51"
