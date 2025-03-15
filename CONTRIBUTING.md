@@ -14,7 +14,7 @@ request. We then kindly ask that:
   an existing solution or a different approach.
 - commits on a single pull request must be squashed together to keep
   make reviews easier.
-- commits must be signed (this is supported by most git clients as
+- commits must be signed (this is supported by most Git clients as
   well as the GitHub web UI, see link below).
 
 For security-related issues, please see our [security policy](/SECURITY.md).
