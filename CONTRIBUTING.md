@@ -6,6 +6,8 @@ If you have found a bug, want to request an enhancement or simply ask
 a question, feel free to open an
 [issue](https://github.com/leplusorg/ristretto/issues/new/choose).
 
+For security-related issues, please see our [security policy](/SECURITY.md).
+
 ## Submitting a pull request
 
 If you want to contribute code, documentation etc. you can open a pull
@@ -18,8 +20,6 @@ request. We then kindly ask that:
   make reviews easier.
 - commits must be signed (this is supported by most Git clients as
   well as the GitHub web UI, see link below).
-
-For security-related issues, please see our [security policy](/SECURITY.md).
 
 ## Resources
 
