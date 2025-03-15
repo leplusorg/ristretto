@@ -1,10 +1,12 @@
 # Contributing
 
-## Submitting a pull request
+## Creating an issue
 
 If you have found a bug, want to request an enhancement or simply ask
 a question, feel free to open an
 [issue](https://github.com/leplusorg/ristretto/issues/new/choose).
+
+## Submitting a pull request
 
 If you want to contribute code, documentation etc. you can open a pull
 request. We then kindly ask that:
