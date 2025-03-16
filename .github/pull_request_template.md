@@ -1,3 +1,4 @@
+<!-- prettier-ignore-start -->
 <!-- markdownlint-disable-next-line MD041 -->
 ## Readiness checklist
 <!-- prettier-ignore-end -->
