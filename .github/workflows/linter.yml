@@ -32,7 +32,7 @@ on:
 permissions: {}
 
 jobs:
-  run-lint:
+  lint:
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -75,6 +75,7 @@ limitations under the License.
     </developer>
   </developers>
   <properties>
+    <project.build.outputTimestamp>${env.SOURCE_DATE_EPOCH}</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.minVersion>11</java.minVersion>
