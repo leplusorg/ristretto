@@ -51,14 +51,14 @@ OSV scanner:
     name: golang:latest
   stage: check
   before_script:
-    - "go install github.com/google/osv-scanner/cmd/osv-scanner@v1"
+    - "go install github.com/google/osv-scanner/cmd/osv-scanner@latest"
   script:
     - 'PATH="${PATH}:$(go env GOPATH)/bin" osv-scanner -r .'
   timeout: 10 minutes
 
 super linter:
   image:
-    name: ghcr.io/super-linter/super-linter:latest
+    name: ghcr.io/super-linter/super-linter:v7.3.0@sha256:2049d418092bdc1bba1e4022b2c11bdcfd45092fdfade47877881407893b0a28
     entrypoint:
       - ""
   stage: check
