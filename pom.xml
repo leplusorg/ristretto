@@ -80,7 +80,7 @@ limitations under the License.
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.minVersion>11</java.minVersion>
     <maven.javadoc.version>3.11.2</maven.javadoc.version>
-    <dependencyCheck.version>12.1.0</dependencyCheck.version>
+    <dependencyCheck.version>12.1.1</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
     <cyclonedx.skip>false</cyclonedx.skip>
