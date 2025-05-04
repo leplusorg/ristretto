@@ -103,3 +103,9 @@ verify:jdk21:
   image: maven:3-eclipse-temurin-21-alpine
   script:
     - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
+
+verify:jdk24:
+  stage: build
+  image: maven:3-eclipse-temurin-24-alpine
+  script:
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.skip=true verify"
