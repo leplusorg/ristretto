@@ -58,7 +58,7 @@ OSV scanner:
 
 super linter:
   image:
-    name: ghcr.io/super-linter/super-linter:v7.3.0@sha256:2049d418092bdc1bba1e4022b2c11bdcfd45092fdfade47877881407893b0a28
+    name: ghcr.io/super-linter/super-linter:v7.4.0@sha256:5cbf74118ff4db101cdcb76ce0b6387acb0d2a705f0ebdd24b01c78694696268
     entrypoint:
       - ""
   stage: check
