@@ -36,7 +36,7 @@ jobs:
         run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
       - name: Set VERSION
         shell: bash
-        run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+        run: echo "VERSION=$(curl -fsSL "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
       - name: Set ARTIFACTS
         shell: bash
         run: echo "ARTIFACTS=org.leplus:${REPOSITORY}:${VERSION}" >> "${GITHUB_ENV}"

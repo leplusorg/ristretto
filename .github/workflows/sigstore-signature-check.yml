@@ -36,12 +36,12 @@ jobs:
         run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
       - name: Set VERSION
         shell: bash
-        run: echo "VERSION=$(curl -s -S "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+        run: echo "VERSION=$(curl -fsSL "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
       - name: Download
         shell: bash
         run: |
-          curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar" -o "${REPOSITORY}-${VERSION}.jar"
-          curl -s -S "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar.sigstore.json" -o "${REPOSITORY}-${VERSION}.jar.sigstore.json"
+          curl -fsSL "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar" -o "${REPOSITORY}-${VERSION}.jar"
+          curl -fsSL "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar.sigstore.json" -o "${REPOSITORY}-${VERSION}.jar.sigstore.json"
       - name: Install cosign
         uses: sigstore/cosign-installer@3454372f43399081ed03b604cb2d021dabca52bb # v3.8.2
       - name: Verify signature

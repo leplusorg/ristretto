@@ -171,8 +171,8 @@ signature. The whole process can be done using the following 3
 commands:
 
 ```bash
-curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0.jar' -o ristretto-2.0.0.jar
-curl -s -S 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0.jar.sigstore.json' -o ristretto-2.0.0.jar.sigstore.json
+curl -fsSL 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0.jar' -o ristretto-2.0.0.jar
+curl -fsSL 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0.jar.sigstore.json' -o ristretto-2.0.0.jar.sigstore.json
 cosign verify-blob --bundle ristretto-2.0.0.jar.sigstore.json --certificate-identity 'https://github.com/leplusorg/ristretto/.github/workflows/publish.yml@refs/tags/v2.0.0' --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' ristretto-2.0.0.jar
 ```
 
