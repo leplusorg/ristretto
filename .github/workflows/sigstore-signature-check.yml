@@ -43,7 +43,7 @@ jobs:
           curl -fsSL "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar" -o "${REPOSITORY}-${VERSION}.jar"
           curl -fsSL "https://repo1.maven.org/maven2/org/leplus/${REPOSITORY}/${VERSION}/${REPOSITORY}-${VERSION}.jar.sigstore.json" -o "${REPOSITORY}-${VERSION}.jar.sigstore.json"
       - name: Install cosign
-        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3.9.1
+        uses: sigstore/cosign-installer@d58896d6a1865668819e1d91763c7751a165e159 # v3.9.2
       - name: Verify signature
         shell: bash
         run: |
