@@ -319,6 +319,9 @@ limitations under the License.
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>4.9.3.2</version>
         <configuration>
+	  <effort>max</effort>
+	  <threshold>Low</threshold>
+	  <failOnError>true</failOnError>
           <plugins>
             <plugin>
               <groupId>com.h3xstream.findsecbugs</groupId>
@@ -392,6 +395,17 @@ limitations under the License.
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.6.0</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+	<configuration>
+	  <violationSeverity>info</violationSeverity>
+	  <failsOnError>true</failsOnError>
+	</configuration>
       </plugin>
     </plugins>
   </reporting>
