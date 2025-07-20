@@ -37,7 +37,7 @@ import java.util.Set;
  * @since 1.0.0
  * @param <E> the type of the elements of the set.
  */
-public class IdentityHashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, Serializable {
+public class IdentityHashSet<E> extends AbstractSet<E> implements Cloneable, Serializable {
 
   /** The serial version UID. */
   private static final long serialVersionUID = -6954699503843913409L;
