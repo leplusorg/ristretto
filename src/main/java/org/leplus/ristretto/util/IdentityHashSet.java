@@ -21,7 +21,6 @@ import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * This {@link java.util.Set} relies on identity (==) to compare the objects it contains. It does
