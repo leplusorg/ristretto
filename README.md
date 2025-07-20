@@ -192,11 +192,11 @@ that the displayed keyId matches the public key mentioned above:
 
 `mvn org.simplify4u.plugins:pgpverify-maven-plugin:show -Dartifact=org.leplus:ristretto:2.0.0`
 
-You can also use my convenient docker image (shameless plug):
+You can also use my convenient Docker image (shameless plug):
 
 `docker run --rm leplusorg/pgp-verify-jar --online-keys=6B1B9BE54C155617 org.leplus:ristretto:2.0.0`
 
-See [here](https://github.com/leplusorg/docker-pgp-verify-jar) for details.
+See [here for details](https://github.com/leplusorg/docker-pgp-verify-jar).
 
 ## License
 
