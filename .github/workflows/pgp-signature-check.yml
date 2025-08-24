@@ -33,13 +33,22 @@ jobs:
     steps:
       - name: Set REPOSITORY
         shell: bash
-        run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
+        run: |
+          set -euo pipefail
+          IFS=$'\n\t'	
+          echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
       - name: Set VERSION
         shell: bash
-        run: echo "VERSION=$(curl -fsSL "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+        run: |
+          set -euo pipefail
+          IFS=$'\n\t'	
+          echo "VERSION=$(curl -fsSL "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
       - name: Set ARTIFACTS
         shell: bash
-        run: echo "ARTIFACTS=org.leplus:${REPOSITORY}:${VERSION}" >> "${GITHUB_ENV}"
+        run: |
+          set -euo pipefail
+          IFS=$'\n\t'	
+          echo "ARTIFACTS=org.leplus:${REPOSITORY}:${VERSION}" >> "${GITHUB_ENV}"
       - name: Verify signature
         uses: docker://leplusorg/pgp-verify-jar:3.21.3@sha256:da148be2adb02ef47cb4b951a94cdc78616d1dede9cf2b5835b5ed6ff2394f4d
         env:

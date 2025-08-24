@@ -57,6 +57,8 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         shell: bash
         run: |
+          set -euo pipefail
+          IFS=$'\n\t'
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.NVDApiKey=${NVD_API_KEY} dependency-check:aggregate
       - name: Upload artifacts
@@ -66,4 +68,7 @@ jobs:
           path: target/
       - name: Clean up
         shell: bash
-        run: rm "${HOME}/.m2/settings.xml"
+        run: |
+          set -euo pipefail
+          IFS=$'\n\t'
+          rm "${HOME}/.m2/settings.xml"
