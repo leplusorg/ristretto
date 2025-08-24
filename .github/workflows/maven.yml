@@ -78,7 +78,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-	  # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
+          # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
           # shellcheck disable=SC2086
           ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Dgpg.skip=true verify
       - name: Upload artifacts
