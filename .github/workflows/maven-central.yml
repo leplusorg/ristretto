@@ -67,12 +67,12 @@ jobs:
           set -euo pipefail
           IFS=$'\n\t'
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:" -Dtransitive=false dependency:get
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:" -Dtransitive=false dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:sources" dependency:get
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:sources" dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:javadoc" dependency:get
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:javadoc" dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json${{ matrix.meta }}:cyclonedx" dependency:get
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json${{ matrix.meta }}:cyclonedx" dependency:get
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml${{ matrix.meta }}:cyclonedx" dependency:get
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml${{ matrix.meta }}:cyclonedx" dependency:get

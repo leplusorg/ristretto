@@ -60,7 +60,7 @@ jobs:
           set -euo pipefail
           IFS=$'\n\t'
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.NVDApiKey=${NVD_API_KEY} dependency-check:aggregate
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.NVDApiKey=${NVD_API_KEY} dependency-check:aggregate
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

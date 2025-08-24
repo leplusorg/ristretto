@@ -75,14 +75,14 @@ jobs:
           set -euo pipefail
           IFS=$'\n\t'
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Daether.layout.maven2.checksumAlgorithms=MD5,SHA-1,SHA-256,SHA-512 package
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Daether.layout.maven2.checksumAlgorithms=MD5,SHA-1,SHA-256,SHA-512 package
       - name: Publish packages
         shell: bash
         run: |
           set -euo pipefail
           IFS=$'\n\t'
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress -DdependencyCheck.skip=true deploy
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} --no-transfer-progress -DdependencyCheck.skip=true deploy
       - name: Publish site
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -97,9 +97,9 @@ jobs:
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
           ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} site site:stage
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} site site:stage
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Daether.layout.maven2.checksumAlgorithms=MD5,SHA-1,SHA-256,SHA-512 site site:stage scm-publish:publish-scm
+          IFS=$' \n\t' ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Daether.layout.maven2.checksumAlgorithms=MD5,SHA-1,SHA-256,SHA-512 site site:stage scm-publish:publish-scm
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
