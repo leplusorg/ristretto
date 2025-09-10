@@ -68,13 +68,13 @@ jobs:
         run: |
           set -euo pipefail
           # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
-          # shellcheck disable=SC2086
+          # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:" -Dtransitive=false dependency:get
-          # shellcheck disable=SC2086
+          # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:sources" dependency:get
-          # shellcheck disable=SC2086
+          # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:jar${{ matrix.meta }}:javadoc" dependency:get
-          # shellcheck disable=SC2086
+          # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:json${{ matrix.meta }}:cyclonedx" dependency:get
-          # shellcheck disable=SC2086
+          # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} "-Dartifact=org.leplus:ristretto:${VERSION}:xml${{ matrix.meta }}:cyclonedx" dependency:get
