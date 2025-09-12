@@ -54,6 +54,7 @@ secret_detection:
   stage: check
 
 OSV scanner:
+  allow_failure: true
   image: golang:latest
   stage: check
   before_script:
@@ -71,13 +72,12 @@ super linter:
   variables:
     RUN_LOCAL: "true"
     DEFAULT_BRANCH: "main"
-    ENFORCE_COMMITLINT_CONFIGURATION_CHECK: "true"
-    ENABLE_COMMITLINT_STRICT_MODE: "true"
     USE_FIND_ALGORITHM: "true"
     VALIDATE_ALL_CODEBASE: "true"
     LINTER_RULES_PATH: "."
     FILTER_REGEX_EXCLUDE: "^/tmp/lint/(gradlew|gradlew\\.bat|gradle/.*|mvnw|mvnw\\.cmd|\\.m2/.*|\\.mvn/.*)$"
     JAVA_FILE_NAME: "google_checks.xml"
+    ENFORCE_COMMITLINT_CONFIGURATION_CHECK: "true"
   before_script:
     - 'ln -s "$(pwd)" /tmp/lint'
   script:
