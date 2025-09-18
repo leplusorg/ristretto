@@ -28,7 +28,7 @@ on:
 permissions: {}
 
 jobs:
-  check:
+  sigstore-signature-check:
     runs-on: ubuntu-latest
     steps:
       - name: Set REPOSITORY

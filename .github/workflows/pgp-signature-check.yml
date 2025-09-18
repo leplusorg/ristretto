@@ -28,7 +28,7 @@ on:
 permissions: {}
 
 jobs:
-  check:
+  pgp-signature-check:
     runs-on: ubuntu-latest
     steps:
       - name: Set REPOSITORY

@@ -31,7 +31,7 @@ on:
 permissions: {}
 
 jobs:
-  lint:
+  msdo:
     name: MSDO
     runs-on: windows-latest
     permissions:

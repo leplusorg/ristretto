@@ -43,7 +43,7 @@ env:
     -DdeployAtEnd=true
 
 jobs:
-  check:
+  maven-central:
     runs-on: ubuntu-latest
     strategy:
       matrix:

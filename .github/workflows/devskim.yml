@@ -31,7 +31,7 @@ on:
 permissions: {}
 
 jobs:
-  lint:
+  devskim:
     name: DevSkim
     runs-on: ubuntu-latest
     permissions:
