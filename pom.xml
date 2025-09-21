@@ -98,7 +98,7 @@ limitations under the License.
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.9.4</version>
+      <version>4.9.6</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -116,7 +116,7 @@ limitations under the License.
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava-testlib</artifactId>
-      <version>33.4.8-jre</version>
+      <version>33.5.0-jre</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -317,7 +317,7 @@ limitations under the License.
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.9.4.2</version>
+        <version>4.9.6.0</version>
         <configuration>
 	  <effort>max</effort>
 	  <threshold>Low</threshold>
