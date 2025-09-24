@@ -63,11 +63,6 @@ jobs:
           # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.NVDApiKey=${NVD_API_KEY} dependency-check:aggregate
-      - name: Upload artifacts
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: ${{ github.workflow }}
-          path: target/
       - name: Clean up
         shell: bash
         run: |
