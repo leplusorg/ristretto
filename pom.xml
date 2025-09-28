@@ -82,7 +82,7 @@ limitations under the License.
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.minVersion>11</java.minVersion>
     <maven.javadoc.version>3.12.0</maven.javadoc.version>
-    <dependencyCheck.version>12.1.5</dependencyCheck.version>
+    <dependencyCheck.version>12.1.6</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
     <cyclonedx.skip>false</cyclonedx.skip>
@@ -122,7 +122,7 @@ limitations under the License.
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.18.0</version>
+      <version>3.19.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -216,7 +216,7 @@ limitations under the License.
       <plugin>
         <groupId>org.sonatype.central</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>0.8.0</version>
+        <version>0.9.0</version>
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>central</publishingServerId>
