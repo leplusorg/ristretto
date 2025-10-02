@@ -15,9 +15,11 @@ A small library of (hopefully) useful Java classes.
 
 ## Java version
 
-Since version 2 of this library, it requires Java 11 or higher. If you
-need a version compatible with Java 8, please use the last version 1
-release (1.0.3).
+| Ristretto | Mininum Java version |
+| --------- | -------------------- |
+| 1.x       | 1.8                  |
+| 2.x       | 11                   |
+| 3.x       | 17                   |
 
 ## Maven Coordinates
 

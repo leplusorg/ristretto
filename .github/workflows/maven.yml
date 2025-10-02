@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [11, 17, 21, 24]
+        java: [17, 21, 25]
     name: Java ${{ matrix.java }}
     steps:
       - name: Set REPOSITORY
@@ -84,7 +84,7 @@ jobs:
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true -Dgpg.skip=true verify
       - name: Upload artifacts
-        if: ${{ matrix.java == 11 }}
+        if: ${{ matrix.java == 17 }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ env.REPOSITORY }}
