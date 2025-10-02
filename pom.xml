@@ -80,7 +80,7 @@ limitations under the License.
     <project.build.outputTimestamp>${env.SOURCE_DATE_EPOCH}</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.minVersion>11</java.minVersion>
+    <java.minVersion>17</java.minVersion>
     <maven.javadoc.version>3.12.0</maven.javadoc.version>
     <dependencyCheck.version>12.1.6</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
