@@ -264,7 +264,7 @@ limitations under the License.
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.13</version>
+        <version>0.8.14</version>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -317,7 +317,7 @@ limitations under the License.
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.9.6.0</version>
+        <version>4.9.7.0</version>
         <configuration>
 	  <effort>max</effort>
 	  <threshold>Low</threshold>
