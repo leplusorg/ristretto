@@ -82,7 +82,7 @@ limitations under the License.
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.minVersion>17</java.minVersion>
     <maven.javadoc.version>3.12.0</maven.javadoc.version>
-    <dependencyCheck.version>12.1.7</dependencyCheck.version>
+    <dependencyCheck.version>12.1.8</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
     <cyclonedx.skip>false</cyclonedx.skip>
@@ -157,7 +157,7 @@ limitations under the License.
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
-        <version>0.16.1</version>
+        <version>0.17</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
