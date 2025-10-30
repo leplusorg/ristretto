@@ -3,7 +3,6 @@
 A small library of (hopefully) useful Java classes.
 
 [![Maven](https://github.com/leplusorg/ristretto/workflows/Maven/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Maven")
-[![CodeQL](https://github.com/leplusorg/ristretto/workflows/CodeQL/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"CodeQL")
 [![Publish](https://github.com/leplusorg/ristretto/workflows/Publish/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Publish")
 [![Sigstore Signature](https://github.com/leplusorg/ristretto/workflows/PGP%20Signature%20Check/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Sigstore%20Signature%20Check")
 [![PGP Signature](https://github.com/leplusorg/ristretto/workflows/PGP%20Signature%20Check/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"PGP%20Signature%20Check")
