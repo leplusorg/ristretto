@@ -97,7 +97,7 @@ jobs:
             "${GITHUB_REPOSITORY_OWNER}@users.noreply.github.com"
           git config --global user.name "${GITHUB_REPOSITORY_OWNER}"
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
-          ssh-add - <<< "${{ secrets.GH_SSH_PRIVATE_KEY }}"
+          ssh-add - <<<"${{ secrets.GH_SSH_PRIVATE_KEY }}"
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} site site:stage
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
