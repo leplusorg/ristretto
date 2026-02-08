@@ -14,7 +14,7 @@ A small library of (hopefully) useful Java classes.
 
 ## Java version
 
-| Ristretto | Mininum Java version |
+| Ristretto | Minimum Java version |
 | --------- | -------------------- |
 | 1.x       | 1.8                  |
 | 2.x       | 11                   |
