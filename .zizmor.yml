@@ -34,3 +34,12 @@ rules:
         - ossf/*
         - sigstore/*
         - super-linter/super-linter
+  secrets-outside-env:
+    config:
+      allow:
+        - GH_SSH_PRIVATE_KEY
+        - NVD_API_KEY
+        - OSSRH_GPG_PASSPHRASE
+        - OSSRH_GPG_PRIVATE_KEY
+        - OSSRH_TOKEN
+        - OSSRH_USERNAME
