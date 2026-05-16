@@ -7,7 +7,7 @@ A small library of (hopefully) useful Java classes.
 [![Sigstore Signature](https://github.com/leplusorg/ristretto/workflows/PGP%20Signature%20Check/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"Sigstore%20Signature%20Check")
 [![PGP Signature](https://github.com/leplusorg/ristretto/workflows/PGP%20Signature%20Check/badge.svg)](https://github.com/leplusorg/ristretto/actions?query=workflow:"PGP%20Signature%20Check")
 [![Maven Central](https://img.shields.io/maven-central/v/org.leplus/ristretto)](https://search.maven.org/artifact/org.leplus/ristretto)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/10084/badge)](https://bestpractices.coreinfrastructure.org/projects/10084)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/10084/badge)](https://bestpractices.coreinfrastructure.org/projects/10084)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/leplusorg/ristretto/badge)](https://securityscorecards.dev/viewer/?uri=github.com/leplusorg/ristretto)
 [![Maven Site](https://img.shields.io/badge/Maven-Site-blue)](https://leplusorg.github.io/ristretto)
 [![Javadoc](https://img.shields.io/badge/Javadoc-Site-blue)](https://leplusorg.github.io/ristretto/apidocs/org/leplus/ristretto/util/package-summary.html)
