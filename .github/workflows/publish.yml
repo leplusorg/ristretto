@@ -90,6 +90,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          GH_SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIVATE_KEY }}
         shell: bash
         run: |
           set -euo pipefail
@@ -98,7 +99,7 @@ jobs:
             "${GITHUB_REPOSITORY_OWNER}@users.noreply.github.com"
           git config --global user.name "${GITHUB_REPOSITORY_OWNER}"
           ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
-          ssh-add - <<<"${{ secrets.GH_SSH_PRIVATE_KEY }}"
+          ssh-add - <<<"${GH_SSH_PRIVATE_KEY}"
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
           ./mvnw ${MAVEN_CLI_OPTS} site site:stage
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
