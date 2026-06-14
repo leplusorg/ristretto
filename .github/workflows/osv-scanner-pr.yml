@@ -57,9 +57,9 @@ jobs:
           # The scan results JSON can be very large (potentially exceeding the
           # command-line / ARG_MAX length limit if passed as an argument or as
           # an env var expanded on the command line), so the workflow-level
-          # ${{ ... }} expansion is written straight to a file via a quoted
-          # heredoc. The quoted delimiter prevents any runtime shell expansion
-          # of the JSON contents.
+          # expansion is written straight to a file via a quoted heredoc.
+          # The quoted delimiter prevents any runtime shell expansion of
+          # the JSON contents.
           cat > "${RUNNER_TEMP}/new_results.json" <<'__OSV_NEW_RESULTS_EOF__'
           ${{ needs.osv-scanner-pr.outputs.new-results }}
           __OSV_NEW_RESULTS_EOF__
