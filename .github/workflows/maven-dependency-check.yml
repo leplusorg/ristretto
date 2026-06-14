@@ -62,8 +62,12 @@ jobs:
         run: |
           set -euo pipefail
           # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
+          # The NVD API key is read from the NVD_API_KEY environment variable by
+          # the pom (dependencyCheck.NVDApiKey default), so the secret is never
+          # passed on the command line where it would be visible in the process
+          # list.
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.NVDApiKey=${NVD_API_KEY} dependency-check:aggregate
+          ./mvnw ${MAVEN_CLI_OPTS} dependency-check:aggregate
       - name: Clean up
         shell: bash
         run: |

@@ -85,6 +85,10 @@ limitations under the License.
     <dependencyCheck.version>12.2.2</dependencyCheck.version>
     <dependencyCheck.skip>false</dependencyCheck.skip>
     <dependencyCheck.threshold>7</dependencyCheck.threshold>
+    <!-- Read the NVD API key from the environment so the secret is never
+         passed on the command line (visible in the process list). Can still
+         be overridden with -DdependencyCheck.NVDApiKey=... if needed. -->
+    <dependencyCheck.NVDApiKey>${env.NVD_API_KEY}</dependencyCheck.NVDApiKey>
     <cyclonedx.skip>false</cyclonedx.skip>
     <sigstore.skip>false</sigstore.skip>
   </properties>
