@@ -55,6 +55,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
+          cache: maven  
       - name: Dependency Check with Maven
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
