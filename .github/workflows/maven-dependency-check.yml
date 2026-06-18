@@ -45,6 +45,11 @@ env:
 jobs:
   maven-dependency-check:
     runs-on: ubuntu-latest
+    permissions:
+      # Required to read the code
+      contents: read
+      # Required to upload the SARIF file to the security tab
+      security-events: write
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
@@ -55,7 +60,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-          cache: maven  
+          cache: maven
       - name: Dependency Check with Maven
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
@@ -67,8 +72,18 @@ jobs:
           # the pom (dependencyCheck.NVDApiKey default), so the secret is never
           # passed on the command line where it would be visible in the process
           # list.
+          # SARIF is generated so the findings can be uploaded to the GitHub
+          # Security tab. The report is written before failBuildOnCVSS is
+          # evaluated, so the file exists even when the scan fails the build.
           # shellcheck disable=SC2086 # [Double quote to prevent globbing and word splitting]: splitting is desired for MAVEN_CLI_OPTS
-          ./mvnw ${MAVEN_CLI_OPTS} dependency-check:aggregate
+          ./mvnw ${MAVEN_CLI_OPTS} -Dformat=SARIF dependency-check:aggregate
+      - name: Upload dependency-check scan results to GitHub Security tab
+        # Upload even when the previous step fails the build on a vulnerability,
+        # otherwise the findings would never reach the Security tab.
+        if: ${{ !cancelled() }}
+        uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2
+        with:
+          sarif_file: target/dependency-check-report.sarif
       - name: Clean up
         shell: bash
         run: |
