@@ -60,7 +60,33 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-          cache: maven
+      - name: Cache Maven dependencies
+        # setup-java's built-in cache targets ~/.m2/repository, but this build
+        # redirects the local repo to .m2/repository (see -Dmaven.repo.local in
+        # MAVEN_OPTS), so cache it at the location the build actually uses. The
+        # NVD database under it is excluded - it is cached separately below with
+        # a rotating key.
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: |
+            .m2/repository
+            !.m2/repository/org/owasp/dependency-check-data
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Cache dependency-check NVD database
+        # Persist the NVD database (an H2 DB that dependency-check stores under
+        # the local Maven repo) between runs. dependency-check updates it
+        # incrementally, so restoring the previous copy turns the slow,
+        # rate-limit-prone full NVD download into a quick delta update. The
+        # unique per-run key always saves the freshly-updated DB; restore-keys
+        # restores the most recent previous copy as the starting point.
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .m2/repository/org/owasp/dependency-check-data
+          key: dependency-check-data-${{ github.run_id }}
+          restore-keys: |
+            dependency-check-data-
       - name: Dependency Check with Maven
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
