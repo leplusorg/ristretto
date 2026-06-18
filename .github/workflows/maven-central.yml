@@ -64,7 +64,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-          cache: maven  
+          cache: maven
       - name: Download ${{ matrix.meta }}
         shell: bash
         run: |

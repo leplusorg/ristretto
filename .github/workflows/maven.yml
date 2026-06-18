@@ -77,7 +77,7 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ matrix.java }}
-          cache: maven  
+          cache: maven
       - name: Build with Maven
         shell: bash
         run: |
