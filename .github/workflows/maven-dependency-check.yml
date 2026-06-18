@@ -90,14 +90,16 @@ jobs:
       - name: Dependency Check with Maven
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          OSS_INDEX_PASSWORD: ${{ secrets.SONATYPE_GUIDE_API_KEY }}
         shell: bash
         run: |
           set -euo pipefail
           # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
-          # The NVD API key is read from the NVD_API_KEY environment variable by
-          # the pom (dependencyCheck.NVDApiKey default), so the secret is never
-          # passed on the command line where it would be visible in the process
-          # list.
+          # The NVD API key and OSS Index password are read from the
+          # NVD_API_KEY / OSS_INDEX_PASSWORD environment variables by the pom
+          # (dependencyCheck.NVDApiKey / dependencyCheck.ossIndexPassword
+          # defaults), so the secrets are never passed on the command line where
+          # they would be visible in the process list.
           # SARIF is generated so the findings can be uploaded to the GitHub
           # Security tab. The report is written before failBuildOnCVSS is
           # evaluated, so the file exists even when the scan fails the build.

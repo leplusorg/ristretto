@@ -89,6 +89,11 @@ limitations under the License.
          passed on the command line (visible in the process list). Can still
          be overridden with -DdependencyCheck.NVDApiKey=... if needed. -->
     <dependencyCheck.NVDApiKey>${env.NVD_API_KEY}</dependencyCheck.NVDApiKey>
+    <!-- Read the Sonatype OSS Index password (API token) from the environment
+         so the secret is never passed on the command line (visible in the
+         process list). Can still be overridden with
+         -DdependencyCheck.ossIndexPassword=... if needed. -->
+    <dependencyCheck.ossIndexPassword>${env.OSS_INDEX_PASSWORD}</dependencyCheck.ossIndexPassword>
     <cyclonedx.skip>false</cyclonedx.skip>
     <sigstore.skip>false</sigstore.skip>
   </properties>
@@ -224,7 +229,7 @@ limitations under the License.
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>central</publishingServerId>
-	  <autoPublish>true</autoPublish>
+        <autoPublish>true</autoPublish>
         </configuration>
       </plugin>
       <plugin>
@@ -248,13 +253,13 @@ limitations under the License.
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
         <version>3.2.8</version>
-	<configuration>
-	  <!-- Prevent gpg from using pinentry programs -->
-	  <gpgArguments>
-	    <arg>--pinentry-mode</arg>
-	    <arg>loopback</arg>
-	  </gpgArguments>
-	</configuration>
+      <configuration>
+        <!-- Prevent gpg from using pinentry programs -->
+        <gpgArguments>
+          <arg>--pinentry-mode</arg>
+          <arg>loopback</arg>
+        </gpgArguments>
+      </configuration>
         <executions>
           <execution>
             <id>pgp-sign</id>
@@ -292,7 +297,8 @@ limitations under the License.
         <configuration>
           <failBuildOnCVSS>${dependencyCheck.threshold}</failBuildOnCVSS>
           <failOnError>true</failOnError>
-	  <nvdApiKey>${dependencyCheck.NVDApiKey}</nvdApiKey>
+          <nvdApiKey>${dependencyCheck.NVDApiKey}</nvdApiKey>
+          <ossIndexPassword>${dependencyCheck.ossIndexPassword}</ossIndexPassword>
           <skip>${dependencyCheck.skip}</skip>
         </configuration>
         <executions>
@@ -323,9 +329,9 @@ limitations under the License.
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>4.10.2.0</version>
         <configuration>
-	  <effort>max</effort>
-	  <threshold>Low</threshold>
-	  <failOnError>true</failOnError>
+        <effort>max</effort>
+        <threshold>Low</threshold>
+        <failOnError>true</failOnError>
           <plugins>
             <plugin>
               <groupId>com.h3xstream.findsecbugs</groupId>
@@ -406,12 +412,12 @@ limitations under the License.
             </reports>
           </reportSet>
         </reportSets>
-	<configuration>
+      <configuration>
           <configLocation>google_checks.xml</configLocation>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
           <consoleOutput>true</consoleOutput>
           <failsOnError>true</failsOnError>
-	  <violationSeverity>info</violationSeverity>
+        <violationSeverity>info</violationSeverity>
         </configuration>
       </plugin>
     </plugins>
