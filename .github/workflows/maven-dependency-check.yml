@@ -22,7 +22,11 @@ name: Maven Dependency Check
 
 on:
   schedule:
-    - cron: "0 0 * * 0"
+    # Every 6 days, to refresh the cached NVD database inside GitHub's 7-day
+    # cache eviction window (see the "Cache dependency-check NVD database" step).
+    # cron has no true "every N days", so */6 resets at the start of each month;
+    # the gap between runs nonetheless stays at or below 6 days.
+    - cron: "0 0 */6 * *"
   workflow_dispatch:
 
 permissions: {}
