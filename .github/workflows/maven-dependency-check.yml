@@ -70,7 +70,7 @@ jobs:
         # MAVEN_OPTS), so cache it at the location the build actually uses. The
         # NVD database under it is excluded - it is cached separately below with
         # a rotating key.
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             .m2/repository
@@ -85,7 +85,7 @@ jobs:
         # rate-limit-prone full NVD download into a quick delta update. The
         # unique per-run key always saves the freshly-updated DB; restore-keys
         # restores the most recent previous copy as the starting point.
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .m2/repository/org/owasp/dependency-check-data
           key: dependency-check-data-${{ github.run_id }}
