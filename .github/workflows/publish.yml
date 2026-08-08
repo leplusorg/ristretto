@@ -72,16 +72,10 @@ jobs:
           server-password: MAVEN_CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.OSSRH_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
-      - name: Cache Maven dependencies
-        # The build redirects the local repo to .m2/repository (see
-        # -Dmaven.repo.local in MAVEN_OPTS), so cache it at the location the
-        # build actually uses rather than setup-java's default ~/.m2/repository.
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: .m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      # No dependency cache here: this workflow publishes signed artifacts to
+      # Maven Central on release, so restoring a cache that a less-trusted
+      # workflow run could have populated would be a cache-poisoning supply
+      # chain risk. Dependencies are downloaded fresh instead.
       - name: Build
         shell: bash
         run: |
