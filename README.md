@@ -199,6 +199,104 @@ You can also use my convenient Docker image (shameless plug):
 
 See [here for details](https://github.com/leplusorg/docker-pgp-verify-jar).
 
+## Software Bill of Materials (SBOM)
+
+Every release of Ristretto ships with a Software Bill of Materials: a
+machine-readable inventory of the components that went into the jar,
+so that you can audit your supply chain and scan Ristretto (and its
+dependencies) for known vulnerabilities without having to resolve them
+yourself.
+
+### What is published
+
+The SBOM is generated during the build by the
+[CycloneDX Maven plugin](https://github.com/CycloneDX/cyclonedx-maven-plugin)
+(`makeAggregateBom` goal, bound to the `package` phase) and follows the
+[CycloneDX](https://cyclonedx.org) 1.6 specification. Two equivalent
+files are produced and published to Maven Central next to the jar, one
+in JSON and one in XML, both under the `cyclonedx` classifier:
+
+| Artifact | Maven coordinates | File on Maven Central |
+| -------- | ----------------- | --------------------- |
+| CycloneDX SBOM (JSON) | `org.leplus:ristretto:2.0.0:json:cyclonedx` | [`ristretto-2.0.0-cyclonedx.json`](https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.json) |
+| CycloneDX SBOM (XML) | `org.leplus:ristretto:2.0.0:xml:cyclonedx` | [`ristretto-2.0.0-cyclonedx.xml`](https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.xml) |
+
+The same two files (named `ristretto-<version>-bom.json` and
+`ristretto-<version>-bom.xml` under `target/`) are also uploaded as build
+artifacts by the [`Publish` workflow](.github/workflows/publish.yml) and
+by the Java 17 job of the [`Maven` workflow](.github/workflows/maven.yml),
+which is handy if you want to inspect the SBOM of a commit that has not
+been released yet. Only the copies on Maven Central are part of a release.
+
+### How they are signed
+
+The SBOMs are signed exactly like the jar itself, by the
+[`Publish` workflow](.github/workflows/publish.yml) that runs when a
+release is published. Both signatures are produced in the `verify` phase,
+before the artifacts are deployed, so each SBOM on Maven Central comes with:
+
+- a Sigstore bundle (`ristretto-2.0.0-cyclonedx.json.sigstore.json`),
+  tied to the same workflow identity as the jar;
+- a detached PGP signature (`ristretto-2.0.0-cyclonedx.json.asc`), made
+  with the same key as the jar;
+- the usual `.md5` and `.sha1` checksums.
+
+You can therefore verify an SBOM with the exact same commands as in the
+[Digital Signature](#digital-signature) section above, simply replacing
+the jar with the SBOM file. For instance, with Sigstore:
+
+```bash
+curl -fsSL 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.json' -o ristretto-2.0.0-cyclonedx.json
+curl -fsSL 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.json.sigstore.json' -o ristretto-2.0.0-cyclonedx.json.sigstore.json
+cosign verify-blob --bundle ristretto-2.0.0-cyclonedx.json.sigstore.json --certificate-identity 'https://github.com/leplusorg/ristretto/.github/workflows/publish.yml@refs/tags/v2.0.0' --certificate-oidc-issuer 'https://token.actions.githubusercontent.com' ristretto-2.0.0-cyclonedx.json
+```
+
+Or with GnuPG, using the [same public key](https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6b1b9be54c155617)
+as for the jar:
+
+```bash
+curl -fsSL 'https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.json.asc' -o ristretto-2.0.0-cyclonedx.json.asc
+gpg --keyserver keyserver.ubuntu.com --recv-keys 6B1B9BE54C155617
+gpg --verify ristretto-2.0.0-cyclonedx.json.asc ristretto-2.0.0-cyclonedx.json
+```
+
+The weekly [`Maven Central` workflow](.github/workflows/maven-central.yml)
+re-downloads both SBOMs together with their `.asc`, `.sigstore.json`,
+`.md5` and `.sha1` files, so a release whose SBOMs or their signatures
+went missing from Maven Central would be caught.
+
+### How to use them
+
+Because the SBOMs are regular Maven artifacts, you can fetch one without
+leaving your build tool:
+
+```bash
+mvn dependency:get -Dartifact=org.leplus:ristretto:2.0.0:json:cyclonedx -Dtransitive=false
+```
+
+Once you have verified the signature, the SBOM can be fed to any tool
+that understands CycloneDX, for example:
+
+- vulnerability scanners, to check Ristretto and its dependencies
+  against vulnerability databases:
+
+  ```bash
+  trivy sbom ristretto-2.0.0-cyclonedx.json
+  grype sbom:ristretto-2.0.0-cyclonedx.json
+  osv-scanner scan source --sbom=ristretto-2.0.0-cyclonedx.json
+  ```
+
+- [OWASP Dependency-Track](https://dependencytrack.org), if you want to
+  upload the SBOM and be notified when a new vulnerability affecting
+  Ristretto is disclosed;
+- the [CycloneDX CLI](https://github.com/CycloneDX/cyclonedx-cli), to
+  convert the SBOM to another format (SPDX, CSV, ...), to merge it into
+  the SBOM of your own application, or to diff two releases:
+
+  ```bash
+  cyclonedx convert --input-file ristretto-2.0.0-cyclonedx.json --output-format spdxjson --output-file ristretto-2.0.0.spdx.json
+  ```
+
 ## License
 
 Copyright 2016-present Thomas Leplus
