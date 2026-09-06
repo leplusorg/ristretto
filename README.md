@@ -216,10 +216,10 @@ The SBOM is generated during the build by the
 files are produced and published to Maven Central next to the jar, one
 in JSON and one in XML, both under the `cyclonedx` classifier:
 
-| Artifact | Maven coordinates | File on Maven Central |
-| -------- | ----------------- | --------------------- |
+| Artifact              | Maven coordinates                           | File on Maven Central                                                                                                        |
+| --------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | CycloneDX SBOM (JSON) | `org.leplus:ristretto:2.0.0:json:cyclonedx` | [`ristretto-2.0.0-cyclonedx.json`](https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.json) |
-| CycloneDX SBOM (XML) | `org.leplus:ristretto:2.0.0:xml:cyclonedx` | [`ristretto-2.0.0-cyclonedx.xml`](https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.xml) |
+| CycloneDX SBOM (XML)  | `org.leplus:ristretto:2.0.0:xml:cyclonedx`  | [`ristretto-2.0.0-cyclonedx.xml`](https://repo1.maven.org/maven2/org/leplus/ristretto/2.0.0/ristretto-2.0.0-cyclonedx.xml)   |
 
 The same two files (named `ristretto-<version>-bom.json` and
 `ristretto-<version>-bom.xml` under `target/`) are also uploaded as build
