@@ -101,9 +101,22 @@ jobs:
           # Do not set IFS=$'\n\t', breaks ${MAVEN_CLI_OPTS}
           # The NVD API key and OSS Index password are read from the
           # NVD_API_KEY / OSS_INDEX_PASSWORD environment variables by the pom
-          # (dependencyCheck.NVDApiKey / dependencyCheck.ossIndexPassword
-          # defaults), so the secrets are never passed on the command line where
-          # they would be visible in the process list.
+          # (the nvd-api-key and oss-index-password profiles), so the secrets
+          # are never passed on the command line where they would be visible in
+          # the process list.
+          # Without NVD_API_KEY the nvd-api-key profile stays off and the pom
+          # skips the scan outright - which is the whole job, so there is
+          # nothing left to do but say so. Left to run, it would also write no
+          # SARIF and fail the upload step below instead, which says nothing
+          # about why. Only the NVD key is required: OSS Index merely raises
+          # the anonymous rate limit, so an absent password degrades the scan
+          # rather than disabling it.
+          if [ -z "${NVD_API_KEY:-}" ]; then
+            echo "::error::NVD_API_KEY is not set, so dependency-check would be skipped and nothing scanned."
+            echo "Add it as a repository secret; a key is free from" >&2
+            echo "https://nvd.nist.gov/developers/request-an-api-key" >&2
+            exit 1
+          fi
           # SARIF is generated so the findings can be uploaded to the GitHub
           # Security tab. The report is written before failBuildOnCVSS is
           # evaluated, so the file exists even when the scan fails the build.

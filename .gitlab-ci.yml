@@ -43,6 +43,26 @@ variables:
     -DinstallAtEnd=true
     -DdeployAtEnd=true
 
+# NVD_API_KEY is a CI/CD variable, so it is already in the job's environment -
+# which is where the pom reads it from (the nvd-api-key profile). Passing it
+# with -D as well would put the key in the process list for the length of the
+# build, and an unset variable would expand to `-DdependencyCheck.NVDApiKey=`,
+# an empty key, which the NVD API rejects outright.
+#
+# Unset, the pom skips the scan instead of failing. That is the right default
+# for a build on a laptop and the wrong one here: a skipped scan and a clean
+# scan are the same shade of green, so the pipeline would be vouching for
+# dependencies nothing ever looked at. Fail instead. Worth knowing that a
+# *protected* NVD_API_KEY is absent on unprotected branches, which is the usual
+# way it goes missing.
+.nvd-api-key-guard: &nvd-api-key-guard |
+  if [ -z "${NVD_API_KEY:-}" ]; then
+    echo "NVD_API_KEY is not set, so dependency-check would be skipped and nothing scanned." >&2
+    echo "Set it as a CI/CD variable; a key is free from" >&2
+    echo "https://nvd.nist.gov/developers/request-an-api-key" >&2
+    exit 1
+  fi
+
 sast:
   stage: check
 
@@ -122,12 +142,7 @@ maven:jdk17:
     paths:
       - .m2/repository
   script:
-    # NVD_API_KEY is a CI/CD variable, so it is already in the job's
-    # environment - which is where the pom now reads it from (the nvd-api-key
-    # profile). Passing it with -D as well would put the key in the process
-    # list for the length of the build, and an unset variable would expand to
-    # `-DdependencyCheck.NVDApiKey=`, an empty key, which the NVD API rejects
-    # outright. Unset, the profile stays off and the scan skips instead.
+    - *nvd-api-key-guard
     - "./mvnw $MAVEN_CLI_OPTS verify"
 
 maven:jdk21:
@@ -141,12 +156,7 @@ maven:jdk21:
     paths:
       - .m2/repository
   script:
-    # NVD_API_KEY is a CI/CD variable, so it is already in the job's
-    # environment - which is where the pom now reads it from (the nvd-api-key
-    # profile). Passing it with -D as well would put the key in the process
-    # list for the length of the build, and an unset variable would expand to
-    # `-DdependencyCheck.NVDApiKey=`, an empty key, which the NVD API rejects
-    # outright. Unset, the profile stays off and the scan skips instead.
+    - *nvd-api-key-guard
     - "./mvnw $MAVEN_CLI_OPTS verify"
 
 maven:jdk25:
