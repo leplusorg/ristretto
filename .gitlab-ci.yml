@@ -122,7 +122,13 @@ maven:jdk17:
     paths:
       - .m2/repository
   script:
-    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
+    # NVD_API_KEY is a CI/CD variable, so it is already in the job's
+    # environment - which is where the pom now reads it from (the nvd-api-key
+    # profile). Passing it with -D as well would put the key in the process
+    # list for the length of the build, and an unset variable would expand to
+    # `-DdependencyCheck.NVDApiKey=`, an empty key, which the NVD API rejects
+    # outright. Unset, the profile stays off and the scan skips instead.
+    - "./mvnw $MAVEN_CLI_OPTS verify"
 
 maven:jdk21:
   stage: build
@@ -135,7 +141,13 @@ maven:jdk21:
     paths:
       - .m2/repository
   script:
-    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.NVDApiKey=${NVD_API_KEY} verify"
+    # NVD_API_KEY is a CI/CD variable, so it is already in the job's
+    # environment - which is where the pom now reads it from (the nvd-api-key
+    # profile). Passing it with -D as well would put the key in the process
+    # list for the length of the build, and an unset variable would expand to
+    # `-DdependencyCheck.NVDApiKey=`, an empty key, which the NVD API rejects
+    # outright. Unset, the profile stays off and the scan skips instead.
+    - "./mvnw $MAVEN_CLI_OPTS verify"
 
 maven:jdk25:
   stage: build
