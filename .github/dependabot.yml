@@ -32,3 +32,7 @@ updates:
       default-days: 7
     commit-message:
       prefix: ci(deps)
+    groups:
+      codeql:
+        patterns:
+          - "github/codeql-action*"
