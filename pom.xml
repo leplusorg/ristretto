@@ -219,6 +219,11 @@ limitations under the License.
               <source>${java.minVersion}</source>
               <show>private</show>
               <nohelp>true</nohelp>
+              <!-- javadoc runs its own doclint over every member shown,
+                   private ones included. Fail on its warnings the way
+                   -Werror fails on javac's, so a missing or broken doc
+                   comment cannot slip through as a log line. -->
+              <failOnWarnings>true</failOnWarnings>
             </configuration>
           </execution>
         </executions>
