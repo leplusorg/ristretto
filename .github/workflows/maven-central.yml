@@ -51,10 +51,17 @@ jobs:
     steps:
       - name: Set VERSION
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           IFS=$'\n\t'	
-          echo "VERSION=$(curl -fsSL "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -r '.tag_name' | sed -e 's/^v//')" >> "${GITHUB_ENV}"
+          VERSION="$(curl -fsSL --retry 3 -H "Authorization: Bearer ${GH_TOKEN}" "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/latest" | jq -er '.tag_name' | sed -e 's/^v//')"
+          if [[ -z "${VERSION}" ]]; then
+            echo "Could not determine latest release version" >&2
+            exit 1
+          fi
+          echo "VERSION=${VERSION}" >> "${GITHUB_ENV}"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
